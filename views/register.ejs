@@ -30,6 +30,14 @@
         <div class="container">
             <div class="col-md-12">
                 <form novalidate="" class="login-form" id="loginform" method="post" action="/authentication">
+                
+                    <%  
+                if (typeof errors != 'undefined' && errors.length > 0){  
+                    for (let error of errors){   
+                %> 
+                    <p style="color: red;"><%= error.msg %></p> 
+                <% }} %> 
+
                     <div class="title-section center color-black style5 style12">
                         <h2 class="title">Register</h2> 
                         <div class="sub-title">
@@ -48,10 +56,10 @@
                                 <input type="password" placeholder="Password*" size="30" value="" name="password" id="password">
                             </p>
                             <p class="login-input">                                        
-                                <input type="password" placeholder="Confirm Password*" size="30" value="" name="confirm password" id="confirmpassword">
+                                <input type="password" placeholder="Confirm Password*" size="30" value="" name="passwordConfirm" id="confirmpassword">
                             </p>
-                            <select class="login-input" id="selectOption" name="selectOption">
-                                <option value="user">Regular User</option>
+                            <select class="login-input" id="selectOption" name="role">
+                                <option value="user">User</option>
                                 <option value="company">Company</option>
                             </select>  
                         </div> 

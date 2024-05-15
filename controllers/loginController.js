@@ -13,7 +13,7 @@ module.exports = postRegister = (req, res) => {
             uname: req.body.uname, 
             email: req.body.email, 
             password: req.body.password,
-            role: req.body.selectOption
+            role: req.body.role
         } 
 
         const insertedData = User.create(data) 
@@ -21,5 +21,9 @@ module.exports = postRegister = (req, res) => {
         // req.session.username = user.name 
         // req.session.user_id = user.id 
         res.redirect('/') 
-    } 
+    }else{
+        res.render('register',{ 
+            errors: errors.array() 
+        }) 
+    }
 }
