@@ -12,7 +12,7 @@ router.get('/register', (req, res) => {
 }); 
 
 router.get('/login', (req, res) => { 
-    res.render("login", { layout: false }); 
+    res.render("login", { errors: {}, layout: false }); 
 });
 
 router.get('/events', (req, res) => { 

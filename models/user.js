@@ -15,10 +15,10 @@ class User{
         } 
     } 
 
-    static async findById(id){ 
+    static async findUser(data){ 
         const db =  await pool.getConnection() 
         try { 
-            const [row] = await db.execute("SELECT * from users where id=:id", {id}) 
+            const [row] = await db.execute("SELECT * from users where uname=:uname and password=:password", data) 
             return row[0] 
         } catch(e){ 
             console.log('error', e) 
