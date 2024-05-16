@@ -38,6 +38,7 @@ class Authentication {
             if(user != undefined){
                 req.session.username = user.uname 
                 req.session.user_id = user.id
+                // console.log(req.session)
                 res.redirect("/dashboard")
             }else{
                 const errorObject = {

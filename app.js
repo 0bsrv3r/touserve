@@ -31,6 +31,7 @@ app.use((req, res, next) => {
     next(); 
 }) 
 
+const middlewares = require ("./middlewares/auth.js"); 
 
 // routes
 const pathes = require ("./routes/path.js"); 

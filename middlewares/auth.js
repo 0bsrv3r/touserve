@@ -1,6 +1,9 @@
-export const login = (req, res, next) => { 
+function login(req, res, next){
+    console.log(req.session) 
     if(req.session.username){ 
-        res.redirect('/') 
+        res.redirect('/dashboard') 
     } 
     next(); 
 }
+
+module.exports = login
