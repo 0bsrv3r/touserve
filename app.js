@@ -15,7 +15,7 @@ app.use('/upload', express.static('upload'));
 const pathes = require ("./routes/path.js"); 
 const auth = require ("./routes/auth.js"); 
 app.use("/", pathes);
-app.use("/authentication", auth);
+app.use("/register", auth);
 
 app.listen(port, ()=>{ 
     console.log('Application is running on port 8181'); 

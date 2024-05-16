@@ -5,7 +5,7 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>Tamara-Travel Agency and Tourism HTML Template</title>
+    <title>Touserve</title>
     <meta name="author" content="themesflat.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -19,24 +19,15 @@
     <link href="/upload/icon/apple-touch-icon-32-precomposed.png" rel="apple-touch-icon-precomposed">
     <link href="/upload/icon/favicon.png" rel="shortcut icon">
 
-    <!--[if lt IE 9]>
-        <script src="javascript/html5shiv.js"></script>
-        <script src="javascript/respond.min.js"></script>
-    <![endif]-->
 </head>                                 
 <body class="header_sticky">
     
     <section class="flat-row page-register bg-theme pdtitle-section v13">
         <div class="container">
             <div class="col-md-12">
-                <form novalidate="" class="login-form" id="loginform" method="post" action="/authentication">
+                <form novalidate="" class="login-form" id="loginform" method="post" action="/register">
                 
-                    <%  
-                if (typeof errors != 'undefined' && errors.length > 0){  
-                    for (let error of errors){   
-                %> 
-                    <p style="color: red;"><%= error.msg %></p> 
-                <% }} %> 
+                   
 
                     <div class="title-section center color-black style5 style12">
                         <h2 class="title">Register</h2> 
@@ -46,18 +37,33 @@
                     </div>
                     <div class="wrap-register wrap-login-register">
                         <div class="wrap-input">
-                            <p class="login-input">                                      
+                            <p class="login-input">
+                                <% if (errors.uname) { %>
+                                    <p style="color: red;"><%- errors.uname %></p>
+                                <% } %>                                   
                                 <input type="text" placeholder="User Name*" aria-required="true" size="30" value="" name="uname" id="author">
                             </p>
-                            <p class="login-input">                                        
+                            <p class="login-input">
+                                <% if (errors.email) { %>
+                                    <p style="color: red;"><%- errors.email %></p>
+                                <% } %>                                          
                                 <input type="email" placeholder="Email*" size="30" value="" name="email" id="email">
                             </p> 
-                            <p class="login-input">                                        
+                            <p class="login-input">
+                                <% if (errors.password) { %>
+                                    <p style="color: red;"><%- errors.password %></p>
+                                <% } %>                                          
                                 <input type="password" placeholder="Password*" size="30" value="" name="password" id="password">
                             </p>
-                            <p class="login-input">                                        
+                            <p class="login-input">
+                                <% if (errors.passwordConfirm) { %>
+                                    <p style="color: red;"><%- errors.passwordConfirm %></p>
+                                <% } %>                                          
                                 <input type="password" placeholder="Confirm Password*" size="30" value="" name="passwordConfirm" id="confirmpassword">
                             </p>
+                            <% if (errors.role) { %>
+                                <p style="color: red;"><%- errors.role %></p>
+                            <% } %> 
                             <select class="login-input" id="selectOption" name="role">
                                 <option value="user">User</option>
                                 <option value="company">Company</option>

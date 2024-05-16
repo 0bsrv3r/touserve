@@ -4,7 +4,6 @@ const User = require('../models/user.js');
 module.exports = postRegister = (req, res) => { 
     
     const errors = validationResult(req); 
-    console.log(req.body)
     
     if(errors.isEmpty()){ 
         
@@ -22,8 +21,11 @@ module.exports = postRegister = (req, res) => {
         // req.session.user_id = user.id 
         res.redirect('/') 
     }else{
-        res.render('register',{ 
-            errors: errors.array() 
-        }) 
+        const errorObject = errors.array().reduce((acc, error) => {
+            acc[error.path] = error.msg;
+            return acc;
+        }, {})
+
+        res.render('register',{ errors: errorObject, layout: false }) 
     }
 }

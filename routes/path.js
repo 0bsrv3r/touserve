@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 }); 
 
 router.get('/register', (req, res) => { 
-    res.render("register", { layout: false }); 
+    res.render("register", { errors: {}, layout: false }); 
 }); 
 
 router.get('/login', (req, res) => { 
