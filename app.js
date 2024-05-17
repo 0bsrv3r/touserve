@@ -21,7 +21,7 @@ app.use(session({
         resave: false,  
         saveUninitialized: true, 
         cookie: { 
-            secure: false   // set it as a true for prod!!! 
+            secure: false   // set this to true in prod!!! 
         } 
     }) 
 ) 
@@ -30,8 +30,6 @@ app.use((req, res, next) => {
     res.locals.globalSession = req.session 
     next(); 
 }) 
-
-const middlewares = require ("./middlewares/auth.js"); 
 
 // routes
 const pathes = require ("./routes/path.js"); 

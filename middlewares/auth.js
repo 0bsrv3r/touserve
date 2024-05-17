@@ -1,9 +1,8 @@
-function login(req, res, next){
-    console.log(req.session) 
-    if(req.session.username){ 
-        res.redirect('/dashboard') 
-    } 
-    next(); 
+function login(req, res, next) {
+    if (!req.session.username) {
+            return res.redirect('/');
+    }
+    next();
 }
 
-module.exports = login
+module.exports = login;

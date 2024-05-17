@@ -27,25 +27,21 @@ class Authentication {
     }
 
     static async postLogin(req, res){
-        const errors = validationResult(req);
-        if(errors.isEmpty()){
-            const data = { 
-                uname: req.body.uname, 
-                password: req.body.password, 
-            } 
+        const data = { 
+            uname: req.body.uname, 
+            password: req.body.password, 
+        } 
 
-            const user = await User.findUser(data) 
-            if(user != undefined){
-                req.session.username = user.uname 
-                req.session.user_id = user.id
-                // console.log(req.session)
-                res.redirect("/dashboard")
-            }else{
-                const errorObject = {
-                    wrongAttempt: "Your username or password is incorrect"
-                }
-                res.render('login',{ errors: errorObject, layout: false })
+        const user = await User.findUser(data) 
+        if(user != undefined){
+            req.session.username = user.uname 
+            req.session.user_id = user.id
+            res.redirect("/dashboard")
+        }else{
+            const errorObject = {
+                wrongAttempt: "Your username or password is incorrect"
             }
+            res.render('login',{ errors: errorObject, layout: false })
         }
     }
 }
