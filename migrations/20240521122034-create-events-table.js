@@ -18,11 +18,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(200)
       },
-      describtion: {
+      description: {
         allowNull: false,
         type: Sequelize.STRING
       },
       location: {
+        allowNull: false,
+        type: Sequelize.STRING(150)
+      },
+      date: {
         allowNull: false,
         type: Sequelize.STRING(150)
       },

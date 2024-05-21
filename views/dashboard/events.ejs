@@ -32,10 +32,10 @@
 	                                    <!-- Your events text goes here. -->
 	                                </p>
 		                                        
-									<form action="#" data-parsley-validate novalidate>
+									<form action="/dashboard/events" method="post" enctype="multipart/form-data" novalidate>
                                         <div class="form-group">
                                             <label class="control-label">Image</label>
-                                            <input type="file" class="filestyle" data-buttontext="Select file" data-buttonname="btn-white">
+                                            <input type="file" class="filestyle" name="image" data-buttontext="Select file" data-buttonname="btn-white">
                                         </div>
 										<div class="form-group">
 											<label for="userName">Title</label>
@@ -47,11 +47,11 @@
 										</div>
                                         <div class="form-group">
                                             <label class="control-label">Date Range With Time</label>
-                                            <input type="text" class="form-control input-daterange-timepicker" name="daterange" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM"/>
+                                            <input type="text" class="form-control input-daterange-timepicker" name="date" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM"/>
                                         </div>
 										<div class="form-group">
                                             <label class="control-label">Description</label>
-                                            <textarea required class="form-control"></textarea>
+                                            <textarea name="description" required class="form-control"></textarea>
                                         </div>
 										<div class="form-group text-right m-b-0">
 											<button class="btn btn-primary waves-effect waves-light" type="submit">

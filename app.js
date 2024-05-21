@@ -33,6 +33,10 @@ app.use((req, res, next) => {
     next(); 
 })
 
+// file upload
+const fileUpload = require("express-fileupload"); 
+app.use(fileUpload())
+
 
 // middlewares 
 const login = require("./middlewares/auth.js")
@@ -44,7 +48,7 @@ const auth = require ("./routes/auth.js");
 const dashboard = require ("./routes/dashboard.js"); 
 app.use("/", pathes);
 app.use("/auth", auth);
-app.use("/dashboard", login, dashboard) // Checked with middleware if user registered or not.
+app.use("/dashboard", /*login,*/ dashboard) // Checked with middleware if user registered or not.
 
 
 app.listen(port, ()=>{ 
