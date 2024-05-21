@@ -5,6 +5,7 @@ const port = 8181;
 // dotenv 
 require('dotenv').config();
 
+
 // EJS for rendering pages
 app.set("view engine", "ejs")
 
@@ -13,6 +14,7 @@ const expressEjsLayouts = require("express-ejs-layouts");
 app.use(expressEjsLayouts); 
 app.set("layout", "layouts/header")
 app.use('/upload', express.static('upload')); 
+
 
 // express-session 
 const session = require("express-session"); 
@@ -29,7 +31,12 @@ app.use(session({
 app.use((req, res, next) => { 
     res.locals.globalSession = req.session 
     next(); 
-}) 
+})
+
+
+// middlewares 
+const login = require("./middlewares/auth.js")
+
 
 // routes
 const pathes = require ("./routes/path.js"); 
@@ -37,7 +44,8 @@ const auth = require ("./routes/auth.js");
 const dashboard = require ("./routes/dashboard.js"); 
 app.use("/", pathes);
 app.use("/auth", auth);
-app.use("/dashboard", dashboard)
+app.use("/dashboard", login, dashboard) // Checked with middleware if user registered or not.
+
 
 app.listen(port, ()=>{ 
     console.log('Application is running on port 8181'); 
