@@ -4,7 +4,8 @@ const Events = require("../models/event.js")
 
 class Event{
     static postEvent(req, res){
-        // if(errors.isEmpty()){ 
+        const errors = validationResult(req); 
+        if(errors.isEmpty()){ 
             let avatar = req.files.image; 
             let path = 'upload/photos/' + Date.now() + '-' + slugify(avatar.name,{ 
                 lower: true, 
@@ -27,13 +28,14 @@ class Event{
 
             Events.create(data)
             res.redirect('/dashboard/events')
+        }else{
+            const errorObject = errors.array().reduce((acc, error) => {
+                acc[error.path] = error.msg;
+                return acc;
+            }, {})
 
-            console.log(data)
-        // } 
-         
-        // res.render('register',{ 
-        //     errors: errors.array() 
-        // }) 
+            res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
+        } 
     }
 }
 

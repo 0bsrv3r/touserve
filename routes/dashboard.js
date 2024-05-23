@@ -1,6 +1,7 @@
 const express  = require('express');
 const router = express.Router();
 const Event = require("../controllers/eventController.js")
+const eventValidation  = require("../validators/event.js"); 
 
 router.use(express.urlencoded({ extended:true }))
 
@@ -9,9 +10,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/events', (req, res) => { 
-    res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars'}); 
+    res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
 });
 
-router.post('/events', Event.postEvent);
+router.post('/events',eventValidation, Event.postEvent);
 
 module.exports = router;
