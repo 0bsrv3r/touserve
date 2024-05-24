@@ -22,4 +22,8 @@ router.get('/photos', (req, res) => {
     res.render("photos", {layout: 'layouts/pagesHeader'}); 
 });
 
+router.get('/e-visa', (req, res) => { 
+    res.render("e-visa", {layout: 'layouts/pagesHeader'}); 
+});
+
 module.exports = router;
