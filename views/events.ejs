@@ -21,6 +21,7 @@
 <!-- /.wrap-header -->
 
 <!-- Blog posts -->
+<% for (let i = 0; i < events.length; i++) { %>
 <section class="main-content blog-posts blog-single pd-blog-single bg-theme">
 <div class="container">
     <div class="row">
@@ -28,31 +29,22 @@
             <div class="post-wrap">
                 <article class="post clearfix">
                     <div class="featured-post">
-                        <img src="/upload/images/blog/bls-i1.jpg" alt="image">
+                        <img src="/<%= events[i].image %>" alt="image">
                     </div>
                     <!-- /.feature-post -->
                     <div class="content-post">
                         <ul class="meta-post clearfix">
                             <li class="day">
-                                <p>Baku</p>
-                                <p>02 Nov 2018</p>
+                                <p> <%= events[i].location %></p>
+                                <p> <%= events[i].date %></p>
                             </li>
                         </ul>
                         <!-- /.meta-post -->
                         <h4 class="title-post">
-                            <a href="javascript:void(0)">Pack Wisely before travel &nbsp;Tourism</a>
+                            <a href="javascript:void(0)"><%= events[i].title %></a>
                         </h4>
                         <div class="entry excerpt-v1">
-                            <p>Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari
-                                quam ti del coalescent lingues. Li nov lingua franca va esser plu simplic e regulari
-                                quam li existent Europan lingues. It va esser tam simplic quam Occidental in
-                                fact, it va esser Occidental. A un Angleso it va semblar un simplificat Angles,
-                                quam un skeptic Cambridge.</p>
-
-                            <p class="body-entry-bt">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.
-                                Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues
-                                differe solmen in li grammatica, li pronunciation e li plu commun vocabules\
-                            </p>
+                            <p><%= events[i].description %></p>
                         </div>
                     </div>
                     <!-- /.content-post -->
@@ -65,91 +57,4 @@
 </div>
 <!-- /.container -->
 </section>
-<section class="main-content blog-posts blog-single pd-blog-single bg-theme">
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="post-wrap">
-                <article class="post clearfix">
-                    <div class="featured-post">
-                        <img src="/upload/images/blog/bls-i1.jpg" alt="image">
-                    </div>
-                    <!-- /.feature-post -->
-                    <div class="content-post">
-                        <ul class="meta-post clearfix">
-                            <li class="day">
-                                <p>Baku</p>
-                                <p>02 Nov 2018</p>
-                            </li>
-                        </ul>
-                        <!-- /.meta-post -->
-                        <h4 class="title-post">
-                            <a href="javascript:void(0)">Pack Wisely before travel &nbsp;Tourism</a>
-                        </h4>
-                        <div class="entry excerpt-v1">
-                            <p>Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari
-                                quam ti del coalescent lingues. Li nov lingua franca va esser plu simplic e regulari
-                                quam li existent Europan lingues. It va esser tam simplic quam Occidental in
-                                fact, it va esser Occidental. A un Angleso it va semblar un simplificat Angles,
-                                quam un skeptic Cambridge.</p>
-
-                            <p class="body-entry-bt">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.
-                                Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues
-                                differe solmen in li grammatica, li pronunciation e li plu commun vocabules
-                            </p>
-                        </div>
-                    </div>
-                    <!-- /.content-post -->
-                </article>
-            </div>
-            <!-- /.post-wrap -->
-        </div>
-    </div>
-    <!-- /.row -->
-</div>
-<!-- /.container -->
-</section>
-<section class="main-content blog-posts blog-single pd-blog-single bg-theme">
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="post-wrap">
-                <article class="post clearfix">
-                    <div class="featured-post">
-                        <img src="/upload/images/blog/bls-i1.jpg" alt="image">
-                    </div>
-                    <!-- /.feature-post -->
-                    <div class="content-post">
-                        <ul class="meta-post clearfix">
-                            <li class="day">
-                                <p>Baku</p>
-                                <p>02 Nov 2018</p>
-                            </li>
-                        </ul>
-                        <!-- /.meta-post -->
-                        <h4 class="title-post">
-                            <a href="javascript:void(0)">Pack Wisely before travel &nbsp;Tourism</a>
-                        </h4>
-                        <div class="entry excerpt-v1">
-                            <p>Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari
-                                quam ti del coalescent lingues. Li nov lingua franca va esser plu simplic e regulari
-                                quam li existent Europan lingues. It va esser tam simplic quam Occidental in
-                                fact, it va esser Occidental. A un Angleso it va semblar un simplificat Angles,
-                                quam un skeptic Cambridge.</p>
-
-                            <p class="body-entry-bt">Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.
-                                Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues
-                                differe solmen in li grammatica, li pronunciation e li plu commun vocabules
-                            </p>
-                        </div>
-                    </div>
-                    <!-- /.content-post -->
-                </article>
-            </div>
-            <!-- /.post-wrap -->
-        </div>
-    </div>
-    <!-- /.row -->
-</div>
-<!-- /.container -->
-</section>
+<% } %>

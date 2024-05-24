@@ -37,35 +37,35 @@
                                             <label class="control-label">Image</label>
                                             <input type="file" class="filestyle" name="image" data-buttontext="Select file" data-buttonname="btn-white">
                                             <% if (errors.image) { %>
-                                                <p style="color: red;"><%- errors.image %></p>
+                                                <p style="color: red;"><%= errors.image %></p>
                                             <% } %> 
                                         </div>
 										<div class="form-group">
 											<label for="userName">Title</label>
 											<input type="text" name="title" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
                                             <% if (errors.title) { %>
-                                                <p style="color: red;"><%- errors.title %></p>
+                                                <p style="color: red;"><%= errors.title %></p>
                                             <% } %> 
                                         </div>
                                         <div class="form-group">
 											<label for="userName">Location</label>
 											<input type="text" name="location" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
                                             <% if (errors.location) { %>
-                                                <p style="color: red;"><%- errors.location %></p>
+                                                <p style="color: red;"><%= errors.location %></p>
                                             <% } %> 
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Date Range With Time</label>
                                             <input type="text" class="form-control input-daterange-timepicker" name="date" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM"/>
                                             <% if (errors.date) { %>
-                                                <p style="color: red;"><%- errors.date %></p>
+                                                <p style="color: red;"><%= errors.date %></p>
                                             <% } %> 
                                         </div>
 										<div class="form-group">
                                             <label class="control-label">Description</label>
                                             <textarea name="description" required class="form-control"></textarea>
                                             <% if (errors.description) { %>
-                                                <p style="color: red;"><%- errors.description %></p>
+                                                <p style="color: red;"><%= errors.description %></p>
                                             <% } %> 
                                         </div>
 										<div class="form-group text-right m-b-0">

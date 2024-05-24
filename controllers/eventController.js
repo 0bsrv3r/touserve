@@ -7,7 +7,7 @@ class Event{
         const errors = validationResult(req); 
         if(errors.isEmpty()){ 
             let avatar = req.files.image; 
-            let path = 'upload/photos/' + Date.now() + '-' + slugify(avatar.name,{ 
+            let path = 'upload/photos/events/' + Date.now() + '-' + slugify(avatar.name,{ 
                 lower: true, 
                 strict: true 
             }) + '.' + avatar.name.split('.').pop();
@@ -26,6 +26,7 @@ class Event{
                 image: path
             } 
 
+            console.log(data)
             Events.create(data)
             res.redirect('/dashboard/events')
         }else{
@@ -36,6 +37,17 @@ class Event{
 
             res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
         } 
+    }
+
+    static async getEvents(req, res){
+        const events = await Events.findEvent()
+        
+        // for (let index = 0; index < eventsss.length; index++) {
+        //     const element = eventsss[index];
+        //     console.log(element.title)
+            
+        // }
+        res.render("events", {layout: 'layouts/pagesheader', events:events});
     }
 }
 

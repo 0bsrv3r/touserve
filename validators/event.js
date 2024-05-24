@@ -10,7 +10,7 @@ module.exports = eventValidation = [
             } 
             const allowedMimeTypes = ["image/png","image/jpeg","image/gif"] 
             const allowedExtensions = ["png", "jpeg", "jpg", "gif"] 
-            const profileImage = req.files.avatar 
+            const profileImage = req.files.image 
             if(!allowedMimeTypes.includes(profileImage.mimetype)){ 
                 throw new Error("Only .png, .jpeg, .gif file type allowed") 
             } 
@@ -27,20 +27,23 @@ module.exports = eventValidation = [
         }),
 
     body("title") 
-        .isLength({max: 150}) 
-        .withMessage("Title must be 150 character at least") 
-        .isAlpha() 
-        .withMessage("Title must consist only letter"), 
+        .isLength({min: 5, max: 150}) 
+        .withMessage("Title must be min 5 and max 150 character") 
+        .matches(/^[A-Za-z0-9\ ]+$/)
+        .withMessage("Title must consist only letter and numbers"), 
     
     body("location") 
-        .isLength({max: 150}) 
-        .withMessage("Location must be 150 character at least") 
-        .isAlphanumeric() 
-        .withMessage("Location must consist only letters and numbers"), 
+        .isLength({min: 5, max: 150}) 
+        .withMessage("Location must be min 5 and max 150 character") 
+        .matches(/^[A-Za-z0-9\- ]+$/)
+        .withMessage('Location must contain only letters, numbers, dashes, and spaces.')
+        .trim()
+        .escape(),
 
-    body("description") 
-        .isAlpha() 
-        .withMessage("Description must consist only letter"), 
+    body("description")
+        .isLength({min: 20, max: 2000}) 
+        .withMessage("Location must be min 5 and max 150 character") 
+        .escape(),
     
     body("date")
         .matches(dateRegex)

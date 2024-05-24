@@ -15,11 +15,11 @@ class Events{
         } 
     } 
 
-    static async findEvent(data){ 
+    static async findEvent(){ 
         const db =  await pool.getConnection() 
         try { 
-            const [row] = await db.execute("SELECT * from events where uname=:uname and password=:password", data) 
-            return row[0] 
+            const [row] = await db.execute("SELECT * from events") 
+            return row 
         } catch(e){ 
             console.log('error', e) 
             return 
