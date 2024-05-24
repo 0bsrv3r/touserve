@@ -1,0 +1,121 @@
+ <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->                      
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                                    <ul class="dropdown-menu drop-menu-right" role="menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </div>
+
+                                <h4 class="page-title">Add New Event</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+							<div class="col-lg-12">
+								<div class="card-box">
+									<h4 class="m-t-0 header-title"><b>Event Form</b></h4>
+									<p class="text-muted font-13 m-b-30">
+	                                    <!-- Your events text goes here. -->
+	                                </p>
+		                                        
+									<form action="/dashboard/guides" method="post" enctype="multipart/form-data" novalidate>
+                                        <div class="form-group col-lg-6">
+                                            <label class="control-label">Image</label>
+                                            <input type="file" class="filestyle" name="image" data-buttontext="Select file" data-buttonname="btn-white">
+                                            <% if (errors.image) { %>
+                                                <p style="color: red;"><%= errors.image %></p>
+                                            <% } %> 
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label class="control-label">Certificate</label>
+                                            <input type="file" class="filestyle" name="certificate" data-buttontext="Select file" data-buttonname="btn-white">
+                                            <% if (errors.certificate) { %>
+                                                <p style="color: red;"><%= errors.certificate %></p>
+                                            <% } %> 
+                                        </div>
+										<div class="form-group col-lg-6">
+											<label for="userName">Name</label>
+											<input type="text" name="name" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
+                                            <% if (errors.name) { %>
+                                                <p style="color: red;"><%= errors.name %></p>
+                                            <% } %> 
+                                        </div>
+                                        <div class="form-group col-lg-6">
+											<label for="userName">Surname</label>
+											<input type="text" name="surname" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
+                                            <% if (errors.surname) { %>
+                                                <p style="color: red;"><%= errors.surname %></p>
+                                            <% } %> 
+                                        </div>
+                                        <div class="form-group col-lg-6">
+											<label for="userName">Location</label>
+											<input type="text" name="location" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
+                                            <% if (errors.location) { %>
+                                                <p style="color: red;"><%= errors.location %></p>
+                                            <% } %> 
+                                        </div>
+                                        <div class="form-group col-lg-6">
+											<label for="userName">Languages</label>
+											<select name="languages" class="select2 select2-multiple" multiple="multiple" multiple data-placeholder="Choose ...">
+		                                        <optgroup label="Languages">
+		                                            <option value="AK">English</option>
+		                                            <option value="AK">Russian</option>
+		                                            <option value="AK">Turkish</option>
+		                                            <option value="AK">Germany</option>
+		                                            <option value="AK">French</option>
+		                                            <option value="HI">Spanish</option>
+		                                        </optgroup>
+		                                    </select>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label class="control-label">Visa Requirement</label>
+                                            <select name="visa" class="selectpicker" data-style="btn-white">
+                                                <option>Yes</option>
+                                                <option>No</option>
+                                            </select>
+                                        </div>
+										<div class="form-group col-lg-6">
+                                            <label class="control-label">Currency</label>
+                                            <select name="currency" class="selectpicker" data-style="btn-white">
+                                                <option>AZN</option>
+                                                <option>USD</option>
+                                                <option>EUR</option>
+                                            </select>
+                                        </div>
+										<div class="form-group text-right m-b-0">
+											<button class="btn btn-primary waves-effect waves-light" type="submit">
+												Submit
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+							
+						</div>
+                        
+            		</div> <!-- container -->
+                               
+                </div> <!-- content -->
+
+                <footer class="footer">
+                    © 2016. All rights reserved.
+                </footer>
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
