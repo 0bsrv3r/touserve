@@ -40,12 +40,6 @@ class Event{
 
     static async getEvents(req, res){
         const events = await Events.findEvent()
-        
-        // for (let index = 0; index < eventsss.length; index++) {
-        //     const element = eventsss[index];
-        //     console.log(element.title)
-            
-        // }
         res.render("events", {layout: 'layouts/pagesheader', events:events});
     }
 }

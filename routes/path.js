@@ -1,6 +1,7 @@
 const express  = require('express');
 const router = express.Router();
-const Event = require("../controllers/eventController")
+const Event = require("../controllers/eventController.js")
+const Guide = require("../controllers/guideController.js")
 
 router.use(express.urlencoded({ extended:true }))
 
@@ -17,6 +18,12 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/events', Event.getEvents); 
+
+router.get('/guides', Guide.getGuides); 
+
+router.get('/guide-details/:id', (req, res) => { 
+    res.render("guide-details", {layout: 'layouts/pagesHeader'}); 
+});
 
 router.get('/photos', (req, res) => { 
     res.render("photos", {layout: 'layouts/pagesHeader'}); 

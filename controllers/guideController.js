@@ -55,6 +55,15 @@ class Guide{
             res.render("./dashboard/guides", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
         } 
     }
+
+    static async getGuides(req, res){
+        const guides = await Guides.findGuide()
+        for (let i = 0; i < guides.length; i++) {
+            const element = guides[i];
+            console.log(element)
+        }
+        res.render("guides", {layout: 'layouts/pagesheader', guides:guides});
+    }
 }
 
 module.exports = Guide

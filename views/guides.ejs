@@ -1,0 +1,68 @@
+<!-- Page title -->
+<div class="page-title">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12">                    
+                <div class="page-title-heading">
+                    <h1 class="title">Guides</h1>
+                </div><!-- /.page-title-captions -->
+            </div><!-- /.col-md-6 -->
+        </div><!-- /.row -->  
+    </div><!-- /.container -->                      
+</div><!-- /.page-title --> 
+</div><!-- /.wrap-header --> 
+
+<!-- Team Member -->
+<section class="flat-row pd-team11 bg-theme page-tour-guide">
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="dividers dividers-title-section"></div>
+            <div class="title-section color-black style3 v1">
+                <a class="number-slide" href="#">01</a>
+                <h2 class="title"><span>Guides</span></h2> <!-- ./title -->                        
+            </div>
+            <div class="dividers dividers-team"></div>
+        </div>
+        
+        <% for (let i = 0; i < guides.length; i++) { %>
+        <div class="col-md-4">
+            <div class="team-member">
+                <div class="item overlays2">
+                    <div class="flat-team text-center">
+                        <div class="avatar">
+                            <a class="link" href="guide-details/<%- guides[i].id %>">        
+                                <a href="#">                                
+                                    <img src="/<%- guides[i].image %>" alt="img">
+                                </a>
+                            </a>
+                        </div> <!-- /.avatar -->
+                        <div class="content">
+                            <h4 class="name"><a href="guide-details"><%- guides[i].name %> <%- guides[i].surname %></a></h4>
+                            <div class="position"><span> <%- guides[i].languages %></span></div>
+                            <ul class="social-list">
+                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                            </ul>
+                        </div> <!-- /.content -->
+                    </div> <!-- /.flat-team -->
+                </div> <!-- /.item -->
+            </div> <!-- /.team-member -->
+        </div> <!-- /.col-md-4 --> 
+        <% } %>
+        
+    </div>
+
+    <div class="dividers v13h40">
+    </div>
+
+    <div class="btn-teammember">
+        <button class="flat-button">Load More</button>         
+    </div>          
+</div><!-- /.container -->   
+</section> 
