@@ -21,11 +21,11 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(200)
+        type: Sequelize.STRING(50)
       },
       surname: {
         allowNull: false,
-        type: Sequelize.STRING(200)
+        type: Sequelize.STRING(70)
       },
       languages: {
         allowNull: false,
@@ -36,7 +36,7 @@ module.exports = {
         type: Sequelize.STRING(150)
       },
       stars: {
-        allowNull: false,
+        // allowNull: true,
         type: Sequelize.INTEGER
       },
       image: {
@@ -53,10 +53,10 @@ module.exports = {
       },
       currency: {
         allowNull: false,
-        type: Sequelize.STRING(150)
+        type: Sequelize.STRING(5)
       },
       area: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

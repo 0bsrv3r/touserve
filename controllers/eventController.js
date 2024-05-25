@@ -26,7 +26,6 @@ class Event{
                 image: path
             } 
 
-            console.log(data)
             Events.create(data)
             res.redirect('/dashboard/events')
         }else{
