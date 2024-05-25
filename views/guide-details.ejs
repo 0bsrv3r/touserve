@@ -24,10 +24,10 @@
                 <div class="box-trip-review custom-box-trip-review">
                     <div class="col-md-4 col-sm-4 col-xs-12 custom-resp-center">
                         <div class="featured-trip custom-featured-trip">
-                            <img class="custom-img" src="/upload/images/blog/dss-i1.jpg" alt="img">
+                            <img class="custom-img" src="/<%- guide.image %>" alt="img">
                         </div>
                         <div class="content-trip custom-content-trip">
-                            <h4 class="title"><a href="#">Paris Trip</a></h4>
+                            <h4 class="title"><a href="#"><%- guide.name %> <%- guide.surname %></a></h4>
                             <p class="sub-title">Mountain, Rural, France</p>
                             <div class="wrap-star s2">                                            
                                 <ul class="star">
@@ -57,10 +57,10 @@
                                     <p>Area</p>
                                 </div>
                                 <div class="right">
-                                    <p>:Europe, France</p>
-                                    <p>:Yes</p>
-                                    <p>:French</p>
-                                    <p>:Euro, USD</p>
+                                    <p><%- guide.location %></p>
+                                    <p><%- guide.visa %></p>
+                                    <p><%- guide.languages %></p>
+                                    <p><%- guide.currency %></p>
                                     <p>:160.1mi2</p>
                                 </div>
                             </div>                           
@@ -315,7 +315,7 @@
                     <ul>
                         <li class="item">
                             <div class="featured-widget">
-                                <img src="/upload/images/blog/bls-ds-i2.jpg" alt="image">
+                                <img src="/<%- guide.certificate %>" alt="image">
                             </div>
                         </li> <!-- /.item -->
                     </ul>

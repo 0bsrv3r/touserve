@@ -42,7 +42,6 @@ class Guide{
                 certificate: certificatePath
             } 
 
-            console.log(data)
             Guides.create(data)
             res.redirect('/dashboard/guides')
         }else{
@@ -58,11 +57,16 @@ class Guide{
 
     static async getGuides(req, res){
         const guides = await Guides.findGuide()
-        for (let i = 0; i < guides.length; i++) {
-            const element = guides[i];
-            console.log(element)
-        }
+        // for (let i = 0; i < guides.length; i++) {
+        //     const element = guides[i];
+        // }
         res.render("guides", {layout: 'layouts/pagesheader', guides:guides});
+    }
+
+    static async getGuideById(req, res){
+        const data = req.params
+        const guide = await Guides.findGuideById(data)
+        res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide[0]});
     }
 }
 

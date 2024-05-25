@@ -27,6 +27,19 @@ class Guides{
         } finally { 
             db.release() 
         } 
+    }
+
+    static async findGuideById(data){ 
+        const db =  await pool.getConnection() 
+        try { 
+            const [row] = await db.execute("SELECT * from guides where id=:id", data) 
+            return row
+        } catch(e){ 
+            console.log('error', e) 
+            return 
+        } finally { 
+            db.release() 
+        } 
     } 
 } 
 

@@ -21,9 +21,7 @@ router.get('/events', Event.getEvents);
 
 router.get('/guides', Guide.getGuides); 
 
-router.get('/guide-details/:id', (req, res) => { 
-    res.render("guide-details", {layout: 'layouts/pagesHeader'}); 
-});
+router.get('/guide-details/:id', Guide.getGuideById);
 
 router.get('/photos', (req, res) => { 
     res.render("photos", {layout: 'layouts/pagesHeader'}); 
