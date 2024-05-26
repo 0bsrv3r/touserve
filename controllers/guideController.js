@@ -66,7 +66,12 @@ class Guide{
     static async getGuideById(req, res){
         const data = req.params
         const guide = await Guides.findGuideById(data)
-        res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide[0]});
+        if(guide[0] != undefined){
+            res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide[0]});
+        }else{
+            res.render("404", {layout: 'layouts/pagesheader'});
+
+        }
     }
 }
 

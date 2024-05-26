@@ -41,7 +41,6 @@ app.use(fileUpload())
 // middlewares 
 const login = require("./middlewares/auth.js")
 
-
 // routes
 const pathes = require ("./routes/path.js"); 
 const auth = require ("./routes/auth.js"); 
@@ -50,6 +49,10 @@ app.use("/", pathes);
 app.use("/auth", auth);
 app.use("/dashboard", /*login,*/ dashboard) // Checked with middleware if user registered or not.
 
+// Middleware to handle 404 errors
+app.use((req, res, next) => {
+    res.status(404).render('404', { layout: 'layouts/pagesheader', url: req.originalUrl });
+});
 
 app.listen(port, ()=>{ 
     console.log('Application is running on port 8181'); 
