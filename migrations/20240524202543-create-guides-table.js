@@ -36,7 +36,6 @@ module.exports = {
         type: Sequelize.STRING(150)
       },
       stars: {
-        // allowNull: true,
         type: Sequelize.INTEGER
       },
       image: {
@@ -57,11 +56,19 @@ module.exports = {
       },
       description: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
-      area: {
-        // allowNull: false,
-        type: Sequelize.INTEGER
+      age: {
+        allowNull: false,
+        type: Sequelize.INTEGER(3)
+      },
+      experience: {
+        allowNull: false,
+        type: Sequelize.INTEGER(3)
+      },
+      gender: {
+        allowNull: false,
+        type: Sequelize.STRING(10)
       },
       createdAt: {
         allowNull: false,

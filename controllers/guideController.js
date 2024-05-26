@@ -39,6 +39,9 @@ class Guide{
                 visa: req.body.visa,
                 currency: req.body.currency,
                 description: req.body.description,
+                age: req.body.age,
+                experience: req.body.experience,
+                gender: req.body.gender,
                 image: avatarPath,
                 certificate: certificatePath
             } 
