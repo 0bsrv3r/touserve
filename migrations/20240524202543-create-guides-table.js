@@ -55,6 +55,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(5)
       },
+      description: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       area: {
         // allowNull: false,
         type: Sequelize.INTEGER

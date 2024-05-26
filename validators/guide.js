@@ -72,6 +72,11 @@ module.exports = eventValidation = [
         .withMessage("Languages must consist of min 2 and max 100 characters") 
         .escape(),
     
+    body("description")
+        .isLength({min: 20, max: 2000}) 
+        .withMessage("Description must consist of min 20 and max 2000 characters") 
+        .escape(),
+    
     body('visa').isIn(['Yes', 'No']).withMessage('Visa must be either "Yes" or "No"'),
     body('currency').isIn(['AZN', 'USD', 'EUR']).withMessage('Currency must be either "AZN", "USD" or "EUR"')
     

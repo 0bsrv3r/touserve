@@ -6,7 +6,7 @@ class Guides{
         try { 
             const [result] = await db.execute("INSERT INTO guides SET \
             companyId=:companyId, name=:name, surname=:surname, location=:location, languages=:languages,\
-            visa=:visa, currency=:currency, image=:image, certificate=:certificate", data) 
+            visa=:visa, currency=:currency, description=:description, image=:image, certificate=:certificate", data) 
             return [result] 
         } catch(e){ 
             console.log('error', e) 

@@ -38,6 +38,7 @@ class Guide{
                 languages: req.body.languages,
                 visa: req.body.visa,
                 currency: req.body.currency,
+                description: req.body.description,
                 image: avatarPath,
                 certificate: certificatePath
             } 
@@ -45,7 +46,6 @@ class Guide{
             Guides.create(data)
             res.redirect('/dashboard/guides')
         }else{
-            console.log(errors)
             const errorObject = errors.array().reduce((acc, error) => {
                 acc[error.path] = error.msg;
                 return acc;
@@ -60,7 +60,11 @@ class Guide{
         // for (let i = 0; i < guides.length; i++) {
         //     const element = guides[i];
         // }
-        res.render("guides", {layout: 'layouts/pagesheader', guides:guides});
+        if(guides != undefined){
+            res.render("guides", {layout: 'layouts/pagesheader', guides:guides});
+        }else{
+            res.render("guides", {layout: 'layouts/pagesheader', guides:{}});
+        }
     }
 
     static async getGuideById(req, res){
