@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 });
 
 
+// Events
 router.get('/events', (req, res) => { 
     res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
 });
@@ -19,10 +20,17 @@ router.get('/events', (req, res) => {
 router.post('/events',eventValidation, Event.postEvent);
 
 
+// Guide
 router.get('/guides', (req, res) => {
     res.render("./dashboard/guides", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
 });
 
 router.post('/guides', guideValidation, Guide.postGuide);
+
+
+// Tours
+router.get('/tours', (req, res) => {
+    res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
+});
 
 module.exports = router;
