@@ -2,6 +2,7 @@ const express  = require('express');
 const router = express.Router();
 const Event = require("../controllers/eventController.js")
 const Guide = require("../controllers/guideController.js")
+const Tour = require("../controllers/tourController.js")
 const eventValidation  = require("../validators/event.js"); 
 const guideValidation  = require("../validators/guide.js"); 
 
@@ -32,5 +33,7 @@ router.post('/guides', guideValidation, Guide.postGuide);
 router.get('/tours', (req, res) => {
     res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
 });
+
+router.post('/tours', /*tourValidation*/ Tour.postTour);
 
 module.exports = router;

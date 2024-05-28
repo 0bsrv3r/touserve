@@ -21,10 +21,10 @@
 	                                    <!-- Your events text goes here. -->
 	                                </p>
 		                                        
-									<form action="/dashboard/guides" method="post" enctype="multipart/form-data" novalidate>
+									<form action="/dashboard/tours" method="post" enctype="multipart/form-data" novalidate>
                                         <div class="form-group col-lg-6">
                                             <label class="control-label">Image</label>
-                                            <input type="file" class="filestyle" name="image" data-buttontext="Select images" data-buttonname="btn-white" multiple>
+                                            <input type="file" class="filestyle" name="images" data-buttontext="Select images" data-buttonname="btn-white" multiple>
                                             <% if (errors.image) { %>
                                                 <p style="color: red;"><%= errors.image %></p>
                                             <% } %> 
@@ -52,11 +52,11 @@
                                         <div class="form-group col-lg-4">
                                             <label class="control-label">Guide</label>
                                             <select name="guide" class="selectpicker" data-style="btn-white">
-                                                <option>John</option>
-                                                <option>Ton</option>
-                                                <option>Anton</option>
-                                                <option>Liba</option>
-                                                <option>Kuba</option>
+                                                <option value="1">John</option>
+                                                <option value="2">Ton</option>
+                                                <option value="3">Anton</option>
+                                                <option value="4">Liba</option>
+                                                <option value="5">Kuba</option>
                                             </select>
                                             <% if (errors.guide) { %>
                                                 <p style="color: red;"><%= errors.guide %></p>
@@ -73,12 +73,12 @@
                                             <label class="control-label">Departure Time</label>
                                             <div style="display: flex;">
                                                 <div class="input-group col-lg-6" style="margin-right: 20px;">
-                                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
+                                                    <input type="text" name="date" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
                                                     <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
                                                 </div>
                                                 <div class="input-group col-lg-6">
                                                     <div class="bootstrap-timepicker">
-                                                        <input id="timepicker" type="text" class="form-control">
+                                                        <input id="timepicker" name="time" type="text" class="form-control">
                                                     </div>
                                                     <span class="input-group-addon bg-custom b-0 text-white"><i class="glyphicon glyphicon-time"></i></span>
                                                 </div>
