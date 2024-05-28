@@ -36,7 +36,7 @@
                                                 <p style="color: red;"><%= errors.title %></p>
                                             <% } %> 
                                         </div>
-                                        <div class="form-group col-lg-6">
+                                        <div class="form-group col-lg-4">
                                             <label class="control-label">Category</label>
                                             <select name="category" class="selectpicker" data-style="btn-white">
                                                 <option>Culture & Art</option>
@@ -49,7 +49,20 @@
                                                 <p style="color: red;"><%= errors.category %></p>
                                             <% } %> 
                                         </div>
-                                        <div class="form-group col-lg-6">
+                                        <div class="form-group col-lg-4">
+                                            <label class="control-label">Guide</label>
+                                            <select name="guide" class="selectpicker" data-style="btn-white">
+                                                <option>John</option>
+                                                <option>Ton</option>
+                                                <option>Anton</option>
+                                                <option>Liba</option>
+                                                <option>Kuba</option>
+                                            </select>
+                                            <% if (errors.guide) { %>
+                                                <p style="color: red;"><%= errors.guide %></p>
+                                            <% } %> 
+                                        </div>
+                                        <div class="form-group col-lg-4">
 											<label for="userName">Location</label>
 											<input type="text" name="location" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
                                             <% if (errors.location) { %>
@@ -60,14 +73,14 @@
                                             <label class="control-label">Departure Time</label>
                                             <div style="display: flex;">
                                                 <div class="input-group col-lg-6" style="margin-right: 20px;">
+                                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
+                                                    <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
+                                                </div>
+                                                <div class="input-group col-lg-6">
                                                     <div class="bootstrap-timepicker">
                                                         <input id="timepicker" type="text" class="form-control">
                                                     </div>
                                                     <span class="input-group-addon bg-custom b-0 text-white"><i class="glyphicon glyphicon-time"></i></span>
-                                                </div>
-                                                <div class="input-group col-lg-6">
-                                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
-                                                    <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,8 +114,8 @@
                                             <% } %> 
                                         </div>
                                         <div class="form-group col-lg-6">
-											<label for="userName">Inclusious</label>
-											<select name="inclusious" class="select2 select2-multiple" multiple="multiple" multiple data-placeholder="Choose ...">
+											<label for="userName">Inclusions</label>
+											<select name="inclusions" class="select2 select2-multiple" multiple="multiple" multiple data-placeholder="Choose ...">
 		                                        <optgroup label="Languages">
                                                     <option value="Walking">Walking</option>
 		                                            <option value="Breakfast">Breakfast</option>
@@ -111,8 +124,8 @@
 		                                            <option value="Hotel">Hotel</option>
 		                                        </optgroup>
 		                                    </select>
-                                            <% if (errors.inclusious) { %>
-                                                <p style="color: red;"><%= errors.inclusious %></p>
+                                            <% if (errors.inclusions) { %>
+                                                <p style="color: red;"><%= errors.inclusions %></p>
                                             <% } %> 
                                         </div>
                                         <div class="form-group col-lg-6">

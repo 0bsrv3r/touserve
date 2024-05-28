@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Guides', {
+    await queryInterface.createTable('Tours', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,56 +19,65 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      name: {
+      guideId: {       // foreign key
         allowNull: false,
-        type: Sequelize.STRING(50)
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Guides', // name of the target model
+          key: 'id',      // key in the target model
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
-      surname: {
+      title: {
         allowNull: false,
-        type: Sequelize.STRING(70)
+        type: Sequelize.STRING(150)
       },
-      languages: {
+      category: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100)
       },
       location: {
         allowNull: false,
         type: Sequelize.STRING(150)
       },
-      stars: {
-        type: Sequelize.INTEGER
-      },
-      image: {
+      images: {
         allowNull: false,
-        type: Sequelize.STRING(150)
+        type: Sequelize.JSON(1000)
       },
-      certificate: {
+      departure: {
         allowNull: false,
-        type: Sequelize.STRING(150)
+        type: Sequelize.DATE
       },
-      visa: {
+      duration: {
         allowNull: false,
-        type: Sequelize.STRING(5)
+        type: Sequelize.INTEGER(5)
+      },
+      highlights: {
+        allowNull: false,
+        type: Sequelize.JSON(300)
+      },
+      inclusions: {
+        allowNull: false,
+        type: Sequelize.JSON(300)
+      },
+      price: {
+        allowNull: false,
+        type: Sequelize.INTEGER(5)
       },
       currency: {
         allowNull: false,
         type: Sequelize.STRING(5)
       },
-      description: {
+      overview: {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      age: {
-        allowNull: false,
-        type: Sequelize.INTEGER(3)
+      additional: {
+        type: Sequelize.TEXT
       },
-      experience: {
-        allowNull: false,
-        type: Sequelize.INTEGER(3)
-      },
-      gender: {
-        allowNull: false,
-        type: Sequelize.STRING(10)
+      stars: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -84,6 +93,6 @@ module.exports = {
   },
   
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Guides');
+    await queryInterface.dropTable('Tours');
   }
 };
