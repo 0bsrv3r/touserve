@@ -52,11 +52,9 @@
                                         <div class="form-group col-lg-4">
                                             <label class="control-label">Guide</label>
                                             <select name="guide" class="selectpicker" data-style="btn-white">
-                                                <option value="1">John</option>
-                                                <option value="2">Ton</option>
-                                                <option value="3">Anton</option>
-                                                <option value="4">Liba</option>
-                                                <option value="5">Kuba</option>
+                                                <% for(let i=0; i < guides.length; i++ ){ %>
+                                                <option value="<%- guides[i].id %>"><%- guides[i].name %> <%- guides[i].surname %></option>
+                                                <% } %>
                                             </select>
                                             <% if (errors.guide) { %>
                                                 <p style="color: red;"><%= errors.guide %></p>

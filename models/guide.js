@@ -42,6 +42,19 @@ class Guides{
             db.release() 
         } 
     } 
+
+    static async findGuideName(data){ 
+        const db =  await pool.getConnection() 
+        try { 
+            const [row] = await db.execute("SELECT id, name, surname from guides where companyId=:companyId", data) 
+            return row
+        } catch(e){ 
+            console.log('error', e) 
+            return 
+        } finally { 
+            db.release() 
+        } 
+    } 
 } 
 
 module.exports = Guides

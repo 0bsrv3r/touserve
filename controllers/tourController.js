@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator")
 const slugify = require("slugify")
 const Tours = require("../models/tours.js")
+const Guide = require("../models/guide.js")
 
 class Tour{
     static postTour(req, res){
@@ -53,6 +54,17 @@ class Tour{
         // } 
     }
 
+    static async getGuideName(req, res){
+        const data = {companyId: req.session.user_id}
+        const guideName = await Guide.findGuideName(data)
+
+        if(guideName[0] != undefined){
+            res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:guideName, errors:{} }); 
+        }else{
+            res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:{}, errors:{} });
+
+        }
+    }
 }
 
 module.exports = Tour

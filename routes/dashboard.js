@@ -30,9 +30,7 @@ router.post('/guides', guideValidation, Guide.postGuide);
 
 
 // Tours
-router.get('/tours', (req, res) => {
-    res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
-});
+router.get('/tours', Tour.getGuideName);
 
 router.post('/tours', /*tourValidation*/ Tour.postTour);
 
