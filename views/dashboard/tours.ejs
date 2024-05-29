@@ -73,12 +73,18 @@
                                                 <div class="input-group col-lg-6" style="margin-right: 20px;">
                                                     <input type="text" name="date" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
                                                     <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
+                                                    <% if (errors.date) { %>
+                                                        <p style="color: red;"><%= errors.date %></p>
+                                                    <% } %> 
                                                 </div>
                                                 <div class="input-group col-lg-6">
                                                     <div class="bootstrap-timepicker">
                                                         <input id="timepicker" name="time" type="text" class="form-control">
                                                     </div>
                                                     <span class="input-group-addon bg-custom b-0 text-white"><i class="glyphicon glyphicon-time"></i></span>
+                                                    <% if (errors.time) { %>
+                                                        <p style="color: red;"><%= errors.time %></p>
+                                                    <% } %> 
                                                 </div>
                                             </div>
                                         </div>
@@ -130,7 +136,7 @@
 											<label for="userName">Price</label>
 											<input type="text" name="price" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
                                             <% if (errors.price) { %>
-                                                <p style="color: red;"><%= errors.location %></p>
+                                                <p style="color: red;"><%= errors.price %></p>
                                             <% } %> 
                                         </div>
 										<div class="form-group col-lg-6">

@@ -60,9 +60,7 @@ class Guide{
 
     static async getGuides(req, res){
         const guides = await Guides.findGuide()
-        // for (let i = 0; i < guides.length; i++) {
-        //     const element = guides[i];
-        // }
+
         if(guides != undefined){
             res.render("guides", {layout: 'layouts/pagesheader', guides:guides});
         }else{

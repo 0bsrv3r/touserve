@@ -5,9 +5,9 @@ const Guide = require("../models/guide.js")
 
 class Tour{
     static postTour(req, res){
-        // const errors = validationResult(req)
+        const errors = validationResult(req)
         
-        // if(errors.isEmpty()){
+        if(errors.isEmpty()){
 
             let images = []
             for(let i=0; i<req.files.images.length; i++) {
@@ -44,25 +44,33 @@ class Tour{
 
             Tours.create(data)
             res.redirect('/dashboard/tours')
-        // }else{
-        //     const errorObject = errors.array().reduce((acc, error) => {
-        //         acc[error.path] = error.msg;
-        //         return acc;
-        //     }, {})
+        }else{
+            
 
-        //     res.render("./dashboard/guides", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
-        // } 
+            res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides: Tour.getGuideName, errors: errorObject});  
+        } 
     }
 
-    static async getGuideName(req, res){
+    static async getGuideName(req, res, errors){
+
+        if(errors != undefined){
+            const errorObject = errors.array().reduce((acc, error) => {
+                acc[error.path] = error.msg;
+                return acc;
+            }, {})
+        }
+
         const data = {companyId: req.session.user_id}
-        const guideName = await Guide.findGuideName(data)
+        const guideName = await Guide.findGuideName(data)   // don't forget to enable this
 
         if(guideName[0] != undefined){
-            res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:guideName, errors:{} }); 
+            res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:guideName, errors:{} });
         }else{
-            res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:{}, errors:{} });
-
+            if(errorObject != undefined){
+                res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:guideName, errors:errorObject });
+            }else{
+                res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:{}, errors:{} });
+            }
         }
     }
 }

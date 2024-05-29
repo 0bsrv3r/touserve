@@ -5,6 +5,7 @@ const Guide = require("../controllers/guideController.js")
 const Tour = require("../controllers/tourController.js")
 const eventValidation  = require("../validators/event.js"); 
 const guideValidation  = require("../validators/guide.js"); 
+const tourValidation  = require("../validators/tour.js"); 
 
 router.use(express.urlencoded({ extended:true }))
 
@@ -32,6 +33,6 @@ router.post('/guides', guideValidation, Guide.postGuide);
 // Tours
 router.get('/tours', Tour.getGuideName);
 
-router.post('/tours', /*tourValidation*/ Tour.postTour);
+router.post('/tours', tourValidation, Tour.postTour);
 
 module.exports = router;
