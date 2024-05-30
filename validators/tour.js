@@ -8,19 +8,37 @@ module.exports = eventValidation = [
             } 
             const allowedMimeTypes = ["image/png","image/jpeg","image/gif"] 
             const allowedExtensions = ["png", "jpeg", "jpg", "gif"] 
-            const profileImage = req.files.images 
-            if(!allowedMimeTypes.includes(profileImage.mimetype)){ 
-                throw new Error("Only .png, .jpeg, .gif file type allowed") 
-            } 
-            if(!allowedExtensions.includes(profileImage.name.split('.').pop())){ 
-                throw new Error("Only .png, .jpeg, .gif file type allowed") 
-            } 
-            if(profileImage.size > 5 * 1024 * 1024){ 
-                throw new Error("File size must not be more then 5mb") 
-            } 
-            if(profileImage.name.length > 100){ 
-                throw new Error("File name length is more than 100 character") 
-            } 
+            const images = req.files.images
+
+            if (!Array.isArray(images)) {
+                if(!allowedMimeTypes.includes(images.mimetype)){ 
+                    throw new Error("Only .png, .jpeg, .gif file type allowed") 
+                } 
+                if(!allowedExtensions.includes(images.name.split('.').pop())){ 
+                    throw new Error("Only .png, .jpeg, .gif file type allowed") 
+                } 
+                if(images.size > 5 * 1024 * 1024){ 
+                    throw new Error("File size must not be more then 5mb") 
+                } 
+                if(images.name.length > 100){ 
+                    throw new Error("File name length is more than 100 character") 
+                }
+            }else{
+                images.forEach((image) => {
+                    if (!allowedMimeTypes.includes(image.mimetype)) {
+                        throw new Error("Only .png, .jpeg, .gif file type allowed");
+                    }
+                    if (!allowedExtensions.includes(image.name.split('.').pop())) {
+                        throw new Error("Only .png, .jpeg, .gif file type allowed");
+                    }
+                    if (image.size > 5 * 1024 * 1024) {
+                        throw new Error("File size must not be more than 5MB");
+                    }
+                    if (image.name.length > 100) {
+                        throw new Error("File name length is more than 100 characters");
+                    }
+                });
+            }
             return true; 
         }),
 
@@ -52,14 +70,14 @@ module.exports = eventValidation = [
     body("date")
         .exists()
         .withMessage('Date is required')
-        .matches(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)
-        .withMessage('Invalid date-time format. Use MM/DD/YYYY & HH:MM AM/PM'),
+        .matches(/^(0[1-9]|1[1-9])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)
+        .withMessage('Invalid date-time format. Use MM/DD/YYYY & HH:MM AM/PM1'),
     
     body('time')
         .exists()
         .withMessage('Time is required')
-        .matches(/^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)
-        .withMessage('Invalid date-time format. Use MM/DD/YYYY & HH:MM AM/PM'),
+        .matches(/^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)
+        .withMessage('Invalid date-time format. Use MM/DD/YYYY & HH:MM AM/PM2'),
     
     body("duration")
         .isNumeric()

@@ -52,7 +52,7 @@ class Tour{
     static async getGuideName(req, res, errors){
 
         const data = {companyId: req.session.user_id}
-        const guideName = [] //  await Guide.findGuideName(data)   // don't forget to enable this
+        const guideName = await Guide.findGuideName(data)   // don't forget to enable this
 
         if(guideName[0] != undefined){
             if(typeof errors !== 'function'){

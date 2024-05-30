@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
     res.render("index", {layout: 'layouts/header'}); 
 }); 
 
+// Authentication
 router.get('/register', (req, res) => { 
     res.render("register", { errors: {}, layout: false }); 
 }); 
@@ -17,16 +18,25 @@ router.get('/login', (req, res) => {
     res.render("login", { errors: {}, layout: false }); 
 });
 
-router.get('/events', Event.getEvents); 
+// Events
+router.get('/events', Event.getEvents);
 
+// Tours
+router.get('/tours', (req, res) => { 
+    res.render("tours", {layout: 'layouts/pagesHeader'}); 
+}); 
+
+// Gudides
 router.get('/guides', Guide.getGuides); 
 
 router.get('/guide-details/:id', Guide.getGuideById);
 
+// Photos
 router.get('/photos', (req, res) => { 
     res.render("photos", {layout: 'layouts/pagesHeader'}); 
 });
 
+// E-Visa
 router.get('/e-visa', (req, res) => { 
     res.render("e-visa", {layout: 'layouts/pagesHeader'}); 
 });
