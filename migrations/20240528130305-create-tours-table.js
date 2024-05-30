@@ -43,7 +43,7 @@ module.exports = {
       },
       images: {
         allowNull: false,
-        type: Sequelize.STRING(1000)
+        type: Sequelize.JSON(1000)
       },
       departure: {
         allowNull: false,
@@ -55,11 +55,11 @@ module.exports = {
       },
       highlights: {
         allowNull: false,
-        type: Sequelize.STRING(300)
+        type: Sequelize.JSON(300)
       },
       inclusions: {
         allowNull: false,
-        type: Sequelize.STRING(300)
+        type: Sequelize.JSON(300)
       },
       price: {
         allowNull: false,

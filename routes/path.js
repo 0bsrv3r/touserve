@@ -2,6 +2,7 @@ const express  = require('express');
 const router = express.Router();
 const Event = require("../controllers/eventController.js")
 const Guide = require("../controllers/guideController.js")
+const Tour = require("../controllers/tourController.js")
 
 router.use(express.urlencoded({ extended:true }))
 
@@ -22,13 +23,11 @@ router.get('/login', (req, res) => {
 router.get('/events', Event.getEvents);
 
 // Tours
-router.get('/tours', (req, res) => { 
-    res.render("tours", {layout: 'layouts/pagesHeader'}); 
-}); 
+router.get('/tours', Tour.getTours); 
+router.get('/tour-details/:id', Tour.getTourById);
 
 // Gudides
 router.get('/guides', Guide.getGuides); 
-
 router.get('/guide-details/:id', Guide.getGuideById);
 
 // Photos

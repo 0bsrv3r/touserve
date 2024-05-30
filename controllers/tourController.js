@@ -52,7 +52,7 @@ class Tour{
     static async getGuideName(req, res, errors){
 
         const data = {companyId: req.session.user_id}
-        const guideName = await Guide.findGuideName(data)   // don't forget to enable this
+        const guideName = []// await Guide.findGuideName(data)   // don't forget to enable this
 
         if(guideName[0] != undefined){
             if(typeof errors !== 'function'){
@@ -66,6 +66,21 @@ class Tour{
             }
         }else{
             res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:{}, errors:{} });
+        }
+    }
+
+    static async getTours(req, res){
+        const tours = await Tours.findTours()
+        res.render("tours", {layout: 'layouts/pagesHeader', tours: tours}); 
+    }
+
+    static async getTourById(req, res){
+        const data = req.params
+        const tour = await Tours.findTourById(data)
+        if(tour[0] != undefined){
+            res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour[0]});
+        }else{
+            res.render("404", {layout: 'layouts/pagesheader'});
         }
     }
 }

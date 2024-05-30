@@ -31,9 +31,9 @@
                 <div class="wrap-destination-detail">
                         <div class="content-trip">
                             <h4 class="title">
-                                <a href="#">Paris Trip</a>
+                                <a href="#"><%- tour.title %> - <%- tour.price %> <%- tour.currency %></a>
                             </h4>
-                            <p class="sub-title">Mountain, Rural, France</p>
+                            <p class="sub-title"><%- tour.location %></p>
                             <div class="wrap-star s2">
                                 <ul class="star">
                                     <li></li>
@@ -50,18 +50,9 @@
                             <div id="ninja-slider" style="float:left;">
                                 <div class="slider-inner">
                                     <ul>
-                                        <li><a class="ns-img" href="images/tour-slider/1.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/2.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/3.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/4.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/5.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/6.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/7.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/8.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/9.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/10.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/11.jpg"></a></li>
-                                        <li><a class="ns-img" href="images/tour-slider/12.jpg"></a></li>
+                                        <% for(let i=0; i < tour.images.length; i++){ %>
+                                        <li><a class="ns-img" href="/<%- tour.images[i] %>"></a></li>
+                                        <% } %>
                                     </ul>
                                     <div class="fs-icon" title="Expand/Close"></div>
                                 </div>
@@ -69,42 +60,11 @@
                             <div id="thumbnail-slider" style="float:left;">
                                 <div class="inner">
                                     <ul>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/1.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/2.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/3.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/4.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/5.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/6.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/7.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/8.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/9.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/10.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/11.jpg"></a>
-                                        </li>
-                                        <li>
-                                            <a class="thumb" href="images/tour-slider/12.jpg"></a>
-                                        </li>
+                                        <% for(let i=0; i < tour.images.length; i++){ %>
+                                            <li>
+                                                <a class="thumb" href="/<%- tour.images[i] %>"></a>
+                                            </li>
+                                        <% } %>
                                     </ul>
                                 </div>
                             </div>
@@ -165,52 +125,40 @@
                     <div class="wrap-title s2">
                         <h4>Overview</h4>
                     </div>
-                    <p class="content-destination">Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari quam
-                        ti del coalescent lingues. Li nov lingua franca va esser plu simplic e regulari quam li existent
-                        Europan lingues. It va esser tam simplic quam Occidental in fact, it va esser Occidental.
-                        A un Angleso it va semblar un simplificat Angles, quam un skeptic Cambridge amico dit me
-                        que Occidental es. Li Europan lingues es membres del sam familie. Lor separat existentie
-                        es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular.</p>
+                    <p class="content-destination"><%- tour.overview %></p>
 
                     <div class="widget widget-tour-by-types custom-widget">
                         <h4 class="widget-title">Highlights</h4>
                         <ul>
-                            <li>Culture & Art</li>
-                            <li>Beauty & Health</li>
-                            <li>Entertainment</li>
-                            <li>Offroad</li>
-                            <li>Hunting</li>
-                            <li>Offroad</li>
-                            <li>Hunting</li>
+                            <% for(let i=0; i < tour.highlights.length; i++){ %>
+                                <li><%- tour.highlights[i] %></li>
+                            <% } %>
                         </ul>
                     </div>
                     <!-- /.widget-categories -->
                     <div class="widget widget-tour-by-types custom-widget">
-                        <h4 class="widget-title">Inclusious</h4>
+                        <h4 class="widget-title">Inclusions</h4>
                         <ul>
-                            <li>Culture & Art</li>
-                            <li>Beauty & Health</li>
-                            <li>Entertainment</li>
-                            <li>Offroad</li>
+                            <% for(let i=0; i < tour.inclusions.length; i++){ %>
+                                <li><%- tour.inclusions[i] %></li>
+                            <% } %>
                         </ul>
                     </div>
                     <!-- /.widget-categories -->
                     <div class="wrap-title s2">
-                        <h4>Additional Info</h4>
+                        <h4>Departure Time: </h4>
                     </div>
-                    <p class="content-destination">Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari quam
-                        ti del coalescent lingues. Li nov lingua franca va esser plu simplic e regulari quam li existent
-                        Europan lingues. It va esser tam simplic quam Occidental in fact, it va esser Occidental.
-                        A un Angleso it va semblar un simplificat Angles, quam un skeptic Cambridge amico dit me
-                        que Occidental es. Li Europan lingues es membres del sam familie. Lor separat existentie
-                        es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular.</p>
+                    <p class="content-destination"><%- tour.departure %></p>
 
                     <div class="wrap-title s2">
-                        <h4>Departure Time - </h4>
+                        <h4>Duration:</h4>
                     </div>
+                    <p class="content-destination"><%- tour.duration %> days</p>
+
                     <div class="wrap-title s2">
-                        <h4>Duration - </h4>
+                        <h4>Additional Info</h4>
                     </div>
+                    <p class="content-destination"><%- tour.additional %></p>
 
                     <div class="flat-tabs" data-effect="fadeIn">
                         <div class="wrap-radio menu-tab">
@@ -234,7 +182,7 @@
                                         <li class="item">
                                             <div class="thumb overlays2">
                                                 <a href="#" class="link">
-                                                    <img src="images/clients/rv-i1.jpg" alt="image">
+                                                    <img src="/upload/images/clients/rv-i1.jpg" alt="image">
                                                 </a>
                                             </div>
                                             <div class="text">
@@ -259,7 +207,7 @@
                                         <li class="item">
                                             <div class="thumb overlays2">
                                                 <a href="#" class="link">
-                                                    <img src="images/clients/rv-i2.jpg" alt="image">
+                                                    <img src="/upload/images/clients/rv-i2.jpg" alt="image">
                                                 </a>
                                             </div>
                                             <div class="text">
@@ -284,7 +232,7 @@
                                         <li class="item">
                                             <div class="thumb overlays2">
                                                 <a href="#" class="link">
-                                                    <img src="images/clients/rv-i3.jpg" alt="image">
+                                                    <img src="/upload/images/clients/rv-i3.jpg" alt="image">
                                                 </a>
                                             </div>
                                             <div class="text">
@@ -369,7 +317,7 @@
                                 <div class="imagebox">
                                     <div class="box-wrap">
                                         <div class="box-image">
-                                            <a href="#"><img src="images/destination11/im-b-i7.jpg" alt="img"></a>
+                                            <a href="#"><img src="/upload/images/destination11/im-b-i7.jpg" alt="img"></a>
                                             <div class="overlay"></div> <!-- /.overlay -->
                                         </div>
                                         <div class="box-content">
@@ -404,7 +352,7 @@
                                         <div class="imagebox">
                                             <div class="box-wrap">
                                                 <div class="box-image">
-                                                    <a href="#"><img src="images/destination11/im-b-i7.jpg" alt="img"></a>
+                                                    <a href="#"><img src="/upload/images/destination11/im-b-i7.jpg" alt="img"></a>
                                                     <div class="overlay"></div> <!-- /.overlay -->
                                                 </div>
                                                 <div class="box-content">
@@ -439,7 +387,7 @@
                                         <div class="imagebox">
                                             <div class="box-wrap">
                                                 <div class="box-image">
-                                                    <a href="#"><img src="images/destination11/im-b-i7.jpg" alt="img"></a>
+                                                    <a href="#"><img src="/upload/images/destination11/im-b-i7.jpg" alt="img"></a>
                                                     <div class="overlay"></div> <!-- /.overlay -->
                                                 </div>
                                                 <div class="box-content">

@@ -142,8 +142,6 @@
                     </div> <!-- /.item -->
                 </div> <!-- /.flat-imagebox -->
             </div> <!-- /.col-md-4 -->
-
-
         </div>
     </div>
 </section>
@@ -159,19 +157,21 @@
                     <a class="number-slide" href="#">02</a>
                     <h2 class="title"><span>All Tours</span></h2> <!-- ./title -->
                 </div>
-            </div>        
+            </div>
+            
+        <% for (let i = 0; i < tours.length; i++) { %>
             <div class="col-md-4">
                 <div class="flat-imagebox style2 v2">
                     <div class="item">
                         <div class="imagebox">
                             <div class="box-wrap">
-                                <div class="box-image">
-                                    <a href="#"><img src="/upload/images/home/im-b-i14.jpg" alt="img"></a>
+                                <div class="box-image" style="height: 230px;">
+                                    <a href="#"><img src="<%- tours[i].images[1] %>" alt="img"></a>
                                     <div class="overlay"></div> <!-- /.overlay -->
                                     <div class="imagebox-content">
                                         <ul class="imagebox-link">
                                             <li class="icon-s FromLeft">
-                                                <a href="tour-details.html">
+                                                <a href="/tour-details/<%- tours[i].id %>">
                                                     <button class="flat-button">Book Now</button>
                                                 </a>
                                             </li>
@@ -179,9 +179,9 @@
                                     </div>
                                 </div>
                                 <div class="box-content">
-                                    <h4>Quba</h4>
-                                    <div class="money"> <span>$</span>278</div>
-                                    <div class="sub-title">2 days</div>
+                                    <h4><%- tours[i].title %></h4>
+                                    <div class="money"><%- tours[i].price %> <span> <%- tours[i].currency %></span></div>
+                                    <div class="sub-title"><%- tours[i].duration %> days</div>
 
                                     <div class="wrap-star s2">                                            
                                         <ul class="star">
@@ -199,305 +199,12 @@
 
                     <div class="dividers dividers-imagebox s2 v2"></div>
 
-                    <div class="item">
-                        <div class="imagebox">
-                            <div class="box-wrap">
-                                <div class="box-image">
-                                    <a href="#"><img src="/upload/images/home/im-b-i17.jpg" alt="img"></a>
-                                    <div class="overlay"></div> <!-- /.overlay -->
-                                    <div class="imagebox-content">
-                                        <ul class="imagebox-link">
-                                            <li class="icon-s FromLeft">
-                                                <a href="tour-details.html">
-                                                    <button class="flat-button">Book Now</button>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="box-content">
-                                    <h4>Qobustan</h4>
-                                    <div class="money"> <span>$</span>78</div>
-                                    <div class="sub-title">2 days</div>
-
-                                    <div class="wrap-star s2">                                            
-                                        <ul class="star">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                    </div> <!-- /.wrap-star -->
-                                </div>
-                            </div> <!-- /.box-wrap -->
-                        </div> <!-- /.imagebox -->
-                    </div> <!-- /.item -->
-
-                    <div class="dividers dividers-imagebox s2 v2"></div>
-
-                    <div class="item">
-                        <div class="imagebox">
-                            <div class="box-wrap">
-                                <div class="box-image">
-                                    <a href="#"><img src="/upload/images/home/im-b-i20.jpg" alt="img"></a>
-                                    <div class="overlay"></div> <!-- /.overlay -->
-                                    <div class="imagebox-content">
-                                        <ul class="imagebox-link">
-                                            <li class="icon-s FromLeft">
-                                                <a href="tour-details.html">
-                                                    <button class="flat-button">Book Now</button>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="box-content">
-                                    <h4>Shaki</h4>
-                                    <div class="money"> <span>$</span>784</div>
-                                    <div class="sub-title">2 days</div>
-
-                                    <div class="wrap-star s2">                                            
-                                        <ul class="star">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                    </div> <!-- /.wrap-star -->
-                                </div>
-                            </div> <!-- /.box-wrap -->
-                        </div> <!-- /.imagebox -->
-                    </div> <!-- /.item -->
                 </div> <!-- /.flat-imagebox -->
             </div> <!-- /.col-md-4 -->
+            
+            <% } %>
 
-            <div class="col-md-4">
-                <div class="flat-imagebox style2 v2">
-                    <div class="item">
-                        <div class="imagebox">
-                            <div class="box-wrap">
-                                <div class="box-image">
-                                    <a href="#"><img src="/upload/images/home/im-b-i15.jpg" alt="img"></a>
-                                    <div class="overlay"></div> <!-- /.overlay -->
-                                    <div class="imagebox-content">
-                                        <ul class="imagebox-link">
-                                            <li class="icon-s FromLeft">
-                                                <a href="tour-details.html">
-                                                    <button class="flat-button">Book Now</button>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="box-content">
-                                    <h4>Ganja</h4>
-                                    <div class="money"> <span>$</span>348</div>
-                                    <div class="sub-title">2 week</div>
 
-                                    <div class="wrap-star s2">                                            
-                                        <ul class="star">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                    </div> <!-- /.wrap-star -->
-                                </div>
-                            </div> <!-- /.box-wrap -->
-                        </div> <!-- /.imagebox -->
-                    </div> <!-- /.item -->
-
-                    <div class="dividers dividers-imagebox s2 v2"></div>
-
-                    <div class="item">
-                        <div class="imagebox">
-                            <div class="box-wrap">
-                                <div class="box-image">
-                                    <a href="#"><img src="/upload/images/home/im-b-i18.jpg" alt="img"></a>
-                                    <div class="overlay"></div> <!-- /.overlay -->
-                                    <div class="imagebox-content">
-                                        <ul class="imagebox-link">
-                                            <li class="icon-s FromLeft">
-                                                <a href="tour-details.html">
-                                                    <button class="flat-button">Book Now</button>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="box-content">
-                                    <h4>Quba</h4>
-                                    <div class="money"> <span>$</span>458</div>
-                                    <div class="sub-title">1 week</div>
-
-                                    <div class="wrap-star s2">                                            
-                                        <ul class="star">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                    </div> <!-- /.wrap-star -->
-                                </div>
-                            </div> <!-- /.box-wrap -->
-                        </div> <!-- /.imagebox -->
-                    </div> <!-- /.item -->
-
-                    <div class="dividers dividers-imagebox s2 v2"></div>
-
-                    <div class="item">
-                        <div class="imagebox">
-                            <div class="box-wrap">
-                                <div class="box-image">
-                                    <a href="#"><img src="/upload/images/home/im-b-i21.jpg" alt="img"></a>
-                                    <div class="overlay"></div> <!-- /.overlay -->
-                                    <div class="imagebox-content">
-                                        <ul class="imagebox-link">
-                                            <li class="icon-s FromLeft">
-                                                <a href="tour-details.html">
-                                                    <button class="flat-button">Book Now</button>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="box-content">
-                                    <h4>Shaki</h4>
-                                    <div class="money"> <span>$</span>458</div>
-                                    <div class="sub-title">4 days</div>
-
-                                    <div class="wrap-star s2">                                            
-                                        <ul class="star">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                    </div> <!-- /.wrap-star -->
-                                </div>
-                            </div> <!-- /.box-wrap -->
-                        </div> <!-- /.imagebox -->
-                    </div> <!-- /.item -->
-                </div> <!-- /.flat-imagebox -->
-            </div> <!-- /.col-md-4 -->
-
-            <div class="col-md-4">
-                <div class="flat-imagebox style2 v2">
-                    <div class="item">
-                        <div class="imagebox">
-                            <div class="box-wrap">
-                                <div class="box-image">
-                                    <a href="#"><img src="/upload/images/home/im-b-i16.jpg" alt="img"></a>
-                                    <div class="overlay"></div> <!-- /.overlay -->
-                                    <div class="imagebox-content">
-                                        <ul class="imagebox-link">
-                                            <li class="icon-s FromLeft">
-                                                <a href="tour-details.html">
-                                                    <button class="flat-button">Book Now</button>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="box-content">
-                                    <h4>Shaki</h4>
-                                    <div class="money"> <span>$</span>248</div>
-                                    <div class="sub-title">6 days</div>
-
-                                    <div class="wrap-star s2">                                            
-                                        <ul class="star">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                    </div> <!-- /.wrap-star -->
-                                </div>
-                            </div> <!-- /.box-wrap -->
-                        </div> <!-- /.imagebox -->
-                    </div> <!-- /.item -->
-
-                    <div class="dividers dividers-imagebox s2 v2"></div>
-
-                    <div class="item">
-                        <div class="imagebox">
-                            <div class="box-wrap">
-                                <div class="box-image">
-                                    <a href="#"><img src="/upload/images/home/im-b-i19.jpg" alt="img"></a>
-                                    <div class="overlay"></div> <!-- /.overlay -->
-                                    <div class="imagebox-content">
-                                        <ul class="imagebox-link">
-                                            <li class="icon-s FromLeft">
-                                                <a href="tour-details.html">
-                                                    <button class="flat-button">Book Now</button>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="box-content">
-                                    <h4>Quba</h4>
-                                    <div class="money"> <span>$</span>178</div>
-                                    <div class="sub-title">7 days</div>
-
-                                    <div class="wrap-star s2">                                            
-                                        <ul class="star">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                    </div> <!-- /.wrap-star -->
-                                </div>
-                            </div> <!-- /.box-wrap -->
-                        </div> <!-- /.imagebox -->
-                    </div> <!-- /.item -->
-
-                    <div class="dividers dividers-imagebox s2 v2"></div>
-
-                    <div class="item">
-                        <div class="imagebox">
-                            <div class="box-wrap">
-                                <div class="box-image">
-                                    <a href="#"><img src="/upload/images/home/im-b-i23.jpg" alt="img"></a>
-                                    <div class="overlay"></div> <!-- /.overlay -->
-                                    <div class="imagebox-content">
-                                        <ul class="imagebox-link">
-                                            <li class="icon-s FromLeft">
-                                                <a href="tour-details.html">
-                                                    <button class="flat-button">Book Now</button>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="box-content">
-                                    <h4>Shamakhi</h4>
-                                    <div class="money"> <span>$</span>258</div>
-                                    <div class="sub-title">10days</div>
-
-                                    <div class="wrap-star s2">                                            
-                                        <ul class="star">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                    </div> <!-- /.wrap-star -->
-                                </div>
-                            </div> <!-- /.box-wrap -->
-                        </div> <!-- /.imagebox -->
-                    </div> <!-- /.item -->
-                </div> <!-- /.flat-imagebox -->
-            </div> <!-- /.col-md-4 -->                         
         </div><!-- /.row -->
 
         <div class="row">
