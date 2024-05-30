@@ -45,32 +45,27 @@ class Tour{
             Tours.create(data)
             res.redirect('/dashboard/tours')
         }else{
-            
-
-            res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides: Tour.getGuideName, errors: errorObject});  
+            return Tour.getGuideName(req, res, errors)
         } 
     }
 
     static async getGuideName(req, res, errors){
 
-        if(errors != undefined){
-            const errorObject = errors.array().reduce((acc, error) => {
-                acc[error.path] = error.msg;
-                return acc;
-            }, {})
-        }
-
         const data = {companyId: req.session.user_id}
-        const guideName = await Guide.findGuideName(data)   // don't forget to enable this
+        const guideName = [] //  await Guide.findGuideName(data)   // don't forget to enable this
 
         if(guideName[0] != undefined){
-            res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:guideName, errors:{} });
-        }else{
-            if(errorObject != undefined){
+            if(typeof errors !== 'function'){
+                const errorObject = errors.array().reduce((acc, error) => {
+                    acc[error.path] = error.msg;
+                    return acc;
+                }, {})
                 res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:guideName, errors:errorObject });
             }else{
-                res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:{}, errors:{} });
+                res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:guideName, errors:{} });
             }
+        }else{
+            res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', guides:{}, errors:{} });
         }
     }
 }

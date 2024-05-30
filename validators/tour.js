@@ -53,13 +53,13 @@ module.exports = eventValidation = [
         .exists()
         .withMessage('Date is required')
         .matches(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)
-        .withMessage('Invalid date format. Use MM/DD/YYYY'),
+        .withMessage('Invalid date-time format. Use MM/DD/YYYY & HH:MM AM/PM'),
     
     body('time')
         .exists()
         .withMessage('Time is required')
         .matches(/^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)
-        .withMessage('Invalid time format. Use HH:MM AM/PM'),
+        .withMessage('Invalid date-time format. Use MM/DD/YYYY & HH:MM AM/PM'),
     
     body("duration")
         .isNumeric()
