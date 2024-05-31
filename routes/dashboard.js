@@ -32,7 +32,7 @@ router.post('/guides', guideValidation, Guide.postGuide);
 
 // Tours
 router.get('/tours', Tour.getGuideName);
-
 router.post('/tours', tourValidation, Tour.postTour);
+
 
 module.exports = router;

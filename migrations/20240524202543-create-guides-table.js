@@ -29,7 +29,7 @@ module.exports = {
       },
       languages: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.JSON(300)
       },
       location: {
         allowNull: false,
