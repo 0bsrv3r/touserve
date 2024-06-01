@@ -30,12 +30,14 @@ class Guide{
                 } 
             })
             
+            const lang = req.body.languages.join(",")
+            
             const data = {
                 companyId: req.session.user_id, 
                 name: req.body.name, 
                 surname: req.body.surname, 
                 location: req.body.location, 
-                languages: req.body.languages,
+                languages: lang,
                 visa: req.body.visa,
                 currency: req.body.currency,
                 description: req.body.description,
