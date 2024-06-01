@@ -48,7 +48,7 @@ module.exports = eventValidation = [
         .escape(),
     
     body('category')
-        .isIn(['Culture & Art', 'Beauty & Health', 'Entertainment', 'OffRoad', 'Hunting'])
+        .isIn(['culture-art', 'beauty-health', 'entertainment', 'offroad', 'hunting'])
         .withMessage('Category must be only "specified options'),
     
     body("guide") 

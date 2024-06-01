@@ -41,6 +41,19 @@ class Tours{
         } finally { 
             db.release() 
         } 
+    }
+
+    static async findTourByCategory(data){ 
+        const db =  await pool.getConnection() 
+        try { 
+            const [row] = await db.execute("SELECT * from tours where category=:category", data) 
+            return row
+        } catch(e){ 
+            console.log('error', e) 
+            return 
+        } finally { 
+            db.release() 
+        } 
     } 
 } 
 

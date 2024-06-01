@@ -25,21 +25,7 @@ router.get('/events', Event.getEvents);
 // Tours
 router.get('/tours', Tour.getTours);
 router.get('/tour-details/:id', Tour.getTourById);
-router.get('/culture-art-tours', (req, res) => { 
-    res.render("culture-art-tours", {layout: 'layouts/pagesHeader'}); 
-});
-router.get('/beauty-health-tours', (req, res) => { 
-    res.render("beauty-health-tours", {layout: 'layouts/pagesHeader'}); 
-});
-router.get('/entertainment-tours', (req, res) => { 
-    res.render("entertainment-tours", {layout: 'layouts/pagesHeader'}); 
-});
-router.get('/offroad-tours', (req, res) => { 
-    res.render("offroad-tours", {layout: 'layouts/pagesHeader'}); 
-});
-router.get('/hunting-tours', (req, res) => { 
-    res.render("hunting-tours", {layout: 'layouts/pagesHeader'}); 
-});
+router.get('/tours/:category', Tour.getTourByCategory);
 
 // Gudides
 router.get('/guides', Guide.getGuides); 

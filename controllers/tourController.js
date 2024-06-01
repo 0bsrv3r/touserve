@@ -4,6 +4,8 @@ const Tours = require("../models/tours.js")
 const Guide = require("../models/guide.js")
 
 class Tour{
+
+    // Dashboard Pages
     static postTour(req, res){
         const errors = validationResult(req)
         
@@ -69,6 +71,7 @@ class Tour{
         }
     }
 
+    // Front Pages
     static async getTours(req, res){
         const tours = await Tours.findTours()
         res.render("tours", {layout: 'layouts/pagesHeader', tours: tours}); 
@@ -79,6 +82,17 @@ class Tour{
         const tour = await Tours.findTourById(data)
         if(tour[0] != undefined){
             res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour[0]});
+        }else{
+            res.render("404", {layout: 'layouts/pagesheader'});
+        }
+    }
+
+    static async getTourByCategory(req, res){
+        const data = req.params
+        const tours = await Tours.findTourByCategory(data)
+
+        if(tours[0] != undefined){
+            res.render(`${data.category}-tours`, {layout: 'layouts/pagesheader', tours:tours});
         }else{
             res.render("404", {layout: 'layouts/pagesheader'});
         }

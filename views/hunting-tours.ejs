@@ -24,19 +24,21 @@
             <a class="number-slide" href="#">01</a>
             <h2 class="title"><span>Hunting</span></h2> <!-- ./title -->
         </div>
-    </div>        
+    </div>
+    
+    <% for(let i=0; i < tours.length; i++){  %>
     <div class="col-md-4">
         <div class="flat-imagebox style2 v2">
             <div class="item">
                 <div class="imagebox">
                     <div class="box-wrap">
                         <div class="box-image">
-                            <a href="#"><img src="/upload/images/home/im-b-i14.jpg" alt="img"></a>
+                            <a href="#"><img src="/<%- tours[i].images[0] %>" alt="img"></a>
                             <div class="overlay"></div> <!-- /.overlay -->
                             <div class="imagebox-content">
                                 <ul class="imagebox-link">
                                     <li class="icon-s FromLeft">
-                                        <a href="tour-details.html">
+                                        <a href="/tour-details/<%- tours[i].id %>">
                                             <button class="flat-button">Book Now</button>
                                         </a>
                                     </li>
@@ -44,9 +46,9 @@
                             </div>
                         </div>
                         <div class="box-content">
-                            <h4>Quba</h4>
-                            <div class="money"> <span>$</span>278</div>
-                            <div class="sub-title">2 days</div>
+                            <h4><%- tours[i].location %></h4>
+                            <div class="money"><%- tours[i].price %> <span><%- tours[i].currency %></span></div>
+                            <div class="sub-title"><%- tours[i].duration %> days</div>
 
                             <div class="wrap-star s2">                                            
                                 <ul class="star">
@@ -61,10 +63,10 @@
                     </div> <!-- /.box-wrap -->
                 </div> <!-- /.imagebox -->
             </div> <!-- /.item -->
-
             <div class="dividers dividers-imagebox s2 v2"></div>
         </div> <!-- /.flat-imagebox -->
-    </div> <!-- /.col-md-4 -->                 
+    </div> <!-- /.col-md-4 -->
+    <% } %>                 
 </div><!-- /.row -->
 
 <div class="row">
