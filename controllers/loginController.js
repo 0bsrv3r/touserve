@@ -1,5 +1,5 @@
 const  { validationResult } = require("express-validator") 
-const User = require('../models/user.js'); 
+const {Users} = require('../models'); 
 
 class Authentication {
     static postRegister (req, res) { 
@@ -14,7 +14,7 @@ class Authentication {
                 role: req.body.role
             } 
 
-            User.create(data)
+            Users.create(data)
             res.redirect('/') 
         }else{
             const errorObject = errors.array().reduce((acc, error) => {
@@ -32,7 +32,7 @@ class Authentication {
             password: req.body.password, 
         } 
 
-        const user = await User.findUser(data) 
+        const user = await Users.findOne({where: data}) 
         if(user != undefined){
             req.session.username = user.uname 
             req.session.user_id = user.id

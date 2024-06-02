@@ -1,6 +1,6 @@
 const  { validationResult } = require("express-validator") 
 const slugify = require("slugify"); 
-const Events = require("../models/event.js")
+const { Events } = require("../models");
 
 class Event{
     static postEvent(req, res){
@@ -25,7 +25,7 @@ class Event{
                 description: req.body.description,
                 image: path
             } 
-
+            
             Events.create(data)
             res.redirect('/dashboard/events')
         }else{
@@ -39,7 +39,7 @@ class Event{
     }
 
     static async getEvents(req, res){
-        const events = await Events.findEvent()
+        const events = await Events.findAll()
         res.render("events", {layout: 'layouts/pagesheader', events:events});
     }
 }

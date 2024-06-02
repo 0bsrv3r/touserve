@@ -1,7 +1,6 @@
 const { validationResult } = require("express-validator")
 const slugify = require("slugify")
-const Tours = require("../models/tours.js")
-const Guide = require("../models/guide.js")
+const {Tours, Guides} = require("../models")
 
 class Tour{
 
@@ -54,9 +53,10 @@ class Tour{
     static async getGuideName(req, res, errors){
 
         const data = {companyId: req.session.user_id}
-        const guideName = []// await Guide.findGuideName(data)   // don't forget to enable this
+        const guideName = await Guides.findAll({where: data})   // enable this
+        // const guideName = []   // disable this
 
-        if(guideName[0] != undefined){
+        if(guideName != undefined){
             if(typeof errors !== 'function'){
                 const errorObject = errors.array().reduce((acc, error) => {
                     acc[error.path] = error.msg;
@@ -73,15 +73,15 @@ class Tour{
 
     // Front Pages
     static async getTours(req, res){
-        const tours = await Tours.findTours()
+        const tours = await Tours.findAll()
         res.render("tours", {layout: 'layouts/pagesHeader', tours: tours}); 
     }
 
     static async getTourById(req, res){
         const data = req.params
-        const tour = await Tours.findTourById(data)
-        if(tour[0] != undefined){
-            res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour[0]});
+        const tour = await Tours.findOne({where: data})
+        if(tour != undefined){
+            res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour});
         }else{
             res.render("404", {layout: 'layouts/pagesheader'});
         }
@@ -89,7 +89,7 @@ class Tour{
 
     static async getTourByCategory(req, res){
         const data = req.params
-        const tours = await Tours.findTourByCategory(data)
+        const tours = await Tours.findAll({where: data})
 
         if(tours[0] != undefined){
             res.render(`${data.category}-tours`, {layout: 'layouts/pagesheader', tours:tours});

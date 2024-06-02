@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator")
 const slugify = require("slugify")
-const Guides = require("../models/guide.js")
+const {Guides} = require("../models")
 
 
 class Guide{
@@ -61,7 +61,7 @@ class Guide{
     }
 
     static async getGuides(req, res){
-        const guides = await Guides.findGuide()
+        const guides = await Guides.findAll()
 
         if(guides != undefined){
             res.render("guides", {layout: 'layouts/pagesheader', guides:guides});
@@ -72,9 +72,10 @@ class Guide{
 
     static async getGuideById(req, res){
         const data = req.params
-        const guide = await Guides.findGuideById(data)
-        if(guide[0] != undefined){
-            res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide[0]});
+        const guide = await Guides.findOne({where: data})
+        
+        if(guide != undefined){
+            res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide});
         }else{
             res.render("404", {layout: 'layouts/pagesheader'});
 
