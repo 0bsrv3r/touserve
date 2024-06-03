@@ -25,7 +25,7 @@
     
     <section class="flat-row page-login bg-theme pdtitle-section v13">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <form novalidate="" class="login-form" id="loginform" method="post" action="/auth/login">
                     <div class="title-section center color-black style5 style12">
                         <h2 class="title">Login Now</h2> <!-- ./title -->
@@ -38,12 +38,16 @@
                             <% if (errors.wrongAttempt) { %>
                                 <p style="color: red;"><%- errors.wrongAttempt %></p>
                             <% } %> 
-                            <p class="login-input">                                      
-                                <input type="text" placeholder="User Name*" aria-required="true" size="30" value="" name="uname" id="author">
-                            </p>
-                            <p class="login-input">                                        
-                                <input type="password" placeholder="Password*" size="30" value="" name="password" id="password">
-                            </p> 
+                            <div class="login-inputs">
+                                <p class="login-input">                                      
+                                    <input type="text" placeholder="User Name*" aria-required="true" size="30" value="" name="uname" id="author" >
+                                </p>
+                            </div>
+                            <div class="login-inputs">
+                                <p class="login-input">                                        
+                                    <input type="password" placeholder="Password*" size="30" value="" name="password" id="password">
+                                </p> 
+                            </div>
                         </div> 
                         <div class="wrap-security">
                             <a href="#" title="" class="security remember">Remember Me</a>
@@ -58,9 +62,9 @@
                     </div>
                     <div class="other-account">
                         <ul>
+                            <li><a href="#" title="" class="flat-account acc-google">Login Via Google+</a></li>
                             <li><a href="#" title="" class="flat-account acc-face">Login Via Facebook</a></li>
                             <li><a href="#" title="" class="flat-account acc-twiter">Login Via Twitter</a></li>
-                            <li><a href="#" title="" class="flat-account acc-google">Login Via Google+</a></li>
                         </ul>
                     </div>
                 </form>

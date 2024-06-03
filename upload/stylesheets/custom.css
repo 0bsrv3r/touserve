@@ -234,7 +234,9 @@
 .page-login{
     background: url(../images/login/login.jpg);
     background-size: cover; 
+    background-position: center;
     background-attachment: fixed;
+    height: 100vh;
 }
 .page-register{
     background: url(../images/login/registr.jpg);
@@ -345,6 +347,13 @@
 
 
                             /*========= GUIDE PAGE START ==========*/
+.flat-team .avatar{
+    height: 250px;
+}
+.flat-team .avatar img{
+    width: 100%;
+    height: 100%;
+}
 .flat-team .avatar .link{
     position: absolute;
     top: 0;

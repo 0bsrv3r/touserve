@@ -4774,12 +4774,14 @@ footer a {
 
 .title-section.style12 {
     margin-bottom: 46px;
+	color: #FFF;
 }
 
 .title-section.style12 .title {
     margin-bottom: 0px;
     letter-spacing: 1.5px;
     line-height: 46px;
+	color: #FFF;
 }
 
 .title-section.style12 .sub-title p {
@@ -4794,6 +4796,11 @@ footer a {
     margin-bottom: 1px;
 }
 
+.wrap-login .login-inputs{
+	margin-bottom: 15px;
+	background-color: #FD7E21;
+}
+
 .wrap-login-register .wrap-input input {
     width: 100%;
     font-size: 14px;
@@ -4801,7 +4808,7 @@ footer a {
     height: 46px!important;
     background-color: transparent!important;
     padding: 2px 0px 0px 15px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
 }
 
 .wrap-login-register .wrap-security {
@@ -4813,7 +4820,7 @@ footer a {
 .other-account .flat-account {
     position: relative;
     font-size: 14px;
-    color: #666;
+    color: #fd7e21;
     letter-spacing: 0.65px;
 }
 
@@ -4852,7 +4859,7 @@ footer a {
 
 .wrap-login-register .not-account p {
     font-size: 15px;
-    color: #666;
+    color: #fff;
     letter-spacing: 0.75px;
     padding-left: 2px;
 }
@@ -4893,7 +4900,7 @@ footer a {
     font-weight: 700;
     font-family: "Lora";
     display: block;
-    border: 1px solid #3b5998;
+    border: 3px solid #3b5998;
     margin-bottom: 20px;
     height: 46px;
     line-height: 46px;
