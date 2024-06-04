@@ -3,7 +3,7 @@ const slugify = require("slugify");
 const { Events } = require("../models");
 
 class Event{
-    static postEvent(req, res){
+    static async postEvent(req, res){
         const errors = validationResult(req); 
         if(errors.isEmpty()){ 
             let avatar = req.files.image; 
@@ -26,7 +26,7 @@ class Event{
                 image: path
             } 
             
-            Events.create(data)
+            const test = await Events.create(data)
             res.redirect('/dashboard/events')
         }else{
             const errorObject = errors.array().reduce((acc, error) => {
