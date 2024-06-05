@@ -21,7 +21,7 @@
 	                                    <!-- Your events text goes here. -->
 	                                </p>
 		                                        
-									<form action="/dashboard/tours" method="post" enctype="multipart/form-data" novalidate>
+									<form action="/dashboard/accommodations" method="post" enctype="multipart/form-data" novalidate>
                                         <div class="col-lg-12">
                                             <div class="form-group col-lg-6">
                                                 <label class="control-label">Images</label>
@@ -86,18 +86,18 @@
                                                 <label for="userName">Amenities</label>
                                                 <select name="amenities" class="select2 select2-multiple" multiple="multiple" multiple data-placeholder="Choose multiple amenities ...">
                                                     <optgroup label="Languages">
-                                                        <option value="Walking">Heating</option>
-                                                        <option value="Breakfast">Washer</option>
-                                                        <option value="Entertainment">Dryer</option>
+                                                        <option value="Heating">Heating</option>
+                                                        <option value="Washer">Washer</option>
+                                                        <option value="Dryer">Dryer</option>
                                                         <option value="Dinner">Dinner</option>
-                                                        <option value="Hotel">Indoor fireplace</option>
-                                                        <option value="Hotel">Kitchen</option>
-                                                        <option value="Walking">Heating</option>
-                                                        <option value="Breakfast">Washer</option>
-                                                        <option value="Entertainment">Dryer</option>
+                                                        <option value="Indoor fireplace">Indoor fireplace</option>
+                                                        <option value="Kitchen">Kitchen</option>
+                                                        <option value="Heating">Heating</option>
+                                                        <option value="Washer">Washer</option>
+                                                        <option value="Dryer">Dryer</option>
                                                         <option value="Dinner">Dinner</option>
-                                                        <option value="Hotel">Indoor fireplace</option>
-                                                        <option value="Hotel">Kitchen</option>
+                                                        <option value="Indoor fireplace">Indoor fireplace</option>
+                                                        <option value="Kitchen">Kitchen</option>
                                                     </optgroup>
                                                 </select>
                                                 <% if (errors.amenities) { %>
@@ -141,8 +141,8 @@
                                                 <label for="userName">Rules</label>
                                                 <select name="rules" class="select2 select2-multiple" multiple="multiple" multiple data-placeholder="Choose rules ...">
                                                     <optgroup label="Languages">
-                                                        <option value="Walking">Pet Allowed</option>
-                                                        <option value="Breakfast">No Smoking</option>
+                                                        <option>Pet Allowed</option>
+                                                        <option>No Smoking</option>
                                                     </optgroup>
                                                 </select>
                                                 <% if (errors.rules) { %>
@@ -169,19 +169,19 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label class="control-label">Entire home/apt</label>
-                                                <select name="currency" class="selectpicker" data-style="btn-white">
+                                                <select name="roomType" class="selectpicker" data-style="btn-white">
                                                     <option>Entire Home</option>
                                                     <option>Private Room</option>
                                                 </select>
-                                                <% if (errors.currency) { %>
-                                                    <p style="color: red;"><%= errors.currency %></p>
+                                                <% if (errors.roomType) { %>
+                                                    <p style="color: red;"><%= errors.roomType %></p>
                                                 <% } %> 
                                             </div>
                                             <div class="form-group col-lg-12">
                                                 <label class="control-label">About</label>
-                                                <textarea name="overview" required class="form-control"></textarea>
-                                                <% if (errors.overview) { %>
-                                                    <p style="color: red;"><%= errors.overview %></p>
+                                                <textarea name="about" required class="form-control"></textarea>
+                                                <% if (errors.about) { %>
+                                                    <p style="color: red;"><%= errors.about %></p>
                                                 <% } %>
                                             </div>
                                         </div>
