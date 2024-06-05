@@ -1,0 +1,211 @@
+ <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->                      
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-sm-12">
+                                <h4 class="page-title">Add Your Accommodation</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+							<div class="col-lg-12">
+								<div class="card-box">
+									<h4 class="m-t-0 header-title"><b>Accommodation Form</b></h4>
+									<p class="text-muted font-13 m-b-30">
+	                                    <!-- Your events text goes here. -->
+	                                </p>
+		                                        
+									<form action="/dashboard/tours" method="post" enctype="multipart/form-data" novalidate>
+                                        <div class="col-lg-12">
+                                            <div class="form-group col-lg-6">
+                                                <label class="control-label">Images</label>
+                                                <input type="file" class="filestyle" name="images" data-buttontext="Select images" data-buttonname="btn-white" multiple>
+                                                <% if (errors.image) { %>
+                                                    <p style="color: red;"><%= errors.image %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="userName">Title</label>
+                                                <input type="text" name="title" parsley-trigger="change" required placeholder="Enter accommodation title" class="form-control" id="userName">
+                                                <% if (errors.title) { %>
+                                                    <p style="color: red;"><%= errors.title %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label for="userName">Location</label>
+                                                <input type="text" name="location" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
+                                                <% if (errors.location) { %>
+                                                    <p style="color: red;"><%= errors.location %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label for="userName">Price</label>
+                                                <input type="text" name="price" parsley-trigger="change" required placeholder="Enter price" class="form-control" id="userName">
+                                                <% if (errors.price) { %>
+                                                    <p style="color: red;"><%= errors.price %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label class="control-label">Currency</label>
+                                                <select name="currency" class="selectpicker" data-style="btn-white">
+                                                    <option>AZN</option>
+                                                    <option>USD</option>    
+                                                    <option>EUR</option>
+                                                </select>
+                                                <% if (errors.currency) { %>
+                                                    <p style="color: red;"><%= errors.currency %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6" style="margin: 0;">
+                                                <label class="control-label">In/Out</label>
+                                                <div style="display: flex;">
+                                                    <div class="input-group col-lg-6" style="margin-right: 20px;">
+                                                        <div class="bootstrap-timepicker">
+                                                            <input id="timepicker" name="in" type="text" class="form-control">
+                                                        </div>
+                                                        <span class="input-group-addon bg-custom b-0 text-white"><i class="glyphicon glyphicon-time"></i></span>
+                                                    </div>
+                                                    <div class="input-group col-lg-6">
+                                                        <div class="bootstrap-timepicker">
+                                                            <input id="timepicker3" name="out" type="text" class="form-control">
+                                                        </div>
+                                                        <span class="input-group-addon bg-custom b-0 text-white"><i class="glyphicon glyphicon-time"></i></span>
+                                                    </div>
+                                                </div>
+                                                <% if (errors.in || errors.out) { %>
+                                                    <p style="color: red;"><%= errors.in %><%= errors.out %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="userName">Amenities</label>
+                                                <select name="amenities" class="select2 select2-multiple" multiple="multiple" multiple data-placeholder="Choose multiple amenities ...">
+                                                    <optgroup label="Languages">
+                                                        <option value="Walking">Heating</option>
+                                                        <option value="Breakfast">Washer</option>
+                                                        <option value="Entertainment">Dryer</option>
+                                                        <option value="Dinner">Dinner</option>
+                                                        <option value="Hotel">Indoor fireplace</option>
+                                                        <option value="Hotel">Kitchen</option>
+                                                        <option value="Walking">Heating</option>
+                                                        <option value="Breakfast">Washer</option>
+                                                        <option value="Entertainment">Dryer</option>
+                                                        <option value="Dinner">Dinner</option>
+                                                        <option value="Hotel">Indoor fireplace</option>
+                                                        <option value="Hotel">Kitchen</option>
+                                                    </optgroup>
+                                                </select>
+                                                <% if (errors.amenities) { %>
+                                                    <p style="color: red;"><%= errors.amenities %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label class="control-label">Room Count</label>
+                                                <select name="roomCount" class="selectpicker" data-style="btn-white">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                                <% if (errors.roomCount) { %>
+                                                    <p style="color: red;"><%= errors.roomCount %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label class="control-label">Bed Count</label>
+                                                <select name="bedCount" class="selectpicker" data-style="btn-white">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                                <% if (errors.bedCount) { %>
+                                                    <p style="color: red;"><%= errors.bedCount %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label class="control-label">Bathroom Count</label>
+                                                <select name="bathCount" class="selectpicker" data-style="btn-white">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                                <% if (errors.bathCount) { %>
+                                                    <p style="color: red;"><%= errors.bathCount %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="userName">Rules</label>
+                                                <select name="rules" class="select2 select2-multiple" multiple="multiple" multiple data-placeholder="Choose rules ...">
+                                                    <optgroup label="Languages">
+                                                        <option value="Walking">Pet Allowed</option>
+                                                        <option value="Breakfast">No Smoking</option>
+                                                    </optgroup>
+                                                </select>
+                                                <% if (errors.rules) { %>
+                                                    <p style="color: red;"><%= errors.rules %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="userName">Guest Count</label>
+                                                <input type="text" name="guestCount" parsley-trigger="change" required placeholder="Enter guest count" class="form-control" id="userName">
+                                                <% if (errors.guestCount) { %>
+                                                    <p style="color: red;"><%= errors.guestCount %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label class="control-label">Promotions</label>
+                                                <select name="promotions" class="selectpicker" data-style="btn-white">
+                                                    <option>AZN</option>
+                                                    <option>USD</option>
+                                                    <option>EUR</option>
+                                                </select>
+                                                <% if (errors.promotions) { %>
+                                                    <p style="color: red;"><%= errors.promotions %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label class="control-label">Entire home/apt</label>
+                                                <select name="currency" class="selectpicker" data-style="btn-white">
+                                                    <option>Entire Home</option>
+                                                    <option>Private Room</option>
+                                                </select>
+                                                <% if (errors.currency) { %>
+                                                    <p style="color: red;"><%= errors.currency %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-12">
+                                                <label class="control-label">About</label>
+                                                <textarea name="overview" required class="form-control"></textarea>
+                                                <% if (errors.overview) { %>
+                                                    <p style="color: red;"><%= errors.overview %></p>
+                                                <% } %>
+                                            </div>
+                                        </div>
+										<div class="form-group text-right m-b-0">
+											<button class="btn btn-primary waves-effect waves-light" type="submit">
+												Submit
+											</button>
+										</div>
+									</form>
+                                
+								</div>
+							</div>
+							
+						</div>
+                        
+            		</div> <!-- container -->
+                               
+                </div> <!-- content -->
+
+                <footer class="footer">
+                    © 2016. All rights reserved.
+                </footer>
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->

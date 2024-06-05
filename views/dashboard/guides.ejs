@@ -22,119 +22,121 @@
 	                                </p>
 		                                        
 									<form action="/dashboard/guides" method="post" enctype="multipart/form-data" novalidate>
-                                        <div class="form-group col-lg-6">
-                                            <label class="control-label">Image</label>
-                                            <input type="file" class="filestyle" name="image" data-buttontext="Select file" data-buttonname="btn-white">
-                                            <% if (errors.image) { %>
-                                                <p style="color: red;"><%= errors.image %></p>
-                                            <% } %> 
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label class="control-label">Certificate</label>
-                                            <input type="file" class="filestyle" name="certificate" data-buttontext="Select file" data-buttonname="btn-white">
-                                            <% if (errors.certificate) { %>
-                                                <p style="color: red;"><%= errors.certificate %></p>
-                                            <% } %> 
-                                        </div>
-										<div class="form-group col-lg-6">
-											<label for="userName">Name</label>
-											<input type="text" name="name" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
-                                            <% if (errors.name) { %>
-                                                <p style="color: red;"><%= errors.name %></p>
-                                            <% } %> 
-                                        </div>
-                                        <div class="form-group col-lg-6">
-											<label for="userName">Surname</label>
-											<input type="text" name="surname" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
-                                            <% if (errors.surname) { %>
-                                                <p style="color: red;"><%= errors.surname %></p>
-                                            <% } %> 
-                                        </div>
-                                        <div class="form-group col-lg-6">
-											<label for="userName">Location</label>
-											<input type="text" name="location" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
-                                            <% if (errors.location) { %>
-                                                <p style="color: red;"><%= errors.location %></p>
-                                            <% } %> 
-                                        </div>
-                                        <div class="form-group col-lg-6">
-											<label for="userName">Languages</label>
-											<select name="languages" class="select2 select2-multiple" multiple="multiple" multiple data-placeholder="Choose ...">
-		                                        <optgroup label="Languages">
-		                                            <option value="English">English</option>
-		                                            <option value="Russian">Russian</option>
-		                                            <option value="Turkish">Turkish</option>
-		                                            <option value="Germany">Germany</option>
-		                                            <option value="French">French</option>
-		                                            <option value="Spanish">Spanish</option>
-		                                        </optgroup>
-		                                    </select>
-                                            <% if (errors.languages) { %>
-                                                <p style="color: red;"><%= errors.languages %></p>
-                                            <% } %> 
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label class="control-label">Visa Requirement</label>
-                                            <select name="visa" class="selectpicker" data-style="btn-white">
-                                                <option>Yes</option>
-                                                <option>No</option>
-                                            </select>
-                                            <% if (errors.visa) { %>
-                                                <p style="color: red;"><%= errors.visa %></p>
-                                            <% } %> 
-                                        </div>
-										<div class="form-group col-lg-6">
-                                            <label class="control-label">Currency</label>
-                                            <select name="currency" class="selectpicker" data-style="btn-white">
-                                                <option>AZN</option>
-                                                <option>USD</option>
-                                                <option>EUR</option>
-                                            </select>
-                                            <% if (errors.currency) { %>
-                                                <p style="color: red;"><%= errors.currency %></p>
-                                            <% } %> 
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label class="control-label">Age</label>
-                                            <select name="age" class="selectpicker" data-style="btn-white">
-                                                <option>15</option>
-                                                <option>16</option>
-                                                <option>17</option>
-                                            </select>
-                                            <% if (errors.age) { %>
-                                                <p style="color: red;"><%= errors.age %></p>
-                                            <% } %> 
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label class="control-label">Experience</label>
-                                            <select name="experience" class="selectpicker" data-style="btn-white">
-                                                <option value="1">1 Years</option>
-                                                <option value="2">2 Years</option>
-                                                <option value="3">3 Years</option>
-                                                <option value="4">4 Years</option>
-                                                <option value="5">5 Years</option>
-                                                <option value="6">6 Years</option>
-                                            </select>
-                                            <% if (errors.experience) { %>
-                                                <p style="color: red;"><%= errors.experience %></p>
-                                            <% } %> 
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label class="control-label">Gender</label>
-                                            <select name="gender" class="selectpicker" data-style="btn-white">
-                                                <option>Female</option>
-                                                <option>Male</option>
-                                            </select>
-                                            <% if (errors.gender) { %>
-                                                <p style="color: red;"><%= errors.gender %></p>
-                                            <% } %> 
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">Description</label>
-                                            <textarea name="description" required class="form-control"></textarea>
-                                            <% if (errors.description) { %>
-                                                <p style="color: red;"><%= errors.description %></p>
-                                            <% } %>
+                                        <div class="col-lg-12">
+                                            <div class="form-group col-lg-6">
+                                                <label class="control-label">Image</label>
+                                                <input type="file" class="filestyle" name="image" data-buttontext="Select file" data-buttonname="btn-white">
+                                                <% if (errors.image) { %>
+                                                    <p style="color: red;"><%= errors.image %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label class="control-label">Certificate</label>
+                                                <input type="file" class="filestyle" name="certificate" data-buttontext="Select file" data-buttonname="btn-white">
+                                                <% if (errors.certificate) { %>
+                                                    <p style="color: red;"><%= errors.certificate %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="userName">Name</label>
+                                                <input type="text" name="name" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
+                                                <% if (errors.name) { %>
+                                                    <p style="color: red;"><%= errors.name %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="userName">Surname</label>
+                                                <input type="text" name="surname" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
+                                                <% if (errors.surname) { %>
+                                                    <p style="color: red;"><%= errors.surname %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="userName">Location</label>
+                                                <input type="text" name="location" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
+                                                <% if (errors.location) { %>
+                                                    <p style="color: red;"><%= errors.location %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="userName">Languages</label>
+                                                <select name="languages" class="select2 select2-multiple" multiple="multiple" multiple data-placeholder="Choose ...">
+                                                    <optgroup label="Languages">
+                                                        <option value="English">English</option>
+                                                        <option value="Russian">Russian</option>
+                                                        <option value="Turkish">Turkish</option>
+                                                        <option value="Germany">Germany</option>
+                                                        <option value="French">French</option>
+                                                        <option value="Spanish">Spanish</option>
+                                                    </optgroup>
+                                                </select>
+                                                <% if (errors.languages) { %>
+                                                    <p style="color: red;"><%= errors.languages %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label class="control-label">Visa Requirement</label>
+                                                <select name="visa" class="selectpicker" data-style="btn-white">
+                                                    <option>Yes</option>
+                                                    <option>No</option>
+                                                </select>
+                                                <% if (errors.visa) { %>
+                                                    <p style="color: red;"><%= errors.visa %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label class="control-label">Currency</label>
+                                                <select name="currency" class="selectpicker" data-style="btn-white">
+                                                    <option>AZN</option>
+                                                    <option>USD</option>
+                                                    <option>EUR</option>
+                                                </select>
+                                                <% if (errors.currency) { %>
+                                                    <p style="color: red;"><%= errors.currency %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label class="control-label">Age</label>
+                                                <select name="age" class="selectpicker" data-style="btn-white">
+                                                    <option>15</option>
+                                                    <option>16</option>
+                                                    <option>17</option>
+                                                </select>
+                                                <% if (errors.age) { %>
+                                                    <p style="color: red;"><%= errors.age %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label class="control-label">Experience</label>
+                                                <select name="experience" class="selectpicker" data-style="btn-white">
+                                                    <option value="1">1 Years</option>
+                                                    <option value="2">2 Years</option>
+                                                    <option value="3">3 Years</option>
+                                                    <option value="4">4 Years</option>
+                                                    <option value="5">5 Years</option>
+                                                    <option value="6">6 Years</option>
+                                                </select>
+                                                <% if (errors.experience) { %>
+                                                    <p style="color: red;"><%= errors.experience %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label class="control-label">Gender</label>
+                                                <select name="gender" class="selectpicker" data-style="btn-white">
+                                                    <option>Female</option>
+                                                    <option>Male</option>
+                                                </select>
+                                                <% if (errors.gender) { %>
+                                                    <p style="color: red;"><%= errors.gender %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Description</label>
+                                                <textarea name="description" required class="form-control"></textarea>
+                                                <% if (errors.description) { %>
+                                                    <p style="color: red;"><%= errors.description %></p>
+                                                <% } %>
+                                            </div>
                                         </div>
 										<div class="form-group text-right m-b-0">
 											<button class="btn btn-primary waves-effect waves-light" type="submit">

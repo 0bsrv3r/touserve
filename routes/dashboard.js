@@ -34,5 +34,10 @@ router.post('/guides', guideValidation, Guide.postGuide);
 router.get('/tours', Tour.getGuideName);
 router.post('/tours', tourValidation, Tour.postTour);
 
+// Accommadation
+router.get('/accommodations', (req, res) => {
+    res.render("./dashboard/accommodations", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
+});
+
 
 module.exports = router;
