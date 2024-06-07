@@ -7,6 +7,7 @@ const Accommadation = require("../controllers/accommodationController.js")
 const eventValidation  = require("../validators/event.js"); 
 const guideValidation  = require("../validators/guide.js"); 
 const tourValidation  = require("../validators/tour.js"); 
+const accommadationValidation  = require("../validators/accommodation.js"); 
 
 router.use(express.urlencoded({ extended:true }))
 
@@ -35,6 +36,6 @@ router.post('/tours', tourValidation, Tour.postTour);
 router.get('/accommodations', (req, res) => {
     res.render("./dashboard/accommodations", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
 });
-router.post("/accommodations", Accommadation.postAccommodation)
+router.post("/accommodations", accommadationValidation, Accommadation.postAccommodation)
 
 module.exports = router;

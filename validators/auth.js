@@ -2,7 +2,7 @@ const { body }  = require("express-validator");
  
 module.exports = registerValidation = [ 
     body("uname") 
-        .isLength({min: 3}) 
+        .isLength({min: 3, max:70}) 
         .withMessage("Username must be 3 character at least") 
         .isAlpha() 
         .withMessage("Username must consist only letter"), 
@@ -12,7 +12,7 @@ module.exports = registerValidation = [
     body("password") 
         .isLength({min:8}) 
         .withMessage("Password must be 8 character at least")
-        .isLength({max:50}) 
+        .isLength({max:70}) 
         .withMessage("Password must be 50 character max") 
         .matches(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>_\-+=;'/\\[\]~`])[A-Za-z\d!@#$%^&*(),.?":{}|<>_\-+=;'/\\[\]~`]+$/)
         .withMessage('Password must contain letters, numbers, and special characters'),

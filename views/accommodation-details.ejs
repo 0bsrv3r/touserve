@@ -30,68 +30,32 @@
                 <div class="gn-gallery">
                     <div id="gn-slider">
                         <ul class="slides">
+                            <% for(let image of accommodation.images ){%>
                             <li>
-                                <a href="/upload/images/gallery/gl-i1.jpg">
-                                    <img alt="image" src="/upload/images/gallery/image01.jpg">
+                                <a href="/<%- image %>">
+                                    <img alt="image" src="/<%- image %>">
                                 </a>
                             </li>
-                            <li>
-                                <a href="/upload/images/gallery/gl-i1.jpg">
-                                    <img alt="image" src="/upload/images/gallery/image02.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/upload/images/gallery/gl-i1.jpg">
-                                    <img alt="image" src="/upload/images/gallery/image03.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/upload/images/gallery/gl-i1.jpg">
-                                    <img alt="image" src="/upload/images/gallery/image04.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/upload/images/gallery/gl-i1.jpg">
-                                    <img alt="image" src="/upload/images/gallery/image05.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="images/gallery/gl-i1.jpg">
-                                    <img alt="image" src="/upload/images/gallery/image06.jpg">
-                                </a>
-                            </li>
-
+                            <% } %>
                         </ul>
 
                     </div>
                     <div id="gn-carousel">
                         <ul class="slides">
+                            <% for(let image of accommodation.images ){%>
                             <li>
-                                <img alt="image" src="/upload/images/gallery/image01.jpg">
+                                <img alt="image" src="/<%- image %>">
                             </li>
-                            <li>
-                                <img alt="image" src="/upload/images/gallery/image02.jpg">
-                            </li>
-                            <li>
-                                <img alt="image" src="/upload/images/gallery/image03.jpg">
-                            </li>
-                            <li>
-                                <img alt="image" src="/upload/images/gallery/image04.jpg">
-                            </li>
-                            <li>
-                                <img alt="image" src="/upload/images/gallery/image05.jpg">
-                            </li>
-                            <li>
-                                <img alt="image" src="/upload/images/gallery/image06.jpg">
-                            </li>
+                            <% } %>
+                            
                         </ul>
                     </div>
-                    <h3 class="custom-h3">Home Name</h3>
+                    <h3 class="custom-h3"><%- accommodation.title %></h3>
                     <p class="custom-p">
-                        <i class="fa fa-users active" aria-hidden="true"></i> 2 guests
-                        <i class="fa fa-bed" aria-hidden="true"></i> 1bedroom
-                        <i class="fa fa-bed" aria-hidden="true"></i> 1 bed
-                        <i class="fa fa-bed" aria-hidden="true"></i>1bath
+                        <i class="fa fa-users active" aria-hidden="true"></i> <%- accommodation.guestCount %> guests
+                        <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.roomCount %> bedroom
+                        <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.bedCount %> bed
+                        <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.bathCount %> bath
                     </p>
                 </div>
                 <!-- /.gn-gallery -->
@@ -305,18 +269,15 @@
                     <div class="wrap-content-title">
                         <h4 class="title">About</h4>
 
-                        <div class="sub-title">Omnicos directe al desirabilite de un nov lingua franca on refusa continuar payar custosi
-                            traductores. At solmen va esser necessi far uniform grammatica, pronunciation e plu
-                            sommun paroles.
-                        </div>
+                        <div class="sub-title"><%- accommodation.about %></div>
                         
                         <div class="custom-home-about">   
                             <ul>
                                 <li>
-                                    <p>Entire home/apt</p><span>Have a place to yourself</span>
+                                    <p>Room Type</p><span><%- accommodation.roomType %></span>
                                 </li>
                                 <li>
-                                    <p>In & Out</p><span>Check in Anytime after 2PM · Check out 10AM</span>
+                                    <p>In & Out</p><span>Check in <%- accommodation.in %> · Check out <%- accommodation.out %></span>
                                 </li>
                             </ul>
                         </div>
@@ -327,14 +288,9 @@
                             <h4 class="widget-title">Amenities</h4>
                             <div class="custom-amenities">
                                 <ul>
-                                    <li>Kitchen</li>
-                                    <li>Shampoo</li>
-                                    <li>Essentials</li>
-                                    <li>Heating</li>
-                                    <li>Washer</li>
-                                    <li>Dryer</li>
-                                    <li>Indoor fireplace</li>
-                                    <li>Pets allowed</li>
+                                    <% for(let amenitie of accommodation.amenities){ %>
+                                    <li><%- amenitie %></li>
+                                    <% } %>
                                 </ul>
                                 <ul>
                                     <li>Kitchen</li>
@@ -358,11 +314,11 @@
                             <ul>
                                 <li>
                                     <p>General</p>
-                                    <span>No smoking</span>
+                                    <span><%- accommodation.rules %></span>
                                 </li>
                                 <li>
                                     <p>Promotions</p>
-                                    <span>Weekly Discount: 10% <br>
+                                    <span>Weekly Discount: <%- accommodation.promotions %>% <br>
                                         Monthly Discount: 20%
                                     </span>
                                 </li>

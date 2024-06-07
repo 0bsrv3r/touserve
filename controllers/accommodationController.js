@@ -1,12 +1,13 @@
+const  { validationResult } = require("express-validator") 
 const slugify = require("slugify")
 const {Accommodations} = require("../models")
 
 class Accommodation{
     static postAccommodation(req, res){
         console.log(req.body)
-        // const errors = validationResult(req)
+        const errors = validationResult(req)
         
-        // if(errors.isEmpty()){
+        if(errors.isEmpty()){
 
             let images = []
             for(let i=0; i<req.files.images.length; i++) {
@@ -38,16 +39,32 @@ class Accommodation{
                 rules: req.body.rules,
                 guestCount: req.body.guestCount,
                 promotions: req.body.promotions,
-                homeType: req.body.homeType,
+                roomType: req.body.roomType,
                 about: req.body.about,
                 images: images
             } 
 
             Accommodations.create(data)
             res.redirect('/dashboard/accommodations')
-        // }else{
-        //     return Tour.getGuideName(req, res, errors)
-        // } 
+        }else{
+            const errorObject = errors.array().reduce((acc, error) => {
+                acc[error.path] = error.msg;
+                return acc;
+            }, {})
+            
+            res.render("./dashboard/accommodations", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
+        } 
+    }
+
+    static async getAccommodations(req, res){
+        const accommodations = await Accommodations.findAll()
+        res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations})
+    }
+
+    static async getAccommodationById(req, res){
+        const id = req.params
+        const accommodation = await Accommodations.findOne({where: id })
+        res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation})
     }
 }
 

@@ -1,5 +1,7 @@
 const { body, check }  = require("express-validator"); 
 
+const allowedValues = ['Pet Allowed', 'No Smoking'];
+
 module.exports = eventValidation = [
     check("image") 
         .custom((value, {req}) => { 
@@ -47,15 +49,6 @@ module.exports = eventValidation = [
         .withMessage("Title must consist of min 3 and max 150 characters") 
         .escape(),
     
-    body('category')
-        .isIn(['culture-art', 'beauty-health', 'entertainment', 'offroad', 'hunting'])
-        .withMessage('Category must be only "specified options'),
-    
-    body("guide")
-        .isLength({max:4}) 
-        .isNumeric()
-        .withMessage("Guide must consist only numbers"),
-
     body("location") 
         .isLength({min: 3, max: 150}) 
         .withMessage("Location must consist of min 3 and max 150 characters") 
@@ -64,47 +57,62 @@ module.exports = eventValidation = [
         .trim()
         .escape(),
 
-    body("date")
-        .exists()
-        .withMessage('Date is required')
-        .matches(/^(0[1-9]|1[1-9])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)
-        .withMessage('Invalid date-time format. Use MM/DD/YYYY & HH:MM AM/PM'),
-    
-    body('time')
-        .exists()
-        .withMessage('Time is required')
-        .matches(/^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)
-        .withMessage('Invalid date-time format. Use MM/DD/YYYY & HH:MM AM/PM'),
-    
-    body("duration")
-        .isLength({max:4})
-        .isNumeric()
-        .withMessage("Duration must consist only numbers"),
-    
-    body("highlights")
-        .isLength({min: 1, max: 300})
-        .isAlpha() 
-        .withMessage("Highlights must consist of letter"),
-    
-    body("inclusions")
-        .isLength({min: 1, max: 300})
-        .isAlpha() 
-        .withMessage("Inclusions must consist of letters"),
-    
-    body("overview")
-        .isLength({min: 20, max: 2000}) 
-        .withMessage("Overview must be min 20 and max 2000 character") 
-        .escape(),
-    
-    body("additional")
-        .isLength({max: 2000}) 
-        .withMessage("Additional Info must be max 2000 character") 
-        .escape(),
-
     body("price")
         .isLength({max:10})
         .isNumeric()
         .withMessage("Price must consist only numbers"),
 
     body('currency').isIn(['AZN', 'USD', 'EUR']).withMessage('Currency must be either "AZN", "USD" or "EUR"'),
+
+    body("in")
+        .exists()
+        .withMessage('Check-in time is required')
+        .matches(/^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)
+        .withMessage('Invalid time format. Use HH:MM AM/PM'),
+    
+    body('out')
+        .exists()
+        .withMessage('Check-out time is required')
+        .matches(/^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)
+        .withMessage('Invalid time format. Use HH:MM AM/PM'),
+    
+    body("amenities")
+        .isLength({min: 1, max: 950})
+        .withMessage("Amenities must consist of letters"),
+    
+    body("roomCount")
+        .isLength({max:4})
+        .isNumeric()
+        .withMessage("Room count must consist only numbers"),
+    
+    body("bedCount")
+        .isLength({max:4})
+        .isNumeric()
+        .withMessage("Bed count must consist only numbers"),
+
+    body("bathCount")
+        .isLength({max:4})
+        .isNumeric()
+        .withMessage("Bathroom count must consist only numbers"),
+
+    body("rules")
+        .isLength({min: 1, max: 400})
+        .withMessage("Rules must consist of letters"),
+
+    body("guestCount")
+        .isLength({max:4})
+        .isNumeric()
+        .withMessage("Guest count must consist only numbers"),
+
+    body("roomType").isIn(['Entire Home', 'Private Room']).withMessage('Room type must be only "specified options"'),
+    
+    body("promotions")
+        .isLength({max:4})
+        .isNumeric()
+        .withMessage("Promotions must consist only numbers"),
+
+    body("about")
+        .isLength({min: 20, max: 2000}) 
+        .withMessage("About must be min 20 and max 2000 character") 
+        .escape(),
 ]

@@ -3,6 +3,8 @@ const router = express.Router();
 const Event = require("../controllers/eventController.js")
 const Guide = require("../controllers/guideController.js")
 const Tour = require("../controllers/tourController.js");
+const Accommadation = require("../controllers/accommodationController.js");
+
 const { render } = require('ejs');
 
 router.use(express.urlencoded({ extended:true }))
@@ -29,13 +31,8 @@ router.get('/tour-details/:id', Tour.getTourById);
 router.get('/tours/:category', Tour.getTourByCategory);
 
 // Accommodation
-router.get('/accommodation', (req, res) => {
-    res.render('accommodation', {layout: 'layouts/pagesHeader'})
-})
-
-router.get('/accommodation-details', (req, res) => {
-    res.render('accommodation-details', {layout: 'layouts/pagesHeader'})
-})
+router.get('/accommodation', Accommadation.getAccommodations)
+router.get('/accommodation-details/:id', Accommadation.getAccommodationById)
 
 // Guides
 router.get('/guides', Guide.getGuides); 
