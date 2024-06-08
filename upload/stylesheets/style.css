@@ -902,7 +902,7 @@ h6 { font-size: 18px; line-height: 18px; }
 /* Blog-single
 -------------------------------------------------------------- */
 .featured-post {
-	margin-bottom: 34px;
+	margin-bottom: 20px;
 }
 
 article ul.meta-post {
@@ -3762,7 +3762,7 @@ footer a {
 
 /* Radio */
 .wrap-radio {
-	padding: 37px 0;
+	padding-bottom: 10px;
 }
 
 .wrap-radio.s3{
@@ -4205,7 +4205,7 @@ footer a {
 }
 
 .flat-imagebox.style2.v3 .imagebox .box-image {
-    margin-bottom: 21px;
+    margin-bottom: 1px;
     position: relative;
     overflow: hidden;
 }
@@ -4869,7 +4869,7 @@ footer a {
 }
 
 .wrap-login-register .not-account p a:hover {
-    color: #666;
+    color: #fff;
 }
 
 .other-account {

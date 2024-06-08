@@ -22,43 +22,53 @@
 </div>
 <!-- /.wrap-header -->
 
-<section class="flat-row pd-imagebox v6">
+<section class="flat-row pd-imagebox v6 custom-pd-destination-details">
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <section class="section-element">
-                <div class="gn-gallery">
-                    <div id="gn-slider">
-                        <ul class="slides">
-                            <% for(let image of accommodation.images ){%>
-                            <li>
-                                <a href="/<%- image %>">
-                                    <img alt="image" src="/<%- image %>">
-                                </a>
-                            </li>
-                            <% } %>
+                <div class="content-trip">
+                    <h4 class="title">
+                        <a href="#"><%- accommodation.title %> - <%- accommodation.price %> <%- accommodation.currency %></a>
+                    </h4>
+                    <p class="sub-title"><%- accommodation.location %></p>
+                    <div class="wrap-star s2">
+                        <ul class="star">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
                         </ul>
+                    </div>
+                </div> 
 
+                <!-- Slider Start-->
+                <div class="tour-slider">
+                    <div id="ninja-slider" style="float:left;">
+                        <div class="slider-inner">
+                            <ul>
+                                <% for(let image of accommodation.images ){%>
+                                <li><a class="ns-img" href="/<%- image %>"></a></li>
+                                <% } %>
+                            </ul>
+                            <div class="fs-icon" title="Expand/Close"></div>
+                        </div>
                     </div>
-                    <div id="gn-carousel">
-                        <ul class="slides">
-                            <% for(let image of accommodation.images ){%>
-                            <li>
-                                <img alt="image" src="/<%- image %>">
-                            </li>
-                            <% } %>
-                            
-                        </ul>
+                    <div id="thumbnail-slider" style="float:left;">
+                        <div class="inner">
+                            <ul>
+                                <% for(let image of accommodation.images ){%>
+                                    <li>
+                                        <a class="thumb" href="/<%- image %>"></a>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </div>
                     </div>
-                    <h3 class="custom-h3"><%- accommodation.title %></h3>
-                    <p class="custom-p">
-                        <i class="fa fa-users active" aria-hidden="true"></i> <%- accommodation.guestCount %> guests
-                        <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.roomCount %> bedroom
-                        <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.bedCount %> bed
-                        <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.bathCount %> bath
-                    </p>
+                    <div style="clear:both;"></div>
                 </div>
-                <!-- /.gn-gallery -->
+                <!-- Slider Emd-->
 
                 <div class="flat-tabs" data-effect="fadeIn">
                     <div class="wrap-radio menu-tab">
@@ -106,8 +116,8 @@
                                             </div>
                                             <input type="hidden" id="dtp_input2" value="" /><br/>
                                         </div>
-                                        <div class="wrap-button">
-                                            <p class="update-form-submit">
+                                        <div class="form-group">
+                                            <p class="update-form-submit" style="margin: 0;">
                                                 <button class="update-submit custom-update-submit">Update Now</button>
                                             </p>
                                         </div>
@@ -122,7 +132,9 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="map"></div>
+                                            <div class="map">
+                                                Location <%- accommodation.location %>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -267,6 +279,20 @@
 
                 <div class="flat-form-book-now">
                     <div class="wrap-content-title">
+                        <div class="accommodation-count">
+                            <p class="custom-p">
+                                <i class="fa fa-users active" aria-hidden="true"></i> <%- accommodation.guestCount %> guests
+                            </p>
+                            <p>
+                                <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.roomCount %> bedroom
+                            </p>
+                            <p>
+                                <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.bedCount %> bed
+                            </p>
+                            <p>
+                                <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.bathCount %> bath
+                            </p>
+                        </div>
                         <h4 class="title">About</h4>
 
                         <div class="sub-title"><%- accommodation.about %></div>

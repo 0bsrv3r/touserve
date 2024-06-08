@@ -223,11 +223,16 @@
                              /*========= MAIN PAGE END ==========*/
 
 
-                            /*========= SPECIALS PAGE START ==========*/
+                            /*========= Event PAGE START ==========*/
+.pd-blog-single .container .row{
+    display: flex;
+    justify-content: center;
+}
 .main-content .featured-post img{
     width: 100% !important;
+    height: 400px;
 }                            
-                            /*========= SPECIALS PAGE END ==========*/
+                            /*========= Event PAGE END ==========*/
 
 
                             /*========= LOGIN PAGE START ==========*/
@@ -238,11 +243,18 @@
     background-attachment: fixed;
     height: 100vh;
 }
+.wrap-login-register p input{
+    color: #fff;
+    font-size: 16px !important;
+}
+.wrap-login-register input::placeholder {
+    color: #333333;
+}
 .page-register{
     background: url(../images/login/registr.jpg);
     background-size: cover; 
     background-attachment: fixed;
-} 
+}
                             /*========= LOGIN PAGE END ==========*/
 
 
@@ -257,6 +269,14 @@
     bottom: 0;
     left: 0;
     z-index:1;
+}
+.flat-imagebox.style2.v3 .imagebox .box-image{
+    width: 100%;
+    height: 250px;
+}
+.flat-imagebox.style2.v3 .imagebox .box-image img{
+    width: 100%;
+    height: 100%;
 }
 
                             /*========= ACCOMMODATION DETAILS PAGE START ==========*/
@@ -276,13 +296,27 @@
 .update-input{
     display: flex;
 }
+.update-input .form-group{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    justify-content: center;
+}
 .update-input .input-group{
-    width: 74%;
-    margin-left: 60px;
+    width: 90%;
+    margin-left: 15px;
 }
 .update-form .custom-update-submit{
     width: 160px;
     margin:0 21px 0 0;
+}
+.wrap-content-title .accommodation-count{
+    display: flex;
+    margin-bottom: 10px;
+}
+.wrap-content-title .accommodation-count p{
+    margin-right: 15px;
+    font-size: 17px;
 }
                             /*========= ACCOMMODATION DETAILS PAGE END ==========*/
                             /*========= ACCOMMODATION PAGE END ==========*/
@@ -299,6 +333,14 @@
 }
 .custom-margin{
     margin-top: 40px;
+}
+.flat-imagebox.style2.v2 .imagebox .box-image{
+    height: 250px;
+    width: 100%;
+}
+.flat-imagebox.style2.v2 .imagebox .box-image img{
+    width: 100%;
+    height: 100%
 }
                             /*========= TOURS-DETAILS PAGE START ==========*/
 .custom-widget{
@@ -319,7 +361,7 @@
     width: 62%;
 }
 .flat-row.custom-pd-destination-details{
-        padding: 79px 0 20px;
+        padding: 79px 0 20px !important;
 }
 .custom-pd-destination-details .tour-slider{
     width: 100%;
@@ -542,10 +584,18 @@
 .custom-overlays2 a.link:before{
     background: initial;
 }
+.owl-carousel .custom-item .thumb{
+    height: 300px;
+    position: relative;
+}
 .owl-carousel .custom-item img{
     width: 100% !important;
     height: 300px;
-}                  
+}
+.owl-carousel .overlays2 a.link:before {
+    z-index: 98;
+}                
+
 .owl-carousel .custom-item .text{
     display: flex;
     justify-content: space-between;
@@ -558,6 +608,7 @@
     font-size: 21px;
     font-weight: 600;
     transform: translate(-13px,-15px);
+    z-index: 99;
 }
 .owl-carousel .custom-item .sub-text{
     padding-top: 8px;

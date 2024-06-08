@@ -64,7 +64,11 @@ class Accommodation{
     static async getAccommodationById(req, res){
         const id = req.params
         const accommodation = await Accommodations.findOne({where: id })
-        res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation})
+        if(accommodation != undefined){
+            res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation})
+        }else{
+            res.render("404", {layout: 'layouts/pagesheader'});
+        }
     }
 }
 
