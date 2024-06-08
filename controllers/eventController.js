@@ -1,8 +1,11 @@
 const  { validationResult } = require("express-validator") 
 const slugify = require("slugify"); 
 const { Events } = require("../models");
+const session = require("express-session");
 
 class Event{
+
+    // Dashboard Side
     static async postEvent(req, res){
         const errors = validationResult(req); 
         if(errors.isEmpty()){ 
@@ -38,6 +41,26 @@ class Event{
         } 
     }
 
+    static async getEventsByUserId(req, res){
+        const user_id = {userId: 1} // req.session.user_id}
+        const events = await Events.findAll({where: user_id})
+
+        res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars', errors: {}, events: events });
+    }
+
+    static async deleteEventById(req, res){
+        const id = req.params
+        const deleted = await Events.destroy({where: id})
+
+        if (deleted) {
+            res.redirect('/dashboard/events')
+        }else {
+            res.status(404).json({ message: `Event with ID ${id} not found` });
+        }
+    }
+
+
+    // Front Side
     static async getEvents(req, res){
         const events = await Events.findAll()
         res.render("events", {layout: 'layouts/pagesheader', events:events});

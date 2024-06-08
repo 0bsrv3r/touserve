@@ -17,12 +17,14 @@
         <link href="/upload/dashboard/assets/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
 		<link href="/upload/dashboard/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
         <link href="/upload/dashboard/assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="/upload/dashboard/assets/plugins/datatables/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="/upload/dashboard/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="/upload/dashboard/assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="/upload/dashboard/assets/css/components.css" rel="stylesheet" type="text/css" />
         <link href="/upload/dashboard/assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="/upload/dashboard/assets/css/pages.css" rel="stylesheet" type="text/css" />
         <link href="/upload/dashboard/assets/css/responsive.css" rel="stylesheet" type="text/css" />
+
 
         <script src="/upload/dashboard/assets/js/modernizr.min.js"></script>
 
@@ -401,7 +403,6 @@
         <script src="/upload/dashboard/assets/js/jquery.core.js"></script>
         <script src="/upload/dashboard/assets/js/jquery.app.js"></script>
 
-
         <script type="text/javascript">
             jQuery(document).ready(function($) {
                 $('.counter').counterUp({
@@ -412,6 +413,42 @@
                 $(".knob").knob();
 
             });
+        </script>
+
+        <script src="/upload/dashboard/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/upload/dashboard/assets/plugins/datatables/dataTables.bootstrap.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable({keys: true});
+                $('#datatable-responsive').DataTable();
+                $('#datatable-colvid').DataTable({
+                    "dom": 'C<"clear">lfrtip',
+                    "colVis": {
+                        "buttonText": "Change columns"
+                    }
+                });
+                $('#datatable-scroller').DataTable({
+                    ajax: "assets/plugins/datatables/json/scroller-demo.json",
+                    deferRender: true,
+                    scrollY: 380,
+                    scrollCollapse: true,
+                    scroller: true
+                });
+                var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+                var table = $('#datatable-fixed-col').DataTable({
+                    scrollY: "300px",
+                    scrollX: true,
+                    scrollCollapse: true,
+                    paging: false,
+                    fixedColumns: {
+                        leftColumns: 1,
+                        rightColumns: 1
+                    }
+                });
+            });
+            TableManageButtons.init();
         </script>
 		
     </body>

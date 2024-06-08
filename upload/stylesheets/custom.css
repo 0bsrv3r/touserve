@@ -417,6 +417,9 @@
     padding: 25px 13px;
     border: none; 
 }
+.guide-overview{
+    margin: 10px 0 45px;
+}
 .custom-featured-trip{
     margin-top: 69px;
 }

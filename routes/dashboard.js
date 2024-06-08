@@ -17,10 +17,9 @@ router.get('/', (req, res) => {
 
 
 // Events
-router.get('/events', (req, res) => { 
-    res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
-});
-router.post('/events',eventValidation, Event.postEvent);
+router.get('/events', Event.getEventsByUserId);
+router.post('/events', eventValidation, Event.postEvent);
+router.get('/events/delete/:id', Event.deleteEventById);
 
 // Guide
 router.get('/guides', (req, res) => {

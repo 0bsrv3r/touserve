@@ -13,63 +13,110 @@
                             </div>
                         </div>
                         
-                        <div class="row">
-							<div class="col-lg-6">
-								<div class="card-box">
-									<h4 class="m-t-0 header-title"><b>Event Form</b></h4>
-									<p class="text-muted font-13 m-b-30">
-	                                    <!-- Your events text goes here. -->
-	                                </p>
-		                                        
-									<form action="/dashboard/events" method="post" enctype="multipart/form-data" novalidate>
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label class="control-label">Image</label>
-                                                <input type="file" class="filestyle" name="image" data-buttontext="Select file" data-buttonname="btn-white">
-                                                <% if (errors.image) { %>
-                                                    <p style="color: red;"><%= errors.image %></p>
-                                                <% } %> 
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="userName">Title</label>
-                                                <input type="text" name="title" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
-                                                <% if (errors.title) { %>
-                                                    <p style="color: red;"><%= errors.title %></p>
-                                                <% } %> 
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="userName">Location</label>
-                                                <input type="text" name="location" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
-                                                <% if (errors.location) { %>
-                                                    <p style="color: red;"><%= errors.location %></p>
-                                                <% } %> 
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Date Range With Time</label>
-                                                <input type="text" class="form-control input-daterange-timepicker" name="date" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM"/>
-                                                <% if (errors.date) { %>
-                                                    <p style="color: red;"><%= errors.date %></p>
-                                                <% } %> 
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Description</label>
-                                                <textarea name="description" required class="form-control"></textarea>
-                                                <% if (errors.description) { %>
-                                                    <p style="color: red;"><%= errors.description %></p>
-                                                <% } %> 
-                                            </div>
+                        <div class="row"> 
+                            <div class="col-lg-12"> 
+                                <ul class="nav nav-tabs"> 
+                                    <li class="active"> 
+                                        <a href="#home" data-toggle="tab" aria-expanded="false"> 
+                                            <span class="visible-xs"><i class="fa fa-home"></i></span> 
+                                            <span class="hidden-xs">Event Lists</span> 
+                                        </a> 
+                                    </li> 
+                                    <li class=""> 
+                                        <a href="#profile" data-toggle="tab" aria-expanded="true"> 
+                                            <span class="visible-xs"><i class="fa fa-user"></i></span> 
+                                            <span class="hidden-xs">Create Event</span> 
+                                        </a> 
+                                    </li> 
+                                </ul> 
+                                <div class="tab-content col-lg-12"> 
+                                    <div class="tab-pane active" id="home"> 
+                                        <div class="card-box table-responsive">
+                                            <table id="datatable" class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th>Location</th>
+                                                    <th>Date</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                </thead>
+                
+                                                <tbody>
+                                                <% for(let event of events){ %>
+                                                <tr>
+                                                    <td><%- event.title %></td>
+                                                    <td><%- event.description %></td>
+                                                    <td><%- event.location %></td>
+                                                    <td><%- event.date %></td>
+                                                    <td>
+                                                        <a href="/dashboard/events/update/<%- event.id %>" style="padding: 5px;"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a>
+                                                        <a href="/dashboard/events/delete/<%- event.id %>" style="padding: 5px;"><i class="fa fa-trash-o" style="color: #f05050;;"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                                </tbody>
+                                            </table>
                                         </div>
-										<div class="form-group text-right m-b-0">
-											<button class="btn btn-primary waves-effect waves-light" type="submit">
-												Submit
-											</button>
-										</div>
-									</form>
-								</div>
-							</div>
-							
-						</div>
-                        
+                                    </div> 
+                                    <div class="tab-pane col-lg-8" id="profile"> 
+                                        <div class="card-box">
+                                            <h4 class="m-t-0 header-title"><b>Event Form</b></h4>
+                                            <p class="text-muted font-13 m-b-30">
+                                                <!-- Your events text goes here. -->
+                                            </p>
+                                                        
+                                            <form action="/dashboard/events" method="post" enctype="multipart/form-data" novalidate>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Image</label>
+                                                        <input type="file" class="filestyle" name="image" data-buttontext="Select file" data-buttonname="btn-white">
+                                                        <% if (errors.image) { %>
+                                                            <p style="color: red;"><%= errors.image %></p>
+                                                        <% } %> 
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="userName">Title</label>
+                                                        <input type="text" name="title" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
+                                                        <% if (errors.title) { %>
+                                                            <p style="color: red;"><%= errors.title %></p>
+                                                        <% } %> 
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="userName">Location</label>
+                                                        <input type="text" name="location" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
+                                                        <% if (errors.location) { %>
+                                                            <p style="color: red;"><%= errors.location %></p>
+                                                        <% } %> 
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Date Range With Time</label>
+                                                        <input type="text" class="form-control input-daterange-timepicker" name="date" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM"/>
+                                                        <% if (errors.date) { %>
+                                                            <p style="color: red;"><%= errors.date %></p>
+                                                        <% } %> 
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Description</label>
+                                                        <textarea name="description" required class="form-control"></textarea>
+                                                        <% if (errors.description) { %>
+                                                            <p style="color: red;"><%= errors.description %></p>
+                                                        <% } %> 
+                                                    </div>
+                                                </div>
+                                                <div class="form-group text-right m-b-0">
+                                                    <button class="btn btn-primary waves-effect waves-light" type="submit">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div> 
+                                </div> 
+                            </div> 
+                        </div>
+                         <!-- end row -->
             		</div> <!-- container -->
                                
                 </div> <!-- content -->

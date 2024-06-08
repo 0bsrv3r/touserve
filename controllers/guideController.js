@@ -72,8 +72,8 @@ class Guide{
 
     static async getGuideById(req, res){
         const data = req.params
-        const guide = await Guides.findOne({where: data})
-        
+        const guide = await Guides.findOne({where: data, include: "tours"})
+                
         if(guide != undefined){
             res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide});
         }else{
