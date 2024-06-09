@@ -80,12 +80,16 @@
                                                 <a href="/e-visa">E-Visa</a>
                                             </li>
                                             <li>
-                                                <a href="/login">Login</a>
-                                                <ul class="submenu right-sub-menu">
-                                                    <li>
-                                                        <a href="/register">Sign Up</a>
-                                                    </li>
-                                                </ul>
+                                                <% if(globalSession.user_id){ %>
+                                                    <a href="/dashboard">Dashboard</a>
+                                                <% }else{ %>
+                                                    <a href="/login">Login</a>
+                                                    <ul class="submenu right-sub-menu">
+                                                        <li>
+                                                            <a href="/register">Sign Up</a>
+                                                        </li>
+                                                    </ul>
+                                                <% } %>
                                             </li>
                                             <li class="show-search">
                                                 <a href="#">

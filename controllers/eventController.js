@@ -1,7 +1,8 @@
 const  { validationResult } = require("express-validator") 
 const slugify = require("slugify"); 
 const { Events } = require("../models");
-const session = require("express-session");
+const fs = require('fs');
+const path = require('path');
 
 class Event{
 
@@ -30,14 +31,14 @@ class Event{
             } 
             
             const test = await Events.create(data)
-            res.redirect('/dashboard/events')
+            res.redirect('/dashboard/events-create')
         }else{
             const errorObject = errors.array().reduce((acc, error) => {
                 acc[error.path] = error.msg;
                 return acc;
             }, {})
-
-            res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
+            
+            res.render("./dashboard/events-create", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
         } 
     }
 
@@ -50,7 +51,22 @@ class Event{
 
     static async deleteEventById(req, res){
         const id = req.params
+
+        const events = await Events.findOne({where:id})
+        const imagePath = events.image
+
         const deleted = await Events.destroy({where: id})
+
+        if (imagePath) {
+            const fullPath = path.join("./", imagePath);
+            fs.unlink(fullPath, (err) => {
+              if (err) {
+                console.error(`Failed to delete image file: ${err}`);
+                return res.status(500).send('Failed to delete image file');
+              }
+              console.log(`Deleted image file: ${fullPath}`);
+            });
+        }
 
         if (deleted) {
             res.redirect('/dashboard/events')
