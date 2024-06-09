@@ -30,8 +30,8 @@ class Event{
                 image: path
             } 
             
-            const test = await Events.create(data)
-            res.redirect('/dashboard/events-create')
+            const event = await Events.create(data)
+            res.redirect('/dashboard/events/create')
         }else{
             const errorObject = errors.array().reduce((acc, error) => {
                 acc[error.path] = error.msg;
@@ -42,36 +42,115 @@ class Event{
         } 
     }
 
+
     static async getEventsByUserId(req, res){
-        const user_id = {userId: 1} // req.session.user_id}
+        const user_id = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
         const events = await Events.findAll({where: user_id})
 
         res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars', errors: {}, events: events });
     }
 
+
+    static async getUpdateEventById(req, res){
+        const ids  = {
+            id: req.params.id,
+            userId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
+        }
+        const event  = await Events.findOne({where: ids})
+
+        if (event) {
+            res.render("./dashboard/events-update", {layout: 'layouts/dashboard/top-side-bars', event: event, errors: {}});
+        }else {
+            res.status(404).json({ message: `Event with ID ${ids.id} not found` });
+        }
+    }
+
+    static async postUpdateEventById(req, res){
+        const ids = {
+            id: req.params.id,
+            userId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
+        }
+        // const errors = validationResult(req); 
+        try {
+            // if(errors.isEmpty()){ 
+                const event = await Events.findOne({where: ids});
+                const oldImage  = event.image
+
+                if (event) {
+                    event.title = req.body.title;
+                    event.location = req.body.location;
+                    event.date = req.body.date;
+                    event.description = req.body.description;
+
+                    if (req.files) {
+                        // Remove Old Image
+                        if (oldImage) {
+                            const fullPath = path.join("./", oldImage);
+                            fs.unlink(fullPath, (err) => {
+                                if (err) {
+                                    return res.status(500).send('Failed to delete image file');
+                                }
+                            });
+                        }
+
+                        // Upload New Image
+                        let avatar = req.files.image; 
+                        let newImagePath = 'upload/photos/events/' + Date.now() + '-' + slugify(avatar.name,{ 
+                            lower: true, 
+                            strict: true 
+                        }) + '.' + avatar.name.split('.').pop();
+                        avatar.mv(newImagePath, err => { 
+                            if(err){ 
+                                return res.status(500).send(err); 
+                            } 
+                        })
+                                     
+                        event.image = newImagePath;
+                    }
+
+                    await event.save();
+                    res.redirect(`/dashboard/events/update/${ids.id}`)
+                } else {
+                    res.status(404).json({ message: 'Event not found' });
+                }
+        // }else{
+        //     const errorObject = errors.array().reduce((acc, error) => {
+        //         acc[error.path] = error.msg;
+        //         return acc;
+        //     }, {})
+            
+        //     res.render("./dashboard/events-create", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
+            // }
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'An error occurred while updating the event' });
+        }
+    }
+
+
     static async deleteEventById(req, res){
-        const id = req.params
-
-        const events = await Events.findOne({where:id})
-        const imagePath = events.image
-
-        const deleted = await Events.destroy({where: id})
-
-        if (imagePath) {
-            const fullPath = path.join("./", imagePath);
-            fs.unlink(fullPath, (err) => {
-              if (err) {
-                console.error(`Failed to delete image file: ${err}`);
-                return res.status(500).send('Failed to delete image file');
-              }
-              console.log(`Deleted image file: ${fullPath}`);
-            });
+        const ids = {
+            id: req.params.id,
+            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
         }
 
-        if (deleted) {
+        const events = await Events.findOne({where:ids})
+        const imagePath = events.image
+
+        const deleted = await Events.destroy({where: ids})
+
+        if (deleted && events) {
+            if (imagePath) {
+                const fullPath = path.join("./", imagePath);
+                fs.unlink(fullPath, (err) => {
+                  if (err) {
+                    return res.status(500).send('Failed to delete image file');
+                  }
+                });
+            }
             res.redirect('/dashboard/events')
         }else {
-            res.status(404).json({ message: `Event with ID ${id} not found` });
+            res.status(404).json({ message: `Event with ID ${ids.id} not found` });
         }
     }
 

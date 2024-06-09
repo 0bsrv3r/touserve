@@ -459,11 +459,6 @@ h6 { font-size: 18px; line-height: 18px; }
 }
 
 /* Navigation */
-.nav-wrap {
-	position: relative;
-	padding-left: 3px;
-}
-
 .nav-wrap .mainnav,
 .nav-wrap .menu.menu-extra {
 	float: left;

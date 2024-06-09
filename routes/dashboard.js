@@ -18,10 +18,12 @@ router.get('/', (req, res) => {
 
 // Events
 router.get('/events', Event.getEventsByUserId);
-router.get('/events-create', (req,res) => {
+router.get('/events/create', (req,res) => {
     res.render("./dashboard/events-create", {layout: 'layouts/dashboard/top-side-bars', errors: {}});
 });
 router.post('/events-create', eventValidation, Event.postEvent);
+router.get('/events/update/:id', Event.getUpdateEventById);
+router.post('/events/update/:id', Event.postUpdateEventById);
 router.get('/events/delete/:id', Event.deleteEventById);
 
 
