@@ -29,9 +29,9 @@
             <section class="section-element">
                 <div class="content-trip">
                     <h4 class="title">
-                        <a href="#"><%- accommodation.title %> - <%- accommodation.price %> <%- accommodation.currency %></a>
+                        <a href="#"><%= accommodation.title %> - <%= accommodation.price %> <%= accommodation.currency %></a>
                     </h4>
-                    <p class="sub-title"><%- accommodation.location %></p>
+                    <p class="sub-title"><%= accommodation.location %></p>
                     <div class="wrap-star s2">
                         <ul class="star">
                             <li></li>
@@ -49,7 +49,7 @@
                         <div class="slider-inner">
                             <ul>
                                 <% for(let image of accommodation.images ){%>
-                                <li><a class="ns-img" href="/<%- image %>"></a></li>
+                                <li><a class="ns-img" href="/<%= image %>"></a></li>
                                 <% } %>
                             </ul>
                             <div class="fs-icon" title="Expand/Close"></div>
@@ -60,7 +60,7 @@
                             <ul>
                                 <% for(let image of accommodation.images ){%>
                                     <li>
-                                        <a class="thumb" href="/<%- image %>"></a>
+                                        <a class="thumb" href="/<%= image %>"></a>
                                     </li>
                                 <% } %>
                             </ul>
@@ -133,7 +133,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="map">
-                                                Location <%- accommodation.location %>
+                                                Location <%= accommodation.location %>
                                             </div>
                                         </div>
                                     </div>
@@ -281,29 +281,29 @@
                     <div class="wrap-content-title">
                         <div class="accommodation-count">
                             <p class="custom-p">
-                                <i class="fa fa-users active" aria-hidden="true"></i> <%- accommodation.guestCount %> guests
+                                <i class="fa fa-users active" aria-hidden="true"></i> <%= accommodation.guestCount %> guests
                             </p>
                             <p>
-                                <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.roomCount %> bedroom
+                                <i class="fa fa-bed" aria-hidden="true"></i> <%= accommodation.roomCount %> bedroom
                             </p>
                             <p>
-                                <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.bedCount %> bed
+                                <i class="fa fa-bed" aria-hidden="true"></i> <%= accommodation.bedCount %> bed
                             </p>
                             <p>
-                                <i class="fa fa-bed" aria-hidden="true"></i> <%- accommodation.bathCount %> bath
+                                <i class="fa fa-bed" aria-hidden="true"></i> <%= accommodation.bathCount %> bath
                             </p>
                         </div>
                         <h4 class="title">About</h4>
 
-                        <div class="sub-title"><%- accommodation.about %></div>
+                        <div class="sub-title"><%= accommodation.about %></div>
                         
                         <div class="custom-home-about">   
                             <ul>
                                 <li>
-                                    <p>Room Type</p><span><%- accommodation.roomType %></span>
+                                    <p>Room Type</p><span><%= accommodation.roomType %></span>
                                 </li>
                                 <li>
-                                    <p>In & Out</p><span>Check in <%- accommodation.in %> · Check out <%- accommodation.out %></span>
+                                    <p>In & Out</p><span>Check in <%= accommodation.in %> · Check out <%= accommodation.out %></span>
                                 </li>
                             </ul>
                         </div>
@@ -315,7 +315,7 @@
                             <div class="custom-amenities">
                                 <ul>
                                     <% for(let amenitie of accommodation.amenities){ %>
-                                    <li><%- amenitie %></li>
+                                    <li><%= amenitie %></li>
                                     <% } %>
                                 </ul>
                                 <ul>
@@ -340,11 +340,11 @@
                             <ul>
                                 <li>
                                     <p>General</p>
-                                    <span><%- accommodation.rules %></span>
+                                    <span><%= accommodation.rules %></span>
                                 </li>
                                 <li>
                                     <p>Promotions</p>
-                                    <span>Weekly Discount: <%- accommodation.promotions %>% <br>
+                                    <span>Weekly Discount: <%= accommodation.promotions %>% <br>
                                         Monthly Discount: 20%
                                     </span>
                                 </li>

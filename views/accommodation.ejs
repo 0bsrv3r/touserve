@@ -25,17 +25,17 @@
         <div class="col-lg-4 col-md-4 col-xs-12 ">
             <div class="flat-imagebox style2 v3">
                 <div class="item">
-                    <a href="accommodation-details/<%- accommodation.id %>">
+                    <a href="accommodation-details/<%= accommodation.id %>">
                         <div class="imagebox">
                             <div class="box-wrap">
                                 <div class="box-image">
-                                    <a href=""><img src="/<%- accommodation.images[0] %>" alt="img"></a>
+                                    <a href=""><img src="/<%= accommodation.images[0] %>" alt="img"></a>
                                     <div class="overlay"></div> <!-- /.overlay -->
                                 </div>
                                 <div class="box-content">
-                                    <h4><%- accommodation.title %></h4>
-                                    <h6><%- accommodation.roomType %> <%- accommodation.bedCount %> bed</h6>
-                                    <p><%- accommodation.location %></p>
+                                    <h4><%= accommodation.title %></h4>
+                                    <h6><%= accommodation.roomType %> <%= accommodation.bedCount %> bed</h6>
+                                    <p><%= accommodation.location %></p>
                                     <span>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -43,7 +43,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </span>
-                                    <div class="money"> <%- accommodation.price %> <span><%- accommodation.currency %> per night</span></div>
+                                    <div class="money"> <%= accommodation.price %> <span><%= accommodation.currency %> per night</span></div>
                                 </div>
                             </div> <!-- /.box-wrap -->
                         </div>

@@ -31,9 +31,9 @@
                 <div class="wrap-destination-detail">
                         <div class="content-trip">
                             <h4 class="title">
-                                <a href="#"><%- tour.title %> - <%- tour.price %> <%- tour.currency %></a>
+                                <a href="#"><%= tour.title %> - <%= tour.price %> <%= tour.currency %></a>
                             </h4>
-                            <p class="sub-title"><%- tour.location %></p>
+                            <p class="sub-title"><%= tour.location %></p>
                             <div class="wrap-star s2">
                                 <ul class="star">
                                     <li></li>
@@ -51,7 +51,7 @@
                                 <div class="slider-inner">
                                     <ul>
                                         <% for(let i=0; i < tour.images.length; i++){ %>
-                                        <li><a class="ns-img" href="/<%- tour.images[i] %>"></a></li>
+                                        <li><a class="ns-img" href="/<%= tour.images[i] %>"></a></li>
                                         <% } %>
                                     </ul>
                                     <div class="fs-icon" title="Expand/Close"></div>
@@ -62,7 +62,7 @@
                                     <ul>
                                         <% for(let i=0; i < tour.images.length; i++){ %>
                                             <li>
-                                                <a class="thumb" href="/<%- tour.images[i] %>"></a>
+                                                <a class="thumb" href="/<%= tour.images[i] %>"></a>
                                             </li>
                                         <% } %>
                                     </ul>
@@ -125,13 +125,13 @@
                     <div class="wrap-title s2">
                         <h4>Overview</h4>
                     </div>
-                    <p class="content-destination"><%- tour.overview %></p>
+                    <p class="content-destination"><%= tour.overview %></p>
 
                     <div class="widget widget-tour-by-types custom-widget">
                         <h4 class="widget-title">Highlights</h4>
                         <ul>
                             <% for(let i=0; i < tour.highlights.length; i++){ %>
-                                <li><%- tour.highlights[i] %></li>
+                                <li><%= tour.highlights[i] %></li>
                             <% } %>
                         </ul>
                     </div>
@@ -140,7 +140,7 @@
                         <h4 class="widget-title">Inclusions</h4>
                         <ul>
                             <% for(let i=0; i < tour.inclusions.length; i++){ %>
-                                <li><%- tour.inclusions[i] %></li>
+                                <li><%= tour.inclusions[i] %></li>
                             <% } %>
                         </ul>
                     </div>
@@ -148,17 +148,17 @@
                     <div class="wrap-title s2">
                         <h4>Departure Time: </h4>
                     </div>
-                    <p class="content-destination"><%- tour.departure %></p>
+                    <p class="content-destination"><%= tour.departure %></p>
 
                     <div class="wrap-title s2">
                         <h4>Duration:</h4>
                     </div>
-                    <p class="content-destination"><%- tour.duration %> days</p>
+                    <p class="content-destination"><%= tour.duration %> days</p>
 
                     <div class="wrap-title s2">
                         <h4>Additional Info</h4>
                     </div>
-                    <p class="content-destination"><%- tour.additional %></p>
+                    <p class="content-destination"><%= tour.additional %></p>
 
                     <div class="flat-tabs" data-effect="fadeIn">
                         <div class="wrap-radio menu-tab">

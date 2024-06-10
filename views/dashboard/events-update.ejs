@@ -22,7 +22,7 @@
                                             <!-- Your events text goes here. -->
                                         </p>
                                                     
-                                        <form action="/dashboard/events/update/<%- event.id %>" method="post" enctype="multipart/form-data" novalidate>
+                                        <form action="/dashboard/events/update/<%= event.id %>" method="post" enctype="multipart/form-data" novalidate>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <label class="control-label">Image</label>
@@ -33,28 +33,28 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="userName">Title</label>
-                                                    <input type="text" name="title" value="<%- event.title %>" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
+                                                    <input type="text" name="title" value="<%= event.title %>" parsley-trigger="change" required placeholder="Enter event title" class="form-control" id="userName">
                                                     <% if (errors.title) { %>
                                                         <p style="color: red;"><%= errors.title %></p>
                                                     <% } %> 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="userName">Location</label>
-                                                    <input type="text" name="location" value="<%- event.location %>" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
+                                                    <input type="text" name="location" value="<%= event.location %>" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
                                                     <% if (errors.location) { %>
                                                         <p style="color: red;"><%= errors.location %></p>
                                                     <% } %> 
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">Date Range With Time</label>
-                                                    <input type="text" class="form-control input-daterange-timepicker" name="date" value="<%- event.date %>"/>
+                                                    <input type="text" class="form-control input-daterange-timepicker" name="date" value="<%= event.date %>"/>
                                                     <% if (errors.date) { %>
                                                         <p style="color: red;"><%= errors.date %></p>
                                                     <% } %> 
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">Description</label>
-                                                    <textarea name="description" required class="form-control"><%- event.description %></textarea>
+                                                    <textarea name="description" required class="form-control"><%= event.description %></textarea>
                                                     <% if (errors.description) { %>
                                                         <p style="color: red;"><%= errors.description %></p>
                                                     <% } %> 

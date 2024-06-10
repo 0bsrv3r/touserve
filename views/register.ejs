@@ -36,30 +36,30 @@
                         <div class="wrap-input">
                             <p class="login-input">
                                 <% if (errors.uname) { %>
-                                    <p style="color: red;"><%- errors.uname %></p>
+                                    <p style="color: red;"><%= errors.uname %></p>
                                 <% } %>                                   
                                 <input type="text" placeholder="User Name*" aria-required="true" size="30" value="" name="uname" id="author">
                             </p>
                             <p class="login-input">
                                 <% if (errors.email) { %>
-                                    <p style="color: red;"><%- errors.email %></p>
+                                    <p style="color: red;"><%= errors.email %></p>
                                 <% } %>                                          
                                 <input type="email" placeholder="Email*" size="30" value="" name="email" id="email">
                             </p> 
                             <p class="login-input">
                                 <% if (errors.password) { %>
-                                    <p style="color: red;"><%- errors.password %></p>
+                                    <p style="color: red;"><%= errors.password %></p>
                                 <% } %>                                          
                                 <input type="password" placeholder="Password*" size="30" value="" name="password" id="password">
                             </p>
                             <p class="login-input">
                                 <% if (errors.passwordConfirm) { %>
-                                    <p style="color: red;"><%- errors.passwordConfirm %></p>
+                                    <p style="color: red;"><%= errors.passwordConfirm %></p>
                                 <% } %>                                          
                                 <input type="password" placeholder="Confirm Password*" size="30" value="" name="passwordConfirm" id="confirmpassword">
                             </p>
                             <% if (errors.role) { %>
-                                <p style="color: red;"><%- errors.role %></p>
+                                <p style="color: red;"><%= errors.role %></p>
                             <% } %> 
                             <select class="login-input" id="selectOption" name="role">
                                 <option value="user">User</option>

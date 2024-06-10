@@ -1,3 +1,5 @@
+const express  = require('express');
+const router = express.Router();
 const  { validationResult } = require("express-validator") 
 const slugify = require("slugify"); 
 const { Events } = require("../models");
@@ -22,7 +24,7 @@ class Event{
             })
             
             const data = {
-                userId: req.session.user_id, 
+                userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
                 title: req.body.title, 
                 location: req.body.location, 
                 date: req.body.date,
@@ -63,19 +65,22 @@ class Event{
         }else {
             res.status(404).json({ message: `Event with ID ${ids.id} not found` });
         }
+
+        return event
     }
 
     static async postUpdateEventById(req, res){
+        const errors = validationResult(req);
         const ids = {
             id: req.params.id,
             userId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
         }
-        // const errors = validationResult(req); 
+        
         try {
-            // if(errors.isEmpty()){ 
+            if(errors.isEmpty() || errors.array()[0].msg == 'Image not uploaded' && !errors.array()[1]){ 
                 const event = await Events.findOne({where: ids});
                 const oldImage  = event.image
-
+                
                 if (event) {
                     event.title = req.body.title;
                     event.location = req.body.location;
@@ -113,14 +118,14 @@ class Event{
                 } else {
                     res.status(404).json({ message: 'Event not found' });
                 }
-        // }else{
-        //     const errorObject = errors.array().reduce((acc, error) => {
-        //         acc[error.path] = error.msg;
-        //         return acc;
-        //     }, {})
-            
-        //     res.render("./dashboard/events-create", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
-            // }
+            }else{
+                const errorObject = errors.array().reduce((acc, error) => {
+                    acc[error.path] = error.msg;
+                    return acc;
+                }, {})
+                
+                res.render("./dashboard/events-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, event: req.body});                  
+            }
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'An error occurred while updating the event' });

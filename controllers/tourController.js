@@ -53,9 +53,8 @@ class Tour{
     static async getGuideName(req, res, errors){
 
         const data = {companyId: req.session.user_id}
-        // const guideName = await Guides.findAll({where: data})   // enable this
-        const guideName = []   // disable this
-
+        const guideName = []  // await Guides.findAll({where: data})   //UPDATE THIS IN PROD ENV
+        
         if(guideName != undefined){
             if(typeof errors !== 'function'){
                 const errorObject = errors.array().reduce((acc, error) => {
