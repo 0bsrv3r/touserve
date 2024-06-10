@@ -123,8 +123,8 @@ class Event{
                     acc[error.path] = error.msg;
                     return acc;
                 }, {})
-                
-                res.render("./dashboard/events-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, event: req.body});                  
+                    
+                res.render("./dashboard/events-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, event: {...req.body, id: req.params.id}});                  
             }
         } catch (error) {
             console.error(error);
