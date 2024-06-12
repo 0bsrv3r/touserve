@@ -27,7 +27,7 @@ class Tour{
 
             let departure = req.body.date +' '+ req.body.time;
             const data = {
-                companyId: req.session.user_id, 
+                companyId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
                 guideId: req.body.guide, 
                 title: req.body.title, 
                 category: req.body.category, 
@@ -52,8 +52,8 @@ class Tour{
 
     static async getGuideName(req, res, errors){
 
-        const data = {companyId: req.session.user_id}
-        const guideName = []  // await Guides.findAll({where: data})   //UPDATE THIS IN PROD ENV
+        const data = {companyId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
+        const guideName =  await Guides.findAll({where: data})  
         
         if(guideName != undefined){
             if(typeof errors !== 'function'){

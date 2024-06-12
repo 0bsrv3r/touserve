@@ -9,6 +9,13 @@ const path = require('path');
 class Event{
 
     // Dashboard Side
+    static async getEventsByUserId(req, res){
+        const user_id = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
+        const events = await Events.findAll({where: user_id})
+
+        res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars', errors: {}, events: events });
+    }
+
     static async postEvent(req, res){
         const errors = validationResult(req); 
         if(errors.isEmpty()){ 
@@ -44,15 +51,6 @@ class Event{
         } 
     }
 
-
-    static async getEventsByUserId(req, res){
-        const user_id = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
-        const events = await Events.findAll({where: user_id})
-
-        res.render("./dashboard/events", {layout: 'layouts/dashboard/top-side-bars', errors: {}, events: events });
-    }
-
-
     static async getUpdateEventById(req, res){
         const ids  = {
             id: req.params.id,
@@ -65,8 +63,6 @@ class Event{
         }else {
             res.status(404).json({ message: `Event with ID ${ids.id} not found` });
         }
-
-        return event
     }
 
     static async postUpdateEventById(req, res){
@@ -131,7 +127,6 @@ class Event{
             res.status(500).json({ error: 'An error occurred while updating the event' });
         }
     }
-
 
     static async deleteEventById(req, res){
         const ids = {

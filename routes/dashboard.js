@@ -28,10 +28,13 @@ router.get('/events/delete/:id', Event.deleteEventById);
 
 
 // Guide
-router.get('/guides', (req, res) => {
-    res.render("./dashboard/guides", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
+router.get('/guides', Guide.getGuidesByUserId);
+router.get('/guides/create', (req,res) => {
+    res.render("./dashboard/guides-create", {layout: 'layouts/dashboard/top-side-bars', errors: {}});
 });
-router.post('/guides', guideValidation, Guide.postGuide);
+router.post('/guides/create', guideValidation, Guide.postGuide);
+router.get('/guides/update/:id', Guide.getUpdateGuideById);
+router.get('/guides/delete/:id', Guide.deleteGuideById);
 
 // Tours
 router.get('/tours', Tour.getGuideName);
