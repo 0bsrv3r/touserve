@@ -4895,7 +4895,9 @@ footer a {
     font-weight: 700;
     font-family: "Lora";
     display: block;
-    border: 3px solid #3b5998;
+	background-color: #FD7E21;
+    border: 3px solid #FD7E21;
+	color: #fff;
     margin-bottom: 20px;
     height: 46px;
     line-height: 46px;
@@ -4904,8 +4906,7 @@ footer a {
 }
 
 .other-account .flat-account:hover {
-    background-color: #3b5998;
-    color: #fff;
+	border: 3px solid #fff;
 }
 
 .other-account .flat-account::before {
@@ -4917,28 +4918,15 @@ footer a {
     font-weight: 300;
 }
 
-.other-account .flat-account.acc-twiter {
-    border-color: #55acee;
-}
-
-.other-account .flat-account.acc-twiter:hover {
-    background-color: #55acee;
-    color: #fff;
-}
-
-.other-account .flat-account.acc-twiter:before {
-    content: "\f099";
-    left: 33.8%;
-}
-
 .other-account .flat-account.acc-google {
-    border-color: #dd4b39;
+	background-color: #FD7E21;
+    border-color: #FD7E21;
     padding-left: 30px;
+	color: #fff;
 }
 
 .other-account .flat-account.acc-google:hover {
-    background-color: #dd4b39;
-    color: #fff;
+	border-color: #fff;
 }
 
 .other-account .flat-account.acc-google::before {

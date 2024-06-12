@@ -28,6 +28,8 @@
 
         <script src="/upload/dashboard/assets/js/modernizr.min.js"></script>
 
+        <link rel="stylesheet" type="text/css" href="/upload/stylesheets/custom.css">
+
        
     </head>
 
@@ -52,7 +54,7 @@
                 <!-- Button mobile view to collapse sidebar menu -->
                 <div class="navbar navbar-default" role="navigation">
                     <div class="container">
-                        <div class="">
+                        <div class="dashboard-custom-menu">
                             <div class="pull-left">
                                 <button class="button-menu-mobile open-left waves-effect waves-light">
                                     <i class="md md-menu"></i>
@@ -60,14 +62,42 @@
                                 <span class="clearfix"></span>
                             </div>
 
-                            <ul class="nav navbar-nav hidden-xs">
-                                <li><a href="#" class="waves-effect waves-light">Files</a></li>
-                            </ul>
-
-                            <form role="search" class="navbar-left app-search pull-left hidden-xs">
-			                     <input type="text" placeholder="Search..." class="form-control">
-			                     <a href=""><i class="fa fa-search"></i></a>
-			                </form>
+                            <div class="col-lg-9 col-md-10">
+                                <div class="nav-wrap">
+                                    <nav id="mainnav" class="mainnav">
+                                        <ul class="menu">
+                                            <li >
+                                                <a href="/">Home</a>
+                                                <li class="active">
+                                                    <a href="/events">Events</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/tours">Tours</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/accommodation">Accommodation</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/guides">Guides</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/photos">Photos</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/e-visa">E-Visa</a>
+                                                </li>
+                                                <li class="show-search">
+                                                    <a href="#">
+                                                        <i class="fa fa-search"></i>
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                        <!-- /.menu -->
+                                    </nav>
+                                    <!-- /.mainnav -->
+                                </div>
+                                <!-- /.nav-wrap -->
+                            </div>
 
 
                             <ul class="nav navbar-nav navbar-right pull-right">

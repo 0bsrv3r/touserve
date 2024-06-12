@@ -45,13 +45,13 @@ module.exports = eventValidation = [
         }),
 
     body("title") 
-        .isLength({min: 3, max: 150}) 
-        .withMessage("Title must consist of min 3 and max 150 characters") 
+        .isLength({min: 3, max: 50}) 
+        .withMessage("Title must consist of min 3 and max 50 characters") 
         .escape(),
     
     body("location") 
-        .isLength({min: 3, max: 150}) 
-        .withMessage("Location must consist of min 3 and max 150 characters") 
+        .isLength({min: 3, max: 100}) 
+        .withMessage("Location must consist of min 3 and max 100 characters") 
         .matches(/^[A-Za-z0-9\- ]+$/)
         .withMessage('Location must contain only letters, numbers, dashes, and spaces.')
         .trim()
@@ -96,7 +96,7 @@ module.exports = eventValidation = [
         .withMessage("Bathroom count must consist only numbers"),
 
     body("rules")
-        .isLength({min: 1, max: 400})
+        .isLength({min: 1, max: 200})
         .withMessage("Rules must consist of letters"),
 
     body("guestCount")
@@ -112,7 +112,7 @@ module.exports = eventValidation = [
         .withMessage("Promotions must consist only numbers"),
 
     body("about")
-        .isLength({min: 20, max: 2000}) 
-        .withMessage("About must be min 20 and max 2000 character") 
+        .isLength({min: 20, max: 500}) 
+        .withMessage("About must be min 20 and max 500 character") 
         .escape(),
 ]
