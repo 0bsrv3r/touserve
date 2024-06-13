@@ -6,6 +6,7 @@ const Tour = require("../controllers/tourController.js")
 const Accommadation = require("../controllers/accommodationController.js")
 const eventValidation  = require("../validators/event.js"); 
 const guideValidation  = require("../validators/guide.js"); 
+const guideUpdateValidation  = require("../validators/guide-update.js"); 
 const tourValidation  = require("../validators/tour.js"); 
 const accommadationValidation  = require("../validators/accommodation.js"); 
 
@@ -34,6 +35,7 @@ router.get('/guides/create', (req,res) => {
 });
 router.post('/guides/create', guideValidation, Guide.postGuide);
 router.get('/guides/update/:id', Guide.getUpdateGuideById);
+router.post('/guides/update/:id', guideUpdateValidation, Guide.postUpdateGuideById);
 router.get('/guides/delete/:id', Guide.deleteGuideById);
 
 // Tours

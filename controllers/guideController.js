@@ -85,29 +85,36 @@ class Guide{
         }
     }
 
-    static async postUpdateEventById(req, res){
+    static async postUpdateGuideById(req, res){
         const errors = validationResult(req);
         const ids = {
             id: req.params.id,
-            userId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
+            companyId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
         }
-        
-        try {
-            if(errors.isEmpty() || errors.array()[0].msg == 'Image not uploaded' && !errors.array()[1]){ 
-                const event = await Events.findOne({where: ids});
-                const oldImage  = event.image
-                
-                if (event) {
-                    event.title = req.body.title;
-                    event.location = req.body.location;
-                    event.date = req.body.date;
-                    event.description = req.body.description;
 
-                    if (req.files) {
+        try {
+            if(errors.isEmpty()){ 
+                const guide = await Guides.findOne({where: ids});
+                let oldImage  = guide.image
+                let certificateImage  = guide.certificate
+                
+                if (guide) {
+                    guide.name = req.body.name;
+                    guide.surname = req.body.surname;
+                    guide.location = req.body.location;
+                    guide.languages = req.body.languages;
+                    guide.visa = req.body.visa;
+                    guide.currency = req.body.currency;
+                    guide.age = req.body.age;
+                    guide.experience = req.body.experience;
+                    guide.gender = req.body.gender;
+                    guide.description = req.body.description;
+
+                    if (req.files.image) {
                         // Remove Old Image
                         if (oldImage) {
-                            const fullPath = path.join("./", oldImage);
-                            fs.unlink(fullPath, (err) => {
+                            const imagePath = path.join("./", oldImage);
+                            fs.unlink(imagePath, (err) => {
                                 if (err) {
                                     return res.status(500).send('Failed to delete image file');
                                 }
@@ -116,7 +123,7 @@ class Guide{
 
                         // Upload New Image
                         let avatar = req.files.image; 
-                        let newImagePath = 'upload/photos/events/' + Date.now() + '-' + slugify(avatar.name,{ 
+                        let newImagePath = 'upload/photos/guides/' + Date.now() + '-' + slugify(avatar.name,{ 
                             lower: true, 
                             strict: true 
                         }) + '.' + avatar.name.split('.').pop();
@@ -125,12 +132,38 @@ class Guide{
                                 return res.status(500).send(err); 
                             } 
                         })
-                                     
-                        event.image = newImagePath;
+
+                        guide.image = newImagePath;                        
                     }
 
-                    await event.save();
-                    res.redirect(`/dashboard/events/update/${ids.id}`)
+                    if(req.files.certificate){
+                        // Remove Old Image
+                        if (certificateImage) {
+                            const certificatePath = path.join("./", certificateImage);
+                            fs.unlink(certificatePath, (err) => {
+                                if (err) {
+                                    return res.status(500).send('Failed to delete image file');
+                                }
+                            });
+                        }
+
+                        // Upload New Image
+                        let certificate = req.files.certificate; 
+                        let newCertificatePath = 'upload/photos/guides/certificates/' + Date.now() + '-' + slugify(certificate.name,{ 
+                            lower: true, 
+                            strict: true 
+                        }) + '.' + certificate.name.split('.').pop();
+                        certificate.mv(newCertificatePath, err => { 
+                            if(err){ 
+                                return res.status(500).send(err); 
+                            } 
+                        })
+
+                        guide.certificate = newCertificatePath;
+                    }
+
+                    await guide.save();
+                    res.redirect(`/dashboard/guides/update/${ids.id}`)
                 } else {
                     res.status(404).json({ message: 'Event not found' });
                 }
@@ -140,11 +173,11 @@ class Guide{
                     return acc;
                 }, {})
                     
-                res.render("./dashboard/events-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, event: {...req.body, id: req.params.id}});                  
+                res.render("./dashboard/guides-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, guide: {...req.body, id: req.params.id}});                  
             }
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'An error occurred while updating the event' });
+            res.status(500).json({ error: 'An error occurred while updating the guide' });
         }
     }
 
