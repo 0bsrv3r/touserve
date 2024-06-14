@@ -18,67 +18,92 @@
 
 <!-- imagebox -->
 <section class="flat-row pd-imagebox v17">
-<div class="container">
-    <div class="row">
-
-        <% for(let accommodation of accommodations){ %>
-        <div class="col-lg-4 col-md-4 col-xs-12 ">
-            <div class="flat-imagebox style2 v3">
-                <div class="item">
-                    <a href="accommodation-details/<%= accommodation.id %>">
-                        <div class="imagebox">
-                            <div class="box-wrap">
-                                <div class="box-image">
-                                    <a href=""><img src="/<%= accommodation.images[0] %>" alt="img"></a>
-                                    <div class="overlay"></div> <!-- /.overlay -->
-                                </div>
-                                <div class="box-content">
-                                    <h4><%= accommodation.title %></h4>
-                                    <h6><%= accommodation.roomType %> <%= accommodation.bedCount %> bed</h6>
-                                    <p><%= accommodation.location %></p>
-                                    <span>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </span>
-                                    <div class="money"> <%= accommodation.price %> <span><%= accommodation.currency %> per night</span></div>
-                                </div>
-                            </div> <!-- /.box-wrap -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="search-form v2">
+                    <div class="search-input">
+                        <p class="search-form-keywords">
+                            <input id="keywords" name="keywords" type="text" placeholder="Destination, City">
+                        </p>
+                        <p class="search-form-date">
+                            <input id="date" name="date" type="text" placeholder="Any Month">
+                        </p>
+                        <p class="search-form-duration select">
+                            <select>
+                                <option value="1">Sort by Date</option>
+                            </select>
+                        </p>
+                        <div class="wrap-button">
+                            <p>
+                                <button class="search-submit">Search</button>
+                            </p>
                         </div>
-                    </a> <!-- /.imagebox -->
-                </div> <!-- /.item -->
-                <div class="dividers dividers-imagebox s2"></div>
-            </div> <!-- /.flat-imagebox -->
-        </div> <!-- /.col-md-4 -->
-        <% } %>
-  
-    </div><!-- /.row -->
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="dividers dividers-des-pagination"></div>
-            <div class="blog-pagination des-pagination text-center">
-                <ul class="flat-pagination clearfix">
-                    <li class="prev">
-                        <a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-                    </li>
-                    <li class="active"><a href="#">01</a></li>
-                    <li><a href="#">02</a></li>
-                    <li><a href="#">03</a></li>
-                    <li><a href="#">04</a></li>
-                    <li><a href="#">05</a></li>
-                    <li>......</li>
-                    <li><a href="#">10</a></li>                                  
-                    <li class="next">
-                        <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                    </li>                               
-                </ul><!-- /.flat-pagination -->
+                    </div>
+                </form>
+                <div class="dividers dividers-tour-grid"></div>
             </div>
-        </div> <!-- /.col-md-12 -->
-    </div> <!-- /.row -->            
-</div><!-- /.container -->   
+        </div>
+
+        <div class="row">
+            <% for(let accommodation of accommodations){ %>
+            <div class="col-lg-4 col-md-4 col-xs-12 ">
+                <div class="flat-imagebox style2 v3">
+                    <div class="item">
+                        <a href="accommodation-details/<%= accommodation.id %>">
+                            <div class="imagebox">
+                                <div class="box-wrap">
+                                    <div class="box-image">
+                                        <a href=""><img src="/<%= accommodation.images[0] %>" alt="img"></a>
+                                        <div class="overlay"></div> <!-- /.overlay -->
+                                    </div>
+                                    <div class="box-content">
+                                        <h4><%= accommodation.title %></h4>
+                                        <h6><%= accommodation.roomType %> <%= accommodation.bedCount %> bed</h6>
+                                        <p><%= accommodation.location %></p>
+                                        <span>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </span>
+                                        <div class="money"> <%= accommodation.price %> <span><%= accommodation.currency %> per night</span></div>
+                                    </div>
+                                </div> <!-- /.box-wrap -->
+                            </div>
+                        </a> <!-- /.imagebox -->
+                    </div> <!-- /.item -->
+                    <div class="dividers dividers-imagebox s2"></div>
+                </div> <!-- /.flat-imagebox -->
+            </div> <!-- /.col-md-4 -->
+            <% } %>
+    
+        </div><!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="dividers dividers-des-pagination"></div>
+                <div class="blog-pagination des-pagination text-center">
+                    <ul class="flat-pagination clearfix">
+                        <li class="prev">
+                            <a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                        </li>
+                        <li class="active"><a href="#">01</a></li>
+                        <li><a href="#">02</a></li>
+                        <li><a href="#">03</a></li>
+                        <li><a href="#">04</a></li>
+                        <li><a href="#">05</a></li>
+                        <li>......</li>
+                        <li><a href="#">10</a></li>                                  
+                        <li class="next">
+                            <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </li>                               
+                    </ul><!-- /.flat-pagination -->
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->            
+    </div><!-- /.container -->   
 </section>
 
 <!-- imageboxv11 -->

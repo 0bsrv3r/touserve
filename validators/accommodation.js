@@ -8,23 +8,15 @@ module.exports = eventValidation = [
             if(!req?.files?.images){ 
                 throw new Error("Image not uploaded") 
             } 
+          
+            const images = req.files.images
             const allowedMimeTypes = ["image/png","image/jpeg","image/gif"] 
             const allowedExtensions = ["png", "jpeg", "jpg", "gif"] 
-            const images = req.files.images
 
-            if (!Array.isArray(images)) {
-                if(!allowedMimeTypes.includes(images.mimetype)){ 
-                    throw new Error("Only .png, .jpeg, .gif file type allowed") 
-                } 
-                if(!allowedExtensions.includes(images.name.split('.').pop())){ 
-                    throw new Error("Only .png, .jpeg, .gif file type allowed") 
-                } 
-                if(images.size > 5 * 1024 * 1024){ 
-                    throw new Error("File size must not be more then 5mb") 
-                } 
-                if(images.name.length > 100){ 
-                    throw new Error("File name length is more than 100 character") 
-                }
+            console.log(images.length == undefined)
+
+            if (images.length < 3 || images.length == undefined) {
+                throw new Error("At least 3 images must be uploaded");
             }else{
                 images.forEach((image) => {
                     if (!allowedMimeTypes.includes(image.mimetype)) {

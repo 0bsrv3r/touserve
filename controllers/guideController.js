@@ -137,7 +137,7 @@ class Guide{
                     }
 
                     if(req.files.certificate){
-                        // Remove Old Image
+                        // Remove Old Certificate
                         if (certificateImage) {
                             const certificatePath = path.join("./", certificateImage);
                             fs.unlink(certificatePath, (err) => {
@@ -147,7 +147,7 @@ class Guide{
                             });
                         }
 
-                        // Upload New Image
+                        // Upload New Certificate
                         let certificate = req.files.certificate; 
                         let newCertificatePath = 'upload/photos/guides/certificates/' + Date.now() + '-' + slugify(certificate.name,{ 
                             lower: true, 
