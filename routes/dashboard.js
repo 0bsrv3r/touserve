@@ -43,9 +43,12 @@ router.get('/tours', Tour.getGuideName);
 router.post('/tours', tourValidation, Tour.postTour);
 
 // Accommadation
-router.get('/accommodations', (req, res) => {
-    res.render("./dashboard/accommodations", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
+router.get('/accommodations', Accommadation.getAccommodationsByUserId);
+router.get('/accommodations/create', (req, res) => {
+    res.render("./dashboard/accommodations-create", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); 
 });
-router.post("/accommodations", accommadationValidation, Accommadation.postAccommodation)
+router.post("/accommodations/create", accommadationValidation, Accommadation.postAccommodation)
+router.get('/accommodations/delete/:id', Accommadation.deleteAccommoditionById);
+
 
 module.exports = router;

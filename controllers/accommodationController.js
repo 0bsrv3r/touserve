@@ -1,8 +1,19 @@
 const  { validationResult } = require("express-validator") 
 const slugify = require("slugify")
 const {Accommodations} = require("../models")
+const fs = require('fs');
+const path = require('path');
 
 class Accommodation{
+    
+    // Dashboard Side
+    static async getAccommodationsByUserId(req, res){
+        const user_id = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
+        const accommodations = await Accommodations.findAll({where: user_id})
+
+        res.render("./dashboard/accommodations", {layout: 'layouts/dashboard/top-side-bars', errors: {}, accommodations: accommodations });
+    }
+
     static postAccommodation(req, res){
         const errors = validationResult(req)
         
@@ -44,17 +55,50 @@ class Accommodation{
             } 
 
             Accommodations.create(data)
-            res.redirect('/dashboard/accommodations')
+            res.redirect('/dashboard/accommodations/create')
         }else{
             const errorObject = errors.array().reduce((acc, error) => {
                 acc[error.path] = error.msg;
                 return acc;
             }, {})
             
-            res.render("./dashboard/accommodations", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
+            res.render("./dashboard/accommodations-create", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
         } 
     }
 
+
+    static async deleteAccommoditionById(req, res){
+        const ids = {
+            id: req.params.id,
+            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+        }
+
+        const accommodations = await Accommodations.findOne({where:ids})
+        const imagesPath = accommodations.images
+
+        const deleted = await Accommodations.destroy({where: ids})
+
+        if (deleted && accommodations) {
+            if (imagesPath) {
+                // delete image
+                for(let singlePath of imagesPath){
+                    const fullimagePath = path.join("./", singlePath);
+                    fs.unlink(fullimagePath, (err) => {
+                        if (err) {
+                            return res.status(500).send('Failed to delete image file');
+                        }
+                    });
+                }
+            }
+
+            res.redirect('/dashboard/accommodations')
+            
+        }else {
+            res.status(404).json({ message: `Accommodition with ID ${ids.id} not found` });
+        }
+    }
+
+    // Front Side
     static async getAccommodations(req, res){
         const accommodations = await Accommodations.findAll()
         res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations})

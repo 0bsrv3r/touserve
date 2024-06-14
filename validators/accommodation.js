@@ -13,8 +13,6 @@ module.exports = eventValidation = [
             const allowedMimeTypes = ["image/png","image/jpeg","image/gif"] 
             const allowedExtensions = ["png", "jpeg", "jpg", "gif"] 
 
-            console.log(images.length == undefined)
-
             if (images.length < 3 || images.length == undefined) {
                 throw new Error("At least 3 images must be uploaded");
             }else{
