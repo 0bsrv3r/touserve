@@ -14,6 +14,31 @@ class Tour{
         res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', errors: {}, tours: tours });
     }
 
+    static async getGuideName(req, res){
+        const data = {companyId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
+        const guideNames =  await Guides.findAll({where: data})  
+        return guideNames
+    }
+
+    static async getTourCreate(req, res, errors){
+
+        const guideNames = await Tour.getGuideName()
+
+        if(guideNames != undefined){
+            if(typeof errors !== 'function'){
+                const errorObject = errors.array().reduce((acc, error) => {
+                    acc[error.path] = error.msg;
+                    return acc;
+                }, {})
+                res.render("./dashboard/tours-create", {layout: 'layouts/dashboard/top-side-bars', guides:guideNames, errors:errorObject });
+            }else{
+                res.render("./dashboard/tours-create", {layout: 'layouts/dashboard/top-side-bars', guides:guideNames, errors:{} });
+            }
+        }else{
+            res.render("./dashboard/tours-create", {layout: 'layouts/dashboard/top-side-bars', guides:{}, errors:{} });
+        }
+    }
+
     static postTour(req, res){
         const errors = validationResult(req)
         
@@ -55,28 +80,8 @@ class Tour{
             Tours.create(data)
             res.redirect('/dashboard/tours/create')
         }else{
-            return Tour.getGuideName(req, res, errors)
+            return Tour.getTourCreate(req, res, errors)
         } 
-    }
-
-    static async getGuideName(req, res, errors){
-
-        const data = {companyId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
-        const guideName =  await Guides.findAll({where: data})  
-        
-        if(guideName != undefined){
-            if(typeof errors !== 'function'){
-                const errorObject = errors.array().reduce((acc, error) => {
-                    acc[error.path] = error.msg;
-                    return acc;
-                }, {})
-                res.render("./dashboard/tours-create", {layout: 'layouts/dashboard/top-side-bars', guides:guideName, errors:errorObject });
-            }else{
-                res.render("./dashboard/tours-create", {layout: 'layouts/dashboard/top-side-bars', guides:guideName, errors:{} });
-            }
-        }else{
-            res.render("./dashboard/tours-create", {layout: 'layouts/dashboard/top-side-bars', guides:{}, errors:{} });
-        }
     }
 
     static async getUpdateTourById(req, res){
@@ -85,13 +90,10 @@ class Tour{
             companyId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
         }
         const tour  = await Tours.findOne({where: ids, include: "guides"})
-
-        // Get Guides assiciated with Tour owner
-        const data = {companyId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
-        const guides =  await Guides.findAll({where: data})  
+        const guideNames = await Tour.getGuideName()
 
         if (tour) {
-            res.render("./dashboard/tours-update", {layout: 'layouts/dashboard/top-side-bars', tour: tour, guides:guides, errors: {}});
+            res.render("./dashboard/tours-update", {layout: 'layouts/dashboard/top-side-bars', tour: tour, guides:guideNames, errors: {}});
         }else {
             res.status(404).json({ message: `Tour with ID ${ids.id} not found` });
         }
@@ -105,8 +107,7 @@ class Tour{
         }
 
         // Get Guides assiciated with Tour owner
-        const data = {companyId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
-        const guides =  await Guides.findAll({where: data})  
+        const guideNames = await Tour.getGuideName()
 
         try {
             if(errors.isEmpty()){ 
@@ -171,7 +172,7 @@ class Tour{
                     return acc;
                 }, {})
                     
-                res.render("./dashboard/tours-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, tour: {...req.body, id: req.params.id}, guides: guides});                  
+                res.render("./dashboard/tours-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, tour: {...req.body, id: req.params.id}, guides: guideNames});                  
             }
         } catch (error) {
             console.error(error);
