@@ -110,7 +110,7 @@ class Guide{
                     guide.gender = req.body.gender;
                     guide.description = req.body.description;
 
-                    if (req.files.image) {
+                    if (req?.files?.images) {
                         // Remove Old Image
                         if (oldImage) {
                             const imagePath = path.join("./", oldImage);

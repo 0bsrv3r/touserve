@@ -2150,7 +2150,7 @@ article ul.meta-post li a:hover {
 /* Footer
 -------------------------------------------------------------- */
 footer {
-    padding: 110px 0 40px;
+    padding: 50px 0 20px;
     color: #646464;    
 }
 
@@ -2159,7 +2159,7 @@ footer.style1 {
 }
 
 footer.style2 {
-	padding: 173px 0 133px;
+	padding: 100px 0 50px;
 }
 
 footer a {
@@ -2290,7 +2290,7 @@ footer a {
 
 /* Bottom */
 .bottom {
-	padding: 60px 0 37px;
+	padding: 20px 0 20px;
 }
 
 .bottom .logo {
@@ -2421,10 +2421,6 @@ footer a {
 }
 
 /* Bottom style 2 */
-.bottom.style2 {
-	padding: 37px 0 49px;
-}
-
 .bottom.style2 .copyright-social-list {
     margin-bottom: 13px;
     padding-right: 5px;

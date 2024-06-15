@@ -252,7 +252,7 @@
     font-size: 16px !important;
 }
 .wrap-login-register input::placeholder {
-    color: #333333;
+    color: #d2d2d2;
 }
 .page-register{
     background: url(../images/login/registr.jpg);

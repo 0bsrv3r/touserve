@@ -4,7 +4,7 @@ module.exports = eventValidation = [
     check("image") 
         .custom((value, {req}) => { 
             if(!req?.files?.images){ 
-                throw new Error("Image not uploaded") 
+                return true
             } 
             const allowedMimeTypes = ["image/png","image/jpeg","image/gif"] 
             const allowedExtensions = ["png", "jpeg", "jpg", "gif"] 
