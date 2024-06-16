@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator")
 const slugify = require("slugify")
-const {Tours, Guides} = require("../models")
+const {Tours, Guides, Accommodations} = require("../models")
 const fs = require('fs')
 const path = require('path')
 
@@ -224,7 +224,10 @@ class Tour{
         const data = req.params
         const tour = await Tours.findOne({where: data})
         if(tour != undefined){
-            res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour});
+            const city = {city: tour.city}
+            const accommodations = await Accommodations.findAll({where:city, order: [['createdAt', 'DESC']],limit: 3})
+            
+            res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations});
         }else{
             res.render("404", {layout: 'layouts/pagesheader'});
         }
