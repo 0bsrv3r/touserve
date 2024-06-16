@@ -33,7 +33,9 @@ class Event{
             const data = {
                 userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
                 title: req.body.title, 
-                location: req.body.location, 
+                country: req.body.country, 
+                city: req.body.city, 
+                place: req.body.place, 
                 date: req.body.date,
                 description: req.body.description,
                 image: path
@@ -79,7 +81,9 @@ class Event{
                 
                 if (event) {
                     event.title = req.body.title;
-                    event.location = req.body.location;
+                    event.country = req.body.country;
+                    event.city = req.body.city;
+                    event.place = req.body.place;
                     event.date = req.body.date;
                     event.description = req.body.description;
 

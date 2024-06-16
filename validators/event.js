@@ -32,13 +32,27 @@ module.exports = eventValidation = [
         .matches(/^[A-Za-z0-9\ ]+$/)
         .withMessage("Title must consist only letter and numbers"), 
     
-    body("location") 
-        .isLength({min: 3, max: 150}) 
-        .withMessage("Location must be min 5 and max 150 character") 
-        .matches(/^[A-Za-z0-9\- ]+$/)
-        .withMessage('Location must contain only letters, numbers, dashes, and spaces.')
-        .trim()
+    body("country")
+        .notEmpty()
+        .withMessage("County must not be empty")
+        .isLength({max: 70}) 
+        .withMessage("Country must be max 70 characters") 
         .escape(),
+    
+    body("city")
+        .notEmpty()
+        .withMessage("City must not be empty")
+        .isLength({max: 70}) 
+        .withMessage("City must be max 70 characters") 
+        .escape(),
+
+    body("place") 
+        .optional({ checkFalsy: true }) // Allows empty fields to pass
+        .isLength({ max: 70 })
+        .withMessage('Place must be a maximum of 70 characters')
+        .matches(/^[A-Za-z0-9,.\- ]+$/)
+        .withMessage('Place can only contain letters, numbers, some special characters')
+        .trim(),
 
     body("description")
         .isLength({min: 20, max: 2000}) 

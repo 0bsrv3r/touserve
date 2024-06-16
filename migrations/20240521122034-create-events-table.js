@@ -21,19 +21,26 @@ module.exports = {
       },
       title: {
         allowNull: false,
-        type: Sequelize.STRING(200)
+        type: Sequelize.STRING(100)
       },
-      description: {
+      country: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(70)
       },
-      location: {
+      city: {
         allowNull: false,
-        type: Sequelize.STRING(150)
+        type: Sequelize.STRING(70)
+      },
+      place: {
+        type: Sequelize.STRING(100)
       },
       date: {
         allowNull: false,
         type: Sequelize.STRING(150)
+      },
+      description: {
+        allowNull: false,
+        type: Sequelize.TEXT
       },
       image: {
         allowNull: false,

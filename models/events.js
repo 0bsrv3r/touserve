@@ -18,24 +18,31 @@ module.exports = (sequelize) => {
         }
     },
     title: {
-        allowNull: false,
-        type: DataTypes.STRING(200)
+      allowNull: false,
+      type: DataTypes.STRING(100)
     },
-    description: {
-        allowNull: false,
-        type: DataTypes.TEXT
+    country: {
+      allowNull: false,
+      type: DataTypes.STRING(70)
     },
-    location: {
-        allowNull: false,
-        type: DataTypes.STRING(150)
+    city: {
+      allowNull: false,
+      type: DataTypes.STRING(70)
+    },
+    place: {
+      type: DataTypes.STRING(100)
     },
     date: {
-        allowNull: false,
-        type: DataTypes.STRING(150)
+      allowNull: false,
+      type: DataTypes.STRING(150)
+    },
+    description: {
+      allowNull: false,
+      type: DataTypes.TEXT
     },
     image: {
-        allowNull: false,
-        type: DataTypes.STRING(150)
+      allowNull: false,
+      type: DataTypes.STRING(150)
     }
   }, {
     sequelize,
