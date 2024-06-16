@@ -34,25 +34,12 @@ module.exports = eventValidation = [
             return true; 
         }),
 
-    body("title") 
+        body("title") 
         .isLength({min: 3, max: 50}) 
         .withMessage("Title must consist of min 3 and max 50 characters") 
         .escape(),
-    
-    body("location") 
-        .isLength({min: 3, max: 100}) 
-        .withMessage("Location must consist of min 3 and max 100 characters") 
-        .matches(/^[A-Za-z0-9\- ]+$/)
-        .withMessage('Location must contain only letters, numbers, dashes, and spaces.')
-        .trim()
-        .escape(),
 
-    body("price")
-        .isLength({max:10})
-        .isNumeric()
-        .withMessage("Price must consist only numbers"),
-
-    body('currency').isIn(['AZN', 'USD', 'EUR']).withMessage('Currency must be either "AZN", "USD" or "EUR"'),
+    body("accommodationType").isIn(['Home', 'Apartment']).withMessage('Room type must be only "specified options"'),
 
     body("in")
         .exists()
@@ -66,6 +53,35 @@ module.exports = eventValidation = [
         .matches(/^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)
         .withMessage('Invalid time format. Use HH:MM AM/PM'),
     
+    body("country")
+        .notEmpty()
+        .withMessage("County must not be empty")
+        .isLength({max: 70}) 
+        .withMessage("Country must be max 70 characters") 
+        .escape(),
+    
+    body("city")
+        .notEmpty()
+        .withMessage("City must not be empty")
+        .isLength({max: 70}) 
+        .withMessage("City must be max 70 characters") 
+        .escape(),
+
+    body("street") 
+        .optional({ checkFalsy: true }) // Allows empty fields to pass
+        .isLength({ max: 70 })
+        .withMessage('Area must be a maximum of 70 characters')
+        .matches(/^[A-Za-z0-9,.\- ]+$/)
+        .withMessage('Area can only contain letters, numbers, some special characters')
+        .trim(),
+
+    body("price")
+        .isLength({max:10})
+        .isNumeric()
+        .withMessage("Price must consist only numbers"),
+
+    body('currency').isIn(['₼', '$', '€']).withMessage('Currency must be either "AZN", "USD" or "EUR"'),
+
     body("amenities")
         .isLength({min: 1, max: 950})
         .withMessage("Amenities must consist of letters"),
@@ -84,19 +100,33 @@ module.exports = eventValidation = [
         .isLength({max:4})
         .isNumeric()
         .withMessage("Bathroom count must consist only numbers"),
-
-    body("rules")
-        .isLength({min: 1, max: 200})
-        .withMessage("Rules must consist of letters"),
-
+    
     body("guestCount")
         .isLength({max:4})
         .isNumeric()
         .withMessage("Guest count must consist only numbers"),
 
     body("roomType").isIn(['Entire Home', 'Private Room']).withMessage('Room type must be only "specified options"'),
+
+    body("rules")
+        .optional({ checkFalsy: true })
+        .isLength({min: 1, max: 200})
+        .withMessage("Rules must consist of letters"),
     
     body("promotions")
+        .optional({ checkFalsy: true })
+        .isLength({max:4})
+        .isNumeric()
+        .withMessage("Promotions must consist only numbers"),
+    
+    body("weeklyDiscount")
+        .optional({ checkFalsy: true })
+        .isLength({max:4})
+        .isNumeric()
+        .withMessage("Promotions must consist only numbers"),
+
+    body("monthlyDiscount")
+        .optional({ checkFalsy: true })
         .isLength({max:4})
         .isNumeric()
         .withMessage("Promotions must consist only numbers"),

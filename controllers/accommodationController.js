@@ -37,7 +37,10 @@ class Accommodation{
             const data = {
                 userId: 1, // req.session.user_id, // UPDATE THIS IN PROD ENV
                 title: req.body.title, 
-                location: req.body.location, 
+                accommodationType: req.body.accommodationType, 
+                country: req.body.country, 
+                city: req.body.city, 
+                street: req.body.street, 
                 price: req.body.price,
                 currency: req.body.currency,
                 in: req.body.in,
@@ -46,10 +49,12 @@ class Accommodation{
                 roomCount: req.body.roomCount,
                 bedCount: req.body.bedCount,
                 bathCount: req.body.bathCount,
-                rules: req.body.rules,
                 guestCount: req.body.guestCount,
-                promotions: req.body.promotions,
                 roomType: req.body.roomType,
+                rules: req.body.rules,
+                promotions: req.body.promotions,
+                weeklyDiscount: req.body.weeklyDiscount,
+                monthlyDiscount: req.body.monthlyDiscount,
                 about: req.body.about,
                 images: images
             } 
@@ -94,7 +99,10 @@ class Accommodation{
                 
                 if (accommodation) {
                     accommodation.title = req.body.title, 
-                    accommodation.location = req.body.location, 
+                    accommodation.accommodationType = req.body.accommodationType, 
+                    accommodation.country = req.body.country, 
+                    accommodation.city = req.body.city, 
+                    accommodation.street = req.body.street, 
                     accommodation.price = req.body.price,
                     accommodation.currency = req.body.currency,
                     accommodation.in = req.body.in,
@@ -103,10 +111,12 @@ class Accommodation{
                     accommodation.roomCount = req.body.roomCount,
                     accommodation.bedCount = req.body.bedCount,
                     accommodation.bathCount = req.body.bathCount,
-                    accommodation.rules = req.body.rules,
                     accommodation.guestCount = req.body.guestCount,
-                    accommodation.promotions = req.body.promotions,
                     accommodation.roomType = req.body.roomType,
+                    accommodation.rules = req.body.rules,
+                    accommodation.promotions = req.body.promotions,
+                    accommodation.weeklyDiscount = req.body.weeklyDiscount,
+                    accommodation.monthlyDiscount = req.body.monthlyDiscount,
                     accommodation.about = req.body.about
 
                     if (req?.files?.images) {

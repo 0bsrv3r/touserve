@@ -16,17 +16,24 @@ module.exports = (sequelize) => {
           key: 'id',      // key in the target model
         }
     },
-    images: {
-        allowNull: false,
-        type: DataTypes.JSON(1000)
-    },
     title: {
         allowNull: false,
-        type: DataTypes.STRING(150)
+        type: DataTypes.STRING(70)
     },
-    location: {
+    accommodationType: {
         allowNull: false,
-        type: DataTypes.STRING(150)
+        type: DataTypes.STRING(70)
+    },
+    country: {
+        allowNull: false,
+        type: DataTypes.STRING(70)
+    },
+    city: {
+        allowNull: false,
+        type: DataTypes.STRING(70)
+    },
+    street: {
+        type: DataTypes.STRING(100)
     },
     price: {
         allowNull: false,
@@ -60,19 +67,24 @@ module.exports = (sequelize) => {
         allowNull: false,
         type: DataTypes.INTEGER(3)
     },
-    rules: {
-        allowNull: false,
-        type: DataTypes.JSON(500)
-    },
     guestCount: {
         allowNull: false,
         type: DataTypes.INTEGER(3)
     },
+    roomType: {
+        type: DataTypes.STRING(300)
+    },
+    rules: {
+        type: DataTypes.JSON(500)
+    },
     promotions: {
         type: DataTypes.STRING(10)
     },
-    roomType: {
-        type: DataTypes.STRING(300)
+    weeklyDiscount: {
+        type: DataTypes.STRING(10)
+    },
+    monthlyDiscount: {
+        type: DataTypes.STRING(10)
     },
     about: {
         allowNull: false,
@@ -80,7 +92,11 @@ module.exports = (sequelize) => {
     },
     stars: {
         type: DataTypes.INTEGER
-    }
+    },
+    images: {
+        allowNull: false,
+        type: DataTypes.JSON(1000)
+    },
   }, {
     sequelize,
     modelName: 'Accommodations',

@@ -37,49 +37,83 @@
                                                     <p style="color: red;"><%= errors.title %></p>
                                                 <% } %> 
                                             </div>
-                                            <div class="form-group col-lg-4">
-                                                <label for="userName">Location</label>
-                                                <input type="text" name="location" value="<%= accommodation.location %>" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
-                                                <% if (errors.location) { %>
-                                                    <p style="color: red;"><%= errors.location %></p>
+                                            <div class="form-group col-lg-12">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="control-label">Accommodation Type</label>
+                                                    <select name="accommodationType" class="selectpicker" data-style="btn-white">
+                                                        <option>Home</option>
+                                                        <option>Apartment</option>
+                                                    </select>
+                                                    <% if (errors.accommodationType) { %>
+                                                        <p style="color: red;"><%= errors.accommodationType %></p>
+                                                    <% } %> 
+                                                </div>
+                                                <div class="form-group col-lg-6" style="margin: 0;">
+                                                    <label class="control-label">In/Out</label>
+                                                    <div style="display: flex;">
+                                                        <div class="input-group col-lg-6" style="margin-right: 20px;">
+                                                            <div class="bootstrap-timepicker">
+                                                                <input id="timepicker" name="in" type="text" class="form-control">
+                                                            </div>
+                                                            <span class="input-group-addon bg-custom b-0 text-white"><i class="glyphicon glyphicon-time"></i></span>
+                                                        </div>
+                                                        <div class="input-group col-lg-6">
+                                                            <div class="bootstrap-timepicker">
+                                                                <input id="timepicker3" name="out" type="text" class="form-control">
+                                                            </div>
+                                                            <span class="input-group-addon bg-custom b-0 text-white"><i class="glyphicon glyphicon-time"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <% if (errors.in || errors.out) { %>
+                                                        <p style="color: red;"><%= errors.in %><%= errors.out %></p>
+                                                    <% } %> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-3">
+                                                <label class="control-label">Country</label>
+                                                <select name="country" class="selectpicker" data-style="btn-white">
+                                                    <option>Azerbaijan</option>
+                                                    <option>Turkey</option>
+                                                    <option>Georgia</option>
+                                                </select>
+                                                <% if (errors.country) { %>
+                                                    <p style="color: red;"><%= errors.country %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-3">
+                                                <label class="control-label">City</label>
+                                                <select name="city" class="selectpicker" data-style="btn-white">
+                                                    <option>Baku</option>
+                                                    <option>Guba</option>
+                                                    <option>Shaki</option>
+                                                </select>
+                                                <% if (errors.city) { %>
+                                                    <p style="color: red;"><%= errors.city %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="userName">Street/Flat</label>
+                                                <input type="text" name="street" parsley-trigger="change" required placeholder="Enter location" class="form-control" id="userName">
+                                                <% if (errors.street) { %>
+                                                    <p style="color: red;"><%= errors.street %></p>
                                                 <% } %> 
                                             </div>
                                             <div class="form-group col-lg-4">
                                                 <label for="userName">Price</label>
-                                                <input type="text" name="price" value="<%= accommodation.price %>" parsley-trigger="change" required placeholder="Enter price" class="form-control" id="userName">
+                                                <input type="text" name="price" parsley-trigger="change" required placeholder="Enter price" class="form-control" id="userName">
                                                 <% if (errors.price) { %>
                                                     <p style="color: red;"><%= errors.price %></p>
                                                 <% } %> 
                                             </div>
-                                            <div class="form-group col-lg-4">
+                                            <div class="form-group col-lg-2">
                                                 <label class="control-label">Currency</label>
                                                 <select name="currency" class="selectpicker" data-style="btn-white">
-                                                    <option <%= accommodation.currency === 'AZN' ? 'selected' : '' %> >AZN</option>
-                                                    <option <%= accommodation.currency === 'USD' ? 'selected' : '' %> >USD</option>    
-                                                    <option <%= accommodation.currency === 'EUR' ? 'selected' : '' %> >EUR</option>
+                                                    <option value="₼">AZN</option>
+                                                    <option value="$">USD</option>
+                                                    <option value="€">EUR</option>
                                                 </select>
                                                 <% if (errors.currency) { %>
                                                     <p style="color: red;"><%= errors.currency %></p>
-                                                <% } %> 
-                                            </div>
-                                            <div class="form-group col-lg-6" style="margin: 0;">
-                                                <label class="control-label">In/Out</label>
-                                                <div style="display: flex;">
-                                                    <div class="input-group col-lg-6" style="margin-right: 20px;">
-                                                        <div class="bootstrap-timepicker">
-                                                            <input id="timepicker" name="in" value="<%= accommodation.in %>" type="text" class="form-control">
-                                                        </div>
-                                                        <span class="input-group-addon bg-custom b-0 text-white"><i class="glyphicon glyphicon-time"></i></span>
-                                                    </div>
-                                                    <div class="input-group col-lg-6">
-                                                        <div class="bootstrap-timepicker">
-                                                            <input id="timepicker3" name="out" value="<%= accommodation.out %>" type="text" class="form-control">
-                                                        </div>
-                                                        <span class="input-group-addon bg-custom b-0 text-white"><i class="glyphicon glyphicon-time"></i></span>
-                                                    </div>
-                                                </div>
-                                                <% if (errors.in || errors.out) { %>
-                                                    <p style="color: red;"><%= errors.in %><%= errors.out %></p>
                                                 <% } %> 
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -104,37 +138,58 @@
                                                     <p style="color: red;"><%= errors.amenities %></p>
                                                 <% } %> 
                                             </div>
-                                            <div class="form-group col-lg-4">
+                                            <div class="form-group col-lg-3">
                                                 <label class="control-label">Room Count</label>
                                                 <select name="roomCount" class="selectpicker" data-style="btn-white">
-                                                    <option <%= accommodation.roomCount === 1 ? 'selected' : '' %> >1</option>
-                                                    <option <%= accommodation.roomCount === 2 ? 'selected' : '' %> >2</option>
-                                                    <option <%= accommodation.roomCount === 3 ? 'selected' : '' %> >3</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
                                                 </select>
                                                 <% if (errors.roomCount) { %>
                                                     <p style="color: red;"><%= errors.roomCount %></p>
                                                 <% } %> 
                                             </div>
-                                            <div class="form-group col-lg-4">
+                                            <div class="form-group col-lg-3">
                                                 <label class="control-label">Bed Count</label>
                                                 <select name="bedCount" class="selectpicker" data-style="btn-white">
-                                                    <option <%= accommodation.bedCount === 1 ? 'selected' : '' %> >1</option>
-                                                    <option <%= accommodation.bedCount === 2 ? 'selected' : '' %> >2</option>
-                                                    <option <%= accommodation.bedCount === 3 ? 'selected' : '' %> >3</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
                                                 </select>
                                                 <% if (errors.bedCount) { %>
                                                     <p style="color: red;"><%= errors.bedCount %></p>
                                                 <% } %> 
                                             </div>
-                                            <div class="form-group col-lg-4">
+                                            <div class="form-group col-lg-3">
                                                 <label class="control-label">Bathroom Count</label>
                                                 <select name="bathCount" class="selectpicker" data-style="btn-white">
-                                                    <option <%= accommodation.bathCount === 1 ? 'selected' : '' %> >1</option>
-                                                    <option <%= accommodation.bathCount === 2 ? 'selected' : '' %> >2</option>
-                                                    <option <%= accommodation.bathCount === 3 ? 'selected' : '' %> >3</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
                                                 </select>
                                                 <% if (errors.bathCount) { %>
                                                     <p style="color: red;"><%= errors.bathCount %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-3">
+                                                <label class="control-label">Guest Count</label>
+                                                <select name="guestCount" class="selectpicker" data-style="btn-white">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                                <% if (errors.guestCount) { %>
+                                                    <p style="color: red;"><%= errors.guestCount %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label class="control-label">Room Type</label>
+                                                <select name="roomType" class="selectpicker" data-style="btn-white">
+                                                    <option>Entire Home</option>
+                                                    <option>Private Room</option>
+                                                </select>
+                                                <% if (errors.roomType) { %>
+                                                    <p style="color: red;"><%= errors.roomType %></p>
                                                 <% } %> 
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -149,37 +204,46 @@
                                                     <p style="color: red;"><%= errors.rules %></p>
                                                 <% } %> 
                                             </div>
-                                            <div class="form-group col-lg-6">
-                                                <label for="userName">Guest Count</label>
-                                                <input type="text" name="guestCount" value="<%= accommodation.guestCount %>" parsley-trigger="change" required placeholder="Enter guest count" class="form-control" id="userName">
-                                                <% if (errors.guestCount) { %>
-                                                    <p style="color: red;"><%= errors.guestCount %></p>
-                                                <% } %> 
-                                            </div>
-                                            <div class="form-group col-lg-6">
+                                            <div class="form-group col-lg-4">
                                                 <label class="control-label">Promotions</label>
                                                 <select name="promotions" class="selectpicker" data-style="btn-white">
-                                                    <option <%= accommodation.promotions === 10 ? 'selected' : '' %> >10</option>
-                                                    <option <%= accommodation.promotions === 15 ? 'selected' : '' %> >15</option>
-                                                    <option <%= accommodation.promotions === 20 ? 'selected' : '' %> >20</option>
+                                                    <option></option>
+                                                    <option>10</option>
+                                                    <option>15</option>
+                                                    <option>20</option>
                                                 </select>
                                                 <% if (errors.promotions) { %>
                                                     <p style="color: red;"><%= errors.promotions %></p>
                                                 <% } %> 
                                             </div>
-                                            <div class="form-group col-lg-6">
-                                                <label class="control-label">Room Type</label>
-                                                <select name="roomType" class="selectpicker" data-style="btn-white">
-                                                    <option <%= accommodation.roomType === 'Entire Home' ? 'selected' : '' %>>Entire Home</option>
-                                                    <option <%= accommodation.roomType === 'Private Room' ? 'selected' : '' %>>Private Room</option>
+                                            <div class="form-group col-lg-4">
+                                                <label class="control-label">Weekly Discount</label>
+                                                <select name="weeklyDiscount" class="selectpicker" data-style="btn-white">
+                                                    <option></option>
+                                                    <option>10</option>
+                                                    <option>15</option>
+                                                    <option>20</option>
                                                 </select>
-                                                <% if (errors.roomType) { %>
-                                                    <p style="color: red;"><%= errors.roomType %></p>
+                                                <% if (errors.promotions) { %>
+                                                    <p style="color: red;"><%= errors.promotions %></p>
+                                                <% } %> 
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label class="control-label">Monthly Discount</label>
+                                                <select name="monthlyDiscount" class="selectpicker" data-style="btn-white">
+                                                    <option></option>
+                                                    <option>10</option>
+                                                    <option>10</option>
+                                                    <option>15</option>
+                                                    <option>20</option>
+                                                </select>
+                                                <% if (errors.promotions) { %>
+                                                    <p style="color: red;"><%= errors.promotions %></p>
                                                 <% } %> 
                                             </div>
                                             <div class="form-group col-lg-12">
                                                 <label class="control-label">About</label>
-                                                <textarea name="about" required class="form-control"><%= accommodation.about %>"</textarea>
+                                                <textarea name="about" required class="form-control"></textarea>
                                                 <% if (errors.about) { %>
                                                     <p style="color: red;"><%= errors.about %></p>
                                                 <% } %>

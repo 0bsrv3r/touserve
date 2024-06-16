@@ -31,7 +31,7 @@
                     <h4 class="title">
                         <a href="#"><%= accommodation.title %> - <%= accommodation.price %> <%= accommodation.currency %></a>
                     </h4>
-                    <p class="sub-title"><%= accommodation.location %></p>
+                    <p class="sub-title"><%= accommodation.country %>, <%= accommodation.city %></p>
                     <div class="wrap-star s2">
                         <ul class="star">
                             <li></li>
@@ -133,7 +133,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="map">
-                                                Location <%= accommodation.location %>
+                                                Location <%= accommodation.country %>, <%= accommodation.city %>
                                             </div>
                                         </div>
                                     </div>
@@ -344,8 +344,12 @@
                                 </li>
                                 <li>
                                     <p>Promotions</p>
-                                    <span>Weekly Discount: <%= accommodation.promotions %>% <br>
-                                        Monthly Discount: 20%
+                                    <span>
+                                        <% if(accommodation.weeklyDiscount){ %>
+                                         Weekly Discount: <%= accommodation.weeklyDiscount %>% <br>
+                                        <% } if(accommodation.monthlyDiscount){ %>
+                                            Montly Discount: <%= accommodation.monthlyDiscount %>% <br>
+                                        <% } %>
                                     </span>
                                 </li>
                                 <li>

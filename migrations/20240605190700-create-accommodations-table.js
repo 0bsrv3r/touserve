@@ -19,17 +19,24 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      images: {
-        allowNull: false,
-        type: Sequelize.JSON(1000)
-      },
       title: {
         allowNull: false,
-        type: Sequelize.STRING(150)
+        type: Sequelize.STRING(70)
       },
-      location: {
+      accommodationType: {
         allowNull: false,
-        type: Sequelize.STRING(150)
+        type: Sequelize.STRING(70)
+      },
+      country: {
+        allowNull: false,
+        type: Sequelize.STRING(70)
+      },
+      city: {
+        allowNull: false,
+        type: Sequelize.STRING(70)
+      },
+      street: {
+        type: Sequelize.STRING(100)
       },
       price: {
         allowNull: false,
@@ -63,19 +70,25 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER(3)
       },
-      rules: {
-        allowNull: false,
-        type: Sequelize.JSON(500)
-      },
       guestCount: {
         allowNull: false,
         type: Sequelize.INTEGER(3)
       },
+      roomType: {
+        allowNull: false,
+        type: Sequelize.STRING(300)
+      },
+      rules: {
+        type: Sequelize.JSON(500)
+      },
       promotions: {
         type: Sequelize.STRING(10)
       },
-      roomType: {
-        type: Sequelize.STRING(300)
+      weeklyDiscount: {
+        type: Sequelize.STRING(10)
+      },
+      monthlyDiscount: {
+        type: Sequelize.STRING(10)
       },
       about: {
         allowNull: false,
@@ -83,6 +96,10 @@ module.exports = {
       },
       stars: {
         type: Sequelize.INTEGER
+      },
+      images: {
+        allowNull: false,
+        type: Sequelize.JSON(1000)
       },
       createdAt: {
         allowNull: false,
