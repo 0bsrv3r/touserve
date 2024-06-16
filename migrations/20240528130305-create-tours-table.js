@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      companyId: {       // foreign key
+      userId: {       // foreign key
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -33,29 +33,34 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(150)
       },
+      tourType: {
+        type: Sequelize.STRING(100)
+      },
       category: {
         allowNull: false,
         type: Sequelize.STRING(100)
       },
-      location: {
+      city: {
         allowNull: false,
-        type: Sequelize.STRING(150)
+        type: Sequelize.STRING(70)
       },
-      images: {
+      country: {
         allowNull: false,
-        type: Sequelize.JSON(1000)
+        type: Sequelize.STRING(70)
       },
-      departure: {
+      area: {
+        type: Sequelize.STRING(70)
+      },
+      date: {
+        type: Sequelize.STRING(20)
+      },
+      time: {
         allowNull: false,
-        type: Sequelize.STRING(30)
+        type: Sequelize.STRING(20)
       },
       duration: {
         allowNull: false,
         type: Sequelize.INTEGER(5)
-      },
-      highlights: {
-        allowNull: false,
-        type: Sequelize.JSON(300)
       },
       inclusions: {
         allowNull: false,
@@ -78,6 +83,10 @@ module.exports = {
       },
       stars: {
         type: Sequelize.INTEGER
+      },
+      images: {
+        allowNull: false,
+        type: Sequelize.JSON(1000)
       },
       createdAt: {
         allowNull: false,

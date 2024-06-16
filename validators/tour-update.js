@@ -36,6 +36,14 @@ module.exports = eventValidation = [
         .withMessage("Title must consist of min 3 and max 150 characters") 
         .escape(),
     
+    body("tourType") 
+        .optional({ checkFalsy: true })
+        .isLength({ max: 100 })
+        .withMessage('Tour Type must be a maximum of 100 characters')
+        .isAlpha()
+        .withMessage('Area can only contain letters')
+        .trim(),
+    
     body('category')
         .isIn(['culture-art', 'beauty-health', 'entertainment', 'offroad', 'hunting'])
         .withMessage('Category must be only "specified options'),
@@ -44,36 +52,44 @@ module.exports = eventValidation = [
         .isLength({max:4}) 
         .isNumeric()
         .withMessage("Guide must consist only numbers"),
-
-    body("location") 
-        .isLength({min: 3, max: 150}) 
-        .withMessage("Location must consist of min 3 and max 150 characters") 
-        .matches(/^[A-Za-z0-9\- ]+$/)
-        .withMessage('Location must contain only letters, numbers, dashes, and spaces.')
-        .trim()
+    
+    body("country")
+        .notEmpty()
+        .withMessage("County must not be empty")
+        .isLength({max: 70}) 
+        .withMessage("Country must be max 70 characters") 
+        .escape(),
+    
+    body("city")
+        .notEmpty()
+        .withMessage("City must not be empty")
+        .isLength({max: 70}) 
+        .withMessage("City must be max 70 characters") 
         .escape(),
 
+    body("area") 
+        .optional({ checkFalsy: true }) // Allows empty fields to pass
+        .isLength({ max: 70 })
+        .withMessage('Area must be a maximum of 70 characters')
+        .matches(/^[A-Za-z0-9,.\- ]+$/)
+        .withMessage('Area can only contain letters, numbers, some special characters')
+        .trim(),
+
     body("date")
-        .exists()
-        .withMessage('Date is required')
+        .optional({ checkFalsy: true })
         .matches(/^(0[1-9]|1[1-9])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)
-        .withMessage('Invalid date-time format. Use MM/DD/YYYY & HH:MM AM/PM'),
+        .withMessage('Invalid date format. Use MM/DD/YYYY'),
     
     body('time')
         .exists()
         .withMessage('Time is required')
         .matches(/^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)
-        .withMessage('Invalid date-time format. Use MM/DD/YYYY & HH:MM AM/PM'),
+        .withMessage('Invalid time format. Use HH:MM AM/PM'),
     
     body("duration")
         .isLength({max:4})
         .isNumeric()
         .withMessage("Duration must consist only numbers"),
-    
-    body("highlights")
-        .isLength({min: 1, max: 300})
-        .isAlpha() 
-        .withMessage("Highlights must consist of letter"),
     
     body("inclusions")
         .isLength({min: 1, max: 300})
@@ -95,5 +111,5 @@ module.exports = eventValidation = [
         .isNumeric()
         .withMessage("Price must consist only numbers"),
 
-    body('currency').isIn(['AZN', 'USD', 'EUR']).withMessage('Currency must be either "AZN", "USD" or "EUR"'),
+    body('currency').isIn(['₼', '$', '€']).withMessage('Currency must be either "AZN", "USD" or "EUR"'),
 ]

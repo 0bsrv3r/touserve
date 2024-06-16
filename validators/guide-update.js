@@ -63,14 +63,14 @@ module.exports = eventValidation = [
         .notEmpty()
         .withMessage("County must not be empty")
         .isLength({max: 70}) 
-        .withMessage("Country must be max 100 characters") 
+        .withMessage("Country must be max 70 characters") 
         .escape(),
     
     body("city")
         .notEmpty()
         .withMessage("City must not be empty")
         .isLength({max: 70}) 
-        .withMessage("City must be max 100 characters") 
+        .withMessage("City must be max 70 characters") 
         .escape(),
 
     body("languages")

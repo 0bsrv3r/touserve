@@ -6,11 +6,11 @@ module.exports = (sequelize) => {
     static associate(models) {
       // Association definition
       Tours.belongsTo(models.Guides, { foreignKey: 'guideId', as: 'guides' });
-      Tours.belongsTo(models.Users, { foreignKey: 'companyId', as: 'companies' });
+      Tours.belongsTo(models.Users, { foreignKey: 'userId', as: 'users' });
     }
   }
   Tours.init({
-    companyId: {       // foreign key
+    userId: {       // foreign key
         allowNull: false,
         type: DataTypes.INTEGER,
         references: {
@@ -30,29 +30,34 @@ module.exports = (sequelize) => {
         allowNull: false,
         type: DataTypes.STRING(150)
     },
+    tourType: {
+        type: DataTypes.STRING(100)
+    },
     category: {
         allowNull: false,
         type: DataTypes.STRING(100)
     },
-    location: {
+    city: {
         allowNull: false,
-        type: DataTypes.STRING(150)
+        type: DataTypes.STRING(70)
     },
-    images: {
+    country: {
         allowNull: false,
-        type: DataTypes.JSON(1000)
+        type: DataTypes.STRING(70)
     },
-    departure: {
+    area: {
+        type: DataTypes.STRING(70)
+    },
+    date: {
+        type: DataTypes.STRING(20)
+    },
+    time: {
         allowNull: false,
-        type: DataTypes.STRING(30)
+        type: DataTypes.STRING(20)
     },
     duration: {
         allowNull: false,
         type: DataTypes.INTEGER(5)
-    },
-    highlights: {
-        allowNull: false,
-        type: DataTypes.JSON(300)
     },
     inclusions: {
         allowNull: false,
@@ -75,7 +80,11 @@ module.exports = (sequelize) => {
     },
     stars: {
         type: DataTypes.INTEGER
-    }
+    },
+    images: {
+        allowNull: false,
+        type: DataTypes.JSON(1000)
+    },
   }, {
     sequelize,
     modelName: 'Tours',

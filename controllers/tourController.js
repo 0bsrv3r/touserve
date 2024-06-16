@@ -8,14 +8,14 @@ class Tour{
 
     // Dashboard Pages
     static async getToursByUserId(req, res){
-        const userId = {companyId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
+        const userId = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
         const tours = await Tours.findAll({where: userId})
 
         res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', errors: {}, tours: tours });
     }
 
     static async getGuideName(req, res){
-        const data = {companyId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
+        const data = {userId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
         const guideNames =  await Guides.findAll({where: data})  
         return guideNames
     }
@@ -43,7 +43,6 @@ class Tour{
         const errors = validationResult(req)
         
         if(errors.isEmpty()){
-
             let images = []
             for(let i=0; i<req.files.images.length; i++) {
                 let avatar = req.files.images[i]; 
@@ -59,16 +58,18 @@ class Tour{
                 images.push(avatarPath)
             }
 
-            let departure = req.body.date +' '+ req.body.time;
             const data = {
-                companyId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
+                userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
                 guideId: req.body.guide, 
                 title: req.body.title, 
+                tourType: req.body.tourType, 
                 category: req.body.category, 
-                location: req.body.location, 
-                departure: departure,
+                country: req.body.country, 
+                city: req.body.city, 
+                area: req.body.area, 
+                date: req.body.date, 
+                time: req.body.time, 
                 duration: req.body.duration,
-                highlights: req.body.highlights,
                 inclusions: req.body.inclusions,
                 currency: req.body.currency,
                 price: req.body.price,
@@ -87,7 +88,7 @@ class Tour{
     static async getUpdateTourById(req, res){
         const ids  = {
             id: req.params.id,
-            companyId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
+            userId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
         }
         const tour  = await Tours.findOne({where: ids, include: "guides"})
         const guideNames = await Tour.getGuideName()
@@ -103,7 +104,7 @@ class Tour{
         const errors = validationResult(req);
         const ids = {
             id: req.params.id,
-            companyId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
+            userId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
         }
 
         // Get Guides assiciated with Tour owner
@@ -112,17 +113,19 @@ class Tour{
         try {
             if(errors.isEmpty()){ 
                 const tour = await Tours.findOne({where: ids});
-                let oldImages  = tour.images                
-                let departure = req.body.date +' '+ req.body.time;
+                let oldImages  = tour.images 
 
                 if (tour) {
                     tour.guideId = req.body.guide, 
                     tour.title = req.body.title, 
+                    tour.tourType = req.body.tourType, 
                     tour.category = req.body.category, 
-                    tour.location = req.body.location, 
-                    tour.departure = departure,
+                    tour.country = req.body.country, 
+                    tour.city = req.body.city, 
+                    tour.area = req.body.area, 
+                    tour.date = req.body.date, 
+                    tour.time = req.body.time, 
                     tour.duration = req.body.duration,
-                    tour.highlights = req.body.highlights,
                     tour.inclusions = req.body.inclusions,
                     tour.currency = req.body.currency,
                     tour.price = req.body.price,
@@ -183,7 +186,7 @@ class Tour{
     static async deleteTourById(req, res){
         const ids = {
             id: req.params.id,
-            companyId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
         }
 
         const tours = await Tours.findOne({where:ids})

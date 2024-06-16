@@ -33,7 +33,7 @@
                             <h4 class="title">
                                 <a href="#"><%= tour.title %> - <%= tour.price %> <%= tour.currency %></a>
                             </h4>
-                            <p class="sub-title"><%= tour.location %></p>
+                            <p class="sub-title"><%= tour.country %>, <%= tour.city %>, <%= tour.area %></p>
                             <div class="wrap-star s2">
                                 <ul class="star">
                                     <li></li>
@@ -127,14 +127,6 @@
                     </div>
                     <p class="content-destination"><%= tour.overview %></p>
 
-                    <div class="widget widget-tour-by-types custom-widget">
-                        <h4 class="widget-title">Highlights</h4>
-                        <ul>
-                            <% for(let i=0; i < tour.highlights.length; i++){ %>
-                                <li><%= tour.highlights[i] %></li>
-                            <% } %>
-                        </ul>
-                    </div>
                     <!-- /.widget-categories -->
                     <div class="widget widget-tour-by-types custom-widget">
                         <h4 class="widget-title">Inclusions</h4>
@@ -148,7 +140,7 @@
                     <div class="wrap-title s2">
                         <h4>Departure Time: </h4>
                     </div>
-                    <p class="content-destination"><%= tour.departure %></p>
+                    <p class="content-destination">Every day at: <%= tour.time %></p>
 
                     <div class="wrap-title s2">
                         <h4>Duration:</h4>

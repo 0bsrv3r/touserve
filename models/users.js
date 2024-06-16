@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
       // Association definition
       this.hasMany(models.Events, { foreignKey: 'userId', as: 'events' });
       this.hasMany(models.Guides, { foreignKey: 'userId', as: 'guides' });
-      this.hasMany(models.Tours, { foreignKey: 'companyId', as: 'tours' });
+      this.hasMany(models.Tours,  { foreignKey: 'userId', as: 'tours' });
     }
   }
   Users.init({
