@@ -6,11 +6,11 @@ module.exports = (sequelize) => {
     static associate(models) {
       // Association definition
       this.hasMany(models.Tours, { foreignKey: 'guideId', as: 'tours' });
-      Guides.belongsTo(models.Users, { foreignKey: 'companyId', as: 'companies' });
+      Guides.belongsTo(models.Users, { foreignKey: 'userId', as: 'users' });
     }
   }
   Guides.init({
-    companyId: {       // foreign key
+    userId: {       // foreign key
         allowNull: false,
         type: DataTypes.INTEGER,
         references: {
@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
     },
     name: {
         allowNull: false,
-        type: DataTypes.STRING(50)
+        type: DataTypes.STRING(70)
     },
     surname: {
         allowNull: false,
@@ -30,32 +30,13 @@ module.exports = (sequelize) => {
         allowNull: false,
         type: DataTypes.STRING(300)
     },
-    location: {
+    city: {
         allowNull: false,
-        type: DataTypes.STRING(150)
+        type: DataTypes.STRING(70)
     },
-    stars: {
-        type: DataTypes.INTEGER
-    },
-    image: {
+    country: {
         allowNull: false,
-        type: DataTypes.STRING(150)
-    },
-    certificate: {
-        allowNull: false,
-        type: DataTypes.STRING(150)
-    },
-    visa: {
-        allowNull: false,
-        type: DataTypes.STRING(5)
-    },
-    currency: {
-        allowNull: false,
-        type: DataTypes.STRING(5)
-    },
-    description: {
-        allowNull: false,
-        type: DataTypes.TEXT
+        type: DataTypes.STRING(70)
     },
     age: {
         allowNull: false,
@@ -68,6 +49,21 @@ module.exports = (sequelize) => {
     gender: {
         allowNull: false,
         type: DataTypes.STRING(10)
+    },
+    description: {
+        allowNull: false,
+        type: DataTypes.TEXT
+    },
+    stars: {
+        type: DataTypes.INTEGER
+    },
+    image: {
+        allowNull: false,
+        type: DataTypes.STRING(200)
+    },
+    certificate: {
+        allowNull: false,
+        type: DataTypes.STRING(200)
     }
   }, {
     sequelize,

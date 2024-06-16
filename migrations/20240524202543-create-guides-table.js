@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      companyId: {       // foreign key
+      userId: {       // foreign key
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -21,7 +21,7 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING(70)
       },
       surname: {
         allowNull: false,
@@ -31,32 +31,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(300)
       },
-      location: {
+      city: {
         allowNull: false,
-        type: Sequelize.STRING(150)
+        type: Sequelize.STRING(70)
       },
-      stars: {
-        type: Sequelize.INTEGER
-      },
-      image: {
+      country: {
         allowNull: false,
-        type: Sequelize.STRING(150)
-      },
-      certificate: {
-        allowNull: false,
-        type: Sequelize.STRING(150)
-      },
-      visa: {
-        allowNull: false,
-        type: Sequelize.STRING(5)
-      },
-      currency: {
-        allowNull: false,
-        type: Sequelize.STRING(5)
-      },
-      description: {
-        allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(70)
       },
       age: {
         allowNull: false,
@@ -69,6 +50,21 @@ module.exports = {
       gender: {
         allowNull: false,
         type: Sequelize.STRING(10)
+      },
+      description: {
+        allowNull: false,
+        type: Sequelize.TEXT
+      },
+      stars: {
+        type: Sequelize.INTEGER
+      },
+      image: {
+        allowNull: false,
+        type: Sequelize.STRING(200)
+      },
+      certificate: {
+        allowNull: false,
+        type: Sequelize.STRING(200)
       },
       createdAt: {
         allowNull: false,

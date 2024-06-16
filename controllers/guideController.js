@@ -9,15 +9,15 @@ class Guide{
 
     // Dashboard Side
     static async getGuidesByUserId(req, res){
-        const user_id = {companyId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
-        const guides = await Guides.findAll({where: user_id})
+        const userId = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
+        const guides = await Guides.findAll({where: userId})
 
         res.render("./dashboard/guides", {layout: 'layouts/dashboard/top-side-bars', errors: {}, guides: guides });
     }
 
     static postGuide(req, res){
         const errors = validationResult(req)
-        
+
         if(errors.isEmpty()){ 
             let avatar = req.files.image; 
             let avatarPath = 'upload/photos/guides/' + Date.now() + '-' + slugify(avatar.name,{ 
@@ -44,17 +44,16 @@ class Guide{
             const lang = req.body.languages.join(",")
             
             const data = {
-                companyId: 1, // req.session.user_id,  //UPDATE THIS IN PROD ENV
+                userId: 1, // req.session.user_id,  //UPDATE THIS IN PROD ENV
                 name: req.body.name, 
                 surname: req.body.surname, 
-                location: req.body.location, 
+                country: req.body.country, 
+                city: req.body.city, 
                 languages: lang,
-                visa: req.body.visa,
-                currency: req.body.currency,
-                description: req.body.description,
                 age: req.body.age,
                 experience: req.body.experience,
                 gender: req.body.gender,
+                description: req.body.description,
                 image: avatarPath,
                 certificate: certificatePath
             } 
@@ -74,7 +73,7 @@ class Guide{
     static async getUpdateGuideById(req, res){
         const ids  = {
             id: req.params.id,
-            companyId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
+            userId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
         }
         const guide  = await Guides.findOne({where: ids})
 
@@ -89,7 +88,7 @@ class Guide{
         const errors = validationResult(req);
         const ids = {
             id: req.params.id,
-            companyId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
+            userId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
         }
 
         try {
@@ -97,20 +96,20 @@ class Guide{
                 const guide = await Guides.findOne({where: ids});
                 let oldImage  = guide.image
                 let certificateImage  = guide.certificate
-                
+                const lang = req.body.languages.join(",")
+
                 if (guide) {
                     guide.name = req.body.name;
                     guide.surname = req.body.surname;
-                    guide.location = req.body.location;
-                    guide.languages = req.body.languages;
-                    guide.visa = req.body.visa;
-                    guide.currency = req.body.currency;
+                    guide.country = req.body.country;
+                    guide.city = req.body.city;
+                    guide.languages = lang;
                     guide.age = req.body.age;
                     guide.experience = req.body.experience;
                     guide.gender = req.body.gender;
                     guide.description = req.body.description;
 
-                    if (req?.files?.images) {
+                    if (req?.files?.image) {
                         // Remove Old Image
                         if (oldImage) {
                             const imagePath = path.join("./", oldImage);
@@ -136,7 +135,7 @@ class Guide{
                         guide.image = newImagePath;                        
                     }
 
-                    if(req.files.certificate){
+                    if(req?.files?.certificate){
                         // Remove Old Certificate
                         if (certificateImage) {
                             const certificatePath = path.join("./", certificateImage);
@@ -184,7 +183,7 @@ class Guide{
     static async deleteGuideById(req, res){
         const ids = {
             id: req.params.id,
-            companyId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
         }
 
         const guides = await Guides.findOne({where:ids})

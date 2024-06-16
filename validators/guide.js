@@ -48,7 +48,7 @@ module.exports = eventValidation = [
         }),
 
     body("name") 
-        .isLength({min: 3, max: 50}) 
+        .isLength({min: 3, max: 70}) 
         .withMessage("Name must consist of min 3 and max 50 characters") 
         .isAlpha()
         .withMessage("Name must consist only letters"), 
@@ -59,26 +59,27 @@ module.exports = eventValidation = [
         .isAlpha()
         .withMessage("Surname must consist only letters"), 
     
-    body("location") 
-        .isLength({min: 3, max: 150}) 
-        .withMessage("Location must consist of min 3 and max 150 characters") 
-        .matches(/^[A-Za-z0-9\- ]+$/)
-        .withMessage('Location must contain only letters, numbers, dashes, and spaces.')
-        .trim()
+    body("country")
+        .notEmpty()
+        .withMessage("County must not be empty")
+        .isLength({max: 70}) 
+        .withMessage("Country must be max 100 characters") 
         .escape(),
-
+    
+    body("city")
+        .notEmpty()
+        .withMessage("City must not be empty")
+        .isLength({max: 70}) 
+        .withMessage("City must be max 100 characters") 
+        .escape(),
+    
     body("languages")
         .isLength({min: 2, max: 100}) 
         .withMessage("Languages must consist of min 2 and max 100 characters") 
         .escape(),
     
-    body("description")
-        .isLength({min: 20, max: 2000}) 
-        .withMessage("Description must consist of min 20 and max 2000 characters") 
-        .escape(),
-    
     body("age")
-        .isLength({min: 1, max: 5})
+        .isLength({min: 1, max: 3})
         .isNumeric() 
         .withMessage("Age must consist of numbers"),
     
@@ -87,8 +88,10 @@ module.exports = eventValidation = [
         .isNumeric() 
         .withMessage("Description must consist of numbers"),
     
-    body('visa').isIn(['Yes', 'No']).withMessage('Visa must be either "Yes" or "No"'),
-    body('currency').isIn(['AZN', 'USD', 'EUR']).withMessage('Currency must be either "AZN", "USD" or "EUR"'),
-    body('gender').isIn(['Male', 'Female']).withMessage('Gender must be either "male" or "female"')
+    body('gender').isIn(['Male', 'Female']).withMessage('Gender must be either "male" or "female"'),
     
+    body("description")
+        .isLength({min: 20, max: 500}) 
+        .withMessage("Description must consist of min 20 and max 2000 characters") 
+        .escape()
 ]
