@@ -807,7 +807,7 @@ h6 { font-size: 18px; line-height: 18px; }
 -------------------------------------------------------------- */
 .page-title {
 	position: relative;
-	padding: 69px 0 128px;
+	padding: 69px 0 40px;
 }
 
 .page-title-heading h1 {	

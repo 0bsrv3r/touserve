@@ -226,6 +226,64 @@
 }
                              /*========= MAIN PAGE END ==========*/
 
+                             /*========= Profile PAGE START ==========*/
+/*PROFILE SLIDER START*/
+.wrap-title.profile-overview.s2{
+    padding: 0px 0 14px;
+}
+
+#category-slider.profile{
+    background-color: #f8f8f8;
+    padding: 40px 0;
+}
+#category-slider .profile-slider{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #bdbdbd;
+    border-right: 0 !important;  
+}
+#category-slider .imageHeader .profile-slider .active{
+    border-bottom: 1px solid #f57e57;
+    border-right: none !important;
+}
+#category-slider .imageHeader .profile-slider li{
+    margin-bottom: 0;
+    padding-bottom: 6px;
+}
+#category-slider .imageHeader .profile-slider li a{
+    padding: 0 20px 0 20px;
+}
+#category-slider .photos .profile-button{
+    display: flex;
+    justify-content: space-between;
+}
+#category-slider .photos .profile-button button{
+    border-radius: 4px;
+    padding: 13px 20px 12px 20px;
+    margin-right: 15px;
+}
+#category-slider .photos .profile-h3{
+    font-size: 22px;
+    margin: 0px 0px 30px 15px;
+}
+#category-slider .photos .profile-h3:after{
+    height: 2px;
+    top:35px;
+    left: 33px;
+}
+.contact-form .wrap-input .profile-input{
+    margin-bottom: 20px;
+}
+.contact-form .wrap-input .profile-input input,
+.contact-form .profile-input textarea{
+    background-color: #ffffff !important;
+    margin-bottom: 0px;
+}
+.contact-form .wrap-input .profile-input select{
+    width: 100%;
+}
+/*PROFILE SLIDER END*/
+                            /*========= Profile PAGE END ==========*/
 
                             /*========= Event PAGE START ==========*/
 .pd-blog-single .container .row{

@@ -1,0 +1,518 @@
+            <!-- Page title -->
+            <div class="page-title">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xs-12">
+                            <div class="page-title-heading">
+                                <h1 class="title">Profile</h1>
+                            </div>
+                            <!-- /.page-title-captions -->
+                        </div>
+                        <!-- /.col-md-6 -->
+                        <div class="col-lg-6 col-md-6 col-xs-12">
+                        </div>
+                        <!-- /.col-md-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /.page-title -->
+        </div>
+        <!-- /.wrap-header -->
+
+        <!-- Blog posts -->
+        
+
+        <section class="flat-row custom-flat-row pd-destination-details bg-theme">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="wrap-destination-detail custom-wrap-destination-detail">
+                            <div class="box-trip-review custom-box-trip-review">
+                                <div class="col-md-4 col-sm-4 col-xs-12 custom-resp-center">
+                                    <div class="featured-trip">
+                                        <div class="avatar-upload">
+                                            <div class="avatar-edit">
+                                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                                <label for="imageUpload"></label>
+                                            </div>
+                                            <div class="avatar-preview">
+                                                <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content-trip custom-content-trip">
+                                        <h4 class="title"><a href="#">username</a></h4>
+                                        <p class="sub-title">Mountain, Rural, France</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <div class="box-map">
+                                        <div class="info-map custom-info-map ">
+                                            <div class="left">
+                                                <p>Location</p>
+                                                <p>Visa requirement</p>
+                                                <p>Language Spoken</p>
+                                                <p>Currency used</p>
+                                                <p>Area</p>
+                                            </div>
+                                            <div class="right">
+                                                <p>:Europe, France</p>
+                                                <p>:Yes</p>
+                                                <p>:French</p>
+                                                <p>:Euro, USD</p>
+                                                <p>:160.1mi2</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-trip-review -->
+                        </div>
+                        <!-- /.post-wrap -->
+
+                        <div class="wrap-title s2 profile-overview">
+                            <h4>Overview</h4>
+                        </div>
+                        <p class="content-destination">Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari quam ti del coalescent lingues. Li nov lingua franca va esser plu simplic e regulari quam li existent Europan lingues. It va esser tam simplic
+                            quam Occidental in fact, it va esser Occidental. A un Angleso it va semblar un simplificat Angles, quam un skeptic Cambridge amico dit me que Occidental es. Li Europan lingues es membres del sam familie. Lor separat existentie
+                            es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular.</p>
+
+                        
+
+                    </div>
+                    <!-- /.col-md-9 -->
+
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section>
+        <section id="category-slider" class="profile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 push-md-3 responsiv">
+                        <ul class="profile-slider">
+                            <li>Choose your category:</li>
+                            <li>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        FILTER
+                                    </button>
+                                    <div class="drop dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a data-value=0 href="#" class="dropdown-item">Your Tours</a>
+                                        <a data-value=1 href="#" class="dropdown-item">Your Acccommodations</a>
+                                        <a data-value=2 href="#" class="dropdown-item">Become Guide</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="imageHeader">
+                            <ul class="profile-slider">
+                                <li class="active"><a data-value=0 href="#">Your Tours</a></li>
+                                <li><a data-value=1 href="#">Your Accommodations</a></li>
+                                <li><a data-value=2 href="#">Become Guide</a></li>
+                                <li><a data-value=3 href="#">Settings</a></li>
+                            </ul>
+                        </div>
+                        <a href="#"></a>
+                    </div>
+                    <div class="col-md-12 photos displayOne">
+                        <div class="profile-button">
+                            <h3 class="profile-h3">Your Tours</h3>
+                            <p class="form-submit">                 
+                                <button class="contact-submit">Create Tour</button>
+                            </p>
+                        </div>
+                        <% for(let tour of tours){ %>
+                        <div class="col-md-4">
+                            <div class="flat-imagebox style2 v2">
+                                <div class="item">
+                                    <div class="imagebox">
+                                        <div class="box-wrap">
+                                            <div class="box-image">
+                                                <a href="#"><img src="/<%= tour.images[0] %>" alt="img"></a>
+                                                <div class="overlay"></div> <!-- /.overlay -->
+                                                <div class="imagebox-content">
+                                                    <ul class="imagebox-link">
+                                                        <li class="icon-s FromLeft">
+                                                            <a href="tour-details.html">
+                                                                <button class="flat-button">Book Now</button>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="box-content">
+                                                <h4>Shaki</h4>
+                                                <div class="money"> <span>$</span>784</div>
+                                                <div class="sub-title">2 days</div>
+    
+                                                <div class="wrap-star s2">                                            
+                                                    <ul class="star">
+                                                        <li></li>
+                                                        <li></li>
+                                                        <li></li>
+                                                        <li></li>
+                                                        <li></li>
+                                                    </ul>
+                                                </div> <!-- /.wrap-star -->
+                                            </div>
+                                        </div> <!-- /.box-wrap -->
+                                    </div> <!-- /.imagebox -->
+                                </div> <!-- /.item -->
+                            </div> <!-- /.flat-imagebox -->
+                        </div> <!-- /.col-md-4 -->
+                        <% } %>
+                    </div>
+
+                    <div class="col-md-12 photos enable-hide displayTwo">
+                        <div class="profile-button">
+                            <h3 class="profile-h3">Your Accommodations</h3>
+                            <p class="form-submit">                 
+                                <button class="contact-submit">Create Accommodation</button>
+                            </p>
+                        </div>
+                        <% for(let accommodation of accommodations){ %>
+                        <div class="col-md-4">
+                            <div class="post-wrap">
+                                <article class="post clearfix">
+                                    <div class="featured-post">
+                                        <img src="/<%= accommodation.images[0] %>" alt="image">
+                                    </div><!-- /.feature-post -->
+                                    <div class="content-post">                              
+                                        <ul class="meta-post top clearfix">                                    
+                                            <li class="day"> 
+                                                <a href="#">America</a>
+                                                <a href="#">01 Jan 2018</a>
+                                                <a href="#">Douchebag</a>
+                                            </li>
+                                        </ul><!-- /.meta-post -->
+                                        <h4 class="title-post"><a href="blog-single.html">TopTravel Blog to Discover this Summer</a></h4>
+                                        <div class="entry excerpt-v1">                              
+                                            <p>Ma quand lingue co grammat resultant lingue es simpe regular lingues.</p>                                        
+                                        </div> 
+                                        <ul class="meta-post clearfix">
+                                            <li class="vote">
+                                                <a href="#">168</a>
+                                            </li>
+                                            <li class="author">
+                                                <a href="#">35</a>
+                                            </li>
+                                        </ul><!-- /.meta-post -->  
+                                        <a class="readmore" href="">Read More</a>                             
+                                    </div><!-- /.content-post -->                 
+                                </article>
+                            </div><!-- /.post-wrap -->                                  
+                        </div><!-- /.col-md-4 -->
+                        <% } %>
+                    </div>
+
+                    <div class="col-md-12 photos enable-hide displayThree">
+                        <h3 class="profile-h3">Become Guide</h3>
+                        <div class="col-md-12">
+                            <div class="wrap-contact-title wrap-touch">
+                                <form novalidate="" class="contact-form" id="contactform" method="post" action="#">
+                                    <div class="wrap-input">
+                                        <div class="col-md-4">
+                                            <p class="profile-input">                                      
+                                                <input type="email" placeholder="Email*" aria-required="true" size="30" value="" name="author" id="author">
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="profile-input">                                      
+                                                <input type="text" placeholder="First Name*" aria-required="true" size="30" value="" name="author" id="author">
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="profile-input">                                      
+                                                <input type="text" placeholder="Last Name*" aria-required="true" size="30" value="" name="LestName" id="LestName">
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <p class="profile-input">
+                                                <select>
+                                                    <option>Country</option>
+                                                    <option>Azerbaijan</option>
+                                                    <option>Turkey</option>
+                                                    <option>Georgia</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <p class="profile-input">
+                                                <select>
+                                                    <option>City</option>
+                                                    <option>Baku</option>
+                                                    <option>Shaki</option>
+                                                    <option>Guba</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="profile-input">
+                                                <select id="language" name="languages" data-placeholder="Languages" multiple data-multi-select>
+                                                    <option value="Apple">English</option>
+                                                    <option value="Banana">Turkish</option>
+                                                    <option value="Blackberry">Spanish</option>
+                                                    <option value="Blueberry">Germany</option>
+                                                    <option value="Cherry">French</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="profile-input">
+                                                <select>
+                                                    <option value="1">Age</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="profile-input">
+                                                <select>
+                                                    <option value="1">Experience</option>
+                                                    <option value="1">1 Year</option>
+                                                    <option value="2">2 Years</option>
+                                                    <option value="3">3 Years</option>
+                                                    <option value="4">4 Years</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="profile-input">
+                                                <select>
+                                                    <option value="1">Gender</option>
+                                                    <option value="1">Male</option>
+                                                    <option value="2">Female</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p class="profile-input">
+                                                <textarea class="" tabindex="4" placeholder="Overview*" name="Message" required>
+
+                                                </textarea>
+                                            </p>
+                                            <p class="form-submit">                 
+                                                <button class="contact-submit">Send</button>
+                                            </p>
+                                        </div>
+                                    </div> 
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 photos enable-hide displayFour">
+                        <div class="flat-tabs" data-effect="fadeIn">
+                            <div class="wrap-radio menu-tab">
+                                <div class="radio active">
+                                    <input id="radio-1" name="radio" type="radio" checked="checked">
+                                    <label for="radio-1" class="radio-label">Change Your Email</label>
+                                </div>
+
+                                <div class="radio">
+                                    <input id="radio-2" name="radio" type="radio">
+                                    <label for="radio-2" class="radio-label">Change Your Password</label>
+                                </div>
+
+                                <div class="radio">
+                                    <input id="radio-3" name="radio" type="radio">
+                                    <label for="radio-3" class="radio-label">Review</label>
+                                </div>
+
+                                <div class="radio">
+                                    <input id="radio-4" name="radio" type="radio">
+                                    <label for="radio-4" class="radio-label">Add Review</label>
+                                </div>
+                            </div>
+                            <!-- /.menu-tab -->
+                            <div class="content-tab">
+                                <div class="content-inner active">
+                                    <div class="wrap-form-update">
+                                        <form class="update-form" action="">
+                                            <div class="update-input">
+                                                <div class="form-group">
+                                                    <label for="dtp_input2" class="col-md-1 control-label">From</label>
+                                                    <div class="input-group date form_date col-md-3" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                        <input class="form-control" size="16" type="text" value="" readonly>
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                    </div>
+                                                    <input type="hidden" id="dtp_input2" value="" /><br/>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label for="dtp_input2" class="col-md-1 control-label">To</label>
+                                                    <div class="input-group date form_date col-md-3" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                        <input class="form-control" size="16" type="text" value="" readonly>
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                    </div>
+                                                    <input type="hidden" id="dtp_input2" value="" /><br/>
+                                                </div>
+                                                <div class="wrap-button">
+                                                    <p class="update-form-submit">
+                                                        <button class="update-submit custom-update-submit">Update Now</button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- /.content-inner -->
+
+                                <div class="content-inner">
+                                    <div class="gm-map">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="map"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.content-inner -->
+
+                                <div class="content-inner">
+                                    <div class="flat-list-review">
+                                        <ul class="list-review clearfix">
+                                            <li class="item">
+                                                <div class="thumb overlays2">
+                                                    <a href="#" class="link">
+                                                        <img src="images/clients/rv-i1.jpg" alt="image">
+                                                    </a>
+                                                </div>
+                                                <div class="text">
+                                                    <h5>
+                                                        <a href="#">Valentino Morose</a>
+                                                    </h5>
+                                                    <p class="date">Aug 20, 2017</p>
+                                                    <div class="wrap-star s2 v1">
+                                                        <ul class="star">
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="sub-title">Ma quande lingues coalesce, li grammatica del resultant lingue es
+                                                        plu simplic e regulari quam ti del coalescent lingues.</div>
+                                                </div>
+                                            </li>
+
+                                            <li class="item">
+                                                <div class="thumb overlays2">
+                                                    <a href="#" class="link">
+                                                        <img src="images/clients/rv-i2.jpg" alt="image">
+                                                    </a>
+                                                </div>
+                                                <div class="text">
+                                                    <h5>
+                                                        <a href="#">Wisteria Ravenclaw</a>
+                                                    </h5>
+                                                    <p class="date">May 04, 2017</p>
+                                                    <div class="wrap-star s2 v1">
+                                                        <ul class="star">
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="sub-title">Ma quande lingues coalesce, li grammatica del resultant lingue es
+                                                        plu simplic e regulari quam ti del coalescent lingues.</div>
+                                                </div>
+                                            </li>
+
+                                            <li class="item">
+                                                <div class="thumb overlays2">
+                                                    <a href="#" class="link">
+                                                        <img src="images/clients/rv-i3.jpg" alt="image">
+                                                    </a>
+                                                </div>
+                                                <div class="text">
+                                                    <h5>
+                                                        <a href="#">Phillip Anthropy</a>
+                                                    </h5>
+                                                    <p class="date">June 02, 2017</p>
+                                                    <div class="wrap-star s2 v1">
+                                                        <ul class="star">
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="sub-title">Ma quande lingues coalesce, li grammatica del resultant lingue es
+                                                        plu simplic e regulari quam ti del coalescent lingues.</div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- /.popular-news -->
+                                        <div class="text-center">
+                                            <button class="flat-button">Book Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.content-inner -->
+
+                                <div class="content-inner">
+                                    <div class="flat-add-review">
+                                        <h4 class="title">Add Review</h4>
+                                        <div class="wrap-form-add-review">
+                                            <form class="form-add-review">
+                                                <div class="wrap-add-review-input">
+                                                    <div class="one-half s1">
+                                                        <p class="add-review-input">
+                                                            <label>Name*</label>
+                                                            <input id="name" name="name" type="text">
+                                                        </p>
+                                                        <p class="add-review-input">
+                                                            <label>Email*</label>
+                                                            <input id="email" name="email" type="email">
+                                                        </p>
+                                                    </div>
+                                                    <div class="one-half s2">
+                                                        <p class="add-review-textarea">
+                                                            <label>Your Review*</label>
+                                                            <textarea id="yourreview" name="yourreview" required="required"></textarea>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <div class="your-rating">
+                                            <div class="wrap-star s2 v1">
+                                                <div class="rating">Your Rating*</div>
+                                                <ul class="star v1">
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                </ul>
+                                            </div>
+                                            <button class="flat-button">Book Now</button>
+                                        </div>
+                                    </div>
+                                </div><!-- /.content-inner -->
+                            </div><!-- /.content-tab -->
+                        </div><!-- /.flat-tabs -->
+                    </div>
+                </div>
+            </div>
+        </section>
