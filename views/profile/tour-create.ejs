@@ -1,0 +1,162 @@
+            <!-- Page title -->
+            <div class="page-title">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xs-12">
+                            <div class="page-title-heading">
+                                <h1 class="title">Create Tour</h1>
+                            </div>
+                            <!-- /.page-title-captions -->
+                        </div>
+                        <!-- /.col-md-6 -->
+                        <div class="col-lg-6 col-md-6 col-xs-12">
+                        </div>
+                        <!-- /.col-md-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /.page-title -->
+        </div>
+        <!-- /.wrap-header -->
+              
+
+        <section class="flat-row custom-flat-row pd-destination-details bg-theme">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="wrap-contact-title wrap-touch">
+                            <form action="/profile/tours/create"  method="post" enctype="multipart/form-data" novalidate class="contact-form" id="contactform">
+                                <div class="wrap-input">
+                                    <div class="col-md-6">
+                                        <p class="profile-input">                                      
+                                            <input type="email" placeholder="Image*" aria-required="true" size="30" value="" name="author" id="author">
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">                                      
+                                            <input type="text" name="title" placeholder="Title*" aria-required="true" size="30" value="" id="author">
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">
+                                            <select name="category">
+                                                <option>Category</option>
+                                                <option value="culture-art">Culture & Art</option>
+                                                <option value="beauty-health">Beauty & Health</option>
+                                                <option value="entertainment">Entertainment</option>
+                                                <option value="offroad">OffRoad</option>
+                                                <option value="hunting">Hunting</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">
+                                            <select name="guide">
+                                                <option>Guide</option>
+                                                <option>Azerbaijan</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="profile-input">
+                                            <select name="country">
+                                                <option>Country</option>
+                                                <option>Baku</option>
+                                                <option>Shaki</option>
+                                                <option>Guba</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="profile-input">
+                                            <select name="city">
+                                                <option>City</option>
+                                                <option>Baku</option>
+                                                <option>Shaki</option>
+                                                <option>Guba</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">                                      
+                                            <input type="text" name="area" placeholder="Area*" aria-required="true" size="30" value="" id="LestName">
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="profile-input input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            <input class="form-control" name="date" placeholder="Date" size="16" type="text" value="" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                        <input type="hidden" name="date" id="dtp_input2" value="" /><br/>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="profile-input input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
+                                            <input class="form-control" name="time" placeholder="Time" size="16" type="text" value="" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        </div>
+                                        <input type="hidden" name="time" id="dtp_input2" value="" /><br/>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <p class="profile-input">
+                                            <select id="language" name="inclusions" data-placeholder="Inclusions" multiple data-multi-select>
+                                                <option value="Walking">Walking</option>
+                                                <option value="Breakfast">Breakfast</option>
+                                                <option value="Entertainment">Entertainment</option>
+                                                <option value="Dinner">Dinner</option>
+                                                <option value="Hotel">Hotel</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">
+                                            <select name="duration">
+                                                <option>Duration</option>
+                                                <option value="1">1 day</option>
+                                                <option value="2">2 days</option>
+                                                <option value="3">3 days</option>
+                                                <option value="4">4 days</option>
+                                                <option value="5">5 days</option>
+                                                <option value="6">6 days</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="profile-input">                                      
+                                            <input type="text" name="price" placeholder="Price*" aria-required="true" size="30" id="LestName">
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="profile-input">
+                                            <select name="currency">
+                                                <option>Currency</option>
+                                                <option value="₼">AZN</option>
+                                                <option value="$">USD</option>
+                                                <option value="€">EUR</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p class="profile-input">
+                                            <textarea name="overview" tabindex="4" placeholder="Overview*" required></textarea>
+                                        </p>
+                                        <p class="profile-input">
+                                            <textarea name="additional" tabindex="4" placeholder="Additional Info" required></textarea>
+                                        </p>
+                                        <p class="form-submit">                 
+                                            <button class="contact-submit">Send</button>
+                                        </p>
+                                    </div>
+                                </div> 
+                            </form>
+                        </div>
+                    </div><!-- /.col-md-9 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section>
+        

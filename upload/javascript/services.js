@@ -1,11 +1,8 @@
 
 // SLIDE
-
-$("#category-slider a").click(function(event){
+$("#category-slider .imageHeader a").click(function(event){
         event.preventDefault();
 });
-
- console.log( $("#category-slider .display"));
 
 $("#category-slider .imageHeader ul li").click(function(){
   $("#category-slider .imageHeader ul li").removeClass("active");
@@ -13,8 +10,6 @@ $("#category-slider .imageHeader ul li").click(function(){
 })
 
 var hide=$("#category-slider .enable-hide");
-console.log(hide);
-
 
 var displayOne = $("#category-slider .displayOne");
 var displayTwo = $("#category-slider .displayTwo");
@@ -31,7 +26,6 @@ var a=$("#category-slider .drop  a");
 
 var clickValue = 0;
 var disclickValue = 0;
-
 
 hide.css("transform","scale(0.7,0.7)").hide();
 
