@@ -15,7 +15,7 @@ router.use(express.urlencoded({ extended:true }))
 router.get('/', Profile.getYourData);
 
 router.get('/tours/create', Tour.getTourCreate);
-router.post('/tours/create', Tour.postTour);
+router.post('/tours/create', tourValidation, Tour.postTour);
 router.get('/tour/delete/:id', Tour.deleteTourById);
 
 

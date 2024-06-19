@@ -32,18 +32,24 @@
                                 <div class="wrap-input">
                                     <div class="col-md-6">
                                         <p class="profile-input">                                      
-                                            <input type="email" placeholder="Image*" aria-required="true" size="30" value="" name="author" id="author">
+                                            <input id="demo1" class="demo1 form-input-size" name="images" type="file" multiple placeholder="Select Files" />
+                                            <% if (errors.image) { %>
+                                                <p style="color: red;"><%= errors.image %></p>
+                                            <% } %> 
                                         </p>
                                     </div>
                                     <div class="col-md-6">
                                         <p class="profile-input">                                      
-                                            <input type="text" name="title" placeholder="Title*" aria-required="true" size="30" value="" id="author">
+                                            <input class="form-input-size" type="text" name="title" placeholder="Title*" aria-required="true" size="30" value="" id="author">
                                         </p>
+                                        <% if (errors.title) { %>
+                                            <p style="color: red;"><%= errors.title %></p>
+                                        <% } %> 
                                     </div>
                                     <div class="col-md-6">
                                         <p class="profile-input">
-                                            <select name="category">
-                                                <option>Category</option>
+                                            <select class="form-input-size" name="category">
+                                                <option disabled selected>Category</option>
                                                 <option value="culture-art">Culture & Art</option>
                                                 <option value="beauty-health">Beauty & Health</option>
                                                 <option value="entertainment">Entertainment</option>
@@ -54,8 +60,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <p class="profile-input">
-                                            <select name="guide">
-                                                <option>Guide</option>
+                                            <select class="form-input-size" name="guide">
+                                                <option disabled selected>Guide</option>
                                                 <% for(let i=0; i < guides.length; i++ ){ %>
                                                     <option value="<%= guides[i].id %>"><%= guides[i].name %> <%= guides[i].surname %></option>
                                                 <% } %>
@@ -64,8 +70,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <p class="profile-input">
-                                            <select name="country">
-                                                <option>Country</option>
+                                            <select class="form-input-size" name="country">
+                                                <option disabled selected>Country</option>
                                                 <option>Baku</option>
                                                 <option>Shaki</option>
                                                 <option>Guba</option>
@@ -74,8 +80,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <p class="profile-input">
-                                            <select name="city">
-                                                <option>City</option>
+                                            <select class="form-input-size" name="city">
+                                                <option disabled selected>City</option>
                                                 <option>Baku</option>
                                                 <option>Shaki</option>
                                                 <option>Guba</option>
@@ -84,12 +90,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <p class="profile-input">                                      
-                                            <input type="text" name="area" placeholder="Area*" aria-required="true" size="30" value="" id="LestName">
+                                            <input class="form-input-size" type="text" name="area" placeholder="Area*" aria-required="true" size="30" value="" id="LestName">
                                         </p>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="profile-input input-group date form_date" data-date="" data-date-format="mm/dd/yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                            <input class="form-control" name="date" placeholder="Date" size="16" type="text" value="" readonly>
+                                            <input class="form-control form-input-size" name="date" placeholder="Date" size="16" type="text" value="" readonly>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         </div>
@@ -97,16 +103,19 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="profile-input input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
-                                            <input class="form-control" name="time" placeholder="Time" size="16" type="text" value="" readonly>
+                                            <input class="form-control form-input-size" name="time" placeholder="Time" size="16" type="text" value="" readonly>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                         </div>
                                         <input type="hidden" name="time" id="dtp_input2" value="" /><br/>
+                                        <% if (errors.time) { %>
+                                            <p style="color: red;"><%= errors.time %></p>
+                                        <% } %> 
                                     </div>
                                     
                                     <div class="col-md-6">
                                         <p class="profile-input">
-                                            <select id="language" name="inclusions" data-placeholder="Inclusions" multiple data-multi-select>
+                                            <select class="form-input-size" id="language" name="inclusions" data-placeholder="Inclusions" multiple data-multi-select>
                                                 <option value="Walking">Walking</option>
                                                 <option value="Breakfast">Breakfast</option>
                                                 <option value="Entertainment">Entertainment</option>
@@ -114,11 +123,14 @@
                                                 <option value="Hotel">Hotel</option>
                                             </select>
                                         </p>
+                                        <% if (errors.inclusions) { %>
+                                            <p style="color: red;"><%= errors.inclusions %></p>
+                                        <% } %> 
                                     </div>
                                     <div class="col-md-6">
                                         <p class="profile-input">
-                                            <select name="duration">
-                                                <option>Duration</option>
+                                            <select class="form-input-size" name="duration">
+                                                <option disabled selected>Duration</option>
                                                 <option value="1">1 day</option>
                                                 <option value="2">2 days</option>
                                                 <option value="3">3 days</option>
@@ -130,13 +142,13 @@
                                     </div>
                                     <div class="col-md-4">
                                         <p class="profile-input">                                      
-                                            <input type="text" name="price" placeholder="Price*" aria-required="true" size="30" id="LestName">
+                                            <input class="form-input-size" type="text" name="price" placeholder="Price*" aria-required="true" size="30" id="LestName">
                                         </p>
                                     </div>
                                     <div class="col-md-2">
                                         <p class="profile-input">
-                                            <select name="currency">
-                                                <option>Currency</option>
+                                            <select class="form-input-size" name="currency">
+                                                <option disabled selected>Currency</option>
                                                 <option value="₼">AZN</option>
                                                 <option value="$">USD</option>
                                                 <option value="€">EUR</option>
