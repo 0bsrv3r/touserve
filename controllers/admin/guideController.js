@@ -1,18 +1,18 @@
 const { validationResult } = require("express-validator")
 const slugify = require("slugify")
-const {Guides} = require("../models")
+const {Guides} = require("../../models")
 const fs = require('fs');
 const path = require('path');
 
 
 class Guide{
 
-    // Dashboard Side
+    // admin Side
     static async getGuidesByUserId(req, res){
         const userId = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
         const guides = await Guides.findAll({where: userId})
 
-        res.render("./dashboard/guides", {layout: 'layouts/dashboard/top-side-bars', errors: {}, guides: guides });
+        res.render("./admin/guides", {layout: 'layouts/admin/top-side-bars', errors: {}, guides: guides });
     }
 
     static postGuide(req, res){
@@ -59,14 +59,14 @@ class Guide{
             } 
 
             Guides.create(data)
-            res.redirect('/dashboard/guides/create')
+            res.redirect('/admin/guides/create')
         }else{
             const errorObject = errors.array().reduce((acc, error) => {
                 acc[error.path] = error.msg;
                 return acc;
             }, {})
 
-            res.render("./dashboard/guides-create", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
+            res.render("./admin/guides-create", {layout: 'layouts/admin/top-side-bars', errors: errorObject});  
         } 
     }
 
@@ -78,7 +78,7 @@ class Guide{
         const guide  = await Guides.findOne({where: ids})
 
         if (guide) {
-            res.render("./dashboard/guides-update", {layout: 'layouts/dashboard/top-side-bars', guide: guide, errors: {}});
+            res.render("./admin/guides-update", {layout: 'layouts/admin/top-side-bars', guide: guide, errors: {}});
         }else {
             res.status(404).json({ message: `Guide with ID ${ids.id} not found` });
         }
@@ -162,7 +162,7 @@ class Guide{
                     }
 
                     await guide.save();
-                    res.redirect(`/dashboard/guides/update/${ids.id}`)
+                    res.redirect(`/admin/guides/update/${ids.id}`)
                 } else {
                     res.status(404).json({ message: 'Event not found' });
                 }
@@ -172,7 +172,7 @@ class Guide{
                     return acc;
                 }, {})
                     
-                res.render("./dashboard/guides-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, guide: {...req.body, id: req.params.id}});                  
+                res.render("./admin/guides-update", {layout: 'layouts/admin/top-side-bars', errors: errorObject, guide: {...req.body, id: req.params.id}});                  
             }
         } catch (error) {
             console.error(error);
@@ -210,7 +210,7 @@ class Guide{
                   }
                 });
             }
-            res.redirect('/dashboard/guides')
+            res.redirect('/admin/guides')
         }else {
             res.status(404).json({ message: `Guide with ID ${ids.id} not found` });
         }

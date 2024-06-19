@@ -1,9 +1,9 @@
 const express  = require('express');
 const router = express.Router();
-const Event = require("../controllers/eventController.js")
-const Guide = require("../controllers/guideController.js")
-const Tour = require("../controllers/tourController.js")
-const Accommadation = require("../controllers/accommodationController.js")
+const Event = require("../controllers/admin/eventController.js")
+const Guide = require("../controllers/admin/guideController.js")
+const Tour = require("../controllers/admin/tourController.js")
+const Accommadation = require("../controllers/admin/accommodationController.js")
 const eventValidation  = require("../validators/event.js"); 
 const guideValidation  = require("../validators/guide.js"); 
 const guideUpdateValidation  = require("../validators/guide-update.js"); 
@@ -15,12 +15,12 @@ const accommadationUpdateValidation  = require("../validators/accommodation-upda
 router.use(express.urlencoded({ extended:true }))
 
 router.get('/', (req, res) => { 
-    res.render("./dashboard/dashboard", {layout: 'layouts/dashboard/top-side-bars'}); 
+    res.render("./admin/admin", {layout: 'layouts/admin/top-side-bars'}); 
 });
 
 // Events
 router.get('/events', Event.getEventsByUserId);
-router.get('/events/create', (req,res) => {res.render("./dashboard/events-create", {layout: 'layouts/dashboard/top-side-bars', errors: {}});});
+router.get('/events/create', (req,res) => {res.render("./admin/events-create", {layout: 'layouts/admin/top-side-bars', errors: {}});});
 router.post('/events/create', eventValidation, Event.postEvent);
 router.get('/events/update/:id', Event.getUpdateEventById);
 router.post('/events/update/:id', eventValidation, Event.postUpdateEventById);
@@ -28,7 +28,7 @@ router.get('/events/delete/:id', Event.deleteEventById);
 
 // Guides
 router.get('/guides', Guide.getGuidesByUserId);
-router.get('/guides/create', (req,res) => {res.render("./dashboard/guides-create", {layout: 'layouts/dashboard/top-side-bars', errors: {}});});
+router.get('/guides/create', (req,res) => {res.render("./admin/guides-create", {layout: 'layouts/admin/top-side-bars', errors: {}});});
 router.post('/guides/create', guideValidation, Guide.postGuide);
 router.get('/guides/update/:id', Guide.getUpdateGuideById);
 router.post('/guides/update/:id', guideUpdateValidation, Guide.postUpdateGuideById);
@@ -44,7 +44,7 @@ router.get('/tours/delete/:id', Tour.deleteTourById);
 
 // Accommadations
 router.get('/accommodations', Accommadation.getAccommodationsByUserId);
-router.get('/accommodations/create', (req, res) => {res.render("./dashboard/accommodations-create", {layout: 'layouts/dashboard/top-side-bars', errors: {} }); });
+router.get('/accommodations/create', (req, res) => {res.render("./admin/accommodations-create", {layout: 'layouts/admin/top-side-bars', errors: {} }); });
 router.post("/accommodations/create", accommadationValidation, Accommadation.postAccommodation)
 router.get('/accommodations/update/:id', Accommadation.getUpdateAccommodationById);
 router.post('/accommodations/update/:id', accommadationUpdateValidation, Accommadation.postUpdateAccommodationById);

@@ -1,9 +1,9 @@
 const express  = require('express');
 const router = express.Router();
-const Event = require("../controllers/eventController.js")
-const Guide = require("../controllers/guideController.js")
-const Tour = require("../controllers/tourController.js");
-const Accommadation = require("../controllers/accommodationController.js");
+const Event = require("../controllers/admin/eventController.js")
+const Guide = require("../controllers/admin/guideController.js")
+const Tour = require("../controllers/profile/tourController.js");
+const Accommadation = require("../controllers/profile/accommodationController.js");
 
 const { render } = require('ejs');
 

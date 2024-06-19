@@ -10,9 +10,9 @@
                         <div class="row" style="margin-bottom: 20px;">
                             <div class="col-sm-12">
                                 <div style="display: flex; justify-content: space-between;">
-                                    <h4 class="page-title">Your Guides</h4>
+                                    <h4 class="page-title">Your Tours</h4>
                                     <div class="btn-group pull-right">
-                                        <a href="/dashboard/guides/create" class="btn btn-default dropdown-toggle waves-effect waves-light" aria-expanded="false">Create New Guide</a>
+                                        <a href="/admin/tours/create" class="btn btn-default dropdown-toggle waves-effect waves-light" aria-expanded="false">Create New Tour</a>
                                     </div>
                                 </div>
                             </div>
@@ -25,27 +25,29 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Languages</th>
-                                            <th>Age</th>
-                                            <th>Experience</th>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Departure</th>
+                                            <th>Duration</th>
+                                            <th>Price</th>
                                             <th>Location</th>
                                             <th>Actions</th>
                                         </tr>
                                         </thead>
         
                                         <tbody>
-                                        <% for(let i=0; i < guides.length; i++){ %>
+                                        <% for(let i=0; i < tours.length; i++){ %>
                                         <tr>
                                             <td><%= i+1 %></td>
-                                            <td><%= guides[i].name %></td>
-                                            <td><%= guides[i].languages %></td>
-                                            <td><%= guides[i].age %></td>
-                                            <td><%= guides[i].experience %></td>
-                                            <td><%= guides[i].city %>, <%= guides[i].country %></td>
+                                            <td><%= tours[i].title %></td>
+                                            <td><%= tours[i].category %></td>
+                                            <td><%= tours[i].time %></td>
+                                            <td><%= tours[i].duration %></td>
+                                            <td><%= tours[i].price %></td>
+                                            <td><%= tours[i].city %>, <%= tours[i].country %></td>
                                             <td>
-                                                <a href="/dashboard/guides/update/<%= guides[i].id %>" style="padding: 5px;"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a>
-                                                <a href="/dashboard/guides/delete/<%= guides[i].id %>" style="padding: 5px;"><i class="fa fa-trash-o" style="color: #f05050;;"></i></a>
+                                                <a href="/admin/tours/update/<%= tours[i].id %>" style="padding: 5px;"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a>
+                                                <a href="/admin/tours/delete/<%= tours[i].id %>" style="padding: 5px;"><i class="fa fa-trash-o" style="color: #f05050;;"></i></a>
                                             </td>
                                         </tr>
                                         <% } %>

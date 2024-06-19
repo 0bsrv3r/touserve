@@ -1,19 +1,12 @@
 const { validationResult } = require("express-validator")
 const slugify = require("slugify")
-const {Tours, Guides, Accommodations} = require("../models")
+const {Tours, Guides, Accommodations} = require("../../models")
 const fs = require('fs')
 const path = require('path')
 
 class Tour{
 
-    // Dashboard Pages
-    static async getToursByUserId(req, res){
-        const userId = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
-        const tours = await Tours.findAll({where: userId})
-
-        res.render("./dashboard/tours", {layout: 'layouts/dashboard/top-side-bars', errors: {}, tours: tours });
-    }
-
+    // Profile  Pages
     static async getGuideName(req, res){
         const data = {userId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
         const guideNames =  await Guides.findAll({where: data})  
@@ -30,12 +23,13 @@ class Tour{
                     acc[error.path] = error.msg;
                     return acc;
                 }, {})
-                res.render("./dashboard/tours-create", {layout: 'layouts/dashboard/top-side-bars', guides:guideNames, errors:errorObject });
+
+                return res.render("./profile/tour-create", {layout: 'layouts/dashboard/top-side-bars', guides:guideNames, errors:errorObject });
             }else{
-                res.render("./dashboard/tours-create", {layout: 'layouts/dashboard/top-side-bars', guides:guideNames, errors:{} });
+                return res.render("./profile/tour-create", {layout: 'layouts/pagesheader', guides:guideNames, errors:{} });
             }
         }else{
-            res.render("./dashboard/tours-create", {layout: 'layouts/dashboard/top-side-bars', guides:{}, errors:{} });
+            return res.render("./profile/tour-create", {layout: 'layouts/pagesheader', guides:{}, errors:{} });
         }
     }
 
@@ -79,7 +73,7 @@ class Tour{
             } 
 
             Tours.create(data)
-            res.redirect('/dashboard/tours/create')
+            return res.redirect('/profile/tours/create')
         }else{
             return Tour.getTourCreate(req, res, errors)
         } 
@@ -94,9 +88,9 @@ class Tour{
         const guideNames = await Tour.getGuideName()
 
         if (tour) {
-            res.render("./dashboard/tours-update", {layout: 'layouts/dashboard/top-side-bars', tour: tour, guides:guideNames, errors: {}});
+            return res.render("./dashboard/tours-update", {layout: 'layouts/dashboard/top-side-bars', tour: tour, guides:guideNames, errors: {}});
         }else {
-            res.status(404).json({ message: `Tour with ID ${ids.id} not found` });
+            return res.status(404).json({ message: `Tour with ID ${ids.id} not found` });
         }
     }
 
@@ -165,9 +159,9 @@ class Tour{
                     }
 
                     await tour.save();
-                    res.redirect(`/dashboard/tours/update/${ids.id}`)
+                    return res.redirect(`/dashboard/tours/update/${ids.id}`)
                 } else {
-                    res.status(404).json({ message: 'Tour not found' });
+                    return res.status(404).json({ message: 'Tour not found' });
                 }
             }else{
                 const errorObject = errors.array().reduce((acc, error) => {
@@ -175,11 +169,10 @@ class Tour{
                     return acc;
                 }, {})
                     
-                res.render("./dashboard/tours-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, tour: {...req.body, id: req.params.id}, guides: guideNames});                  
+                return res.render("./dashboard/tours-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, tour: {...req.body, id: req.params.id}, guides: guideNames});                  
             }
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ error: 'An error occurred while updating the accommodation' });
+            return res.status(500).json({ error: 'An error occurred while updating the accommodation' });
         }
     }
 
@@ -207,17 +200,17 @@ class Tour{
                 }
             }
 
-            res.redirect('/dashboard/tours')
+            return res.redirect('/dashboard/tours')
             
         }else {
-            res.status(404).json({ message: `Tours with ID ${ids.id} not found` });
+            return res.status(404).json({ message: `Tours with ID ${ids.id} not found` });
         }
     }
 
     // Front Side
     static async getTours(req, res){
         const tours = await Tours.findAll()
-        res.render("tours", {layout: 'layouts/pagesHeader', tours: tours}); 
+        return res.render("tours", {layout: 'layouts/pagesHeader', tours: tours}); 
     }
 
     static async getTourById(req, res){
@@ -227,9 +220,9 @@ class Tour{
             const city = {city: tour.city}
             const accommodations = await Accommodations.findAll({where:city, order: [['createdAt', 'DESC']],limit: 3})
             
-            res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations});
+            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations});
         }else{
-            res.render("404", {layout: 'layouts/pagesheader'});
+            return res.render("404", {layout: 'layouts/pagesheader'});
         }
     }
 
@@ -238,9 +231,9 @@ class Tour{
         const tours = await Tours.findAll({where: data})
 
         if(tours[0] != undefined){
-            res.render(`${data.category}-tours`, {layout: 'layouts/pagesheader', tours:tours});
+            return res.render(`${data.category}-tours`, {layout: 'layouts/pagesheader', tours:tours});
         }else{
-            res.render("404", {layout: 'layouts/pagesheader'});
+            return res.render("404", {layout: 'layouts/pagesheader'});
         }
     }
 }

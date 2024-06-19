@@ -42,11 +42,11 @@ const login = require("./middlewares/auth.js")
 // routes
 const pathes = require ("./routes/path.js"); 
 const auth = require ("./routes/auth.js"); 
-const dashboard = require ("./routes/dashboard.js"); 
+const admin = require ("./routes/admin.js"); 
 const profile = require ("./routes/profile.js"); 
 app.use("/", pathes);
 app.use("/auth", auth);
-app.use("/dashboard", /*login,*/ dashboard) // Checked with middleware if user registered or not.
+app.use("/admin", /*login,*/ admin) // Checked with middleware if user registered or not.
 app.use("/profile", /*login,*/ profile) // Checked with middleware if user registered or not.
 
 // Middleware to handle 404 errors
