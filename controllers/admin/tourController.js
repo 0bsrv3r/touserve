@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator")
 const slugify = require("slugify")
 const {Tours, Guides, Accommodations} = require("../../models")
+const FileUpload = require("../../services/fileUploadService.js")
 const fs = require('fs')
 const path = require('path')
 
@@ -11,7 +12,7 @@ class Tour{
         const userId = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
         const tours = await Tours.findAll({where: userId})
 
-        res.render("./admin/tours", {layout: 'layouts/admin/top-side-bars', errors: {}, tours: tours });
+        return res.render("./admin/tours", {layout: 'layouts/admin/top-side-bars', errors: {}, tours: tours });
     }
 
     static async getGuideName(req, res){
@@ -31,33 +32,23 @@ class Tour{
                     return acc;
                 }, {})
 
-                res.render("./admin/tours-create", {layout: 'layouts/admin/top-side-bars', guides:guideNames, errors:errorObject });
+                return res.render("./admin/tours-create", {layout: 'layouts/admin/top-side-bars', guides:guideNames, errors:errorObject });
             }else{
-                res.render("./admin/tours-create", {layout: 'layouts/admin/top-side-bars', guides:guideNames, errors:{} });
+                return res.render("./admin/tours-create", {layout: 'layouts/admin/top-side-bars', guides:guideNames, errors:{} });
             }
         }else{
-            res.render("./admin/tours-create", {layout: 'layouts/admin/top-side-bars', guides:{}, errors:{} });
+            return res.render("./admin/tours-create", {layout: 'layouts/admin/top-side-bars', guides:{}, errors:{} });
         }
     }
 
-    static postTour(req, res){
+    static async postTour(req, res){
         const errors = validationResult(req)
         
         if(errors.isEmpty()){
-            let images = []
-            for(let i=0; i<req.files.images.length; i++) {
-                let avatar = req.files.images[i]; 
-                let avatarPath = 'upload/photos/tours/' + Date.now() + '-' + slugify(avatar.name,{ 
-                    lower: true, 
-                    strict: true 
-                }) + '.' + avatar.name.split('.').pop();
-                avatar.mv(avatarPath, err => { 
-                    if(err){ 
-                        return res.status(500).send(err); 
-                    } 
-                })
-                images.push(avatarPath)
-            }
+
+            // Upload New Image
+            const images = await FileUpload.uploadFile(req, res, req.files.images, "upload/photos/tours/")
+            console.log(images)
 
             const data = {
                 userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
@@ -95,9 +86,9 @@ class Tour{
         const guideNames = await Tour.getGuideName()
 
         if (tour) {
-            res.render("./admin/tours-update", {layout: 'layouts/admin/top-side-bars', tour: tour, guides:guideNames, errors: {}});
+           return res.render("./admin/tours-update", {layout: 'layouts/admin/top-side-bars', tour: tour, guides:guideNames, errors: {}});
         }else {
-            res.status(404).json({ message: `Tour with ID ${ids.id} not found` });
+            return res.status(404).json({ message: `Tour with ID ${ids.id} not found` });
         }
     }
 
@@ -135,38 +126,15 @@ class Tour{
 
                     if (req?.files?.images) {
                         // Remove Old Image
-                        if (oldImages) {
-                            for(let oldImage of oldImages){
-                                const imagePath = path.join("./", oldImage);
-                                fs.unlink(imagePath, (err) => {
-                                    if (err) {
-                                        return res.status(500).send('Failed to delete image file');
-                                    }
-                                });
-                            }
-                        }
+                        FileUpload.deleteFile(req, res, oldImages)
 
                         // Upload New Image
-                        let images = []
-                        for(let i=0; i<req.files.images.length; i++) {
-                            let avatar = req.files.images[i]; 
-                            let avatarPath = 'upload/photos/tours/' + Date.now() + '-' + slugify(avatar.name,{ 
-                                lower: true, 
-                                strict: true 
-                            }) + '.' + avatar.name.split('.').pop();
-                            avatar.mv(avatarPath, err => { 
-                                if(err){ 
-                                    return res.status(500).send(err); 
-                                } 
-                            })
-                            images.push(avatarPath)
-                        }
-
+                        const images = await FileUpload.uploadFile(req, res, req.files.images, "upload/photos/tours/")
                         tour.images = images;                        
                     }
 
                     await tour.save();
-                    res.redirect(`/admin/tours/update/${ids.id}`)
+                    return res.redirect(`/admin/tours/update/${ids.id}`)
                 } else {
                     res.status(404).json({ message: 'Tour not found' });
                 }
@@ -176,11 +144,11 @@ class Tour{
                     return acc;
                 }, {})
                     
-                res.render("./admin/tours-update", {layout: 'layouts/admin/top-side-bars', errors: errorObject, tour: {...req.body, id: req.params.id}, guides: guideNames});                  
+                return res.render("./admin/tours-update", {layout: 'layouts/admin/top-side-bars', errors: errorObject, tour: {...req.body, id: req.params.id}, guides: guideNames});                  
             }
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'An error occurred while updating the accommodation' });
+            return res.status(500).json({ error: 'An error occurred while updating the accommodation' });
         }
     }
 
@@ -208,10 +176,10 @@ class Tour{
                 }
             }
 
-            res.redirect('/admin/tours')
+            return res.redirect('/admin/tours')
             
         }else {
-            res.status(404).json({ message: `Tours with ID ${ids.id} not found` });
+            return res.status(404).json({ message: `Tours with ID ${ids.id} not found` });
         }
     }
 }

@@ -12,7 +12,7 @@ class Guide{
         const userId = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
         const guides = await Guides.findAll({where: userId})
 
-        res.render("./admin/guides", {layout: 'layouts/admin/top-side-bars', errors: {}, guides: guides });
+        return res.render("./admin/guides", {layout: 'layouts/admin/top-side-bars', errors: {}, guides: guides });
     }
 
     static postGuide(req, res){
@@ -66,7 +66,7 @@ class Guide{
                 return acc;
             }, {})
 
-            res.render("./admin/guides-create", {layout: 'layouts/admin/top-side-bars', errors: errorObject});  
+            return res.render("./admin/guides-create", {layout: 'layouts/admin/top-side-bars', errors: errorObject});  
         } 
     }
 
@@ -78,9 +78,9 @@ class Guide{
         const guide  = await Guides.findOne({where: ids})
 
         if (guide) {
-            res.render("./admin/guides-update", {layout: 'layouts/admin/top-side-bars', guide: guide, errors: {}});
+            return res.render("./admin/guides-update", {layout: 'layouts/admin/top-side-bars', guide: guide, errors: {}});
         }else {
-            res.status(404).json({ message: `Guide with ID ${ids.id} not found` });
+            return res.status(404).json({ message: `Guide with ID ${ids.id} not found` });
         }
     }
 
@@ -172,11 +172,11 @@ class Guide{
                     return acc;
                 }, {})
                     
-                res.render("./admin/guides-update", {layout: 'layouts/admin/top-side-bars', errors: errorObject, guide: {...req.body, id: req.params.id}});                  
+                return res.render("./admin/guides-update", {layout: 'layouts/admin/top-side-bars', errors: errorObject, guide: {...req.body, id: req.params.id}});                  
             }
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'An error occurred while updating the guide' });
+            return res.status(500).json({ error: 'An error occurred while updating the guide' });
         }
     }
 
@@ -221,9 +221,9 @@ class Guide{
         const guides = await Guides.findAll()
 
         if(guides != undefined){
-            res.render("guides", {layout: 'layouts/pagesheader', guides:guides});
+            return res.render("guides", {layout: 'layouts/pagesheader', guides:guides});
         }else{
-            res.render("guides", {layout: 'layouts/pagesheader', guides:{}});
+            return res.render("guides", {layout: 'layouts/pagesheader', guides:{}});
         }
     }
 
@@ -232,9 +232,9 @@ class Guide{
         const guide = await Guides.findOne({where: data, include: "tours"})
                 
         if(guide != undefined){
-            res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide});
+            return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide});
         }else{
-            res.render("404", {layout: 'layouts/pagesheader'});
+            return res.render("404", {layout: 'layouts/pagesheader'});
 
         }
     }

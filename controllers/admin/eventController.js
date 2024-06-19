@@ -13,7 +13,7 @@ class Event{
         const user_id = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
         const events = await Events.findAll({where: user_id})
 
-        res.render("./admin/events", {layout: 'layouts/admin/top-side-bars', errors: {}, events: events });
+        return res.render("./admin/events", {layout: 'layouts/admin/top-side-bars', errors: {}, events: events });
     }
 
     static async postEvent(req, res){
@@ -42,14 +42,14 @@ class Event{
             } 
             
             const event = await Events.create(data)
-            res.redirect('/admin/events/create')
+            return res.redirect('/admin/events/create')
         }else{
             const errorObject = errors.array().reduce((acc, error) => {
                 acc[error.path] = error.msg;
                 return acc;
             }, {})
             
-            res.render("./admin/events-create", {layout: 'layouts/admin/top-side-bars', errors: errorObject});  
+            return res.render("./admin/events-create", {layout: 'layouts/admin/top-side-bars', errors: errorObject});  
         } 
     }
 
@@ -61,9 +61,9 @@ class Event{
         const event  = await Events.findOne({where: ids})
 
         if (event) {
-            res.render("./admin/events-update", {layout: 'layouts/admin/top-side-bars', event: event, errors: {}});
+            return res.render("./admin/events-update", {layout: 'layouts/admin/top-side-bars', event: event, errors: {}});
         }else {
-            res.status(404).json({ message: `Event with ID ${ids.id} not found` });
+            return res.status(404).json({ message: `Event with ID ${ids.id} not found` });
         }
     }
 
@@ -114,9 +114,9 @@ class Event{
                     }
 
                     await event.save();
-                    res.redirect(`/admin/events/update/${ids.id}`)
+                    return res.redirect(`/admin/events/update/${ids.id}`)
                 } else {
-                    res.status(404).json({ message: 'Event not found' });
+                    return res.status(404).json({ message: 'Event not found' });
                 }
             }else{
                 const errorObject = errors.array().reduce((acc, error) => {
@@ -124,11 +124,11 @@ class Event{
                     return acc;
                 }, {})
                     
-                res.render("./admin/events-update", {layout: 'layouts/admin/top-side-bars', errors: errorObject, event: {...req.body, id: req.params.id}});                  
+                return res.render("./admin/events-update", {layout: 'layouts/admin/top-side-bars', errors: errorObject, event: {...req.body, id: req.params.id}});                  
             }
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'An error occurred while updating the event' });
+            return res.status(500).json({ error: 'An error occurred while updating the event' });
         }
     }
 
@@ -152,9 +152,9 @@ class Event{
                   }
                 });
             }
-            res.redirect('/admin/events')
+            return res.redirect('/admin/events')
         }else {
-            res.status(404).json({ message: `Event with ID ${ids.id} not found` });
+            return res.status(404).json({ message: `Event with ID ${ids.id} not found` });
         }
     }
 
@@ -162,7 +162,7 @@ class Event{
     // Front Side
     static async getEvents(req, res){
         const events = await Events.findAll()
-        res.render("events", {layout: 'layouts/pagesheader', events:events});
+        return res.render("events", {layout: 'layouts/pagesheader', events:events});
     }
 }
 

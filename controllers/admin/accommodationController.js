@@ -11,7 +11,7 @@ class Accommodation{
         const user_id = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
         const accommodations = await Accommodations.findAll({where: user_id})
 
-        res.render("./admin/accommodations", {layout: 'layouts/admin/top-side-bars', errors: {}, accommodations: accommodations });
+        return res.render("./admin/accommodations", {layout: 'layouts/admin/top-side-bars', errors: {}, accommodations: accommodations });
     }
 
     static postAccommodation(req, res){
@@ -60,14 +60,14 @@ class Accommodation{
             } 
 
             Accommodations.create(data)
-            res.redirect('/admin/accommodations/create')
+            return res.redirect('/admin/accommodations/create')
         }else{
             const errorObject = errors.array().reduce((acc, error) => {
                 acc[error.path] = error.msg;
                 return acc;
             }, {})
             
-            res.render("./admin/accommodations-create", {layout: 'layouts/admin/top-side-bars', errors: errorObject});  
+            return res.render("./admin/accommodations-create", {layout: 'layouts/admin/top-side-bars', errors: errorObject});  
         } 
     }
 
@@ -79,9 +79,9 @@ class Accommodation{
         const accommodation  = await Accommodations.findOne({where: ids})
 
         if (accommodation) {
-            res.render("./admin/accommodations-update", {layout: 'layouts/admin/top-side-bars', accommodation: accommodation, errors: {}});
+            return res.render("./admin/accommodations-update", {layout: 'layouts/admin/top-side-bars', accommodation: accommodation, errors: {}});
         }else {
-            res.status(404).json({ message: `Accommodation with ID ${ids.id} not found` });
+            return res.status(404).json({ message: `Accommodation with ID ${ids.id} not found` });
         }
     }
 
@@ -152,9 +152,9 @@ class Accommodation{
                     }
 
                     await accommodation.save();
-                    res.redirect(`/admin/accommodations/update/${ids.id}`)
+                    return res.redirect(`/admin/accommodations/update/${ids.id}`)
                 } else {
-                    res.status(404).json({ message: 'Accommodation not found' });
+                    return res.status(404).json({ message: 'Accommodation not found' });
                 }
             }else{
                 const errorObject = errors.array().reduce((acc, error) => {
@@ -162,11 +162,11 @@ class Accommodation{
                     return acc;
                 }, {})
                     
-                res.render("./admin/accommodations-update", {layout: 'layouts/admin/top-side-bars', errors: errorObject, accommodation: {...req.body, id: req.params.id}});                  
+                return res.render("./admin/accommodations-update", {layout: 'layouts/admin/top-side-bars', errors: errorObject, accommodation: {...req.body, id: req.params.id}});                  
             }
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'An error occurred while updating the accommodation' });
+            return res.status(500).json({ error: 'An error occurred while updating the accommodation' });
         }
     }
 
@@ -194,10 +194,10 @@ class Accommodation{
                 }
             }
 
-            res.redirect('/admin/accommodations')
+            return res.redirect('/admin/accommodations')
             
         }else {
-            res.status(404).json({ message: `Accommodition with ID ${ids.id} not found` });
+            return res.status(404).json({ message: `Accommodition with ID ${ids.id} not found` });
         }
     }
 }
