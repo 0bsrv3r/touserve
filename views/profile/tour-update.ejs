@@ -5,7 +5,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-xs-12">
                             <div class="page-title-heading">
-                                <h1 class="title">Create Tour</h1>
+                                <h1 class="title">Update Tour</h1>
                             </div>
                             <!-- /.page-title-captions -->
                         </div>
@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="wrap-contact-title wrap-touch">
-                            <form action="/profile/tours/create"  method="post" enctype="multipart/form-data" novalidate class="contact-form" id="contactform">
+                            <form action="/profile/tours/update/<%= tour.id %>"  method="post" enctype="multipart/form-data" novalidate class="contact-form" id="contactform">
                                 <div class="wrap-input">
                                     <div class="col-md-6">
                                         <p class="profile-input">                                      
@@ -170,4 +170,3 @@
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </section>
-        

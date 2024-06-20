@@ -16,6 +16,8 @@ router.get('/', Profile.getYourData);
 
 router.get('/tours/create', Tour.getTourCreate);
 router.post('/tours/create', tourValidation, Tour.postTour);
+router.get('/tours/update/:id', Tour.getUpdateTourById);
+router.post('/tours/update/:id', tourUpdateValidation, Tour.postUpdateTourById);
 router.get('/tour/delete/:id', Tour.deleteTourById);
 
 

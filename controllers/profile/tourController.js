@@ -34,13 +34,12 @@ class Tour{
         }
     }
 
-    static postTour(req, res){
-        console.log(req.body)
+    static async postTour(req, res){
         const errors = validationResult(req)
         
         if(errors.isEmpty()){
             // Upload New Image
-            const images = FileUpload.uploadFile(req, res, req.files.images, "upload/photos/tours/")
+            const images = await FileUpload.uploadFile(req, res, req.files.images, "upload/photos/tours/")
 
             const data = {
                 userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
@@ -78,7 +77,7 @@ class Tour{
         const guideNames = await Tour.getGuideName()
 
         if (tour) {
-            return res.render("./profile/tours-update", {layout: 'layouts/pagesheader', tour: tour, guides:guideNames, errors: {}});
+            return res.render("./profile/tour-update", {layout: 'layouts/pagesheader', tour: tour, guides:guideNames, errors: {}});
         }else {
             return res.status(404).json({ message: `Tour with ID ${ids.id} not found` });
         }
@@ -118,10 +117,10 @@ class Tour{
 
                     if (req?.files?.images) {
                         // Remove Old Image
-                        FileUpload.deleteFile(req, res, oldImages)
+                        await FileUpload.deleteFile(req, res, oldImages)
 
                         // Upload New Image
-                        const images = FileUpload.uploadFile(req, res, req.files.images, "upload/photos/tours/")
+                        const images = await FileUpload.uploadFile(req, res, req.files.images, "upload/photos/tours/")
                         tour.images = images;                        
                     }
 
@@ -136,7 +135,7 @@ class Tour{
                     return acc;
                 }, {})
                     
-                return res.render("./profile/tours-update", {layout: 'layouts/pagesheader', errors: errorObject, tour: {...req.body, id: req.params.id}, guides: guideNames});                  
+                return res.render("./profile/tour-update", {layout: 'layouts/pagesheader', errors: errorObject, tour: {...req.body, id: req.params.id}, guides: guideNames});                  
             }
         } catch (error) {
             return res.status(500).json({ error: 'An error occurred while updating the accommodation' });
@@ -155,7 +154,7 @@ class Tour{
         const deleted = await Tours.destroy({where: ids})
 
         if (deleted && tours) {
-            FileUpload.deleteFile(req, res, imagesPath)
+            await FileUpload.deleteFile(req, res, imagesPath)
             return res.redirect('/profile')
         }else {
             return res.status(404).json({ message: `Tours with ID ${ids.id} not found` });
