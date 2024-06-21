@@ -161,20 +161,9 @@ class Accommodation{
         const deleted = await Accommodations.destroy({where: ids})
 
         if (deleted && accommodations) {
-            if (imagesPath) {
-                // delete image
-                for(let singlePath of imagesPath){
-                    const fullimagePath = path.join("./", singlePath);
-                    fs.unlink(fullimagePath, (err) => {
-                        if (err) {
-                            return res.status(500).send('Failed to delete image file');
-                        }
-                    });
-                }
-            }
-
-            res.redirect('/profile/accommodations')
-            
+            // delete images
+            await FileUpload.batchFileDelete(req, res, imagesPath)
+            res.redirect('/profile')
         }else {
             res.status(404).json({ message: `Accommodition with ID ${ids.id} not found` });
         }
