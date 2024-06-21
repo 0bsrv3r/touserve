@@ -1,0 +1,252 @@
+            <!-- Page title -->
+            <div class="page-title">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xs-12">
+                            <div class="page-title-heading">
+                                <h1 class="title">Create Accommodation</h1>
+                            </div>
+                            <!-- /.page-title-captions -->
+                        </div>
+                        <!-- /.col-md-6 -->
+                        <div class="col-lg-6 col-md-6 col-xs-12">
+                        </div>
+                        <!-- /.col-md-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /.page-title -->
+        </div>
+        <!-- /.wrap-header -->
+              
+
+        <section class="flat-row custom-flat-row pd-destination-details bg-theme">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="wrap-contact-title wrap-touch">
+                            <form action="/profile/accommodations/create"  method="post" enctype="multipart/form-data" novalidate class="contact-form" id="contactform">
+                                <div class="wrap-input">
+                                    <div class="col-md-6">
+                                        <p class="profile-input">                                      
+                                            <input id="demo1" class="demo1 form-input-size" name="images" type="file" multiple placeholder="Select Files" />
+                                            <% if (errors.image) { %>
+                                                <p style="color: red;"><%= errors.image %></p>
+                                            <% } %> 
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">                                      
+                                            <input class="form-input-size" type="text" name="title" placeholder="Title*" aria-required="true" size="30" value="" id="author">
+                                        </p>
+                                        <% if (errors.title) { %>
+                                            <p style="color: red;"><%= errors.title %></p>
+                                        <% } %> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="accommodationType">
+                                                <option disabled selected>Accommodation Type</option>
+                                                <option value="offroad">Home</option>
+                                                <option value="hunting">Aparment</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" id="language" name="amenities" data-placeholder="Amenities" multiple data-multi-select>
+                                                <option>Kitchen</option>
+                                                <option>Pool</option>
+                                                <option>Table Tennis</option>
+                                                <option>Wifi</option>
+                                                <option">TV</option>
+                                                <option">Kitchen</option>
+                                                <option">Washing Machine</option>
+                                                <option">Parking</option>
+                                            </select>
+                                        </p>
+                                        <% if (errors.amenities) { %>
+                                            <p style="color: red;"><%= errors.amenities %></p>
+                                        <% } %> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="profile-input input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
+                                            <input class="form-control form-input-size" name="in" placeholder="In" size="16" type="text" value="" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        </div>
+                                        <% if (errors.in) { %>
+                                            <p style="color: red;"><%= errors.in %></p>
+                                        <% } %> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="profile-input input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
+                                            <input class="form-control form-input-size" name="out" placeholder="Out" size="16" type="text" value="" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        </div>
+                                        <% if (errors.out) { %>
+                                            <p style="color: red;"><%= errors.out %></p>
+                                        <% } %> 
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="profile-input">                                      
+                                            <input class="form-input-size" type="text" name="price" placeholder="Price*" aria-required="true" size="30" id="LestName">
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="currency">
+                                                <option disabled selected>Currency</option>
+                                                <option value="₼">AZN</option>
+                                                <option value="$">USD</option>
+                                                <option value="€">EUR</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="country">
+                                                <option disabled selected>Country</option>
+                                                <option>Azerbaijan</option>
+                                                <option>Turkey</option>
+                                                <option>Georgia</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="city">
+                                                <option disabled selected>City</option>
+                                                <option>Baku</option>
+                                                <option>Shaki</option>
+                                                <option>Guba</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">                                      
+                                            <input class="form-input-size" type="text" name="street" placeholder="Enter Location (Street/Flat)*" aria-required="true" size="30" value="" id="LestName">
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="roomCount">
+                                                <option disabled selected>Room Count</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="bedCount">
+                                                <option disabled selected>Bed Count</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="bathCount">
+                                                <option disabled selected>Bathroom Count</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="guestCount">
+                                                <option disabled selected>Guest Count</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="roomType">
+                                                <option disabled selected>Room Type</option>
+                                                <option>Entire Home</option>
+                                                <option>Private Room</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" id="language" name="rules" data-placeholder="Rules" multiple data-multi-select>
+                                                <option>No Smoking</option>
+                                                <option>Pets Allowed</option>
+                                            </select>
+                                        </p>
+                                        <% if (errors.rules) { %>
+                                            <p style="color: red;"><%= errors.rules %></p>
+                                        <% } %> 
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="promotions">
+                                                <option disabled selected>Promotions</option>
+                                                <option>10</option>
+                                                <option>20</option>
+                                                <option>30</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="weeklyDiscount">
+                                                <option disabled selected>Weekly Discount</option>
+                                                <option>10</option>
+                                                <option>20</option>
+                                                <option>30</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="profile-input">
+                                            <select class="form-input-size" name="monthlyDiscount">
+                                                <option disabled selected>Monthly Discount</option>
+                                                <option>10</option>
+                                                <option>20</option>
+                                                <option>30</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p class="profile-input">
+                                            <textarea name="about" tabindex="4" placeholder="About*" required></textarea>
+                                        </p>
+                                        <p class="form-submit">                 
+                                            <button class="contact-submit">Send</button>
+                                        </p>
+                                    </div>
+                                </div> 
+                            </form>
+                        </div>
+                    </div><!-- /.col-md-9 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section>
+        

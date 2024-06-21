@@ -4,7 +4,7 @@ const path = require('path')
 
 class FileUpload{
 
-    static async uploadFile(req, res, file, location){
+    static async batchFileUpload(req, res, file, location){
         let images = []
         for(let i=0; i < file.length; i++) {
             let avatar = file[i]; 
@@ -23,7 +23,7 @@ class FileUpload{
         return images
     }
 
-    static async deleteFile(req, res, file){
+    static async batchFileDelete(req, res, file){
         if (file) {
             // delete image
             for(let filePath of file){

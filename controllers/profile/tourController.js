@@ -39,7 +39,7 @@ class Tour{
         
         if(errors.isEmpty()){
             // Upload New Image
-            const images = await FileUpload.uploadFile(req, res, req.files.images, "upload/photos/tours/")
+            const images = await FileUpload.batchFileUpload(req, res, req.files.images, "upload/photos/tours/")
 
             const data = {
                 userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
@@ -117,10 +117,10 @@ class Tour{
 
                     if (req?.files?.images) {
                         // Remove Old Image
-                        await FileUpload.deleteFile(req, res, oldImages)
+                        await FileUpload.batchFileDelete(req, res, oldImages)
 
                         // Upload New Image
-                        const images = await FileUpload.uploadFile(req, res, req.files.images, "upload/photos/tours/")
+                        const images = await FileUpload.batchFileUpload(req, res, req.files.images, "upload/photos/tours/")
                         tour.images = images;                        
                     }
 
@@ -154,7 +154,7 @@ class Tour{
         const deleted = await Tours.destroy({where: ids})
 
         if (deleted && tours) {
-            await FileUpload.deleteFile(req, res, imagesPath)
+            await FileUpload.batchFileDelete(req, res, imagesPath)
             return res.redirect('/profile')
         }else {
             return res.status(404).json({ message: `Tours with ID ${ids.id} not found` });

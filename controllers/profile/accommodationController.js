@@ -1,38 +1,17 @@
 const  { validationResult } = require("express-validator") 
 const slugify = require("slugify")
 const {Accommodations} = require("../../models")
+const FileUpload = require("../../services/fileUploadService.js")
 const fs = require('fs');
 const path = require('path');
 
 class Accommodation{
     
-    // Dashboard Side
-    static async getAccommodationsByUserId(req, res){
-        const user_id = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
-        const accommodations = await Accommodations.findAll({where: user_id})
-
-        res.render("./dashboard/accommodations", {layout: 'layouts/dashboard/top-side-bars', errors: {}, accommodations: accommodations });
-    }
-
-    static postAccommodation(req, res){
+    static async postAccommodation(req, res){
         const errors = validationResult(req)
         
         if(errors.isEmpty()){
-            let images = []
-            
-            for(let i=0; i<req.files.images.length; i++) {
-                let avatar = req.files.images[i]; 
-                let avatarPath = 'upload/photos/accommodations/' + Date.now() + '-' + slugify(avatar.name,{ 
-                    lower: true, 
-                    strict: true 
-                }) + '.' + avatar.name.split('.').pop();
-                avatar.mv(avatarPath, err => { 
-                    if(err){ 
-                        return res.status(500).send(err); 
-                    } 
-                })
-                images.push(avatarPath)
-            }
+            let images = await FileUpload.batchFileUpload(req, res, req.files.images, "upload/photos/accommodations/")
             
             const data = {
                 userId: 1, // req.session.user_id, // UPDATE THIS IN PROD ENV
@@ -60,14 +39,14 @@ class Accommodation{
             } 
 
             Accommodations.create(data)
-            res.redirect('/dashboard/accommodations/create')
+            res.redirect('/profile/accommodations/create')
         }else{
             const errorObject = errors.array().reduce((acc, error) => {
                 acc[error.path] = error.msg;
                 return acc;
             }, {})
             
-            res.render("./dashboard/accommodations-create", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject});  
+            res.render("./profile/accommodation-create", {layout: 'layouts/pagesHeader', errors: errorObject});  
         } 
     }
 
@@ -79,7 +58,7 @@ class Accommodation{
         const accommodation  = await Accommodations.findOne({where: ids})
 
         if (accommodation) {
-            res.render("./dashboard/accommodations-update", {layout: 'layouts/dashboard/top-side-bars', accommodation: accommodation, errors: {}});
+            res.render("./profile/accommodation-update", {layout: 'layouts/pagesHeader', accommodation: accommodation, errors: {}});
         }else {
             res.status(404).json({ message: `Accommodation with ID ${ids.id} not found` });
         }
@@ -152,7 +131,7 @@ class Accommodation{
                     }
 
                     await accommodation.save();
-                    res.redirect(`/dashboard/accommodations/update/${ids.id}`)
+                    res.redirect(`/profile/accommodations/update/${ids.id}`)
                 } else {
                     res.status(404).json({ message: 'Accommodation not found' });
                 }
@@ -162,7 +141,7 @@ class Accommodation{
                     return acc;
                 }, {})
                     
-                res.render("./dashboard/accommodations-update", {layout: 'layouts/dashboard/top-side-bars', errors: errorObject, accommodation: {...req.body, id: req.params.id}});                  
+                res.render("./profile/accommodations-update", {layout: 'layouts/pagesHeader', errors: errorObject, accommodation: {...req.body, id: req.params.id}});                  
             }
         } catch (error) {
             console.error(error);
@@ -194,7 +173,7 @@ class Accommodation{
                 }
             }
 
-            res.redirect('/dashboard/accommodations')
+            res.redirect('/profile/accommodations')
             
         }else {
             res.status(404).json({ message: `Accommodition with ID ${ids.id} not found` });

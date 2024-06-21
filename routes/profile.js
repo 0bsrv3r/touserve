@@ -14,11 +14,15 @@ router.use(express.urlencoded({ extended:true }))
 
 router.get('/', Profile.getYourData);
 
+// Tours
 router.get('/tours/create', Tour.getTourCreate);
 router.post('/tours/create', tourValidation, Tour.postTour);
 router.get('/tours/update/:id', Tour.getUpdateTourById);
 router.post('/tours/update/:id', tourUpdateValidation, Tour.postUpdateTourById);
 router.get('/tour/delete/:id', Tour.deleteTourById);
 
+// Accommodations
+router.get('/accommodations/create', (req, res) => {res.render("./profile/accommodation-create", {layout: 'layouts/pagesheader', errors: {} }); });
+// router.get('/accommodations/create', Accommadation.getTourCreate);
 
 module.exports = router;
