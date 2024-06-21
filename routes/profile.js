@@ -25,7 +25,7 @@ router.get('/tour/delete/:id', Tour.deleteTourById);
 router.get('/accommodations/create', (req, res) => {res.render("./profile/accommodation-create", {layout: 'layouts/pagesheader', errors: {} }); });
 router.post('/accommodations/create', accommadationValidation, Accommadation.postAccommodation);
 router.get('/accommodations/update/:id', Accommadation.getUpdateAccommodationById);
-
+router.post('/accommodations/update/:id', accommadationUpdateValidation, Accommadation.postUpdateAccommodationById);
 router.get('/accommodations/delete/:id', Accommadation.deleteAccommoditionById);
 
 module.exports = router;

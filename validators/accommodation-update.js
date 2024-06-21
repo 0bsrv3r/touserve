@@ -39,18 +39,18 @@ module.exports = eventValidation = [
         .withMessage("Title must consist of min 3 and max 50 characters") 
         .escape(),
 
-    body("accommodationType").isIn(['Home', 'Apartment']).withMessage('Room type must be only "specified options"'),
+    body("accommodationType").isIn(['Home', 'Apartment']).withMessage('Accommodation type must be only "specified options"'),
 
     body("in")
         .exists()
         .withMessage('Check-in time is required')
-        .matches(/^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)
+        .matches(/^((0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM))|(([01]?[0-9]|2[0-3]):[0-5][0-9])$/)
         .withMessage('Invalid time format. Use HH:MM AM/PM'),
     
     body('out')
         .exists()
         .withMessage('Check-out time is required')
-        .matches(/^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)
+        .matches(/^((0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM))|(([01]?[0-9]|2[0-3]):[0-5][0-9])$/)
         .withMessage('Invalid time format. Use HH:MM AM/PM'),
     
     body("country")

@@ -66,6 +66,7 @@ class Accommodation{
 
     static async postUpdateAccommodationById(req, res){
         const errors = validationResult(req);
+        console.log(errors)
         const ids = {
             id: req.params.id,
             userId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
@@ -99,34 +100,11 @@ class Accommodation{
                     accommodation.about = req.body.about
 
                     if (req?.files?.images) {
-                        // Remove Old Image
-                        if (oldImages) {
-                            for(let oldImage of oldImages){
-                                const imagePath = path.join("./", oldImage);
-                                fs.unlink(imagePath, (err) => {
-                                    if (err) {
-                                        return res.status(500).send('Failed to delete image file');
-                                    }
-                                });
-                            }
-                        }
+                        // Remove Old Images
+                        await FileUpload.batchFileDelete(req, res, oldImages)
 
-                        // Upload New Image
-                        let images = []
-                        for(let i=0; i<req.files.images.length; i++) {
-                            let avatar = req.files.images[i]; 
-                            let avatarPath = 'upload/photos/accommodations/' + Date.now() + '-' + slugify(avatar.name,{ 
-                                lower: true, 
-                                strict: true 
-                            }) + '.' + avatar.name.split('.').pop();
-                            avatar.mv(avatarPath, err => { 
-                                if(err){ 
-                                    return res.status(500).send(err); 
-                                } 
-                            })
-                            images.push(avatarPath)
-                        }
-
+                        // Upload New Images
+                        const images = await FileUpload.batchFileUpload(req, res, req.files.images, "upload/photos/accommodations/")
                         accommodation.images = images;                        
                     }
 
@@ -141,7 +119,7 @@ class Accommodation{
                     return acc;
                 }, {})
                     
-                res.render("./profile/accommodations-update", {layout: 'layouts/pagesHeader', errors: errorObject, accommodation: {...req.body, id: req.params.id}});                  
+                res.render("./profile/accommodation-update", {layout: 'layouts/pagesHeader', errors: errorObject, accommodation: {...req.body, id: req.params.id}});                  
             }
         } catch (error) {
             console.error(error);

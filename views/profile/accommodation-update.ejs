@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="wrap-contact-title wrap-touch">
-                            <form action="/profile/accommodations/create"  method="post" enctype="multipart/form-data" novalidate class="contact-form" id="contactform">
+                            <form action="/profile/accommodations/update/<%= accommodation.id %>"  method="post" enctype="multipart/form-data" novalidate class="contact-form" id="contactform">
                                 <div class="wrap-input">
                                     <div class="col-md-6">
                                         <p class="profile-input">                                      
@@ -44,7 +44,7 @@
                                             <select class="form-input-size" name="accommodationType">
                                                 <option disabled selected>Accommodation Type</option>
                                                 <option>Home</option>
-                                                <option>Aparment</option>
+                                                <option>Apartment</option>
                                             </select>
                                         </p>
                                     </div>
