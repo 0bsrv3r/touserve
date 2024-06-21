@@ -45,13 +45,13 @@ module.exports = eventValidation = [
         .exists()
         .withMessage('Check-in time is required')
         .matches(/^((0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM))|(([01]?[0-9]|2[0-3]):[0-5][0-9])$/)
-        .withMessage('Invalid time format. Use HH:MM AM/PM'),
+        .withMessage('Invalid time format. Use HH:MM'),
     
     body('out')
         .exists()
         .withMessage('Check-out time is required')
         .matches(/^((0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM))|(([01]?[0-9]|2[0-3]):[0-5][0-9])$/)
-        .withMessage('Invalid time format. Use HH:MM AM/PM'),
+        .withMessage('Invalid time format. Use HH:MM'),
     
     body("country")
         .notEmpty()

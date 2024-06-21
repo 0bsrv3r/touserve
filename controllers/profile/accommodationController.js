@@ -66,7 +66,6 @@ class Accommodation{
 
     static async postUpdateAccommodationById(req, res){
         const errors = validationResult(req);
-        console.log(errors)
         const ids = {
             id: req.params.id,
             userId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV

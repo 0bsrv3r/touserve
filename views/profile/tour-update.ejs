@@ -31,23 +31,23 @@
                             <form action="/profile/tours/update/<%= tour.id %>"  method="post" enctype="multipart/form-data" novalidate class="contact-form" id="contactform">
                                 <div class="wrap-input">
                                     <div class="col-md-6">
-                                        <p class="profile-input">                                      
+                                        <div class="profile-input">                                      
                                             <input id="demo1" class="demo1 form-input-size" name="images" type="file" multiple placeholder="Select Files" />
                                             <% if (errors.image) { %>
                                                 <p style="color: red;"><%= errors.image %></p>
                                             <% } %> 
-                                        </p>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="profile-input">                                      
+                                        <div class="profile-input">                                      
                                             <input class="form-input-size" type="text" name="title" placeholder="Title*" aria-required="true" size="30" value="" id="author">
-                                        </p>
-                                        <% if (errors.title) { %>
-                                            <p style="color: red;"><%= errors.title %></p>
-                                        <% } %> 
+                                            <% if (errors.title) { %>
+                                                <p style="color: red;"><%= errors.title %></p>
+                                            <% } %> 
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="profile-input">
+                                        <div class="profile-input">
                                             <select class="form-input-size" name="category">
                                                 <option disabled selected>Category</option>
                                                 <option value="culture-art">Culture & Art</option>
@@ -56,42 +56,57 @@
                                                 <option value="offroad">OffRoad</option>
                                                 <option value="hunting">Hunting</option>
                                             </select>
-                                        </p>
+                                            <% if (errors.category) { %>
+                                                <p style="color: red;"><%= errors.category %></p>
+                                            <% } %> 
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="profile-input">
+                                        <div class="profile-input">
                                             <select class="form-input-size" name="guide">
                                                 <option disabled selected>Guide</option>
                                                 <% for(let i=0; i < guides.length; i++ ){ %>
                                                     <option value="<%= guides[i].id %>"><%= guides[i].name %> <%= guides[i].surname %></option>
                                                 <% } %>
                                             </select>
-                                        </p>
+                                            <% if (errors.guide) { %>
+                                                <p style="color: red;"><%= errors.guide %></p>
+                                            <% } %> 
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <p class="profile-input">
+                                        <div class="profile-input">
                                             <select class="form-input-size" name="country">
                                                 <option disabled selected>Country</option>
                                                 <option>Azerbaijan</option>
                                                 <option>Turkey</option>
                                                 <option>Georgia</option>
                                             </select>
-                                        </p>
+                                            <% if (errors.country) { %>
+                                                <p style="color: red;"><%= errors.country %></p>
+                                            <% } %> 
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <p class="profile-input">
+                                        <div class="profile-input">
                                             <select class="form-input-size" name="city">
                                                 <option disabled selected>City</option>
                                                 <option>Baku</option>
                                                 <option>Shaki</option>
                                                 <option>Guba</option>
                                             </select>
-                                        </p>
+                                            <% if (errors.city) { %>
+                                                <p style="color: red;"><%= errors.city %></p>
+                                            <% } %> 
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="profile-input">                                      
+                                        <div class="profile-input">                                      
                                             <input class="form-input-size" type="text" name="area" placeholder="Area*" aria-required="true" size="30" value="" id="LestName">
-                                        </p>
+                                            <% if (errors.area) { %>
+                                                <p style="color: red;"><%= errors.area %></p>
+                                            <% } %> 
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="profile-input input-group date form_date" data-date="" data-date-format="mm/dd/yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -99,6 +114,9 @@
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         </div>
+                                        <% if (errors.date) { %>
+                                            <p style="color: red;"><%= errors.date %></p>
+                                        <% } %> 
                                     </div>
                                     <div class="col-md-3">
                                         <div class="profile-input input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
@@ -111,7 +129,7 @@
                                         <% } %> 
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="profile-input">
+                                        <div class="profile-input">
                                             <select class="form-input-size" id="language" name="inclusions" data-placeholder="Inclusions" multiple data-multi-select>
                                                 <option value="Walking">Walking</option>
                                                 <option value="Breakfast">Breakfast</option>
@@ -119,13 +137,13 @@
                                                 <option value="Dinner">Dinner</option>
                                                 <option value="Hotel">Hotel</option>
                                             </select>
-                                        </p>
-                                        <% if (errors.inclusions) { %>
-                                            <p style="color: red;"><%= errors.inclusions %></p>
-                                        <% } %> 
+                                            <% if (errors.inclusions) { %>
+                                                <p style="color: red;"><%= errors.inclusions %></p>
+                                            <% } %> 
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="profile-input">
+                                        <div class="profile-input">
                                             <select class="form-input-size" name="duration">
                                                 <option disabled selected>Duration</option>
                                                 <option value="1">1 day</option>
@@ -135,30 +153,45 @@
                                                 <option value="5">5 days</option>
                                                 <option value="6">6 days</option>
                                             </select>
-                                        </p>
+                                            <% if (errors.duration) { %>
+                                                <p style="color: red;"><%= errors.duration %></p>
+                                            <% } %> 
+                                        </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <p class="profile-input">                                      
+                                        <div class="profile-input">                                      
                                             <input class="form-input-size" type="text" name="price" placeholder="Price*" aria-required="true" size="30" id="LestName">
-                                        </p>
+                                            <% if (errors.price) { %>
+                                                <p style="color: red;"><%= errors.price %></p>
+                                            <% } %> 
+                                        </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <p class="profile-input">
+                                        <div class="profile-input">
                                             <select class="form-input-size" name="currency">
                                                 <option disabled selected>Currency</option>
                                                 <option value="₼">AZN</option>
                                                 <option value="$">USD</option>
                                                 <option value="€">EUR</option>
                                             </select>
-                                        </p>
+                                            <% if (errors.currency) { %>
+                                                <p style="color: red;"><%= errors.currency %></p>
+                                            <% } %> 
+                                        </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <p class="profile-input">
+                                        <div class="profile-input">
                                             <textarea name="overview" tabindex="4" placeholder="Overview*" required></textarea>
-                                        </p>
-                                        <p class="profile-input">
+                                            <% if (errors.overview) { %>
+                                                <p style="color: red;"><%= errors.overview %></p>
+                                            <% } %> 
+                                        </div>
+                                        <div class="profile-input">
                                             <textarea name="additional" tabindex="4" placeholder="Additional Info" required></textarea>
-                                        </p>
+                                            <% if (errors.additional) { %>
+                                                <p style="color: red;"><%= errors.additional %></p>
+                                            <% } %> 
+                                        </div>
                                         <p class="form-submit">                 
                                             <button class="contact-submit">Send</button>
                                         </p>
