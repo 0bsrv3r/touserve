@@ -32,6 +32,7 @@ $('.form_time').datetimepicker({
         });
 // Date Time Picker END
 
+/* Multi-File Upload Plugin Style Start */
 (function ($) {
 	/**
 	 * Create drag and drop element.
@@ -130,3 +131,33 @@ $('.form_time').datetimepicker({
 jQuery(document).ready(function ($) {
 	$(".demo1").kwtFileUpload();
 });
+/* Multi-File Upload Plugin Style END */
+
+/*PROFILE GUIDE TABLE START*/
+$(function() {
+
+	$('.js-check-all').on('click', function() {
+  
+		if ( $(this).prop('checked') ) {
+			$('th input[type="checkbox"]').each(function() {
+				$(this).prop('checked', true);
+		  $(this).closest('tr').addClass('active');
+			})
+		} else {
+			$('th input[type="checkbox"]').each(function() {
+				$(this).prop('checked', false);
+		  $(this).closest('tr').removeClass('active');
+			})
+		}
+  
+	});
+  
+	$('th[scope="row"] input[type="checkbox"]').on('click', function() {
+	  if ( $(this).closest('tr').hasClass('active') ) {
+		$(this).closest('tr').removeClass('active');
+	  } else {
+		$(this).closest('tr').addClass('active');
+	  }
+	});
+  });
+/*PROFILE GUIDE TABLE START*/
