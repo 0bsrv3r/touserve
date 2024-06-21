@@ -6,25 +6,17 @@
                         <div class="col-lg-6 col-md-6 col-xs-12">
                             <div class="page-title-heading">
                                 <h1 class="title">Profile</h1>
-                            </div>
-                            <!-- /.page-title-captions -->
-                        </div>
-                        <!-- /.col-md-6 -->
+                            </div> <!-- /.page-title-captions -->
+                        </div><!-- /.col-md-6 -->
                         <div class="col-lg-6 col-md-6 col-xs-12">
-                        </div>
-                        <!-- /.col-md-6 -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.container -->
-            </div>
-            <!-- /.page-title -->
-        </div>
-        <!-- /.wrap-header -->
+                        </div><!-- /.col-md-6 -->
+                    </div> <!-- /.row -->
+                </div><!-- /.container -->
+            </div><!-- /.page-title -->
+        </div><!-- /.wrap-header -->
 
         <!-- Blog posts -->
         
-
         <section class="flat-row custom-flat-row pd-destination-details bg-theme">
             <div class="container">
                 <div class="row">
@@ -176,8 +168,10 @@
                     <div class="col-md-12 photos enable-hide displayTwo">
                         <div class="profile-button">
                             <h3 class="profile-h3">Your Accommodations</h3>
-                            <p class="form-submit">                 
-                                <button class="contact-submit">Create Accommodation</button>
+                            <p class="form-submit">
+                                <a  href="/profile/accommodations/create">
+                                    <button>Create Accommodation</button>
+                                </a>                  
                             </p>
                         </div>
                         <% for(let accommodation of accommodations){ %>
@@ -315,6 +309,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-12 photos enable-hide displayFour">
                         <div class="flat-tabs" data-effect="fadeIn">
                             <div class="wrap-radio menu-tab">
