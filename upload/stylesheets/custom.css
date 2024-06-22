@@ -227,11 +227,21 @@
                              /*========= MAIN PAGE END ==========*/
 
                              /*========= Profile PAGE START ==========*/
-/*PROFILE SLIDER START*/
-.wrap-title.profile-overview.s2{
-    padding: 0px 0 14px;
+.custom-profile-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.custom-profile-image h4{
+    text-align: center;
+    margin-top: 10px;
 }
 
+/*PROFILE CUSTOM SLIDER START*/
+.wrap-title.profile-overview.s2{
+    padding: 50px 0 14px;
+}
 #category-slider.profile{
     background-color: #f8f8f8;
     padding: 40px 0;
@@ -271,6 +281,29 @@
     top:35px;
     left: 33px;
 }
+
+/* Change Email & Invite Guide Form Start */
+.wrap-form-update #profile-setting{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wrap-form-update #profile-setting .form-input-size{
+    width: 100%;
+    height: 50px;
+}
+/* Change Email & Invite Guide Form End*/
+/* Change Password Start */
+#profile-setting .change-input{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+#profile-setting .change-input .profile-input{
+    margin: 0 10px;
+    width: 50%;
+}
+/* Change Password END */
 /*PROFILE SLIDER END*/
 
 /*PROFILE GUIDE TABLE START*/
@@ -744,10 +777,11 @@
     margin-top: 69px;
 }
 .custom-wrap-destination-detail{
-    height: 365px;
+    display: flex;
 }
 .custom-box-trip-review{
     margin: 0;
+    width: 100%;
 }
 .custom-wrap-title{
     padding: 0;

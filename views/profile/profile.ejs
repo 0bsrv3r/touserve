@@ -23,7 +23,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="wrap-destination-detail custom-wrap-destination-detail">
                             <div class="box-trip-review custom-box-trip-review">
-                                <div class="col-md-4 col-sm-4 col-xs-12 custom-resp-center">
+                                <div class="col-md-4 col-sm-4 col-xs-12 custom-profile-image">
                                     <div class="featured-trip">
                                         <div class="avatar-upload">
                                             <div class="avatar-edit">
@@ -35,10 +35,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="content-trip custom-content-trip">
                                         <h4 class="title"><a href="#">username</a></h4>
-                                        <p class="sub-title">Mountain, Rural, France</p>
                                     </div>
                                 </div>
 
@@ -93,7 +90,8 @@
                                     <div class="drop dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a data-value=0 href="#" class="dropdown-item">Your Tours</a>
                                         <a data-value=1 href="#" class="dropdown-item">Your Acccommodations</a>
-                                        <a data-value=2 href="#" class="dropdown-item">Guides</a>
+                                        <a data-value=2 href="#" class="dropdown-item">Your Guides</a>
+                                        <a data-value=3 href="#">Settings</a>
                                     </div>
                                 </div>
                             </li>
@@ -106,7 +104,7 @@
                             <ul class="profile-slider">
                                 <li class="active"><a data-value=0 href="#">Your Tours</a></li>
                                 <li><a data-value=1 href="#">Your Accommodations</a></li>
-                                <li><a data-value=2 href="#">Guides</a></li>
+                                <li><a data-value=2 href="#">Your Guides</a></li>
                                 <li><a data-value=3 href="#">Settings</a></li>
                             </ul>
                         </div>
@@ -114,7 +112,7 @@
                     </div>
                     <div class="col-md-12 photos displayOne">
                         <div class="profile-button">
-                            <h3 class="profile-h3">Your Tours</h3>
+                            <h3 class="profile-h3">Tours</h3>
                             <p class="form-submit">
                                 <a  href="/profile/tours/create">
                                     <button>Create Tour</button>
@@ -167,7 +165,7 @@
 
                     <div class="col-md-12 photos enable-hide displayTwo">
                         <div class="profile-button">
-                            <h3 class="profile-h3">Your Accommodations</h3>
+                            <h3 class="profile-h3">Accommodations</h3>
                             <p class="form-submit">
                                 <a  href="/profile/accommodations/create">
                                     <button>Create Accommodation</button>
@@ -267,15 +265,15 @@
                                 <div class="content-inner">
                                     <div class="wrap-form-update">
                                         <form class="update-form" action="">
-                                            <div class="update-input">
-                                                <div class="form-group">
+                                            <div class="update-input" id="profile-setting">
+                                                <div class="change-input">
                                                     <div class="profile-input">                                      
-                                                        <input class="form-input-size" type="email" name="email" placeholder="Email*" aria-required="true" size="30" value="" id="author">
+                                                        <input class="form-input-size" type="email" name="guideEmail" placeholder="Email*" aria-required="true" size="30" value="" id="author">
                                                     </div>
                                                 </div>
                                                 <div class="wrap-button">
                                                     <p class="update-form-submit">
-                                                        <button class="update-submit custom-update-submit">Update Now</button>
+                                                        <button class="update-submit custom-update-submit">Update</button>
                                                     </p>
                                                 </div>
                                             </div>
@@ -315,28 +313,15 @@
                                 <div class="content-inner active">
                                     <div class="wrap-form-update">
                                         <form class="update-form" action="">
-                                            <div class="update-input">
-                                                <div class="form-group">
-                                                    <label for="dtp_input2" class="col-md-1 control-label">From</label>
-                                                    <div class="input-group date form_date col-md-3" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                        <input class="form-control" size="16" type="text" value="" readonly>
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            <div class="update-input" id="profile-setting">
+                                                <div class="change-input">
+                                                    <div class="profile-input">                                      
+                                                        <input class="form-input-size" type="email" name="email" placeholder="Email*" aria-required="true" size="30" value="" id="author">
                                                     </div>
-                                                    <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                </div>
-                                                 <div class="form-group">
-                                                    <label for="dtp_input2" class="col-md-1 control-label">To</label>
-                                                    <div class="input-group date form_date col-md-3" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                        <input class="form-control" size="16" type="text" value="" readonly>
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                    </div>
-                                                    <input type="hidden" id="dtp_input2" value="" /><br/>
                                                 </div>
                                                 <div class="wrap-button">
                                                     <p class="update-form-submit">
-                                                        <button class="update-submit custom-update-submit">Update Now</button>
+                                                        <button class="update-submit custom-update-submit">Update</button>
                                                     </p>
                                                 </div>
                                             </div>
@@ -347,7 +332,26 @@
 
                                 <div class="content-inner">
                                     <div class="wrap-form-update">
-                                        <div>hello</div>
+                                        <form class="update-form" action="">
+                                            <div class="update-input" id="profile-setting">
+                                                <div class="change-input">
+                                                    <div class="profile-input">                                      
+                                                        <input class="form-input-size" type="password" name="currentPass" placeholder="Current Password*" aria-required="true" size="30" value="" id="author">
+                                                    </div>
+                                                    <div class="profile-input">                                      
+                                                        <input class="form-input-size" type="password" name="newPass1" placeholder="New Password*" aria-required="true" size="30" value="" id="author">
+                                                    </div>
+                                                    <div class="profile-input">                                      
+                                                        <input class="form-input-size" type="password" name="newPass2" placeholder="Retype New Password*" aria-required="true" size="30" value="" id="author">
+                                                    </div>
+                                                </div>    
+                                                <div class="wrap-button">
+                                                    <p class="update-form-submit">
+                                                        <button class="update-submit custom-update-submit">Update</button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div><!-- /.content-inner -->
 
