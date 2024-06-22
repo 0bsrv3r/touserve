@@ -143,16 +143,22 @@
                                                 <div class="money"> <span>$</span>784</div>
                                                 <div class="sub-title">2 days</div>
     
-                                                <div class="wrap-star s2">                                            
-                                                    <ul class="star">
-                                                        <li></li>
-                                                        <li></li>
-                                                        <li></li>
-                                                        <li></li>
-                                                        <li></li>
-                                                    </ul>
-                                                    <a href="/profile/tours/update/<%= tour.id%>">Update</a>
-                                                    <a href="/profile/tour/delete/<%= tour.id%>">Delete</a>
+                                                <div class="wrap-star s2 delete-update-icons">                                            
+                                                    <span>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                    </span>
+                                                    <div>
+                                                        <a href="/profile/tours/update/<%= tour.id%>">
+                                                            <i class="fa fa-pencil-square-o"></i>
+                                                        </a>
+                                                        <a href="/profile/tour/delete/<%= tour.id%>">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                   </div>
                                                 </div> <!-- /.wrap-star -->
                                             </div>
                                         </div> <!-- /.box-wrap -->
@@ -172,40 +178,49 @@
                                 </a>                  
                             </p>
                         </div>
+
                         <% for(let accommodation of accommodations){ %>
-                        <div class="col-md-4">
-                            <div class="post-wrap">
-                                <article class="post clearfix">
-                                    <div class="featured-post">
-                                        <img src="/<%= accommodation.images[0] %>" alt="image">
-                                    </div><!-- /.feature-post -->
-                                    <div class="content-post">                              
-                                        <ul class="meta-post top clearfix">                                    
-                                            <li class="day"> 
-                                                <a href="#">America</a>
-                                                <a href="#">01 Jan 2018</a>
-                                                <a href="#">Douchebag</a>
-                                            </li>
-                                        </ul><!-- /.meta-post -->
-                                        <h4 class="title-post"><a href="blog-single.html">TopTravel Blog to Discover this Summer</a></h4>
-                                        <div class="entry excerpt-v1">                              
-                                            <p>Ma quand lingue co grammat resultant lingue es simpe regular lingues.</p>                                        
-                                        </div> 
-                                        <ul class="meta-post clearfix">
-                                            <li class="vote">
-                                                <a href="#">168</a>
-                                            </li>
-                                            <li class="author">
-                                                <a href="#">35</a>
-                                            </li>
-                                            <a href="/profile/accommodations/update/<%= accommodation.id%>">Update</a>
-                                            <a href="/profile/accommodations/delete/<%= accommodation.id%>">Delete</a>
-                                        </ul><!-- /.meta-post -->  
-                                        <a class="readmore" href="">Read More</a>                             
-                                    </div><!-- /.content-post -->                 
-                                </article>
-                            </div><!-- /.post-wrap -->                                  
-                        </div><!-- /.col-md-4 -->
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="flat-imagebox style2 v3">
+                                <div class="item">
+                                    <a href="accommodation-details/<%= accommodation.id %>">
+                                        <div class="imagebox">
+                                            <div class="box-wrap">
+                                                <div class="box-image">
+                                                    <a href=""><img src="/<%= accommodation.images[0] %>" alt="img"></a>
+                                                    <div class="overlay"></div> <!-- /.overlay -->
+                                                </div>
+                                                <div class="box-content">
+                                                    <h4><%= accommodation.title %></h4>
+                                                    <p>
+                                                        <b><%= accommodation.country %>, <%= accommodation.city %></b> - <%= accommodation.roomType %> (<%= accommodation.bedCount %> bed) <br>
+                                                    </p>
+                                                    <div class="delete-update-icons">
+                                                        <span>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                        </span>
+                                                        <div>
+                                                            <a href="/profile/accommodations/update/<%= accommodation.id%>">
+                                                                <i class="fa fa-pencil-square-o"></i>
+                                                            </a>
+                                                            <a href="/profile/accommodations/delete/<%= accommodation.id%>">
+                                                                <i class="fa fa-trash-o"></i>
+                                                            </a>
+                                                       </div>
+                                                    </div>
+                                                    <div class="money"> <%= accommodation.price %> <span><%= accommodation.currency %> per night</span></div>
+                                                </div>
+                                            </div> <!-- /.box-wrap -->
+                                        </div>
+                                    </a> <!-- /.imagebox -->
+                                </div> <!-- /.item -->
+                                <div class="dividers dividers-imagebox s2"></div>
+                            </div> <!-- /.flat-imagebox -->
+                        </div> <!-- /.col-md-4 -->                        
                         <% } %>
                     </div>
 

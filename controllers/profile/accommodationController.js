@@ -1,9 +1,6 @@
 const  { validationResult } = require("express-validator") 
-const slugify = require("slugify")
-const {Accommodations} = require("../../models")
+const {Accommodations, Tours} = require("../../models")
 const FileUpload = require("../../services/fileUploadService.js")
-const fs = require('fs');
-const path = require('path');
 
 class Accommodation{
     
@@ -147,18 +144,24 @@ class Accommodation{
     }
 
     // Front Side
+    static async getRecommendedTours(req, res){
+        const tours = await Tours.findAll({order: [['createdAt', 'DESC']],limit: 2})
+        return tours
+    }
+    
     static async getAccommodations(req, res){
         const accommodations = await Accommodations.findAll()
-        res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations})
+        const tours = await Accommodation.getRecommendedTours()
+        return res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations, tours: tours})
     }
 
     static async getAccommodationById(req, res){
         const id = req.params
         const accommodation = await Accommodations.findOne({where: id })
         if(accommodation != undefined){
-            res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation})
+            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation})
         }else{
-            res.render("404", {layout: 'layouts/pagesheader'});
+            return res.render("404", {layout: 'layouts/pagesheader'});
         }
     }
 }

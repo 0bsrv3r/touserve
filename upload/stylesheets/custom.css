@@ -15,11 +15,12 @@
     background: #ffffff;
     padding-bottom: 140px;
 }
-#category-slider [class] { transition: .2s ease-in-out; }
+#category-slider [class] { 
+    transition: .2s ease-in-out; 
+}
 #category-slider .responsiv {
     display: none; 
 }
-
 #category-slider .responsiv ul {
       display: flex;
       justify-content: center;
@@ -28,7 +29,6 @@
 #category-slider .responsiv ul li:first-child {
   margin-top: 5px; 
 }
-
 #category-slider .responsiv ul li {
   font-size: 15px;
   line-height: 1.6;
@@ -63,7 +63,6 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   border: none; 
 }
-
 #category-slider .responsiv ul li .drop a {
   line-height: 1.4;
   padding: 5px 20px;
@@ -74,11 +73,9 @@
   padding-left: 15px;
   padding-right: 15px; 
 }
-
 #category-slider .imageHeader ul {
   border-right: 1px solid #bdbdbd; 
 }
-
 #category-slider .imageHeader ul .active {
   border-right: 1px solid #f57e57; 
 }
@@ -88,7 +85,6 @@
   display: block;
   text-align: right; 
 }
-
 #category-slider .imageHeader ul li a {
   color: #868686;
   padding: 0 20px 0 0;
@@ -98,7 +94,6 @@
   text-decoration: none;
   font-weight: 400; 
 }
-
 #category-slider .photos h3 {
   line-height: 1.13;
   font-size: 46px;
@@ -115,7 +110,6 @@
   left: 20px;
   background: #fd7e21; 
 }
-
 #category-slider .photos .btn {
   line-height: 1.33;
   font-size: 18px;
@@ -145,7 +139,6 @@
   color: #868686;
   margin: 31px 0 10px; 
 }
-
 #category-slider .photos .noPadding ul {
   padding: 0 30px;
   margin: 0; 
@@ -306,6 +299,19 @@
 /* Change Password END */
 /*PROFILE SLIDER END*/
 
+.flat-imagebox .delete-update-icons{
+    position: relative;
+    z-index: 99;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flat-imagebox .delete-update-icons div a{
+    margin-left: 5px;
+    font-size: 20px;
+    color: #fd7e21;;
+}
+
 /*PROFILE GUIDE TABLE START*/
 .custom-table {
     min-width: 900px; 
@@ -370,7 +376,7 @@
 .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
     color: #fff; 
 }
-  
+
 /* Custom Checkbox */
 .control {
     display: block;

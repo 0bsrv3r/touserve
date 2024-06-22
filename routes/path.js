@@ -31,7 +31,7 @@ router.get('/tour-details/:id', Tour.getTourById);
 router.get('/tours/:category', Tour.getTourByCategory);
 
 // Accommodation
-router.get('/accommodation', Accommadation.getAccommodations)
+router.get('/accommodations', Accommadation.getAccommodations)
 router.get('/accommodation-details/:id', Accommadation.getAccommodationById)
 
 // Guides
