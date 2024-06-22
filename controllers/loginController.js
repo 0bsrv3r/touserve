@@ -22,7 +22,7 @@ class Authentication {
                 return acc;
             }, {})
 
-            res.render('register',{ errors: errorObject, layout: false }) 
+            return res.render('register',{ errors: errorObject, layout: false }) 
         }
     }
 
@@ -36,12 +36,12 @@ class Authentication {
         if(user != undefined){
             req.session.username = user.uname 
             req.session.user_id = user.id
-            res.redirect("/dashboard")
+            return res.redirect("/profile")
         }else{
             const errorObject = {
                 wrongAttempt: "Your username or password is incorrect"
             }
-            res.render('login',{ errors: errorObject, layout: false })
+            return res.render('login',{ errors: errorObject, layout: false })
         }
     }
 }

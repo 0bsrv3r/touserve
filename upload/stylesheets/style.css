@@ -246,7 +246,7 @@ input[type="submit"] {
     color: #ffffff;    
     letter-spacing: 0.4px;
     padding: 21px 53px 20px 55px;
-    border-radius: 50px;
+    border-radius: 2px;
     background-color: #fd7e21;
     -webkit-transition: all 0.3s ease 0s;
        -moz-transition: all 0.3s ease 0s;
