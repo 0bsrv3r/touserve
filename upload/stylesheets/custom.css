@@ -682,6 +682,12 @@
 
 
                             /*========= TOURS PAGE START ==========*/
+#demos{
+    padding: 20px 0;
+}
+#demos .imagebox .box-image{
+    height: 250px;
+}
 .flat-imagebox.style3 .box-wrap>a{
     position: absolute;
     top: 0;
@@ -798,6 +804,11 @@
 .box-map .custom-info-map{
     width: 100%;
 }
+.sidebar .thumb.overlays2{
+    width: 75px ;
+    margin-top: 0 !important;
+}
+
 @media screen and (max-width:767px){
     .custom-wrap-destination-detail{
         height: auto;
@@ -1007,7 +1018,7 @@
     display: flex;
     justify-content: center;
 }
-#mainnav ul li {
+.dashboard-custom-menu #mainnav ul li {
     display: inline-block;
 }
 .dashboard-custom-menu #mainnav ul li a{
