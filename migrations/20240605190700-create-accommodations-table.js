@@ -9,11 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {       // foreign key
+      customerId: {       // foreign key
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users', // name of the target model
+          model: 'Customers', // name of the target model
           key: 'id',      // key in the target model
         },
         onUpdate: 'CASCADE',
@@ -93,6 +93,9 @@ module.exports = {
       about: {
         allowNull: false,
         type: Sequelize.TEXT
+      },
+      status: {
+        type: Sequelize.STRING(15)
       },
       stars: {
         type: Sequelize.INTEGER

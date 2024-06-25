@@ -6,27 +6,36 @@ module.exports = (sequelize) => {
     static associate(models) {
       // Association definition
       this.hasMany(models.Events, { foreignKey: 'userId', as: 'events' });
-      this.hasMany(models.Guides, { foreignKey: 'userId', as: 'guides' });
-      this.hasMany(models.Tours,  { foreignKey: 'userId', as: 'tours' });
     }
   }
   Users.init({
     uname: {
-        allowNull: false,
-        type: DataTypes.STRING(70)   
+      allowNull: false,
+      type: DataTypes.STRING(70)
     },
     email: {
-        allowNull: false,
-        type: DataTypes.STRING(100)
+      allowNull: false,
+      type: DataTypes.STRING(100)
     },
     password: {
-        allowNull: false,
-        type: DataTypes.STRING
+      allowNull: false,
+      type: DataTypes.STRING(70)
     },
-    role: {
-        allowNull: false,
-        type: DataTypes.STRING(30)
-    }
+    number: {
+      type: DataTypes.INTEGER(20)
+    },
+    firstName: {
+      type: DataTypes.STRING(50)
+    },
+    lastName: {
+      type: DataTypes.STRING(70)
+    },
+    verifiedAt: {
+      type: DataTypes.STRING(50)
+    },
+    image: {
+      type: DataTypes.STRING(200)
+    },
   }, {
     sequelize,
     modelName: 'Users',

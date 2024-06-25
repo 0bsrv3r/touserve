@@ -11,7 +11,7 @@ class Accommodation{
             let images = await FileUpload.batchFileUpload(req, res, req.files.images, "upload/photos/accommodations/")
             
             const data = {
-                userId: 1, // req.session.user_id, // UPDATE THIS IN PROD ENV
+                customerId: 1, // req.session.user_id, // UPDATE THIS IN PROD ENV
                 title: req.body.title, 
                 accommodationType: req.body.accommodationType, 
                 country: req.body.country, 
@@ -50,7 +50,7 @@ class Accommodation{
     static async getUpdateAccommodationById(req, res){
         const ids  = {
             id: req.params.id,
-            userId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
+            customerId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
         }
         const accommodation  = await Accommodations.findOne({where: ids})
 
@@ -65,7 +65,7 @@ class Accommodation{
         const errors = validationResult(req);
         const ids = {
             id: req.params.id,
-            userId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
+            customerId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
         }
 
         try {
@@ -126,7 +126,7 @@ class Accommodation{
     static async deleteAccommoditionById(req, res){
         const ids = {
             id: req.params.id,
-            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+            customerId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
         }
 
         const accommodations = await Accommodations.findOne({where:ids})

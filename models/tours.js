@@ -5,16 +5,16 @@ module.exports = (sequelize) => {
   class Tours extends Model {
     static associate(models) {
       // Association definition
-      Tours.belongsTo(models.Guides, { foreignKey: 'guideId', as: 'guides' });
-      Tours.belongsTo(models.Users, { foreignKey: 'userId', as: 'users' });
+      Tours.belongsTo(models.Customers, { foreignKey: 'customerId', as: 'customers' });
+      Tours.belongsTo(models.Customers, { foreignKey: 'guideId', as: 'guides' });
     }
   }
   Tours.init({
-    userId: {       // foreign key
+    customerId: {       // foreign key
         allowNull: false,
         type: DataTypes.INTEGER,
         references: {
-          model: 'Users', // name of the target model
+          model: 'Customers', // name of the target model
           key: 'id',      // key in the target model
         }
     },
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         type: DataTypes.INTEGER,
         references: {
-          model: 'Guides', // name of the target model
+          model: 'Customers', // name of the target model
           key: 'id',      // key in the target model
         }
     },
@@ -77,6 +77,9 @@ module.exports = (sequelize) => {
     },
     additional: {
         type: DataTypes.TEXT
+    },
+    status: {
+        type: DataTypes.STRING(15)
     },
     stars: {
         type: DataTypes.INTEGER

@@ -4,15 +4,15 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Accommodations extends Model {
     static associate(models) {
-      Accommodations.belongsTo(models.Users, { foreignKey: 'userId', as: 'users' });
+      Accommodations.belongsTo(models.Customers, { foreignKey: 'customerId', as: 'customers' });
     }
   }
   Accommodations.init({
-    userId: {       // foreign key
+    customerId: {       // foreign key
         allowNull: false,
         type: DataTypes.INTEGER,
         references: {
-          model: 'Users', // name of the target model
+          model: 'Customers', // name of the target model
           key: 'id',      // key in the target model
         }
     },
@@ -89,6 +89,9 @@ module.exports = (sequelize) => {
     about: {
         allowNull: false,
         type: DataTypes.TEXT
+    },
+    status: {
+        type: DataTypes.STRING(15)
     },
     stars: {
         type: DataTypes.INTEGER

@@ -7,8 +7,6 @@ const tourValidation  = require("../validators/tour.js");
 const tourUpdateValidation  = require("../validators/tour-update.js"); 
 const accommadationValidation  = require("../validators/accommodation.js"); 
 const accommadationUpdateValidation  = require("../validators/accommodation-update.js"); 
-const guideValidation  = require("../validators/guide.js"); 
-const guideUpdateValidation  = require("../validators/guide-update.js"); 
 
 router.use(express.urlencoded({ extended:true }))
 

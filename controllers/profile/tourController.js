@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator")
 const slugify = require("slugify")
-const {Tours, Guides, Accommodations} = require("../../models")
+const {Tours, Customers, Accommodations} = require("../../models")
 const FileUpload = require("../../services/fileUploadService.js")
 const fs = require('fs')
 const path = require('path')
@@ -9,8 +9,8 @@ class Tour{
 
     // Profile  Pages
     static async getGuideName(req, res){
-        const data = {userId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
-        const guideNames =  await Guides.findAll({where: data})  
+        const data = {companyId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
+        const guideNames =  await Customers.findAll({where: data})  
         return guideNames
     }
 
@@ -42,7 +42,7 @@ class Tour{
             const images = await FileUpload.batchFileUpload(req, res, req.files.images, "upload/photos/tours/")
 
             const data = {
-                userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
+                customerId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
                 guideId: req.body.guide, 
                 title: req.body.title, 
                 tourType: req.body.tourType, 
@@ -71,7 +71,7 @@ class Tour{
     static async getUpdateTourById(req, res){
         const ids  = {
             id: req.params.id,
-            userId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
+            customerId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
         }
         const tour  = await Tours.findOne({where: ids, include: "guides"})
         const guideNames = await Tour.getGuideName()
@@ -87,7 +87,7 @@ class Tour{
         const errors = validationResult(req);
         const ids = {
             id: req.params.id,
-            userId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
+            customerId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
         }
 
         // Get Guides assiciated with Tour owner
@@ -145,7 +145,7 @@ class Tour{
     static async deleteTourById(req, res){
         const ids = {
             id: req.params.id,
-            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+            customerId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
         }
 
         const tours = await Tours.findOne({where:ids})

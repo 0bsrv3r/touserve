@@ -1,7 +1,7 @@
 const express  = require('express');
 const router = express.Router();
 const Event = require("../controllers/admin/eventController.js")
-const Guide = require("../controllers/admin/guideController.js")
+const Guide = require("../controllers/guideController.js")
 const Tour = require("../controllers/profile/tourController.js");
 const Accommadation = require("../controllers/profile/accommodationController.js");
 

@@ -66,7 +66,7 @@
                                             <select class="form-input-size" name="guide">
                                                 <option disabled selected>Guide</option>
                                                 <% for(let i=0; i < guides.length; i++ ){ %>
-                                                    <option value="<%= guides[i].id %>"><%= guides[i].name %> <%= guides[i].surname %></option>
+                                                    <option value="<%= guides[i].id %>"><%= guides[i].firstName %> <%= guides[i].lastName %></option>
                                                 <% } %>
                                             </select>
                                             <% if (errors.guide) { %>
