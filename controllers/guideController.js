@@ -1,15 +1,11 @@
-const { validationResult } = require("express-validator")
-const slugify = require("slugify")
-const {Guides} = require("../models")
-const fs = require('fs');
-const path = require('path');
+const {Customers, Tours} = require("../models")
 
 
 class Guide{
     
     // Front Side
     static async getGuides(req, res){
-        const guides = await Guides.findAll()
+        const guides = await Customers.findAll({where:{role:"guide"}})
 
         if(guides != undefined){
             return res.render("guides", {layout: 'layouts/pagesheader', guides:guides});
@@ -20,7 +16,8 @@ class Guide{
 
     static async getGuideById(req, res){
         const data = req.params
-        const guide = await Guides.findOne({where: data, include: "tours"})
+        const guide = await Customers.findOne({where: data, include: { model: Tours, as: 'tours' }})
+        console.log(guide.tours)
                 
         if(guide != undefined){
             return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide});

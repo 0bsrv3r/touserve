@@ -5,8 +5,8 @@ module.exports = (sequelize) => {
   class Tours extends Model {
     static associate(models) {
       // Association definition
-      Tours.belongsTo(models.Customers, { foreignKey: 'customerId', as: 'customers' });
-      Tours.belongsTo(models.Customers, { foreignKey: 'guideId', as: 'guides' });
+    //   Tours.belongsTo(models.Customers, { foreignKey: 'customerId', as: 'sstours' });
+      Tours.belongsTo(models.Customers, { foreignKey: 'guideId', as: 'tours' });
     }
   }
   Tours.init({

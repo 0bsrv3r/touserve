@@ -39,5 +39,4 @@ router.get('/accommodations/update/:id', Accommadation.getUpdateAccommodationByI
 router.post('/accommodations/update/:id', accommadationUpdateValidation, Accommadation.postUpdateAccommodationById);
 router.get('/accommodations/delete/:id', Accommadation.deleteAccommoditionById);
 
-
 module.exports = router;
