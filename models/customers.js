@@ -5,10 +5,10 @@ module.exports = (sequelize) => {
   class Customers extends Model {
     static associate(models) {
       // Association definition
-      this.hasMany(models.Accommodations, { foreignKey: 'customerId', as: 'accommodations' });
-    //   this.hasMany(models.Tours,  { foreignKey: 'customerId', as: 'sstours' });
-      this.hasMany(models.Tours,  { foreignKey: 'guideId', as: 'tours' });
       this.hasMany(models.Customers,  { foreignKey: 'companyId', as: 'companyGuides' });
+      this.hasMany(models.Tours,  { foreignKey: 'customerId', as: 'companyTours' });
+      this.hasMany(models.Tours,  { foreignKey: 'guideId', as: 'guideTours' });
+      this.hasMany(models.Accommodations, { foreignKey: 'customerId', as: 'accommodations' });
     }
   }
   Customers.init({

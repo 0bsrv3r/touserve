@@ -8,7 +8,7 @@ class Accommodation{
     
     // admin Side
     static async getAccommodationsByUserId(req, res){
-        const user_id = {userId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
+        const user_id = {customerId: 1} // {userId: req.session.user_id} //UPDATE THIS IN PROD ENV
         const accommodations = await Accommodations.findAll({where: user_id})
 
         return res.render("./admin/accommodations", {layout: 'layouts/admin/top-side-bars', errors: {}, accommodations: accommodations });
@@ -35,7 +35,7 @@ class Accommodation{
             }
             
             const data = {
-                userId: 1, // req.session.user_id, // UPDATE THIS IN PROD ENV
+                customerId: 1, // req.session.user_id, // UPDATE THIS IN PROD ENV
                 title: req.body.title, 
                 accommodationType: req.body.accommodationType, 
                 country: req.body.country, 

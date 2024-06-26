@@ -16,8 +16,7 @@ class Guide{
 
     static async getGuideById(req, res){
         const data = req.params
-        const guide = await Customers.findOne({where: data, include: { model: Tours, as: 'tours' }})
-        console.log(guide.tours)
+        const guide = await Customers.findOne({where: data, include: 'guideTours' })
                 
         if(guide != undefined){
             return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide});

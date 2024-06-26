@@ -226,13 +226,13 @@
 
             <div class="col-md-3">
                 <div class="sidebar">
-                    <% if(guide.tours.length !== 0){ %>
+                    <% if(guide.guideTours.length !== 0){ %>
                     <div class="widget widget-reviewes-tours">
                         <h4 class="widget-title custom-widget-title">
                             <span>Tours</span> of Guide
                         </h4>
                         <ul class="popular-news clearfix">
-                            <% for(let tours of guide.tours){ %>
+                            <% for(let tours of guide.guideTours){ %>
                             <li>
                                 <div class="thumb overlays2">
                                     <a href="/tour-details/<%= tours.id %>" class="link">
