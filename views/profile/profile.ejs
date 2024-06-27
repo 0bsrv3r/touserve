@@ -31,8 +31,11 @@
                                                 <label for="imageUpload"></label>
                                             </div>
                                             <div class="avatar-preview">
-                                                <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                                <div id="imagePreview" style="background-image: url(<%= customer.image !== null ? customer.image : '/upload/photos/profile/photo.jpg' %>);">
                                                 </div>
+                                                <% if (errors.image) { %>
+                                                    <p style="color: red;"><%= errors.image %></p>
+                                                <% } %> 
                                             </div>
                                         </div>
                                         <h4 class="title"><a href="#">username</a></h4>
@@ -43,18 +46,16 @@
                                     <div class="box-map">
                                         <div class="info-map custom-info-map ">
                                             <div class="left">
-                                                <p>Location</p>
-                                                <p>Visa requirement</p>
+                                                <p>Email</p>
+                                                <p>Full Name</p>
                                                 <p>Language Spoken</p>
-                                                <p>Currency used</p>
-                                                <p>Area</p>
+                                                <p>Location</p>
                                             </div>
                                             <div class="right">
-                                                <p>:Europe, France</p>
-                                                <p>:Yes</p>
-                                                <p>:French</p>
-                                                <p>:Euro, USD</p>
-                                                <p>:160.1mi2</p>
+                                                <p><%= customer.email %></p>
+                                                <p>N/A</p>
+                                                <p>N/A</p>
+                                                <p>N/A</p>
                                             </div>
                                         </div>
                                     </div>

@@ -4,6 +4,7 @@ const path = require('path')
 
 class FileUpload{
 
+    // batch file upload
     static async batchFileUpload(req, res, file, location){
         let images = []
         for(let i=0; i < file.length; i++) {
@@ -23,9 +24,9 @@ class FileUpload{
         return images
     }
 
+    // batch file delete
     static async batchFileDelete(req, res, file){
         if (file) {
-            // delete image
             for(let filePath of file){
                 const fullPath = path.join("./", filePath);
                 fs.unlink(fullPath, (err) => {
@@ -34,6 +35,32 @@ class FileUpload{
                     }
                 });
             }
+        }
+    }
+
+    // single file upload
+    static async singleFileUpload(req, res, file, location){
+        let avatarPath = location + Date.now() + '-' + slugify(file.name,{ 
+            lower: true, 
+            strict: true 
+        }) + '.' + file.name.split('.').pop();
+        file.mv(avatarPath, err => { 
+            if(err){ 
+                return res.status(500).send(err); 
+            } 
+        })    
+        return avatarPath
+    }
+
+    // single file delete
+    static async singleFileDelete(req, res, file){
+        if (file) {
+            const fullPath = path.join("./", file);
+            fs.unlink(fullPath, (err) => {
+                if (err) {
+                    return res.status(500).send('Failed to delete image file');
+                }
+            });
         }
     }
 }

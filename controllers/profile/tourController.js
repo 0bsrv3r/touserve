@@ -1,9 +1,6 @@
 const { validationResult } = require("express-validator")
-const slugify = require("slugify")
 const {Tours, Customers, Accommodations} = require("../../models")
 const FileUpload = require("../../services/fileUploadService.js")
-const fs = require('fs')
-const path = require('path')
 
 class Tour{
 
