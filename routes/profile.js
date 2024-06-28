@@ -12,7 +12,7 @@ const accommadationUpdateValidation  = require("../validators/accommodation-upda
 router.use(express.urlencoded({ extended:true }))
 
 router.get('/', Profile.getProfileInfo);
-router.post('/update/photo', profileValidation, Profile.uploadProfilePhoto);
+router.post('/customer/photo', profileValidation, Profile.uploadProfilePhoto);
 
 // Tours
 router.get('/tours/create', Tour.getTourCreate);

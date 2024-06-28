@@ -1,0 +1,21 @@
+<div class="col-md-4 col-sm-4 col-xs-12 custom-profile-image">
+    <div class="featured-trip">
+        <div class="avatar-upload">
+            <div class="avatar-edit">
+                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                <label for="imageUpload"></label>
+            </div>
+            <div class="avatar-preview">
+                <div id="imagePreview" style="background-image: url(<%= customer.image !== null ? customer.image : '/upload/photos/profile/photo.jpg' %>);">
+                </div>
+                <% if (errors.image) { %>
+                    <p style="color: red;"><%= errors.image %></p>
+                <% } %> 
+            </div>
+            <script>
+                const type = '<%= type %>';
+            </script>
+        </div>
+        <h4 class="title"><a href="#">username</a></h4>
+    </div>
+</div>

@@ -597,7 +597,7 @@ body{
 
                             /*========= LOGIN PAGE START ==========*/
 .flat-row.page-register.bg-theme{
-    height: 100%;
+    min-height: 100%;
 }
 #category-slider .register{
     margin-top: 0 !important;

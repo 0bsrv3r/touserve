@@ -11,7 +11,7 @@ function readURL(input) {
         const formData = new FormData();
         formData.append('photo', input.files[0]);
         
-        fetch('/profile/update/photo', {
+        fetch(`/profile/${type}/photo`, {
             method: 'POST',
             body: formData
         })

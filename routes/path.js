@@ -5,8 +5,6 @@ const Guide = require("../controllers/guideController.js")
 const Tour = require("../controllers/profile/tourController.js");
 const Accommadation = require("../controllers/profile/accommodationController.js");
 
-const { render } = require('ejs');
-
 router.use(express.urlencoded({ extended:true }))
 
 router.get('/', (req, res) => { 
