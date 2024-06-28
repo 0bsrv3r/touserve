@@ -1,8 +1,9 @@
-/* a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, caption, canvas, center, cite, code,
-	dd, del, details, dfn, dialog, div, dl, dt, em, embed, fieldset, figcaption, figure, form, footer, header, hgroup, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav,object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, tt, table, tbody, textarea, tfoot, thead, time, tr, th, td, u, ul, var, video { 
-    font-family: inherit; 
-} */
-
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+}                           
                            /*========= MAIN PAGE START ==========*/
 /*HEADER START*/
 .logo img{
@@ -595,6 +596,15 @@
 
 
                             /*========= LOGIN PAGE START ==========*/
+.flat-row.page-register.bg-theme{
+    height: 100%;
+}
+#category-slider .register{
+    margin-top: 0 !important;
+}
+#category-slider .login-form .title-section{
+    margin: 20px 0 10px
+}
 .page-login{
     background: url(../images/login/login.jpg);
     background-size: cover; 
@@ -602,15 +612,20 @@
     background-attachment: fixed;
     height: 100vh;
 }
+.wrap-login-register .login-input{
+    margin-bottom: 10px;
+}
+
 .wrap-login-register p input{
     color: #fff;
     font-size: 16px !important;
+    margin-bottom: 0 !important;
 }
 .wrap-login-register input::placeholder {
     color: #d2d2d2;
 }
 .page-register{
-    background: url(../images/login/registr.jpg);
+    background: url(../images/login/login.jpg);
     background-size: cover; 
     background-attachment: fixed;
 }

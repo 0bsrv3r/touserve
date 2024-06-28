@@ -22,67 +22,147 @@
 </head>                                 
 <body class="header_sticky">
     
-    <section class="flat-row page-register bg-theme pdtitle-section v13">
+    <section id="category-slider" class="flat-row page-register bg-theme pdtitle-section v13">
         <div class="container">
-            <div class="col-md-12">
-                <form novalidate="" class="login-form" id="loginform" method="post" action="/auth/register">
-                    <div class="title-section center color-black style5 style12">
-                        <h2 class="title">Register</h2> 
-                        <div class="sub-title">
-                            <p>Please Register to your account</p>
-                        </div>               
-                    </div>
-                    <div class="wrap-register wrap-login-register">
-                        <div class="wrap-input">
-                            <p class="login-input">
-                                <% if (errors.uname) { %>
-                                    <p style="color: red;"><%= errors.uname %></p>
-                                <% } %>                                   
-                                <input type="text" placeholder="User Name*" aria-required="true" size="30" value="" name="uname" id="author">
-                            </p>
-                            <p class="login-input">
-                                <% if (errors.email) { %>
-                                    <p style="color: red;"><%= errors.email %></p>
-                                <% } %>                                          
-                                <input type="email" placeholder="Email*" size="30" value="" name="email" id="email">
-                            </p> 
-                            <p class="login-input">
-                                <% if (errors.password) { %>
-                                    <p style="color: red;"><%= errors.password %></p>
-                                <% } %>                                          
-                                <input type="password" placeholder="Password*" size="30" value="" name="password" id="password">
-                            </p>
-                            <p class="login-input">
-                                <% if (errors.passwordConfirm) { %>
-                                    <p style="color: red;"><%= errors.passwordConfirm %></p>
-                                <% } %>                                          
-                                <input type="password" placeholder="Confirm Password*" size="30" value="" name="passwordConfirm" id="confirmpassword">
-                            </p>
-                            <% if (errors.role) { %>
-                                <p style="color: red;"><%= errors.role %></p>
-                            <% } %> 
-                            <select class="login-input" id="selectOption" name="role">
-                                <option value="user">User</option>
-                                <option value="company">Company</option>
-                            </select>  
-                        </div> 
-                        <div class="wrap-security">
-                            <a href="#" title="" class="security remember">I agree to the terms of use and privacy.</a>
-                        </div>
-                        <p class="form-submit">                 
-                            <button class="register-submit">Register Now</button>
-                        </p>
-                        <div class="not-account">
-                            <p>Already have a account -<a href="login" title=""> Login Now</a></p>
-                        </div>
-                    </div>
-                    <div class="other-account">
-                        <ul>
-                            <li><a href="#" title="" class="flat-account acc-face">Login Via Facebook</a></li>
-                            <li><a href="#" title="" class="flat-account acc-google">Login Via Google+</a></li>
+            <div class="row">
+                <div class="col-md-3 push-md-3 responsiv">
+                    <ul class="profile-slider">
+                        <li>Choose your category:</li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    FILTER
+                                </button>
+                                <div class="drop dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a data-value=0 href="#" class="dropdown-item">Standart Registration</a>
+                                    <a data-value=1 href="#" class="dropdown-item">Business Registration</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="imageHeader register">
+                        <ul class="profile-slider">
+                            <li class="active"><a data-value=0 href="#">Standart Registration</a></li>
+                            <li><a data-value=1 href="#">Business Registeration</a></li>
                         </ul>
                     </div>
-                </form>
+                    <a href="#"></a>
+                </div>
+                <div class="col-md-9 photos displayOne">
+                    <form novalidate="" class="login-form" id="loginform" method="post" action="/auth/register">
+                        <div class="title-section center color-black style5 style12">
+                            <h2 class="title">Register</h2>
+                        </div>
+                        <div class="wrap-register wrap-login-register">
+                            <div class="wrap-input">
+                                <p class="login-input">
+                                    <input type="text" placeholder="User Name*" aria-required="true" size="30" value="" name="uname" id="author">
+                                    <% if (errors.uname) { %>
+                                        <p style="color: red;"> <%= errors.uname %> </p>
+                                    <% } %>
+                                </p>
+                                <p class="login-input">
+                                    <input type="email" placeholder="Email*" size="30" value="" name="email" id="email">
+                                    <% if (errors.email) { %>
+                                        <p style="color: red;"><%= errors.email %> </p>
+                                    <% } %>
+                                </p>
+                                <p class="login-input">
+                                    <input type="password" placeholder="Password*" size="30" value="" name="password" id="password">
+                                    <% if (errors.password) { %>
+                                        <p style="color: red;"><%= errors.password %> </p>
+                                    <% } %>
+                                </p>
+                                <p class="login-input">
+                                    <input type="password" placeholder="Confirm Password*" size="30" value="" name="passwordConfirm" id="confirmpassword">
+                                    <% if (errors.passwordConfirm) { %>
+                                        <p style="color: red;"> <%= errors.passwordConfirm %> </p>
+                                    <% } %>
+                                </p>
+                            </div>
+                            <div class="wrap-security">
+                                <a href="#" title="" class="security remember">I agree to the terms of use and privacy.</a>
+                            </div>
+                            <p class="form-submit">
+                                <button class="register-submit">Register Now</button>
+                            </p>
+                            <div class="not-account">
+                                <p>Already have a account -<a href="login" title=""> Login Now</a></p>
+                            </div>
+                        </div>
+                        <div class="other-account">
+                            <ul>
+                                <li><a href="#" title="" class="flat-account acc-face">Login Via Facebook</a></li>
+                                <li><a href="#" title="" class="flat-account acc-google">Login Via Google+</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-9 photos enable-hide displayTwo">
+                    <form novalidate="" class="login-form" id="loginform" method="post" action="/auth/customer/register">
+                        <div class="title-section center color-black style5 style12">
+                            <h2 class="title">Register</h2>
+                        </div>
+                        <div class="wrap-register wrap-login-register">
+                            <div class="wrap-input">
+                                <p class="login-input">
+                                    <input type="text" placeholder="User Name*" aria-required="true" size="30" value="" name="uname" id="author">
+                                    <% if (errors.uname) { %>
+                                        <p style="color: red;"> <%= errors.uname %> </p>
+                                    <% } %>
+                                </p>
+                                <p class="login-input">
+                                    <input type="email" placeholder="Email*" size="30" value="" name="email" id="email">
+                                    <% if (errors.email) { %>
+                                        <p style="color: red;"> <%= errors.email %> </p>
+                                    <% } %>
+                                </p>
+                                <p class="login-input">
+                                    <input type="password" placeholder="Password*" size="30" value="" name="password" id="password">
+                                    <% if (errors.password) { %>
+                                        <p style="color: red;"> <%= errors.password %></p>
+                                    <% } %>
+                                </p>
+                                <p class="login-input">
+                                    <input type="password" placeholder="Confirm Password*" size="30" value="" name="passwordConfirm" id="confirmpassword">
+                                    <% if (errors.passwordConfirm) { %>
+                                        <p style="color: red;"> <%= errors.passwordConfirm %> </p>
+                                    <% } %>
+                                </p>
+                                <p class="login-input">
+                                    <select class="form-input-size" id="selectOption" name="role">
+                                        <option disabled selected>Role</option>
+                                        <option value="company">Company</option>
+                                        <option value="guide">Guide</option>
+                                        <option value="host">Host</option>
+                                    </select>
+                                    <% if (errors.role) { %>
+                                        <p style="color: red;"> <%= errors.role %> </p>
+                                    <% } %>
+                                </p>
+                            </div>
+                            <div class="wrap-security">
+                                <a href="#" title="" class="security remember">I agree to the terms of use and privacy.</a>
+                            </div>
+                            <p class="form-submit">
+                                <button class="register-submit">Register Now</button>
+                            </p>
+                            <div class="not-account">
+                                <p>Already have a account -<a href="login" title=""> Login Now</a></p>
+                            </div>
+                        </div>
+                        <div class="other-account">
+                            <ul>
+                                <li><a href="#" title="" class="flat-account acc-face">Login Via Facebook</a></li>
+                                <li><a href="#" title="" class="flat-account acc-google">Login Via Google+</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -94,10 +174,7 @@
     <script type="text/javascript" src="/upload/javascript/jquery.flexslider-min.js"></script>  
     <script type="text/javascript" src="/upload/javascript/main.js"></script>
 
-    <!-- Photos Gallery -->
-    <script type="text/javascript" src="/upload/javascript/imagesloaded.min.js"></script>  
-    <script type="text/javascript" src="/upload/javascript/isotope.min.js"></script>
-
-    <script type="text/javascript" src="/upload/javascript/custom.js"></script>
+    <!-- Custom Slide -->
+    <script type="text/javascript" src="/upload/javascript/services.js"></script>
 </body>
 </html>

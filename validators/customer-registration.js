@@ -22,5 +22,7 @@ module.exports = registerValidation = [
             throw new Error('Password confirmation does not match password'); 
         } 
         return true; 
-    })
+    }),
+    
+    body('role').isIn(['company', 'guide', 'host']).withMessage('Role must be either "company, guide and host"')
 ]
