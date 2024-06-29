@@ -10,9 +10,14 @@
                                 FILTER
                             </button>
                             <div class="drop dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a data-value=0 href="#" class="dropdown-item">Your Tours</a>
-                                <a data-value=1 href="#" class="dropdown-item">Your Acccommodations</a>
-                                <a data-value=2 href="#" class="dropdown-item">Your Guides</a>
+                                <% if(role === "company"){%>
+                                    <a data-value=0 href="#" class="dropdown-item">Your Tours</a>
+                                    <a data-value=1 href="#" class="dropdown-item">Your Guides</a>
+                                <% } if(role === "guide"){%>
+                                    <a data-value=0 href="#" class="dropdown-item">Your Tours</a>
+                                <% } if(role === "host"){%>
+                                    <a data-value=0 href="#" class="dropdown-item">Your Acccommodations</a>
+                                <% } %>
                                 <a data-value=3 href="#">Settings</a>
                             </div>
                         </div>
@@ -24,203 +29,28 @@
             <div class="col-md-12">
                 <div class="imageHeader">
                     <ul class="profile-slider">
-                        <li class="active"><a data-value=0 href="#">Your Tours</a></li>
-                        <li><a data-value=1 href="#">Your Accommodations</a></li>
-                        <li><a data-value=2 href="#">Your Guides</a></li>
+                        <% if(role === "company"){%>
+                            <li class="active"><a data-value=0 href="#">Your Tours</a></li>
+                            <li><a data-value=1 href="#">Your Guides</a></li>
+                        <% } if(role === "guide"){%>
+                            <li class="active"><a data-value=0 href="#">Your Tours</a></li>
+                        <% } if(role === "host"){%>
+                            <li class="active"><a data-value=0 href="#">Your Accommodations</a></li>
+                        <% } %>
                         <li><a data-value=3 href="#">Settings</a></li>
                     </ul>
                 </div>
                 <a href="#"></a>
             </div>
-            <div class="col-md-12 photos displayOne">
-                <div class="profile-button">
-                    <h3 class="profile-h3">Tours</h3>
-                    <p class="form-submit">
-                        <a  href="/customer/tours/create">
-                            <button>Create Tour</button>
-                        </a>                 
-                    </p>
-                </div>
-                <% for(let tour of profile.companyTours){ %>
-                <div class="col-md-4">
-                    <div class="flat-imagebox style2 v2">
-                        <div class="item">
-                            <div class="imagebox">
-                                <div class="box-wrap">
-                                    <div class="box-image">
-                                        <a href="#"><img src="/<%= tour.images[0] %>" alt="img"></a>
-                                        <div class="overlay"></div> <!-- /.overlay -->
-                                        <div class="imagebox-content">
-                                            <ul class="imagebox-link">
-                                                <li class="icon-s FromLeft">
-                                                    <a href="tour-details.html">
-                                                        <button class="flat-button">Book Now</button>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="box-content">
-                                        <h4>Shaki</h4>
-                                        <div class="money"> <span>$</span>784</div>
-                                        <div class="sub-title">2 days</div>
-
-                                        <div class="wrap-star s2 delete-update-icons">                                            
-                                            <span>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </span>
-                                            <div>
-                                                <a href="/customer/tours/update/<%= tour.id%>">
-                                                    <i class="fa fa-pencil-square-o"></i>
-                                                </a>
-                                                <a href="/customer/tour/delete/<%= tour.id%>">
-                                                    <i class="fa fa-trash-o"></i>
-                                                </a>
-                                           </div>
-                                        </div> <!-- /.wrap-star -->
-                                    </div>
-                                </div> <!-- /.box-wrap -->
-                            </div> <!-- /.imagebox -->
-                        </div> <!-- /.item -->
-                    </div> <!-- /.flat-imagebox -->
-                </div> <!-- /.col-md-4 -->
-                <% } %>
-            </div>
-
-            <div class="col-md-12 photos enable-hide displayTwo">
-                <div class="profile-button">
-                    <h3 class="profile-h3">Accommodations</h3>
-                    <p class="form-submit">
-                        <a  href="/customer/accommodations/create">
-                            <button>Create Accommodation</button>
-                        </a>                  
-                    </p>
-                </div>
-
-                <% for(let accommodation of profile.accommodations){ %>
-                <div class="col-lg-4 col-md-4 col-xs-12">
-                    <div class="flat-imagebox style2 v3">
-                        <div class="item">
-                            <a href="accommodation-details/<%= accommodation.id %>">
-                                <div class="imagebox">
-                                    <div class="box-wrap">
-                                        <div class="box-image">
-                                            <a href=""><img src="/<%= accommodation.images[0] %>" alt="img"></a>
-                                            <div class="overlay"></div> <!-- /.overlay -->
-                                        </div>
-                                        <div class="box-content">
-                                            <h4><%= accommodation.title %></h4>
-                                            <p>
-                                                <b><%= accommodation.country %>, <%= accommodation.city %></b> - <%= accommodation.roomType %> (<%= accommodation.bedCount %> bed) <br>
-                                            </p>
-                                            <div class="delete-update-icons">
-                                                <span>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                </span>
-                                                <div>
-                                                    <a href="/customer/accommodations/update/<%= accommodation.id%>">
-                                                        <i class="fa fa-pencil-square-o"></i>
-                                                    </a>
-                                                    <a href="/customer/accommodations/delete/<%= accommodation.id%>">
-                                                        <i class="fa fa-trash-o"></i>
-                                                    </a>
-                                               </div>
-                                            </div>
-                                            <div class="money"> <%= accommodation.price %> <span><%= accommodation.currency %> per night</span></div>
-                                        </div>
-                                    </div> <!-- /.box-wrap -->
-                                </div>
-                            </a> <!-- /.imagebox -->
-                        </div> <!-- /.item -->
-                        <div class="dividers dividers-imagebox s2"></div>
-                    </div> <!-- /.flat-imagebox -->
-                </div> <!-- /.col-md-4 -->                        
-                <% } %>
-            </div>
-
-            <div class="col-md-12 photos enable-hide displayThree">
-                <div class="flat-tabs" data-effect="fadeIn">
-                    <div class="wrap-radio menu-tab">
-                        <div class="radio active">
-                            <input id="radio-1" name="radio" type="radio" checked="checked">
-                            <label for="radio-1" class="radio-label">Guides</label>
-                        </div>
-                        <div class="radio">
-                            <input id="radio-2" name="radio" type="radio">
-                            <label for="radio-2" class="radio-label">Invite New</label>
-                        </div>
-                    </div>
-                    <!-- /.menu-tab -->
-                    <div class="content-tab">
-                        <div class="content-inner active">
-                            <div class="wrap-form-update">
-                                <div class="table-responsive custom-table-responsive">
-                                    <table class="table custom-table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">
-                                                    <label class="control control--checkbox">
-                                                        <input type="checkbox" class="js-check-all" />
-                                                        <div class="control__indicator"></div>
-                                                    </label>
-                                                </th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr scope="row">
-                                                <th scope="row">
-                                                    <label class="control control--checkbox">
-                                                        <input type="checkbox" />
-                                                        <div class="control__indicator"></div>
-                                                    </label>
-                                                </th>
-                                                <td>
-                                                    John Wick
-                                                    <small class="d-block">john@email.com</small>
-                                                </td>
-                                                <td>Pending Invite</td>
-                                                <td>...</td>
-                                            </tr>
-                                            <!-- <tr class="spacer"><td colspan="100"></td></tr> -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.content-inner -->
-
-                        <div class="content-inner">
-                            <div class="wrap-form-update">
-                                <form class="update-form" action="">
-                                    <div class="update-input" id="profile-setting">
-                                        <div class="change-input">
-                                            <div class="profile-input">                                      
-                                                <input class="form-input-size" type="email" name="guideEmail" placeholder="Email*" aria-required="true" size="30" value="" id="author">
-                                            </div>
-                                        </div>
-                                        <div class="wrap-button">
-                                            <p class="update-form-submit">
-                                                <button class="update-submit custom-update-submit">Update</button>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div><!-- /.content-inner -->
-
-                    </div><!-- /.content-tab -->
-                </div><!-- /.flat-tabs -->
-            </div>
+            
+            <% if(role === "company"){%>
+                <%- include('./../components/profile-tours') %>
+                <%- include('./../components/profile-guides') %>
+            <% } if(role === "guide"){%>
+                <%- include('./../components/profile-tours') %>
+            <% } if(role === "host"){%>
+                <%- include('./../components/profile-accommodations') %>
+            <% } %>
 
             <div class="col-md-12 photos enable-hide displayFour">
                 <div class="flat-tabs" data-effect="fadeIn">

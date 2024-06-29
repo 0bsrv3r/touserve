@@ -1,0 +1,58 @@
+<div class="col-md-12 photos displayOne">
+    <div class="profile-button">
+        <h3 class="profile-h3">Tours</h3>
+        <p class="form-submit">
+            <a  href="/customer/tours/create">
+                <button>Create Tour</button>
+            </a>                 
+        </p>
+    </div>
+    <% for(let tour of profile.companyTours){ %>
+    <div class="col-md-4">
+        <div class="flat-imagebox style2 v2">
+            <div class="item">
+                <div class="imagebox">
+                    <div class="box-wrap">
+                        <div class="box-image">
+                            <a href="#"><img src="/<%= tour.images[0] %>" alt="img"></a>
+                            <div class="overlay"></div> <!-- /.overlay -->
+                            <div class="imagebox-content">
+                                <ul class="imagebox-link">
+                                    <li class="icon-s FromLeft">
+                                        <a href="/tour-details/<%= tour.id %>">
+                                            <button class="flat-button">Book Now</button>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <h4>Shaki</h4>
+                            <div class="money"> <span>$</span>784</div>
+                            <div class="sub-title">2 days</div>
+
+                            <div class="wrap-star s2 delete-update-icons">                                            
+                                <span>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </span>
+                                <div>
+                                    <a href="/customer/tours/update/<%= tour.id%>">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </a>
+                                    <a href="/customer/tour/delete/<%= tour.id%>">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                               </div>
+                            </div> <!-- /.wrap-star -->
+                        </div>
+                    </div> <!-- /.box-wrap -->
+                </div> <!-- /.imagebox -->
+            </div> <!-- /.item -->
+        </div> <!-- /.flat-imagebox -->
+    </div> <!-- /.col-md-4 -->
+    <% } %>
+</div>

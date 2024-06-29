@@ -1,0 +1,55 @@
+
+<div class="col-md-12 photos displayOne">
+    <div class="profile-button">
+        <h3 class="profile-h3">Accommodations</h3>
+        <p class="form-submit">
+            <a  href="/customer/accommodations/create">
+                <button>Create Accommodation</button>
+            </a>                  
+        </p>
+    </div>
+
+    <% for(let accommodation of profile.accommodations){ %>
+    <div class="col-lg-4 col-md-4 col-xs-12">
+        <div class="flat-imagebox style2 v3">
+            <div class="item">
+                <a href="/accommodation-details/<%= accommodation.id %>">
+                    <div class="imagebox">
+                        <div class="box-wrap">
+                            <div class="box-image">
+                                <a href=""><img src="/<%= accommodation.images[0] %>" alt="img"></a>
+                                <div class="overlay"></div> <!-- /.overlay -->
+                            </div>
+                            <div class="box-content">
+                                <h4><%= accommodation.title %></h4>
+                                <p>
+                                    <b><%= accommodation.country %>, <%= accommodation.city %></b> - <%= accommodation.roomType %> (<%= accommodation.bedCount %> bed) <br>
+                                </p>
+                                <div class="delete-update-icons">
+                                    <span>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </span>
+                                    <div>
+                                        <a href="/customer/accommodations/update/<%= accommodation.id%>">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </a>
+                                        <a href="/customer/accommodations/delete/<%= accommodation.id%>">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                   </div>
+                                </div>
+                                <div class="money"> <%= accommodation.price %> <span><%= accommodation.currency %> per night</span></div>
+                            </div>
+                        </div> <!-- /.box-wrap -->
+                    </div>
+                </a> <!-- /.imagebox -->
+            </div> <!-- /.item -->
+            <div class="dividers dividers-imagebox s2"></div>
+        </div> <!-- /.flat-imagebox -->
+    </div> <!-- /.col-md-4 -->                        
+    <% } %>
+</div>

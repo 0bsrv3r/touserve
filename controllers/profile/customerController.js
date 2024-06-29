@@ -7,8 +7,9 @@ class Profile{
     static async getProfileInfo(req, res){
         const id = {id: 1} // {id: req.session.user_id} //UPDATE THIS IN PROD ENV
         const customer  = await Customers.findOne({where: id, include:["companyTours", "accommodations"]})
+        const role = customer.role
 
-        return res.render("./profile/profile", {layout: 'layouts/pagesheader.ejs', errors: {}, profile: customer, type: 'customer' });
+        return res.render("./profile/profile", {layout: 'layouts/pagesheader.ejs', errors: {}, profile: customer, type: 'customer', role:role });
     }
 
     static async uploadProfilePhoto(req, res){
