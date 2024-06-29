@@ -36,6 +36,7 @@ class Authentication {
         if(customer != undefined){
             req.session.username = customer.uname 
             req.session.user_id = customer.id
+            req.session.user_type = "customer"
             return res.redirect("/customer/profile")
         }else{
             const errorObject = {
