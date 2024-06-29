@@ -10,8 +10,7 @@ class Authentication {
             const data = { 
                 uname: req.body.uname, 
                 email: req.body.email, 
-                password: req.body.password,
-                role: req.body.role
+                password: req.body.password
             } 
 
             Users.create(data)
@@ -36,7 +35,7 @@ class Authentication {
         if(user != undefined){
             req.session.username = user.uname 
             req.session.user_id = user.id
-            return res.redirect("/profile")
+            return res.redirect("/user/profile")
         }else{
             const errorObject = {
                 wrongAttempt: "Your username or password is incorrect"

@@ -24,7 +24,7 @@
                         <div class="wrap-destination-detail custom-wrap-destination-detail">
                             <div class="box-trip-review custom-box-trip-review">
                                 
-                                <%- include('components/image-preview') %>
+                                <%- include('./../components/image-preview') %>
 
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <div class="box-map">
@@ -36,7 +36,7 @@
                                                 <p>Location</p>
                                             </div>
                                             <div class="right">
-                                                <p><%= customer.email %></p>
+                                                <p><%= profile.email %></p>
                                                 <p>N/A</p>
                                                 <p>N/A</p>
                                                 <p>N/A</p>
@@ -63,5 +63,5 @@
         </section>
         
         <% if (type == 'customer'){ %>
-            <%- include('components/profile-slider') %>
+            <%- include('./../components/profile-slider') %>
         <% } %>

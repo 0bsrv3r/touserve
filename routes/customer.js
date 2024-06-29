@@ -1,6 +1,6 @@
 const express  = require('express');
 const router = express.Router();
-const Profile = require("../controllers/profile/profileController.js")
+const Customer = require("../controllers/profile/customerController.js")
 const Tour = require("../controllers/profile/tourController.js")
 const Accommadation = require("../controllers/profile/accommodationController.js")
 const profileValidation  = require("../validators/image-update.js"); 
@@ -11,8 +11,8 @@ const accommadationUpdateValidation  = require("../validators/accommodation-upda
 
 router.use(express.urlencoded({ extended:true }))
 
-router.get('/', Profile.getProfileInfo);
-router.post('/customer/photo', profileValidation, Profile.uploadProfilePhoto);
+router.get('/profile', Customer.getProfileInfo);
+router.post('/profile/photo', profileValidation, Customer.uploadProfilePhoto);
 
 // Tours
 router.get('/tours/create', Tour.getTourCreate);

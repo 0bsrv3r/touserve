@@ -36,7 +36,7 @@ class Authentication {
         if(customer != undefined){
             req.session.username = customer.uname 
             req.session.user_id = customer.id
-            return res.redirect("/profile")
+            return res.redirect("/customer/profile")
         }else{
             const errorObject = {
                 wrongAttempt: "Your username or password is incorrect"

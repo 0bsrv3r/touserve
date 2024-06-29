@@ -59,7 +59,7 @@ class Tour{
             } 
 
             Tours.create(data)
-            return res.redirect('/profile/tours/create')
+            return res.redirect('/customer/tours/create')
         }else{
             return Tour.getTourCreate(req, res, errors)
         } 
@@ -122,7 +122,7 @@ class Tour{
                     }
 
                     await tour.save();
-                    return res.redirect(`/profile/tours/update/${ids.id}`)
+                    return res.redirect(`/customer/tours/update/${ids.id}`)
                 } else {
                     return res.status(404).json({ message: 'Tour not found' });
                 }
@@ -152,7 +152,7 @@ class Tour{
 
         if (deleted && tours) {
             await FileUpload.batchFileDelete(req, res, imagesPath)
-            return res.redirect('/profile')
+            return res.redirect('/customer/profile')
         }else {
             return res.status(404).json({ message: `Tours with ID ${ids.id} not found` });
         }

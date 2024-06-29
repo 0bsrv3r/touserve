@@ -36,7 +36,7 @@ class Accommodation{
             } 
 
             Accommodations.create(data)
-            res.redirect('/profile/accommodations/create')
+            res.redirect('/customer/accommodations/create')
         }else{
             const errorObject = errors.array().reduce((acc, error) => {
                 acc[error.path] = error.msg;
@@ -105,7 +105,7 @@ class Accommodation{
                     }
 
                     await accommodation.save();
-                    res.redirect(`/profile/accommodations/update/${ids.id}`)
+                    res.redirect(`/customer/accommodations/update/${ids.id}`)
                 } else {
                     res.status(404).json({ message: 'Accommodation not found' });
                 }
@@ -137,7 +137,7 @@ class Accommodation{
         if (deleted && accommodations) {
             // delete images
             await FileUpload.batchFileDelete(req, res, imagesPath)
-            res.redirect('/profile')
+            res.redirect('/customer/profile')
         }else {
             res.status(404).json({ message: `Accommodition with ID ${ids.id} not found` });
         }

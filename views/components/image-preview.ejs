@@ -6,7 +6,7 @@
                 <label for="imageUpload"></label>
             </div>
             <div class="avatar-preview">
-                <div id="imagePreview" style="background-image: url(<%= customer.image !== null ? customer.image : '/upload/photos/profile/photo.jpg' %>);">
+                <div id="imagePreview" style="background-image: url(/<%= profile.image !== null ? profile.image : 'upload/photos/profile/photo.jpg' %>);">
                 </div>
                 <% if (errors.image) { %>
                     <p style="color: red;"><%= errors.image %></p>
@@ -16,6 +16,6 @@
                 const type = '<%= type %>';
             </script>
         </div>
-        <h4 class="title"><a href="#">username</a></h4>
+        <h4 class="title"><a href="#"><%= profile.uname %></a></h4>
     </div>
 </div>

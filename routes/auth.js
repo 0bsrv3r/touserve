@@ -1,15 +1,15 @@
 const express  = require('express');
 const router = express.Router();
 
-const Authentication = require("../controllers/loginController.js");
+const UserAuth = require("../controllers/userAuthController.js");
 const CustomerAuth = require("../controllers/customerAuthController.js");
-const registerValidation  = require("../validators/auth.js"); 
+const userRegisterValidation  = require("../validators/user-registration.js"); 
 const customerRegisterValidation  = require("../validators/customer-registration.js"); 
 
 router.use(express.urlencoded({ extended:true }))
 
-router.post("/register", registerValidation, Authentication.postRegister) 
-router.post("/login", Authentication.postLogin)
+router.post("/user/register", userRegisterValidation, UserAuth.postRegister) 
+router.post("/user/login", UserAuth.postLogin)
 
 router.post("/customer/register", customerRegisterValidation, CustomerAuth.postRegister)
 router.post("/customer/login", CustomerAuth.postLogin)

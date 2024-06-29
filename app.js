@@ -43,11 +43,13 @@ const login = require("./middlewares/auth.js")
 const pathes = require ("./routes/path.js"); 
 const auth = require ("./routes/auth.js"); 
 const admin = require ("./routes/admin.js"); 
-const profile = require ("./routes/profile.js"); 
+const customer = require ("./routes/customer.js"); 
+const user = require ("./routes/user.js"); 
 app.use("/", pathes);
 app.use("/auth", auth);
 app.use("/admin", /*login,*/ admin) // Checked with middleware if user registered or not.
-app.use("/profile", /*login,*/ profile) // Checked with middleware if user registered or not.
+app.use("/customer", /*login,*/ customer) // Checked with middleware if user registered or not.
+app.use("/user", /*login,*/ user) // Checked with middleware if user registered or not.
 
 // Middleware to handle 404 errors
 app.use((req, res, next) => {

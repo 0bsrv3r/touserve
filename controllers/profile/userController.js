@@ -1,14 +1,14 @@
 const { validationResult } = require("express-validator")
-const {Customers} = require("../../models")
+const {Users} = require("../../models/index.js")
 const FileUpload = require("../../services/fileUploadService.js")
 
 class Profile{
 
     static async getProfileInfo(req, res){
         const id = {id: 1} // {id: req.session.user_id} //UPDATE THIS IN PROD ENV
-        const customer  = await Customers.findOne({where: id, include:["companyTours", "accommodations"]})
+        const user  = await Users.findOne({where: id})
 
-        return res.render("./profile/profile", {layout: 'layouts/pagesheader.ejs', errors: {}, customer: customer, type: 'customer' });
+        return res.render("./profile/profile", {layout: 'layouts/pagesheader.ejs', errors: {}, profile: user, type: 'user' });
     }
 
     static async uploadProfilePhoto(req, res){
@@ -17,7 +17,7 @@ class Profile{
         
         try {
             if(errors.isEmpty()){ 
-                const profile = await Customers.findOne({where: id});
+                const profile = await Users.findOne({where: id});
                 let oldImage  = profile.image 
                
                 if (req?.files?.photo) {
