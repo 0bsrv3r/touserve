@@ -860,7 +860,7 @@ body{
 .flat-imagebox.style2 .imagebox .box-content span i{
     color:#fd7e21;
 }
-
+                            /*========= ACCOMMODATION PAGE END ==========*/
                             /*========= ACCOMMODATION-DETAILS PAGE START ==========*/
 .gn-gallery .custom-h3{
     padding: 30px 0 10px;
@@ -932,11 +932,7 @@ body{
     font-weight: 600;
     margin-left: 4px;
 }
-
                             /*========= ACCOMMODATION-DETAILS PAGE END ==========*/
-                            /*========= ACCOMMODATION PAGE END ==========*/
-
-
                             /*========= PERSONAL-DRIVER PAGE START ==========*/
 
                             /*========= PERSONAL-DRIVER-DETAILS PAGE START ==========*/
@@ -1024,6 +1020,14 @@ body{
                               /*========= PHOTO-VIDEO-DETAILS PAGE END ==========*/
                               /*========= PHOTO-VIDEO PAGE END ==========*/
 
+                              /*========= Review START ==========*/
+#star-rate .star.v1 .active:before{
+    content: "\f005" !important;
+}
+#star-rate .star.v1 .keep-active:before{
+    content: "\f005" !important;
+}
+                                /*========= Review END ==========*/
                               /*========= DASHBOARD-HEADER START ==========*/
 .dashboard-custom-menu{
     display: flex;

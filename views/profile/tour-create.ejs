@@ -32,7 +32,7 @@
                                 <div class="wrap-input">
                                     <div class="col-md-6">
                                         <div class="profile-input">                                      
-                                            <input id="demo1" class="demo1 form-input-size" name="images" type="file" multiple placeholder="Select Files" />
+                                            <input id="demo1" class="demo1 form-input-size" name="images" type="file" multiple placeholder="Select Files" required="required"/>
                                             <% if (errors.image) { %>
                                                 <p style="color: red;"><%= errors.image %></p>
                                             <% } %> 
@@ -181,13 +181,13 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="profile-input">
-                                            <textarea name="overview" tabindex="4" placeholder="Overview*" required></textarea>
+                                            <textarea name="overview" tabindex="4" placeholder="Overview*" required="required"></textarea>
                                             <% if (errors.overview) { %>
                                                 <p style="color: red;"><%= errors.overview %></p>
                                             <% } %> 
                                         </div>
                                         <div class="profile-input">
-                                            <textarea name="additional" tabindex="4" placeholder="Additional Info" required></textarea>
+                                            <textarea name="additional" tabindex="4" placeholder="Additional Info" required="required"></textarea>
                                             <% if (errors.additional) { %>
                                                 <p style="color: red;"><%= errors.additional %></p>
                                             <% } %> 
