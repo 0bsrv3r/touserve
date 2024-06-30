@@ -171,7 +171,7 @@ class Tour{
             const city = {city: tour.city}
             const accommodations = await Accommodations.findAll({where:city, order: [['createdAt', 'DESC']],limit: 3})
             
-            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations});
+            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id});
         }else{
             return res.render("404", {layout: 'layouts/pagesheader'});
         }

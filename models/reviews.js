@@ -23,7 +23,6 @@ module.exports = (sequelize) => {
         onDelete: 'CASCADE',
     },
     tourId: {       // foreign key
-        allowNull: false,
         type: DataTypes.INTEGER,
         references: {
           model: 'Tours', // name of the target model
@@ -33,7 +32,6 @@ module.exports = (sequelize) => {
         onDelete: 'CASCADE',
     },
     accommodationId: {       // foreign key
-        allowNull: false,
         type: DataTypes.INTEGER,
         references: {
           model: 'Accommodations', // name of the target model
@@ -43,7 +41,6 @@ module.exports = (sequelize) => {
         onDelete: 'CASCADE',
     },
     guideId: {       // foreign key
-        allowNull: false,
         type: DataTypes.INTEGER,
         references: {
           model: 'Customers', // name of the target model

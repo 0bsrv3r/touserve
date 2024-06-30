@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator")
-const {Users} = require("../../models/index.js")
+const {Users} = require("../../models")
 const FileUpload = require("../../services/fileUploadService.js")
 
 class Profile{
