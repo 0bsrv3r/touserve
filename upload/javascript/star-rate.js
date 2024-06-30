@@ -40,3 +40,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+
+function highlightStars(ulElements, starCounts) {
+    ulElements.forEach((ul, ulIndex) => {
+        const starCount = starCounts[ulIndex];
+        const stars = ul.querySelectorAll('li');
+        stars.forEach((star, index) => {
+            if (index < starCount) {
+                star.classList.add('active');
+            } else {
+                star.classList.remove('highlight');
+            }
+        });
+    });
+}
+
+const ulElements = document.querySelectorAll('#review-stars');
+highlightStars(ulElements, starCounts);

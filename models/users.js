@@ -6,6 +6,7 @@ module.exports = (sequelize) => {
     static associate(models) {
       // Association definition
       this.hasMany(models.Events, { foreignKey: 'userId', as: 'events' });
+      this.hasMany(models.Reviews, { foreignKey: 'userId', as: 'reviews' });
     }
   }
   Users.init({

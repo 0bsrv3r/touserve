@@ -19,7 +19,7 @@ class Guide{
         const guide = await Customers.findOne({where: data, include: 'guideTours' })
                 
         if(guide != undefined){
-            return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide});
+            return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide, service:"guide", id:data.id});
         }else{
             return res.render("404", {layout: 'layouts/pagesheader'});
 

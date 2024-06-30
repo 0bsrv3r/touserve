@@ -1027,6 +1027,9 @@ body{
 #star-rate .star.v1 .keep-active:before{
     content: "\f005" !important;
 }
+#review-stars .active:before{
+    content: "\f005" !important;
+}
                                 /*========= Review END ==========*/
                               /*========= DASHBOARD-HEADER START ==========*/
 .dashboard-custom-menu{

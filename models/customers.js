@@ -9,6 +9,7 @@ module.exports = (sequelize) => {
       this.hasMany(models.Tours,  { foreignKey: 'customerId', as: 'companyTours' });
       this.hasMany(models.Tours,  { foreignKey: 'guideId', as: 'guideTours' });
       this.hasMany(models.Accommodations, { foreignKey: 'customerId', as: 'accommodations' });
+      this.hasMany(models.Reviews, { foreignKey: 'guideId', as: 'reviews' });
     }
   }
   Customers.init({

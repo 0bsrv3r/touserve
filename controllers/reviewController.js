@@ -14,7 +14,7 @@ class Review{
                 stars: req.body.stars,
             } 
 
-            Reviews.create(data)
+            await Reviews.create(data)
             return res.redirect(`/tour-details/${req.params.id}`)
         // }else{
         //     return Tour.getTourCreate(req, res, errors)

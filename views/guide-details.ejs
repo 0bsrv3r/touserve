@@ -86,7 +86,59 @@
                     </p>
                 </div>
 
-                <%- include('./components/review.ejs') %>
+                <div class="flat-tabs" data-effect="fadeIn">
+                    <div class="wrap-radio menu-tab">
+                
+                        <div class="radio active">
+                            <input id="radio-1" name="radio" type="radio" checked="checked">
+                            <label for="radio-1" class="radio-label">Review</label>
+                        </div>
+                
+                        <div class="radio">
+                            <input id="radio-2" name="radio" type="radio">
+                            <label for="radio-2" class="radio-label">Add Review</label>
+                        </div>
+                    </div>
+                    <!-- /.menu-tab -->
+                    <div class="content-tab">
+                
+                        <div class="content-inner active">
+                            <div class="flat-list-review">
+                                <ul class="list-review clearfix">
+
+                                    
+                                    <li class="item">
+                                        <div class="thumb overlays2">
+                                            <a href="#" class="link">
+                                                <img src="/upload/images/clients/rv-i1.jpg" alt="image">
+                                            </a>
+                                        </div>
+                                        <div class="text">
+                                            <h5>
+                                                <a href="#">Valentino Morose</a>
+                                            </h5>
+                                            <p class="date">Aug 20, 2017</p>
+                                            <div class="wrap-star s2 v1">
+                                                <ul class="star">
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                </ul>
+                                            </div>
+                                            <div class="sub-title">sssssssss</div>
+                                        </div>
+                                    </li>
+
+                                </ul><!-- /.popular-news -->
+                            </div>
+                        </div><!-- /.content-inner -->
+                
+                        <%- include('./components/add-review.ejs') %>
+                
+                    </div><!-- /.content-tab -->
+                </div><!-- /.flat-tabs -->
 
             </div><!-- /.col-md-9 -->
 

@@ -171,7 +171,60 @@
                     <% } %>
 
 
-                    <%- include('./components/review.ejs') %>
+                    <div class="flat-tabs" data-effect="fadeIn">
+                        <div class="wrap-radio menu-tab">
+                    
+                            <div class="radio active">
+                                <input id="radio-1" name="radio" type="radio" checked="checked">
+                                <label for="radio-1" class="radio-label">Review</label>
+                            </div>
+                    
+                            <div class="radio">
+                                <input id="radio-2" name="radio" type="radio">
+                                <label for="radio-2" class="radio-label">Add Review</label>
+                            </div>
+                        </div>
+                        <!-- /.menu-tab -->
+                        <div class="content-tab">
+                    
+                            <div class="content-inner active">
+                                <div class="flat-list-review">
+                                    <ul class="list-review clearfix">
+                                        <script> let starCounts = []; </script>
+                                        <% for(let i=0; i < tour.reviews.length; i++){ %>
+                                        <li class="item">
+                                            <div class="thumb overlays2">
+                                                <a href="#" class="link">
+                                                    <img src="/<%= users[i].image %>" alt="image" style="width: 93px;">
+                                                </a>
+                                            </div>
+                                            <div class="text">
+                                                <h5>
+                                                    <a href="#"><%= users[i].uname %></a>
+                                                </h5>
+                                                <p class="date">Aug 20, 2017</p>
+                                                <div class="wrap-star s2 v1">
+                                                    <ul id="review-stars" class="star v1" required="required">
+                                                        <li data-value="1"></li>
+                                                        <li data-value="2"></li>
+                                                        <li data-value="3"></li>
+                                                        <li data-value="4"></li>
+                                                        <li data-value="5"></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="sub-title"><%= tour.reviews[i].review %></div>
+                                                <script> starCounts.push('<%= tour.reviews[i].stars %>'); </script>
+                                            </div>
+                                        </li>
+                                        <% } %>
+                                    </ul><!-- /.popular-news -->
+                                </div>
+                            </div><!-- /.content-inner -->
+                    
+                            <%- include('./components/add-review.ejs') %>
+                    
+                        </div><!-- /.content-tab -->
+                    </div><!-- /.flat-tabs -->
                     
 
                     <% if (accommodations[0] != undefined){ %>

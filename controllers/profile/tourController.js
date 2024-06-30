@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator")
 const {Tours, Customers, Accommodations} = require("../../models")
 const FileUpload = require("../../services/fileUploadService.js")
+const UsersInfoReview = require("../../services/usersInfoReviews.js")
 
 class Tour{
 
@@ -166,12 +167,18 @@ class Tour{
 
     static async getTourById(req, res){
         const data = req.params
-        const tour = await Tours.findOne({where: data})
+        const tour = await Tours.findOne({where: data, include:"reviews"})
+        
         if(tour != undefined){
+
+            // get users based on tour review
+            const users = await UsersInfoReview.userInfoReviews(req, res, tour.reviews)
+            
+            // get realted accommodations based on location
             const city = {city: tour.city}
             const accommodations = await Accommodations.findAll({where:city, order: [['createdAt', 'DESC']],limit: 3})
             
-            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id});
+            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id, users: users});
         }else{
             return res.render("404", {layout: 'layouts/pagesheader'});
         }
