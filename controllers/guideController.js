@@ -1,5 +1,5 @@
 const {Customers, Tours} = require("../models")
-
+const UsersInfoReview = require("./../services/usersInfoReviews.js")
 
 class Guide{
     
@@ -16,13 +16,15 @@ class Guide{
 
     static async getGuideById(req, res){
         const data = req.params
-        const guide = await Customers.findOne({where: data, include: 'guideTours' })
-                
+        const guide = await Customers.findOne({where: data, include: ['guideTours', "reviews"] })
+        
         if(guide != undefined){
-            return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide, service:"guide", id:data.id});
+            // get users based on guide review
+            const users = await UsersInfoReview.userInfoReviews(req, res, guide.reviews)
+
+            return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide, service:"guide", id:data.id, users: users});
         }else{
             return res.render("404", {layout: 'layouts/pagesheader'});
-
         }
     }
 }

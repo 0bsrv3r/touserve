@@ -1,7 +1,7 @@
 const {Users} = require('../models')
 
 class UserInfo{
-    static async  userInfoReviews(req, res, reviews){
+    static async userInfoReviews(req, res, reviews){
         let users = []
         if(reviews){
             for (let review of reviews){

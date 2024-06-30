@@ -105,32 +105,33 @@
                         <div class="content-inner active">
                             <div class="flat-list-review">
                                 <ul class="list-review clearfix">
-
-                                    
-                                    <li class="item">
-                                        <div class="thumb overlays2">
-                                            <a href="#" class="link">
-                                                <img src="/upload/images/clients/rv-i1.jpg" alt="image">
-                                            </a>
-                                        </div>
-                                        <div class="text">
-                                            <h5>
-                                                <a href="#">Valentino Morose</a>
-                                            </h5>
-                                            <p class="date">Aug 20, 2017</p>
-                                            <div class="wrap-star s2 v1">
-                                                <ul class="star">
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
-                                                </ul>
+                                    <script> let starCounts = []; </script>
+                                        <% for(let i=0; i < guide.reviews.length; i++){ %>
+                                        <li class="item">
+                                            <div class="thumb overlays2">
+                                                <a href="#" class="link">
+                                                    <img src="/<%= users[i].image %>" alt="image" style="width: 93px;">
+                                                </a>
                                             </div>
-                                            <div class="sub-title">sssssssss</div>
-                                        </div>
-                                    </li>
-
+                                            <div class="text">
+                                                <h5>
+                                                    <a href="#"><%= users[i].uname %></a>
+                                                </h5>
+                                                <p class="date">Aug 20, 2017</p>
+                                                <div class="wrap-star s2 v1">
+                                                    <ul id="review-stars" class="star v1" required="required">
+                                                        <li data-value="1"></li>
+                                                        <li data-value="2"></li>
+                                                        <li data-value="3"></li>
+                                                        <li data-value="4"></li>
+                                                        <li data-value="5"></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="sub-title"><%= guide.reviews[i].review %></div>
+                                                <script> starCounts.push('<%= guide.reviews[i].stars %>'); </script>
+                                            </div>
+                                        </li>
+                                        <% } %>
                                 </ul><!-- /.popular-news -->
                             </div>
                         </div><!-- /.content-inner -->

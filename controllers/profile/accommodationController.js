@@ -1,6 +1,7 @@
 const  { validationResult } = require("express-validator") 
 const {Accommodations, Tours} = require("../../models")
-const FileUpload = require("../../services/fileUploadService.js")
+const FileUpload = require("./../../services/fileUploadService.js")
+const UsersInfoReview = require("./../../services/usersInfoReviews.js")
 
 class Accommodation{
     
@@ -156,10 +157,14 @@ class Accommodation{
     }
 
     static async getAccommodationById(req, res){
-        const id = req.params
-        const accommodation = await Accommodations.findOne({where: id })
+        const data = req.params
+        const accommodation = await Accommodations.findOne({where: data, include:'reviews' })
+        
         if(accommodation != undefined){
-            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation})
+            // get users based on accommondation review
+            const users = await UsersInfoReview.userInfoReviews(req, res, accommodation.reviews)
+
+            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, users: users})
         }else{
             return res.render("404", {layout: 'layouts/pagesheader'});
         }
