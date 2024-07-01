@@ -9,7 +9,7 @@ class Review{
         if(req.session.user_id){
             if(errors.isEmpty()){
                 const data = {
-                    userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
+                    userId: 2, // req.session.user_id, //UPDATE THIS IN PROD ENV
                     tourId: req.params.id, 
                     review: req.body.review, 
                     stars: req.body.stars,
@@ -58,7 +58,7 @@ class Review{
     static async accommodationReview(req, res){
         const errors = validationResult(req)
         
-        // if(req.session.user_id){
+        if(req.session.user_id){
             if(errors.isEmpty()){
                 const data = {
                     userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
@@ -76,9 +76,9 @@ class Review{
                 }, {})
                 return res.json(errorObject)
             } 
-        // }else{
-        //     return res.redirect('/login')
-        // }
+        }else{
+            return res.redirect('/login')
+        }
     }
 }
 

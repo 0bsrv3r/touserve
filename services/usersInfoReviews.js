@@ -5,7 +5,7 @@ class UserInfo{
         let users = []
         if(reviews){
             for (let review of reviews){
-                const user = await Users.findOne({where: review.userId, attributes: ['uname', 'image']})
+                const user = await Users.findOne({where: review.userId, attributes: ['id', 'uname', 'image']})
                 users.push(user.dataValues )
             }
 

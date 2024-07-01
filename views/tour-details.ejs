@@ -213,6 +213,15 @@
                                                     </ul>
                                                 </div>
                                                 <div class="sub-title"><%= tour.reviews[i].review %></div>
+
+                                                <% if (globalSession.user_type == 'user' && globalSession.user_id == users[i].id){ %>
+                                                <p class="date">
+                                                    <a href="/review/tour/delete/<%= tour.reviews[i].id %>">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </a>
+                                                </p>
+                                                <% } %>
+                                                
                                                 <script> starCounts.push('<%= tour.reviews[i].stars %>'); </script>
                                             </div>
                                         </li>

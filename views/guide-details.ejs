@@ -128,6 +128,15 @@
                                                     </ul>
                                                 </div>
                                                 <div class="sub-title"><%= guide.reviews[i].review %></div>
+
+                                                <% if (globalSession.user_type == 'user' && globalSession.user_id == users[i].id){ %>
+                                                    <p class="date">
+                                                        <a href="/review/guide/delete/<%= guide.reviews[i].id %>">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </p>
+                                                <% } %>
+                                                
                                                 <script> starCounts.push('<%= guide.reviews[i].stars %>'); </script>
                                             </div>
                                         </li>
