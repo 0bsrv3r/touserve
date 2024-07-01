@@ -5,8 +5,11 @@ const reviewValidation  = require("../validators/review.js");
 
 router.use(express.urlencoded({ extended:true }))
 
-router.post('/tour/:id', reviewValidation, Review.tourReview)
-router.post('/guide/:id', reviewValidation, Review.guideReview)
-router.post('/accommodation/:id', reviewValidation, Review.accommodationReview)
+router.post('/tour/:id', reviewValidation, Review.postTourReview)
+router.get('/tour/delete/:id', Review.deleteTourReviewById)
+router.post('/guide/:id', reviewValidation, Review.postGuideReview)
+router.get('/guide/delete/:id', Review.deleteGuideReviewById)
+router.post('/accommodation/:id', reviewValidation, Review.postAccommodationReview)
+router.get('/accommodation/delete/:id', Review.deleteAccommodationReviewById)
 
 module.exports = router

@@ -3,13 +3,13 @@ const {Reviews} = require("../models")
 
 class Review{
 
-    static async tourReview(req, res){
+    static async postTourReview(req, res){
         const errors = validationResult(req)
         
         if(req.session.user_id){
             if(errors.isEmpty()){
                 const data = {
-                    userId: 2, // req.session.user_id, //UPDATE THIS IN PROD ENV
+                    userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
                     tourId: req.params.id, 
                     review: req.body.review, 
                     stars: req.body.stars,
@@ -29,7 +29,22 @@ class Review{
         }
     }
 
-    static async guideReview(req, res){
+    static async deleteTourReviewById(req, res){
+        const ids = {
+            id: req.params.id,
+            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+        }
+        const review = await Reviews.findOne({where:ids, attributes:["tourId"]})
+        const deleted = await Reviews.destroy({where: ids})
+
+        if (deleted) {
+            return res.redirect(`/tour-details/${review.tourId}`)
+        }else {
+            return res.status(404).json({ message: `Reviews with ID ${ids.id} not found` });
+        }
+    }
+
+    static async postGuideReview(req, res){
         const errors = validationResult(req)
         
         if(req.session.user_id){
@@ -54,8 +69,23 @@ class Review{
             return res.redirect('/login')
         }
     }
+
+    static async deleteGuideReviewById(req, res){
+        const ids = {
+            id: req.params.id,
+            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+        }
+        const review = await Reviews.findOne({where:ids, attributes:["guideId"]})
+        const deleted = await Reviews.destroy({where: ids})
+
+        if (deleted) {
+            return res.redirect(`/guide-details/${review.guideId}`)
+        }else {
+            return res.status(404).json({ message: `Reviews with ID ${ids.id} not found` });
+        }
+    }
     
-    static async accommodationReview(req, res){
+    static async postAccommodationReview(req, res){
         const errors = validationResult(req)
         
         if(req.session.user_id){
@@ -78,6 +108,21 @@ class Review{
             } 
         }else{
             return res.redirect('/login')
+        }
+    }
+
+    static async deleteAccommodationReviewById(req, res){
+        const ids = {
+            id: req.params.id,
+            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+        }
+        const review = await Reviews.findOne({where:ids, attributes:["accommodationId"]})
+        const deleted = await Reviews.destroy({where: ids})
+
+        if (deleted) {
+            return res.redirect(`/accommodation-details/${review.accommodationId}`)
+        }else {
+            return res.status(404).json({ message: `Reviews with ID ${ids.id} not found` });
         }
     }
 }
