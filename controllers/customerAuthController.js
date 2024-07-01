@@ -45,5 +45,10 @@ class Authentication {
             return res.render('login',{ errors: errorObject, layout: false })
         }
     }
+
+    static async postSignOut(req, res){
+        req.session.destroy();
+        res.redirect("/")
+    }
 }
 module.exports = Authentication
