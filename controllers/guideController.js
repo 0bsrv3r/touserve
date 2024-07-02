@@ -1,4 +1,4 @@
-const {Customers, Tours} = require("../models")
+const {Customers} = require("../models")
 const UsersInfoReview = require("./../services/usersInfoReviews.js")
 
 class Guide{

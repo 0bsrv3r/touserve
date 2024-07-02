@@ -47,12 +47,14 @@ const admin = require ("./routes/admin.js");
 const customer = require ("./routes/customer.js"); 
 const user = require ("./routes/user.js"); 
 const review = require ("./routes/review.js"); 
+const invitation = require ("./routes/invitation.js"); 
 app.use("/", pathes);
 app.use("/auth", auth);
 app.use("/admin", /*login,*/ admin) // Checked with middleware if user registered or not.
 app.use("/customer", /*login, customerAccess, */ customer)
 app.use("/user", /*login,*/ user)
 app.use("/review", /*login,*/ review)
+app.use("/invitation", /*login,*/ invitation)
 
 // Middleware to handle 404 errors
 app.use((req, res, next) => {
