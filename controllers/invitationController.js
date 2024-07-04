@@ -14,7 +14,15 @@ class Invitation{
         const token = jwt.sign({ email, companyId }, JWT_SECRET, { expiresIn: '5m' });
 
         try {
-            await Invitations.create({ email: email, companyId: companyId, token:token, status:"pending" });
+            const guide = await Invitations.findOne({where: {email:email, companyId:companyId}})
+            console.log(guide)
+
+            if(guide){
+                guide.token = token
+                await guide.save();
+            }else{
+                await Invitations.create({ email: email, companyId: companyId, token:token, status:"pending" });
+            }
 
             // Send email
             const invitationLink = `http://localhost:8181/invitation/accept?token=${token}`;
@@ -67,7 +75,7 @@ class Invitation{
                 // Remove Invitation
                 await Invitations.destroy({ where: { token } });
     
-                res.send('Registration successful');
+                res.redirect('/login');
             } catch (error) {
                 res.status(400).send('Invalid or expired token');
             }

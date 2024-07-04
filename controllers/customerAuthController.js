@@ -5,8 +5,6 @@ class Authentication {
     static postRegister (req, res) { 
         const errors = validationResult(req); 
         if(errors.isEmpty()){ 
-            
-            // model structure 
             const data = { 
                 uname: req.body.uname, 
                 email: req.body.email, 

@@ -3,6 +3,7 @@ const router = express.Router();
 const Customer = require("../controllers/profile/customerController.js")
 const Tour = require("../controllers/profile/tourController.js")
 const Accommadation = require("../controllers/profile/accommodationController.js")
+const Guide = require("../controllers/profile/guideController.js")
 const profileValidation  = require("../validators/image-update.js"); 
 const tourValidation  = require("../validators/tour.js"); 
 const tourUpdateValidation  = require("../validators/tour-update.js"); 
@@ -27,5 +28,8 @@ router.post('/accommodations/create', accommadationValidation, Accommadation.pos
 router.get('/accommodations/update/:id', Accommadation.getUpdateAccommodationById);
 router.post('/accommodations/update/:id', accommadationUpdateValidation, Accommadation.postUpdateAccommodationById);
 router.get('/accommodations/delete/:id', Accommadation.deleteAccommoditionById);
+
+// Companies Guide
+router.get('/guide/delete/:id', Guide.deleteCompanyGuide)
 
 module.exports = router;
