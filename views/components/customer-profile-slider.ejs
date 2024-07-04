@@ -44,12 +44,12 @@
             </div>
             
             <% if(role === "company"){%>
-                <%- include('./../components/profile-tours') %>
-                <%- include('./../components/profile-guides') %>
+                <%- include('./../components/customer-profile-tours') %>
+                <%- include('./../components/customer-profile-guides') %>
             <% } if(role === "guide"){%>
-                <%- include('./../components/profile-tours') %>
+                <%- include('./../components/customer-profile-tours') %>
             <% } if(role === "host"){%>
-                <%- include('./../components/profile-accommodations') %>
+                <%- include('./../components/customer-profile-accommodations') %>
             <% } %>
 
             <div class="col-md-12 photos enable-hide displayFour">
@@ -67,7 +67,7 @@
 
                         <div class="radio">
                             <input id="radio-3" name="radio" type="radio">
-                            <label for="radio-3" class="radio-label">Review</label>
+                            <label for="radio-3" class="radio-label">General Setting</label>
                         </div>
 
                         <div class="radio">
@@ -77,9 +77,11 @@
                     </div>
                     <!-- /.menu-tab -->
                     <div class="content-tab">
+
+                        <!-- Update Email -->
                         <div class="content-inner active">
                             <div class="wrap-form-update">
-                                <form class="update-form" action="">
+                                <form class="update-form" action="/customer/update/email" method="post">
                                     <div class="update-input" id="profile-setting">
                                         <div class="change-input">
                                             <div class="profile-input">                                      
@@ -95,11 +97,11 @@
                                 </form>
                             </div>
                         </div>
-                        <!-- /.content-inner -->
 
+                        <!-- Update Password -->
                         <div class="content-inner">
                             <div class="wrap-form-update">
-                                <form class="update-form" action="">
+                                <form class="update-form" method="post" action="/customer/update/password">
                                     <div class="update-input" id="profile-setting">
                                         <div class="change-input">
                                             <div class="profile-input">                                      
@@ -120,11 +122,42 @@
                                     </div>
                                 </form>
                             </div>
-                        </div><!-- /.content-inner -->
+                        </div>
 
+                        <!-- General Setting -->
                         <div class="content-inner">
                             <div class="wrap-form-update">
-                                <div>hello</div>
+                                <form class="update-form" action="">
+                                    <div class="update-input" id="profile-setting">
+                                        <div class="change-input">
+                                            <div class="profile-input">                                      
+                                                <input class="form-input-size" type="text" name="firstName" placeholder="First Name*" aria-required="true" value="" id="author">
+                                            </div>
+                                            <div class="profile-input">                                      
+                                                <input class="form-input-size" type="text" name="lastName" placeholder="Last Name*" aria-required="true" value="" id="author">
+                                            </div>
+                                            <div class="profile-input">                                      
+                                                <input class="form-input-size" type="text" name="country" placeholder="Country*" aria-required="true" value="" id="author">
+                                            </div>
+                                        </div>    
+                                        <div class="change-input">
+                                            <div class="profile-input">                                      
+                                                <input class="form-input-size" type="text" name="firstName" placeholder="First Name*" aria-required="true" value="" id="author">
+                                            </div>
+                                            <div class="profile-input">                                      
+                                                <input class="form-input-size" type="text" name="lastName" placeholder="Last Name*" aria-required="true" value="" id="author">
+                                            </div>
+                                            <div class="profile-input">                                      
+                                                <input class="form-input-size" type="text" name="country" placeholder="Country*" aria-required="true" value="" id="author">
+                                            </div>
+                                        </div>    
+                                        <div class="wrap-button">
+                                            <p class="update-form-submit">
+                                                <button class="update-submit custom-update-submit">Update</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div><!-- /.content-inner -->
 

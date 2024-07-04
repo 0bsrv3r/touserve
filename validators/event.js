@@ -62,5 +62,4 @@ module.exports = eventValidation = [
     body("date")
         .matches(dateRegex)
         .withMessage('Date must be in the format MM/DD/YYYY h:mm A - MM/DD/YYYY h:mm A') 
-    
 ]

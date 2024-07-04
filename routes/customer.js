@@ -5,6 +5,7 @@ const Tour = require("../controllers/profile/tourController.js")
 const Accommadation = require("../controllers/profile/accommodationController.js")
 const Guide = require("../controllers/profile/guideController.js")
 const profileValidation  = require("../validators/image-update.js"); 
+const customerValidation = require("../validators/customer-update.js")
 const tourValidation  = require("../validators/tour.js"); 
 const tourUpdateValidation  = require("../validators/tour-update.js"); 
 const accommadationValidation  = require("../validators/accommodation.js"); 
@@ -14,6 +15,10 @@ router.use(express.urlencoded({ extended:true }))
 
 router.get('/profile', Customer.getProfileInfo);
 router.post('/profile/photo', profileValidation, Customer.uploadProfilePhoto);
+
+// Update Personal Information
+router.post('/update/email', customerValidation, Customer.updateEmail)
+router.post('/update/password', customerValidation,  Customer.updatePassword)
 
 // Tours
 router.get('/tours/create', Tour.getTourCreate);
