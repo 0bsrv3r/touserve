@@ -25,24 +25,53 @@
                                         </label>
                                     </th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <!-- first row of table -->
                                 <tr scope="row">
                                     <th scope="row">
                                         <label class="control control--checkbox">
                                             <input type="checkbox" />
-                                            <div class="control__indicator"></div>
+                                            <div class="control__indicator">
+                                                <i class="fa fa-check"></i>
+                                            </div>
                                         </label>
                                     </th>
                                     <td>
-                                        John Wick
-                                        <small class="d-block">john@email.com</small>
+                                        <%= profile.uname %>
+                                        <small class="d-block"><%= profile.email %></small>
                                     </td>
-                                    <td>Pending Invite</td>
-                                    <td>...</td>
+                                    <td>Owner</td>
+                                    <td>
+                                        
+                                    </td>
                                 </tr>
+
+                                <% for(let guide of profile.companyGuides){ %>
+                                <tr scope="row">
+                                    <th scope="row">
+                                        <label class="control control--checkbox">
+                                            <input type="checkbox" />
+                                            <div class="control__indicator">
+                                                <i class="fa fa-check"></i>
+                                            </div>
+                                        </label>
+                                    </th>
+                                    <td>
+                                        <%= guide.uname %>
+                                        <small class="d-block"><%= guide.email %></small>
+                                    </td>
+                                    <td><%= guide.role %></td>
+                                    <td>
+                                        <a href="/customer/guide/delete/<%= guide.id%>">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% } %> 
                                 <!-- <tr class="spacer"><td colspan="100"></td></tr> -->
                             </tbody>
                         </table>

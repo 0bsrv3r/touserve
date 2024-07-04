@@ -1,6 +1,5 @@
 require('dotenv').config();
 const nodemailer = require('nodemailer');
-const mailgun = require('mailgun-js');
 
 // Nodemailer için transport ayarları
 const transporter = nodemailer.createTransport({
