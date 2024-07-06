@@ -8,7 +8,7 @@ class Profile{
         const id = {id: 1} // {id: req.session.user_id} //UPDATE THIS IN PROD ENV
         const user  = await Users.findOne({where: id})
 
-        return res.render("./profile/profile", {layout: 'layouts/pagesheader.ejs', errors: {}, profile: user, type: 'user' });
+        return res.render("./profile/profile", {layout: 'layouts/pagesheader.ejs', errors: {}, profile: user, type: 'user', active:"profile"});
     }
 
     static async uploadProfilePhoto(req, res){
@@ -36,7 +36,7 @@ class Profile{
                     return acc;
                 }, {})
                 console.log(errorObject)
-                return res.render("./profile/profile", {layout: 'layouts/pagesheader', errors: errorObject});                  
+                return res.render("./profile/profile", {layout: 'layouts/pagesheader', errors: errorObject, active:"profile"});                  
             }
         } catch (error) {
             return res.status(500).json({ error: 'An error occurred while updating the profile photo' });

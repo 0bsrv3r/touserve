@@ -44,7 +44,7 @@ class Accommodation{
                 return acc;
             }, {})
             
-            res.render("./profile/accommodation-create", {layout: 'layouts/pagesHeader', errors: errorObject});  
+            res.render("./profile/accommodation-create", {layout: 'layouts/pagesHeader', errors: errorObject, active:"accommodations"});  
         } 
     }
 
@@ -56,7 +56,7 @@ class Accommodation{
         const accommodation  = await Accommodations.findOne({where: ids})
 
         if (accommodation) {
-            res.render("./profile/accommodation-update", {layout: 'layouts/pagesHeader', accommodation: accommodation, errors: {}});
+            res.render("./profile/accommodation-update", {layout: 'layouts/pagesHeader', accommodation: accommodation, errors: {}, active:"accommodations"});
         }else {
             res.status(404).json({ message: `Accommodation with ID ${ids.id} not found` });
         }
@@ -116,7 +116,7 @@ class Accommodation{
                     return acc;
                 }, {})
                     
-                res.render("./profile/accommodation-update", {layout: 'layouts/pagesHeader', errors: errorObject, accommodation: {...req.body, id: req.params.id}});                  
+                res.render("./profile/accommodation-update", {layout: 'layouts/pagesHeader', errors: errorObject, accommodation: {...req.body, id: req.params.id}, active:"accommodations"});                  
             }
         } catch (error) {
             console.error(error);
@@ -153,7 +153,7 @@ class Accommodation{
     static async getAccommodations(req, res){
         const accommodations = await Accommodations.findAll()
         const tours = await Accommodation.getRecommendedTours()
-        return res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations, tours: tours})
+        return res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations, tours: tours, active:"accommodations" })
     }
 
     static async getAccommodationById(req, res){
@@ -164,9 +164,9 @@ class Accommodation{
             // get users based on accommondation review
             const users = await UsersInfoReview.userInfoReviews(req, res, accommodation.reviews)
 
-            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, users: users})
+            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, users: users, active:"accommodations"})
         }else{
-            return res.render("404", {layout: 'layouts/pagesheader'});
+            return res.render("404", {layout: 'layouts/pagesheader', active:"accommodations"});
         }
     }
 }

@@ -23,12 +23,12 @@ class Tour{
                     return acc;
                 }, {})
 
-                return res.render("./profile/tour-create", {layout: 'layouts/pagesheader', guides:guideNames, errors:errorObject });
+                return res.render("./profile/tour-create", {layout: 'layouts/pagesheader', guides:guideNames, errors:errorObject, active:"tours" });
             }else{
-                return res.render("./profile/tour-create", {layout: 'layouts/pagesheader', guides:guideNames, errors:{} });
+                return res.render("./profile/tour-create", {layout: 'layouts/pagesheader', guides:guideNames, errors:{}, active:"tours" });
             }
         }else{
-            return res.render("./profile/tour-create", {layout: 'layouts/pagesheader', guides:{}, errors:{} });
+            return res.render("./profile/tour-create", {layout: 'layouts/pagesheader', guides:{}, errors:{}, active:"tours" });
         }
     }
 
@@ -75,7 +75,7 @@ class Tour{
         const guideNames = await Tour.getGuideName()
 
         if (tour) {
-            return res.render("./profile/tour-update", {layout: 'layouts/pagesheader', tour: tour, guides:guideNames, errors: {}});
+            return res.render("./profile/tour-update", {layout: 'layouts/pagesheader', tour: tour, guides:guideNames, errors: {}, active:"tours"});
         }else {
             return res.status(404).json({ message: `Tour with ID ${ids.id} not found` });
         }
@@ -133,10 +133,10 @@ class Tour{
                     return acc;
                 }, {})
                     
-                return res.render("./profile/tour-update", {layout: 'layouts/pagesheader', errors: errorObject, tour: {...req.body, id: req.params.id}, guides: guideNames});                  
+                return res.render("./profile/tour-update", {layout: 'layouts/pagesheader', errors: errorObject, tour: {...req.body, id: req.params.id}, guides: guideNames, active:"tours"});                  
             }
         } catch (error) {
-            return res.status(500).json({ error: 'An error occurred while updating the accommodation' });
+            return res.status(500).json({ error: 'An error occurred while updating the tours' });
         }
     }
 
@@ -162,7 +162,7 @@ class Tour{
     // Front Side
     static async getTours(req, res){
         const tours = await Tours.findAll()
-        return res.render("tours", {layout: 'layouts/pagesHeader', tours: tours}); 
+        return res.render("tours", {layout: 'layouts/pagesHeader', tours: tours, active:"tours"}); 
     }
 
     static async getTourById(req, res){
@@ -178,9 +178,9 @@ class Tour{
             const city = {city: tour.city}
             const accommodations = await Accommodations.findAll({where:city, order: [['createdAt', 'DESC']],limit: 3})
             
-            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id, users: users});
+            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id, users: users, active:"tours"});
         }else{
-            return res.render("404", {layout: 'layouts/pagesheader'});
+            return res.render("404", {layout: 'layouts/pagesheader', active:"tours"});
         }
     }
 
@@ -189,9 +189,9 @@ class Tour{
         const tours = await Tours.findAll({where: data})
 
         if(tours[0] != undefined){
-            return res.render(`${data.category}-tours`, {layout: 'layouts/pagesheader', tours:tours});
+            return res.render(`${data.category}-tours`, {layout: 'layouts/pagesheader', tours:tours, active:"tours"});
         }else{
-            return res.render("404", {layout: 'layouts/pagesheader'});
+            return res.render("404", {layout: 'layouts/pagesheader', active:"tours"});
         }
     }
 }

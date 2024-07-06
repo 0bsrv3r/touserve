@@ -31,7 +31,7 @@ module.exports = {
         type: Sequelize.STRING(70)
       },
       number: {
-        type: Sequelize.INTEGER(20)
+        type: Sequelize.STRING(20)
       },
       firstName: {
         type: Sequelize.STRING(50)
@@ -56,6 +56,11 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
       }
     });
+
+    // // Change Columns
+    // await queryInterface.changeColumn('Users', 'number', {
+    //   type: Sequelize.STRING(20),
+    // });
   },
   
   down: async (queryInterface, Sequelize) => {

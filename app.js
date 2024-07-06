@@ -58,7 +58,7 @@ app.use("/invitation", /*login,*/ invitation)
 
 // Middleware to handle 404 errors
 app.use((req, res, next) => {
-    res.status(404).render('404', { layout: 'layouts/pagesheader', url: req.originalUrl });
+    res.status(404).render('404', { layout: 'layouts/pagesheader', url: req.originalUrl, active:"404" });
 });
 
 app.listen(port, ()=>{ 

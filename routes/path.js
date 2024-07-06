@@ -38,12 +38,12 @@ router.get('/guide-details/:id', Guide.getGuideById);
 
 // Photos
 router.get('/photos', (req, res) => { 
-    res.render("photos", {layout: 'layouts/pagesHeader'}); 
+    res.render("photos", {layout: 'layouts/pagesHeader', active:"photos"}); 
 });
 
 // E-Visa
 router.get('/e-visa', (req, res) => { 
-    res.render("e-visa", {layout: 'layouts/pagesHeader'}); 
+    res.render("e-visa", {layout: 'layouts/pagesHeader', active:"e-visa"}); 
 });
 
 module.exports = router;

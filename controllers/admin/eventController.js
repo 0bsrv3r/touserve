@@ -162,7 +162,7 @@ class Event{
     // Front Side
     static async getEvents(req, res){
         const events = await Events.findAll()
-        return res.render("events", {layout: 'layouts/pagesheader', events:events});
+        return res.render("events", {layout: 'layouts/pagesheader', events:events, active:"events"});
     }
 }
 

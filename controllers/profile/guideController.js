@@ -18,9 +18,9 @@ class Guide{
         const guides = await Customers.findAll({where:{role:"guide"}})
 
         if(guides != undefined){
-            return res.render("guides", {layout: 'layouts/pagesheader', guides:guides});
+            return res.render("guides", {layout: 'layouts/pagesheader', guides:guides, active:"guides"});
         }else{
-            return res.render("guides", {layout: 'layouts/pagesheader', guides:{}});
+            return res.render("guides", {layout: 'layouts/pagesheader', guides:{}, active:"guides"});
         }
     }
 
@@ -32,9 +32,9 @@ class Guide{
             // get users based on guide review
             const users = await UsersInfoReview.userInfoReviews(req, res, guide.reviews)
 
-            return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide, service:"guide", id:data.id, users: users});
+            return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide, service:"guide", id:data.id, users: users, active:"guides"});
         }else{
-            return res.render("404", {layout: 'layouts/pagesheader'});
+            return res.render("404", {layout: 'layouts/pagesheader', active:"guides"});
         }
     }
 }
