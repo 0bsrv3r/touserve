@@ -35,7 +35,7 @@ module.exports = {
         type: Sequelize.STRING(30)
       },
       number: {
-        type: Sequelize.INTEGER(20)
+        type: Sequelize.STRING(20)
       },
       firstName: {
         type: Sequelize.STRING(70)
@@ -44,7 +44,7 @@ module.exports = {
         type: Sequelize.STRING(70)
       },
       languages: {
-        type: Sequelize.STRING(300)
+        type: Sequelize.JSON(300)
       },
       country: {
         type: Sequelize.STRING(70)
@@ -58,9 +58,6 @@ module.exports = {
       experience: {
         type: Sequelize.INTEGER(3)
       },
-      gender: {
-        type: Sequelize.STRING(10)
-      },
       description: {
         type: Sequelize.TEXT
       },
@@ -69,9 +66,6 @@ module.exports = {
       },
       verifiedAt: {
         type: Sequelize.STRING(50)
-      },
-      image: {
-        type: Sequelize.STRING(200)
       },
       createdAt: {
         allowNull: false,

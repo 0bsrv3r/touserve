@@ -39,7 +39,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING(30)
     },
     number: {
-        type: DataTypes.INTEGER(20)
+        type: DataTypes.STRING(20)
     },
     firstName: {
         type: DataTypes.STRING(70)
@@ -48,7 +48,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING(70)
     },
     languages: {
-        type: DataTypes.STRING(300)
+        type: DataTypes.JSON(300)
     },
     country: {
         type: DataTypes.STRING(70)
@@ -61,9 +61,6 @@ module.exports = (sequelize) => {
     },
     experience: {
         type: DataTypes.INTEGER(3)
-    },
-    gender: {
-        type: DataTypes.STRING(10)
     },
     description: {
         type: DataTypes.TEXT

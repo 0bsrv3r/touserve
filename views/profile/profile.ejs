@@ -32,14 +32,14 @@
                                             <div class="left">
                                                 <p>Email</p>
                                                 <p>Full Name</p>
+                                                <p>Number</p>
                                                 <p>Language Spoken</p>
-                                                <p>Location</p>
                                             </div>
                                             <div class="right">
                                                 <p><%= profile.email %></p>
-                                                <p>N/A</p>
-                                                <p>N/A</p>
-                                                <p>N/A</p>
+                                                <p><%= profile.firstName !== null ? profile.firstName: 'N/A' %> <%= profile.lastName !== null ? profile.lastName : '' %></p>
+                                                <p><%= profile.number !== null ? profile.number : 'N/A' %></p>
+                                                <p><%= profile.languages !== null ? profile.languages : 'N/A' %></p>
                                             </div>
                                         </div>
                                     </div>
@@ -52,9 +52,7 @@
                         <div class="wrap-title s2 profile-overview">
                             <h4>Overview</h4>
                         </div>
-                        <p class="content-destination">Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari quam ti del coalescent lingues. Li nov lingua franca va esser plu simplic e regulari quam li existent Europan lingues. It va esser tam simplic
-                            quam Occidental in fact, it va esser Occidental. A un Angleso it va semblar un simplificat Angles, quam un skeptic Cambridge amico dit me que Occidental es. Li Europan lingues es membres del sam familie. Lor separat existentie
-                            es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular.</p>
+                        <p class="content-destination"><%= profile.description !== null ? profile.description : 'N/A' %></p>
                     </div>
                     <!-- /.col-md-9 -->
 
@@ -64,4 +62,6 @@
         
         <% if (type == 'customer'){ %>
             <%- include('./../components/customer-profile-slider') %>
+        <% }else if (type == 'user'){ %>
+            <%- include('./../components/user-profile-slider') %>
         <% } %>

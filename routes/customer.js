@@ -18,7 +18,9 @@ router.post('/profile/photo', profileValidation, Customer.uploadProfilePhoto);
 
 // Update Personal Information
 router.post('/update/email', customerValidation, Customer.updateEmail)
+router.post('/update/number', customerValidation, Customer.updateNumber)
 router.post('/update/password', customerValidation,  Customer.updatePassword)
+router.post('/update/general', customerValidation,  Customer.updateGeneral)
 
 // Tours
 router.get('/tours/create', Tour.getTourCreate);

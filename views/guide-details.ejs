@@ -59,15 +59,11 @@
                                         <p>Age</p>
                                         <p>Experience</p>
                                         <p>Languages</p>
-                                        <p>Gender</p>
-                                        <p>Location</p>
                                     </div>
                                     <div class="right">
-                                        <p><%= guide.age %></p>
-                                        <p><%= guide.experience %> Years</p>
-                                        <p><%= guide.languages %></p>
-                                        <p><%= guide.gender %></p>
-                                        <p><%= guide.city %>, <%= guide.country %></p>
+                                        <p><%= guide.age !== null ? guide.age : 'N/A' %></p>
+                                        <p><%= guide.experience !== null ? guide.experience : 'N/A' %> Years</p>
+                                        <p><%= guide.languages !== null ? guide.languages : 'N/A' %></p>
                                     </div>
                                 </div>
                             </div>

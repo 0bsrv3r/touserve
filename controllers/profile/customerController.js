@@ -55,7 +55,30 @@ class Profile{
 
             if(customer){
                 customer.email = email
-                customer.save()
+                await customer.save()
+            }
+            return res.redirect('/customer/profile')
+        }else{
+            const errorObject = errors.array().reduce((acc, error) => {
+                acc[error.path] = error.msg;
+                return acc;
+            }, {})
+            return res.json(errorObject)
+        }
+    }
+
+    static async updateNumber(req, res){
+        const errors = validationResult(req)
+        
+        if(errors.isEmpty()){
+            const {number} = req.body;
+            const id = 1; // req.session.user_id //UPDATE THIS IN PROD ENV
+
+            const customer = await Customers.findOne({where: id})
+
+            if(customer){
+                customer.number = number
+                await customer.save()
             }
             return res.redirect('/customer/profile')
         }else{
@@ -78,7 +101,43 @@ class Profile{
 
             if(customer){
                 customer.password = newPass1
-                customer.save()
+                await customer.save()
+            }
+            return res.redirect('/customer/profile')
+        }else{
+            const errorObject = errors.array().reduce((acc, error) => {
+                acc[error.path] = error.msg;
+                return acc;
+            }, {})
+
+            return res.json(errorObject)
+        }    
+    }
+
+    static async updateGeneral(req, res){
+        const errors = validationResult(req)
+        
+        if(errors.isEmpty()){
+            const id = 1 //req.session.user_id //UPDATE THIS IN PROD ENV
+            const customer = await Customers.findOne({where: {id}})
+
+            if(customer){
+                const data = {
+                   firstName: req.body.firstName, 
+                   lastName: req.body.lastName,
+                   age: req.body.age,
+                   experience: req.body.experience, 
+                   languages: req.body.languages, 
+                   description: req.body.description
+                }
+
+                Object.keys(data).forEach(key => {
+                    if (data[key]) {
+                        customer[key] = data[key];
+                    }
+                });
+
+                await customer.save();
             }
             return res.redirect('/customer/profile')
         }else{

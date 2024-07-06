@@ -11,7 +11,12 @@ module.exports = customerValidation = [
     body("email")
         .optional({ checkFalsy: true })
         .isEmail()
-        .withMessage("Write correct email address"), 
+        .withMessage("Invalid email address"),
+    
+    body("number")
+        .optional({ checkFalsy: true })
+        .isMobilePhone()
+        .withMessage("Invalid phone numbers"),
 
     body("newPass1") 
         .optional({ checkFalsy: true })
@@ -31,7 +36,7 @@ module.exports = customerValidation = [
             return true; 
         }),
 
-    body("firstNAme") 
+    body("firstName") 
         .optional({ checkFalsy: true })
         .isLength({min: 3, max: 70}) 
         .withMessage("Name must consist of min 3 and max 50 characters") 
@@ -78,10 +83,6 @@ module.exports = customerValidation = [
         .isLength({min: 1, max: 5})
         .isNumeric() 
         .withMessage("Description must consist of numbers"),
-    
-    body('gender')
-        .optional({ checkFalsy: true })
-        .isIn(['Male', 'Female']).withMessage('Gender must be either "male" or "female"'),
     
     body("description")
         .optional({ checkFalsy: true })

@@ -10,14 +10,6 @@
                                 FILTER
                             </button>
                             <div class="drop dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <% if(role === "company"){%>
-                                    <a data-value=0 href="#" class="dropdown-item">Your Tours</a>
-                                    <a data-value=1 href="#" class="dropdown-item">Your Guides</a>
-                                <% } if(role === "guide"){%>
-                                    <a data-value=0 href="#" class="dropdown-item">Your Tours</a>
-                                <% } if(role === "host"){%>
-                                    <a data-value=0 href="#" class="dropdown-item">Your Acccommodations</a>
-                                <% } %>
                                 <a data-value=3 href="#" class="dropdown-item">Settings</a>
                             </div>
                         </div>
@@ -29,30 +21,13 @@
             <div class="col-md-12">
                 <div class="imageHeader">
                     <ul class="profile-slider">
-                        <% if(role === "company"){%>
-                            <li class="active"><a data-value=0 href="#">Your Tours</a></li>
-                            <li><a data-value=1 href="#">Your Guides</a></li>
-                        <% } if(role === "guide"){%>
-                            <li class="active"><a data-value=0 href="#">Your Tours</a></li>
-                        <% } if(role === "host"){%>
-                            <li class="active"><a data-value=0 href="#">Your Accommodations</a></li>
-                        <% } %>
-                        <li><a data-value=3 href="#">Settings</a></li>
+                        <li class="active"><a data-value=0 href="#">Settings</a></li>
                     </ul>
                 </div>
                 <a href="#"></a>
             </div>
             
-            <% if(role === "company"){%>
-                <%- include('./../components/customer-profile-tours') %>
-                <%- include('./../components/customer-profile-guides') %>
-            <% } if(role === "guide"){%>
-                <%- include('./../components/customer-profile-tours') %>
-            <% } if(role === "host"){%>
-                <%- include('./../components/customer-profile-accommodations') %>
-            <% } %>
-
-            <div class="col-md-12 photos enable-hide displayFour">
+            <div class="col-md-12 photos displayOne">
                 <div class="flat-tabs" data-effect="fadeIn">
                     <div class="wrap-radio menu-tab">
                         <div class="radio active">
@@ -147,7 +122,7 @@
                         <!-- General Setting -->
                         <div class="content-inner">
                             <div class="wrap-form-update">
-                                <form class="update-form" method="post" action="/customer/update/general">
+                                <form class="update-form" method="post" action="/user/update/general">
                                     <div class="update-input" id="profile-setting">
                                         <div class="change-input">
                                             <div class="profile-input">                                      
@@ -157,28 +132,6 @@
                                                 <input class="form-input-size" type="text" name="lastName" placeholder="Last Name" aria-required="true" value="<%= profile.lastName %>" id="author">
                                             </div>
                                         </div>    
-                                        <div class="change-input">
-                                            <div class="profile-input">                                      
-                                                <input class="form-input-size" type="number" name="age" placeholder="Age" value="<%= profile.age %>" aria-required="true" id="author">
-                                            </div>
-                                            <div class="profile-input">                                      
-                                                <input class="form-input-size" type="number" name="experience" placeholder="Experience" aria-required="true" value="<%= profile.experience %>" id="author">
-                                            </div>
-                                            <div class="profile-input">
-                                                <select class="form-input-size" id="language" name="languages" data-placeholder="Languages" multiple data-multi-select>
-                                                    <option>English</option>
-                                                    <option>Turkish</option>
-                                                    <option>Russian</option>
-                                                    <option>Spanish</option>
-                                                    <option>French</option>
-                                                </select> 
-                                            </div>
-                                        </div> 
-                                        <div class="change-input">
-                                            <div class="profile-input">
-                                                <textarea name="description"  placeholder="Description" style="margin-bottom: 20px;"><%= profile.description %></textarea>
-                                            </div>
-                                        </div>
                                         <div class="wrap-button">
                                             <p class="update-form-submit">
                                                 <button class="update-submit custom-update-submit">Update</button>
