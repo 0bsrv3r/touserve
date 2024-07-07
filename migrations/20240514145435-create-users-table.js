@@ -40,7 +40,7 @@ module.exports = {
         type: Sequelize.STRING(70)
       },
       verifiedAt: {
-        type: Sequelize.STRING(50)
+        type: Sequelize.BOOLEAN(50)
       },
       image: {
         type: Sequelize.STRING(200)
@@ -56,6 +56,11 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
       }
     });
+
+    // Change Columns
+    // await queryInterface.changeColumn('Users', 'verifiedAt', {
+    //   type: Sequelize.BOOLEAN(),
+    // });
   },
   
   down: async (queryInterface, Sequelize) => {

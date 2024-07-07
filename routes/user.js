@@ -11,6 +11,7 @@ router.post('/profile/photo', profileValidation, User.uploadProfilePhoto);
 
 // Update Personal Information
 router.post('/update/email', userValidation, User.updateEmail)
+router.get('/verify/email', User.verifyEmail)
 router.post('/update/number', userValidation, User.updateNumber)
 router.post('/update/password', userValidation,  User.updatePassword)
 router.post('/update/general', userValidation,  User.updateGeneral)

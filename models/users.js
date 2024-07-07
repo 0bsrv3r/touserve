@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(70)
     },
     verifiedAt: {
-      type: DataTypes.STRING(50)
+      type: DataTypes.BOOLEAN(50)
     },
     image: {
       type: DataTypes.STRING(200)

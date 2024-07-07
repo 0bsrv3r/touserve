@@ -16,8 +16,8 @@ class EmailSender{
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: email,
-            subject: 'You are invited!',
-            text: `Please click the following link to accept the invitation: ${link}`,
+            subject: 'Test',
+            text: `Test user verification link for development: ${link}`,
         };
 
         await transporter.sendMail(mailOptions);

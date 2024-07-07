@@ -8,7 +8,6 @@ class Authentication {
         const errors = validationResult(req); 
         
         if(errors.isEmpty()){ 
-
             try {
                 const data = { 
                     uname: req.body.uname, 
@@ -28,7 +27,7 @@ class Authentication {
                     const customer  = await Customers.create(data)
                     
                     const token  = await JWTService.generateToken(req.body.email, customer.id)
-                    const invitationLink = `http://localhost:8181/auth/registration/accept?token=${token}`;
+                    const invitationLink = `http://localhost:8181/auth/customer/verify?token=${token}`;
                     await EmailSender.sendEmail(req, res, req.body.email, invitationLink)
                     
                     return res.render('register',{ errors: {}, layout: false, registered:registered }) 
@@ -85,7 +84,7 @@ class Authentication {
                     wrongAttempt: "Check your email & confirm you account"
                 }
                 const token  = await JWTService.generateToken(customer.email, customer.id)
-                const invitationLink = `http://localhost:8181/auth/registration/accept?token=${token}`;
+                const invitationLink = `http://localhost:8181/auth/customer/verify?token=${token}`;
                 await EmailSender.sendEmail(req, res, customer.email, invitationLink)
                         
                 return res.render('login',{ errors: errorObject, layout: false }) 

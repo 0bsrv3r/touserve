@@ -72,10 +72,10 @@ class Profile{
     static async verifyEmail(req, res){
         const {token} = req.query
         const decoded = await JWTService.verifyToken(token)
-        const bookedEmail = await Customers.findOne({where: {email:decoded.email}})
+        const newEmail = await Customers.findOne({where: {email:decoded.email}})
         const customer = await Customers.findOne({where: {id:decoded.id}})
 
-        if(customer && !bookedEmail){
+        if(customer && !newEmail){
             customer.email = decoded.email
             await customer.save()
 
