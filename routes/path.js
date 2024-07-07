@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 // Authentication
 router.get('/register', (req, res) => { 
-    res.render("register", { errors: {}, layout: false }); 
+    res.render("register", { errors: {}, layout: false, registered:"" }); 
 }); 
 
 router.get('/login', (req, res) => { 

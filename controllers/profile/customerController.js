@@ -1,6 +1,8 @@
 const { validationResult } = require("express-validator")
 const {Customers} = require("../../models/index.js")
 const FileUpload = require("../../services/fileUploadService.js")
+const JWTService = require("./../../services/jwtService.js")
+const EmailSender = require("./../../services/emailService.js")
 
 class Profile{
 
@@ -50,12 +52,12 @@ class Profile{
         if(errors.isEmpty()){
             const {email} = req.body;
             const id = 1; // req.session.user_id //UPDATE THIS IN PROD ENV
-
             const customer = await Customers.findOne({where: id})
 
             if(customer){
-                customer.email = email
-                await customer.save()
+                const token  = await JWTService.generateToken(email, id)
+                const invitationLink = `http://localhost:8181/customer/verify/email?token=${token}`;
+                await EmailSender.sendEmail(req, res, email, invitationLink)
             }
             return res.redirect('/customer/profile')
         }else{
@@ -65,6 +67,26 @@ class Profile{
             }, {})
             return res.json(errorObject)
         }
+    }
+
+    static async verifyEmail(req, res){
+        const {token} = req.query
+        const decoded = await JWTService.verifyToken(token)
+        const bookedEmail = await Customers.findOne({where: {email:decoded.email}})
+        const customer = await Customers.findOne({where: {id:decoded.id}})
+
+        if(customer && !bookedEmail){
+            customer.email = decoded.email
+            await customer.save()
+
+            req.session.username = customer.uname 
+            req.session.user_id = customer.id
+            req.session.user_type = "customer"
+
+            return res.redirect("/customer/profile")
+        }
+
+        return res.redirect("/customer/profile")
     }
 
     static async updateNumber(req, res){
