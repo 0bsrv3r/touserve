@@ -1,21 +1,18 @@
-require('dotenv').config();
 const  { validationResult } = require("express-validator") 
-const jwt = require('jsonwebtoken');
 const {Invitations, Customers} = require('./../models')
+const JWTService = require('./../services/jwtService.js');
 const EmailSender = require('./../services/emailService.js')
 
-const JWT_SECRET = process.env.JWT_SECRET;
 
 class Invitation{
     
     static async send(req, res){
         const email = req.body.email;
         const companyId = 1 // req.session.user_id
-        const token = jwt.sign({ email, companyId }, JWT_SECRET, { expiresIn: '5m' });
+        const token = await JWTService.generateToken(email, companyId)
 
         try {
             const guide = await Invitations.findOne({where: {email:email, companyId:companyId}})
-            console.log(guide)
 
             if(guide){
                 guide.token = token
@@ -38,14 +35,14 @@ class Invitation{
         const { token } = req.query;
 
         try {
-            const decoded = jwt.verify(token, JWT_SECRET);
+            const decoded = JWTService.verifyToken(token);
             const invitation = await Invitations.findOne({ where: { token } });
 
             if (!invitation) {
                 return res.status(400).send('Invalid invitation token');
             }
     
-            return res.render('invitation-register', {layout: "layouts/pagesheader", token: token});
+            return res.render('invitation-register', {layout: "layouts/pagesheader", token: token, active:""});
         } catch (error) {
             return res.status(400).send('Invalid or expired token');
         }
@@ -57,7 +54,7 @@ class Invitation{
 
         if(errors.isEmpty()){ 
             try {
-                const decoded = jwt.verify(token, JWT_SECRET);
+                const decoded = JWTService.verifyToken(token);
                 const invitation = await Invitations.findOne({ where: { token } });
     
                 if (!invitation) {

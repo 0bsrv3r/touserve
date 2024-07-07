@@ -65,7 +65,7 @@ module.exports = {
         type: Sequelize.STRING(200)
       },
       verifiedAt: {
-        type: Sequelize.STRING(50)
+        type: Sequelize.BOOLEAN()
       },
       createdAt: {
         allowNull: false,
@@ -78,6 +78,12 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
       }
     });
+
+    // Change Columns
+    // await queryInterface.changeColumn('Customers', 'verifiedAt', {
+    //   type: Sequelize.BOOLEAN(),
+    // });
+
   },
   
   down: async (queryInterface, Sequelize) => {

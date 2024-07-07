@@ -68,6 +68,9 @@ module.exports = (sequelize) => {
     image: {
         type: DataTypes.STRING(200)
     },
+    verifiedAt: {
+        type: DataTypes.BOOLEAN()
+    },
   }, {
     sequelize,
     modelName: 'Customers',

@@ -56,11 +56,6 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
       }
     });
-
-    // // Change Columns
-    // await queryInterface.changeColumn('Users', 'number', {
-    //   type: Sequelize.STRING(20),
-    // });
   },
   
   down: async (queryInterface, Sequelize) => {
