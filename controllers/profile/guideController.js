@@ -9,7 +9,9 @@ class Guide{
             companyId: 1 // req.session.user_id // UPDATE THIS IN PROD ENV
         }
 
-        await Customers.destroy({where: ids})
+        const guide = await Customers.findOne({where: ids})
+        guide.companyId = null
+        await guide.save()
         res.redirect('/customer/profile')
     }
     

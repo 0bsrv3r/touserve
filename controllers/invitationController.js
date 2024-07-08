@@ -1,7 +1,8 @@
 const  { validationResult } = require("express-validator") 
 const {Invitations, Customers} = require('./../models')
 const JWTService = require('./../services/jwtService.js');
-const EmailSender = require('./../services/emailService.js')
+const EmailSender = require('./../services/emailService.js');
+const { where } = require("sequelize");
 
 
 class Invitation{
@@ -35,14 +36,21 @@ class Invitation{
         const { token } = req.query;
 
         try {
-            const decoded = JWTService.verifyToken(token);
+            const decoded = await JWTService.verifyToken(token);
             const invitation = await Invitations.findOne({ where: { token } });
+            const guide = await Customers.findOne({where: {email:decoded.email}})
 
             if (!invitation) {
                 return res.status(400).send('Invalid invitation token');
+            }else if(guide){
+                guide.companyId = decoded.id
+                await guide.save()
+                await Invitations.destroy({ where: { token } });
+                return res.redirect('/customer/profile');
             }
-    
+
             return res.render('invitation-register', {layout: "layouts/pagesheader", token: token, active:""});
+
         } catch (error) {
             return res.status(400).send('Invalid or expired token');
         }
@@ -66,7 +74,8 @@ class Invitation{
                     email: invitation.email,
                     uname,
                     password,
-                    role: "guide"
+                    role: "guide",
+                    verifiedAt: true
                 });
     
                 // Remove Invitation
