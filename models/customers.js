@@ -1,5 +1,6 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
+const PasswordService = require('../services/passwordServicce.js');
 
 module.exports = (sequelize) => {
   class Customers extends Model {
@@ -75,8 +76,22 @@ module.exports = (sequelize) => {
     sequelize,
     modelName: 'Customers',
     tableName: 'Customers',
-    timestamps: true
+    timestamps: true,
+    hooks: {
+        beforeCreate: async (customer) => {
+          customer.password = await PasswordService.hashPassword(customer.password);
+        },
+        beforeUpdate: async (customer) => {
+          if (customer.changed('password')) {
+            customer.password = await PasswordService.hashPassword(customer.password);
+          }
+        }
+    }
   });
+
+  Customers.prototype.validPassword = async function(password) {
+    return await PasswordService.comparePassword(password, this.password);
+  };
 
   return Customers;
 };

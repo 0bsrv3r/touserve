@@ -65,14 +65,18 @@ class Authentication {
     }
 
     static async postLogin(req, res){
-        const data = { 
-            uname: req.body.uname, 
-            password: req.body.password
-        } 
+        const {uname, password} = req.body 
+        const customer = await Customers.findOne({where: {uname}})
+        
+        if(!customer){
+            const errorObject = {
+                wrongAttempt: "Your username or password is incorrect"
+            }
+            return res.render('login',{ errors: errorObject, layout: false })
+        }
 
-        const customer = await Customers.findOne({where: data}) 
-
-        if(customer){
+        const isValidPassword = await customer.validPassword(password)
+        if(isValidPassword){
             if(customer.verifiedAt){
                 req.session.username = customer.uname 
                 req.session.user_id = customer.id

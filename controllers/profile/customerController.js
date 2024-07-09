@@ -119,9 +119,10 @@ class Profile{
             const {currentPass, newPass1} = req.body
             const id = 1 //req.session.user_id //UPDATE THIS IN PROD ENV
 
-            const customer = await Customers.findOne({where: {id, password:currentPass}})
+            const customer = await Customers.findOne({where: {id}})
+            const isValidPassword = await customer.validPassword(currentPass)
 
-            if(customer){
+            if(customer && isValidPassword){
                 customer.password = newPass1
                 await customer.save()
             }
