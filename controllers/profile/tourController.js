@@ -7,13 +7,19 @@ class Tour{
 
     // Profile  Pages
     static async getGuideName(req, res){
-        const data = {companyId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
-        const guideNames =  await Customers.findAll({where: data})  
-        return guideNames
+        const id = 1 // req.session.user_id}  //UPDATE THIS IN PROD ENV
+        const guide = await Customers.findAll({where: id})
+
+        if(guide[0].role !== 'guide'){
+            const companyId = {companyId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
+            const guideNames =  await Customers.findAll({where: companyId})
+            return guideNames
+        }
+        
+        return guide
     }
 
     static async getTourCreate(req, res, errors){
-
         const guideNames = await Tour.getGuideName()
 
         if(guideNames != undefined){
