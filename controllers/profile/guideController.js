@@ -17,7 +17,7 @@ class Guide{
     
     // Front Side
     static async getGuides(req, res){
-        const guides = await Customers.findAll({where:{role:"guide"}})
+        const guides = await Customers.findAll({where:{role:"guide", verifiedAt: true}})
 
         if(guides != undefined){
             return res.render("guides", {layout: 'layouts/pagesheader', guides:guides, active:"guides"});

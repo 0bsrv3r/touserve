@@ -2,7 +2,6 @@ const  { validationResult } = require("express-validator")
 const {Invitations, Customers} = require('./../models')
 const JWTService = require('./../services/jwtService.js');
 const EmailSender = require('./../services/emailService.js');
-const { where } = require("sequelize");
 
 
 class Invitation{

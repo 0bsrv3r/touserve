@@ -1,5 +1,6 @@
 const express  = require('express');
 const router = express.Router();
+const Index = require("../controllers/indexController.js")
 const Event = require("../controllers/admin/eventController.js")
 const Guide = require("../controllers/profile/guideController.js")
 const Tour = require("../controllers/profile/tourController.js");
@@ -7,9 +8,7 @@ const Accommadation = require("../controllers/profile/accommodationController.js
 
 router.use(express.urlencoded({ extended:true }))
 
-router.get('/', (req, res) => { 
-    res.render("index", {layout: 'layouts/header'}); 
-}); 
+router.get('/', Index.allServices); 
 
 // Authentication
 router.get('/register', (req, res) => { 

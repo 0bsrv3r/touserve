@@ -281,18 +281,18 @@
                         <h4 class="title">Host</h4>
                         <div class="custom-host custom-similar">
                             <div>
-                                <h6>Olivier</h6>
-                                <p>Grimisuat, Switzerland · Joined in September 2012</p>
+                                <h6><%= accommodation.customers.firstName %></h6>
+                                <p>· Joined in September 2012</p>
                             </div>
-                            <div>
-                                <img src="/upload/images/clients/rv-i2.jpg">
+                            <div class="host-image">
+                                <img src="/<%= accommodation.customers.image %>">
                             </div>
                         </div>
                         <div class="custom-similar custom-self-introduction">
                             <h6>Self introduction</h6>
-                            <p>Nous sommes de suisse et je suis architecte donc j'aime les beaux espaces le calme et la nature...</p>
+                            <p><%= accommodation.customers.description %></p>
                             <ul>
-                                <li>Languages:<span>Français</span></li>
+                                <li>Languages:<span><%= accommodation.customers.languages %></span></li>
                                 <li>Response rate:<span>100%</span></li>
                                 <li>Response time:<span>within an hour</span></li>
                             </ul>

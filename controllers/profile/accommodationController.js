@@ -1,5 +1,5 @@
 const  { validationResult } = require("express-validator") 
-const {Accommodations, Tours} = require("../../models")
+const {Accommodations, Tours, Customers} = require("../../models")
 const FileUpload = require("./../../services/fileUploadService.js")
 const UsersInfoReview = require("./../../services/usersInfoReviews.js")
 
@@ -158,8 +158,8 @@ class Accommodation{
 
     static async getAccommodationById(req, res){
         const data = req.params
-        const accommodation = await Accommodations.findOne({where: data, include:'reviews' })
-        
+        const accommodation = await Accommodations.findOne({where: data, include:['reviews', {model: Customers, as: 'customers', attributes: { exclude: ['password'] }}]})
+
         if(accommodation != undefined){
             // get users based on accommondation review
             const users = await UsersInfoReview.userInfoReviews(req, res, accommodation.reviews)
