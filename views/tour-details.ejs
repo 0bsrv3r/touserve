@@ -39,13 +39,15 @@
                                     <%= tour.area %>
                         </p>
                         <div class="wrap-star s2">
-                            <ul class="star">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
+                            <ul id="stars" class="star v1" required="required">
+                                <li data-value="1"></li>
+                                <li data-value="2"></li>
+                                <li data-value="3"></li>
+                                <li data-value="4"></li>
+                                <li data-value="5"></li>
+                                <script>var stars = `<%= stars %>` </script>
                             </ul>
+                            <div class="reviews">(<%= tour.reviews.length %> reviews)</div>
                         </div>
                     </div>
 
@@ -190,12 +192,16 @@
                             <div class="content-inner active">
                                 <div class="flat-list-review">
                                     <ul class="list-review clearfix">
+                                        <% if (tour.reviews.length == 0){ %>
+                                            There is no available review for this tour
+                                        <% } %>
+
                                         <script> let starCounts = []; </script>
                                         <% for(let i=0; i < tour.reviews.length; i++){ %>
                                         <li class="item">
                                             <div class="thumb overlays2">
                                                 <a href="#" class="link">
-                                                    <img src="/<%= users[i].image %>" alt="image" style="width: 93px;">
+                                                    <img src="/<%= users[i].image ? users[i].image : 'upload/photos/profile/photo.jpg' %>" alt="image" style="width: 93px;">
                                                 </a>
                                             </div>
                                             <div class="text">

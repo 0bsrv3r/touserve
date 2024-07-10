@@ -2,6 +2,8 @@ const { validationResult } = require("express-validator")
 const {Tours, Customers, Accommodations} = require("../../models")
 const FileUpload = require("../../services/fileUploadService.js")
 const UsersInfoReview = require("../../services/usersInfoReviews.js")
+const ReviewStars = require("../../services/reviewStarService.js")
+
 
 class Tour{
 
@@ -174,6 +176,7 @@ class Tour{
     static async getTourById(req, res){
         const data = req.params
         const tour = await Tours.findOne({where: data, include:"reviews"})
+        const stars = await ReviewStars.starsCount(tour)
         
         if(tour != undefined){
 
@@ -184,7 +187,7 @@ class Tour{
             const city = {city: tour.city}
             const accommodations = await Accommodations.findAll({where:city, order: [['createdAt', 'DESC']],limit: 3})
             
-            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id, users: users, active:"tours"});
+            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id, users: users, stars:stars, active:"tours"});
         }else{
             return res.render("404", {layout: 'layouts/pagesheader', active:"tours"});
         }

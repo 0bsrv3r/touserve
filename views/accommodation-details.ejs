@@ -33,13 +33,15 @@
                     </h4>
                     <p class="sub-title"><%= accommodation.country %>, <%= accommodation.city %></p>
                     <div class="wrap-star s2">
-                        <ul class="star">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                        <ul id="stars" class="star v1" required="required">
+                            <li data-value="1"></li>
+                            <li data-value="2"></li>
+                            <li data-value="3"></li>
+                            <li data-value="4"></li>
+                            <li data-value="5"></li>
+                            <script>var stars = `<%= stars %>` </script>
                         </ul>
+                        <div class="reviews">(<%= accommodation.reviews.length %> reviews)</div>
                     </div>
                 </div> 
 
@@ -145,12 +147,16 @@
                         <div class="content-inner">
                             <div class="flat-list-review">
                                 <ul class="list-review clearfix">
+                                    <% if (accommodation.reviews.length == 0){ %>
+                                        There is no available review for this accommodation
+                                    <% } %>
+
                                     <script> let starCounts = []; </script>
                                     <% for(let i=0; i < accommodation.reviews.length; i++){ %>
                                     <li class="item">
                                         <div class="thumb overlays2">
                                             <a href="#" class="link">
-                                                <img src="/<%= users[i].image %>" alt="image" style="width: 93px;">
+                                                <img src="/<%= users[i].image ? users[i].image : 'upload/photos/profile/photo.jpg' %>" alt="image" style="width: 93px;">
                                             </a>
                                         </div>
                                         <div class="text">
@@ -279,23 +285,20 @@
                         <div class="dividers dividers-border-bottom"></div>
 
                         <h4 class="title">Host</h4>
-                        <div class="custom-host custom-similar">
+                        <div class="custom-host custom-similar custom-self-introduction">
                             <div>
                                 <h6><%= accommodation.customers.firstName %></h6>
-                                <p>· Joined in September 2012</p>
+                                <ul>
+                                    <li>Languages:<span><%= accommodation.customers.languages %></span></li>
+                                </ul>
                             </div>
                             <div class="host-image">
                                 <img src="/<%= accommodation.customers.image %>">
                             </div>
                         </div>
-                        <div class="custom-similar custom-self-introduction">
+                        <div class="custom-similar ">
                             <h6>Self introduction</h6>
                             <p><%= accommodation.customers.description %></p>
-                            <ul>
-                                <li>Languages:<span><%= accommodation.customers.languages %></span></li>
-                                <li>Response rate:<span>100%</span></li>
-                                <li>Response time:<span>within an hour</span></li>
-                            </ul>
                         </div>
                     </div>
 

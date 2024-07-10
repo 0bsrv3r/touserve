@@ -166,15 +166,15 @@
                                     <h4><%= tour.title %></h4>
                                     <div class="money"><%= tour.price %> <span> <%= tour.currency %></span></div>
                                     <div class="sub-title"><%= tour.duration %> days</div>
-                                    <div class="wrap-star s2">                                            
-                                        <ul class="star">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
+                                    <div class="wrap-star s2">
+                                        <ul id="stars" class="star v1" required="required">
+                                            <li data-value="1"></li>
+                                            <li data-value="2"></li>
+                                            <li data-value="3"></li>
+                                            <li data-value="4"></li>
+                                            <li data-value="5"></li>
                                         </ul>
-                                    </div> <!-- /.wrap-star -->
+                                    </div>
                                 </div>
                             </div> <!-- /.box-wrap -->
                         </div> <!-- /.imagebox -->
@@ -218,13 +218,15 @@
                                         <h4><%= accommodation.title %></h4>
                                         <h6><%= accommodation.roomType %> - <%= accommodation.bedCount %> beds</h6>
                                         <p><%= accommodation.location %></p>
-                                        <span>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </span>
+                                        <div class="wrap-star s2">
+                                            <ul id="stars" class="star v1" required="required">
+                                                <li data-value="1"></li>
+                                                <li data-value="2"></li>
+                                                <li data-value="3"></li>
+                                                <li data-value="4"></li>
+                                                <li data-value="5"></li>
+                                            </ul>
+                                        </div>
                                         <div class="money"> <%= accommodation.price %> <span><%= accommodation.currency %> per night</span></div>
                                     </div>
                                 </div> 
@@ -320,23 +322,15 @@
                                 <div class="position">
                                     <span><%= guide.languages %></span>
                                 </div>
-                                <ul class="social-list">
-                                    <li>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                </ul>
+                                <div class="wrap-star s2">
+                                    <ul id="stars" class="star v1" required="required">
+                                        <li data-value="1"></li>
+                                        <li data-value="2"></li>
+                                        <li data-value="3"></li>
+                                        <li data-value="4"></li>
+                                        <li data-value="5"></li>
+                                    </ul>
+                                </div>
                             </div><!-- /.content -->
                         </div><!-- /.flat-team -->
                     </div><!-- /.item -->

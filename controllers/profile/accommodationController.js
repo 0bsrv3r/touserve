@@ -2,6 +2,8 @@ const  { validationResult } = require("express-validator")
 const {Accommodations, Tours, Customers} = require("../../models")
 const FileUpload = require("./../../services/fileUploadService.js")
 const UsersInfoReview = require("./../../services/usersInfoReviews.js")
+const ReviewStars = require("../../services/reviewStarService.js")
+
 
 class Accommodation{
     
@@ -153,18 +155,20 @@ class Accommodation{
     static async getAccommodations(req, res){
         const accommodations = await Accommodations.findAll()
         const tours = await Accommodation.getRecommendedTours()
+        
         return res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations, tours: tours, active:"accommodations" })
     }
 
     static async getAccommodationById(req, res){
         const data = req.params
         const accommodation = await Accommodations.findOne({where: data, include:['reviews', {model: Customers, as: 'customers', attributes: { exclude: ['password'] }}]})
+        const stars = await ReviewStars.starsCount(accommodation)
 
         if(accommodation != undefined){
             // get users based on accommondation review
             const users = await UsersInfoReview.userInfoReviews(req, res, accommodation.reviews)
 
-            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, users: users, active:"accommodations"})
+            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, users: users, stars:stars, active:"accommodations"})
         }else{
             return res.render("404", {layout: 'layouts/pagesheader', active:"accommodations"});
         }

@@ -31,19 +31,20 @@
                     <div class="box-trip-review custom-box-trip-review">
                         <div class="col-md-4 col-sm-4 col-xs-12 custom-resp-center">
                             <div class="featured-trip custom-featured-trip">
-                                <img class="custom-img" src="/<%= guide.image %>" alt="img">
+                                <img class="custom-img" src="/<%= guide.image ? guide.image : 'upload/photos/profile/photo.jpg' %>" alt="img">
                             </div>
                             <div class="content-trip custom-content-trip">
                                 <h4 class="title"><a href="#"><%= guide.firstName %> <%= guide.lastName %></a></h4>
                                 <div class="wrap-star s2">
-                                    <ul class="star">
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
+                                    <ul id="stars" class="star v1" required="required">
+                                        <li data-value="1"></li>
+                                        <li data-value="2"></li>
+                                        <li data-value="3"></li>
+                                        <li data-value="4"></li>
+                                        <li data-value="5"></li>
+                                        <script>var stars = `<%= stars %>` </script>
                                     </ul>
-                                    <div class="reviews">(14 reviews)</div>
+                                    <div class="reviews">(<%= guide.reviews.length %> reviews)</div>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +83,7 @@
                     </p>
                 </div>
 
-                <div class="flat-tabs" data-effect="fadeIn">
+                <div class="flat-tabs" data-effect="fadeIn" style="margin-bottom: 40px;">
                     <div class="wrap-radio menu-tab">
                 
                         <div class="radio active">
@@ -101,42 +102,46 @@
                         <div class="content-inner active">
                             <div class="flat-list-review">
                                 <ul class="list-review clearfix">
-                                    <script> let starCounts = []; </script>
-                                        <% for(let i=0; i < guide.reviews.length; i++){ %>
-                                        <li class="item">
-                                            <div class="thumb overlays2">
-                                                <a href="#" class="link">
-                                                    <img src="/<%= users[i].image %>" alt="image" style="width: 93px;">
-                                                </a>
-                                            </div>
-                                            <div class="text">
-                                                <h5>
-                                                    <a href="#"><%= users[i].uname %></a>
-                                                </h5>
-                                                <p class="date">Aug 20, 2017</p>
-                                                <div class="wrap-star s2 v1">
-                                                    <ul id="review-stars" class="star v1" required="required">
-                                                        <li data-value="1"></li>
-                                                        <li data-value="2"></li>
-                                                        <li data-value="3"></li>
-                                                        <li data-value="4"></li>
-                                                        <li data-value="5"></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="sub-title"><%= guide.reviews[i].review %></div>
+                                    <% if (guide.reviews.length == 0){ %>
+                                        There is no available review for this guide
+                                    <% } %>
 
-                                                <% if (globalSession.user_type == 'user' && globalSession.user_id == users[i].id){ %>
-                                                    <p class="date">
-                                                        <a href="/review/guide/delete/<%= guide.reviews[i].id %>">
-                                                            <i class="fa fa-trash-o"></i>
-                                                        </a>
-                                                    </p>
-                                                <% } %>
-                                                
-                                                <script> starCounts.push('<%= guide.reviews[i].stars %>'); </script>
+                                    <script> let starCounts = []; </script>
+                                    <% for(let i=0; i < guide.reviews.length; i++){ %>
+                                    <li class="item">
+                                        <div class="thumb overlays2">
+                                            <a href="#" class="link">
+                                                <img src="/<%= users[i].image ? users[i].image : 'upload/photos/profile/photo.jpg' %>" alt="image" style="width: 93px;">
+                                            </a>
+                                        </div>
+                                        <div class="text">
+                                            <h5>
+                                                <a href="#"><%= users[i].uname %></a>
+                                            </h5>
+                                            <p class="date">Aug 20, 2017</p>
+                                            <div class="wrap-star s2 v1">
+                                                <ul id="review-stars" class="star v1" required="required">
+                                                    <li data-value="1"></li>
+                                                    <li data-value="2"></li>
+                                                    <li data-value="3"></li>
+                                                    <li data-value="4"></li>
+                                                    <li data-value="5"></li>
+                                                </ul>
                                             </div>
-                                        </li>
-                                        <% } %>
+                                            <div class="sub-title"><%= guide.reviews[i].review %></div>
+
+                                            <% if (globalSession.user_type == 'user' && globalSession.user_id == users[i].id){ %>
+                                                <p class="date">
+                                                    <a href="/review/guide/delete/<%= guide.reviews[i].id %>">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </a>
+                                                </p>
+                                            <% } %>
+                                            
+                                            <script> starCounts.push('<%= guide.reviews[i].stars %>'); </script>
+                                        </div>
+                                    </li>
+                                    <% } %>
                                 </ul><!-- /.popular-news -->
                             </div>
                         </div><!-- /.content-inner -->

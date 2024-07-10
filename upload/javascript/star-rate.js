@@ -1,3 +1,4 @@
+// ======= Add review stars ============
 document.addEventListener("DOMContentLoaded", function() {
     var stars = document.querySelectorAll("#star-rate .star.v1 li");
     var inputField = document.getElementById("star-value");
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
+// ============ Review Stars ================
 function highlightStars(ulElements, starCounts) {
     ulElements.forEach((ul, ulIndex) => {
         const starCount = starCounts[ulIndex];
@@ -58,3 +59,14 @@ function highlightStars(ulElements, starCounts) {
 
 const ulElements = document.querySelectorAll('#review-stars');
 highlightStars(ulElements, starCounts);
+
+
+// ============= Services Stars ================
+document.addEventListener('DOMContentLoaded', function() {
+    var starsList = document.querySelectorAll('#stars li');
+
+    for (var i = 0; i < stars; i++) {
+        starsList[i].classList.add('active');
+    }
+    
+});

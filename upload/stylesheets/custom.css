@@ -1057,14 +1057,17 @@ body{
                               /*========= PHOTO-VIDEO PAGE END ==========*/
 
                               /*========= Review START ==========*/
+#stars .active:before{
+    content: "\f005";
+}
 #star-rate .star.v1 .active:before{
-    content: "\f005" !important;
+    content: "\f005";
 }
 #star-rate .star.v1 .keep-active:before{
-    content: "\f005" !important;
+    content: "\f005";
 }
 #review-stars .active:before{
-    content: "\f005" !important;
+    content: "\f005";
 }
                                 /*========= Review END ==========*/
                               /*========= DASHBOARD-HEADER START ==========*/

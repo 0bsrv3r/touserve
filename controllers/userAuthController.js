@@ -64,8 +64,8 @@ class Authentication {
     }
 
     static async postLogin(req, res){
-        const {uname, password} = req.body 
-        const user = await Users.findOne({where: {uname}}) 
+        const {email, password} = req.body 
+        const user = await Users.findOne({where: {email}}) 
 
         if(!user){
             const errorObject = {
