@@ -41,7 +41,7 @@
                                 <li data-value="3"></li>
                                 <li data-value="4"></li>
                                 <li data-value="5"></li>
-                                <script>var stars = `<%= stars %>` </script>
+                                <script>var stars = Math.round('<%= tour.dataValues.totalStars %>') </script>
                             </ul>
                             <div class="reviews">(<%= tour.reviews.length %> reviews)</div>
                         </div>
@@ -125,7 +125,6 @@
                             </form>
                         </div>
                     </div>
-                    <!-- /.box-filter-search -->
 
                     <div class="wrap-title s2">
                         <h4>Overview</h4>
@@ -134,7 +133,6 @@
                         <%= tour.overview %>
                     </p>
 
-                    <!-- /.widget-categories -->
                     <div class="widget widget-tour-by-types custom-widget">
                         <h4 class="widget-title">Inclusions</h4>
                         <ul>
@@ -145,7 +143,6 @@
                             <% } %>
                         </ul>
                     </div>
-                    <!-- /.widget-categories -->
                     <div class="wrap-title s2">
                         <h4>Departure Time: </h4>
                     </div>
@@ -182,7 +179,6 @@
                                 <label for="radio-2" class="radio-label">Add Review</label>
                             </div>
                         </div>
-                        <!-- /.menu-tab -->
                         <div class="content-tab">
                     
                             <div class="content-inner active">

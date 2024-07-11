@@ -2,7 +2,7 @@ const  { validationResult } = require("express-validator")
 const {Accommodations, Tours, Customers, Sequelize} = require("../../models")
 const FileUpload = require("./../../services/fileUploadService.js")
 const UsersInfoReview = require("./../../services/usersInfoReviews.js")
-const ReviewStars = require("../../services/reviewStarService.js")
+const Entities = require("../../services/modelService.js")
 
 
 class Accommodation{
@@ -148,24 +148,12 @@ class Accommodation{
 
     // Front Side
     static async getRecommendedTours(req, res){
-        const tours = await Tours.findAll({
-            attributes: {include: [[Sequelize.literal('(SELECT AVG(stars) FROM reviews WHERE reviews.tourId = Tours.id)'), 'totalStars']]},
-            include: 'reviews',
-            order: Sequelize.literal('totalStars DESC'),
-            limit: 2,
-            subQuery: false
-          });
-        
+        const tours = await Entities.getEntities(Tours, "tourId", {order: 'totalStars DESC', limit:2},)
         return tours
     }
     
     static async getAccommodations(req, res){
-        const accommodations = await Accommodations.findAll({   
-            attributes: {include:[[Sequelize.literal('(SELECT AVG(stars) FROM reviews WHERE reviews.accommodationId = Accommodations.id)'), 'totalStars']]},
-            include: 'reviews',
-            subQuery: false
-        });
-
+        const accommodations = await Entities.getEntities(Accommodations, "accommodationId")
         const tours = await Accommodation.getRecommendedTours()
         
         return res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations, tours: tours, active:"accommodations" })
@@ -175,15 +163,19 @@ class Accommodation{
         const data = req.params
         const accommodation = await Accommodations.findOne({
             where: data,
+            attributes: {
+                include: [
+                    [Sequelize.literal(`(SELECT AVG(stars) FROM reviews WHERE reviews.accommodationId = Accommodations.id)`), 'totalStars']
+                ]
+            },
             include:['reviews', {model: Customers, as: 'customers', attributes: { exclude: ['password'] }}]
         })
-        const stars = await ReviewStars.starsCount(accommodation)
 
         if(accommodation != undefined){
             // get users based on accommondation review
-            const users = await UsersInfoReview.userInfoReviews(req, res, accommodation.reviews)
+            const users = await UsersInfoReview.userInfoReviews(accommodation.reviews)
 
-            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, users: users, stars:stars, active:""})
+            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, users: users, active:""})
         }else{
             return res.render("404", {layout: 'layouts/pagesheader', active:"accommodations"});
         }

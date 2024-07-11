@@ -1,6 +1,6 @@
-const {Customers, Sequelize, Tours } = require("../../models/index.js")
+const {Customers, Tours, Sequelize } = require("../../models/index.js")
 const UsersInfoReview = require("../../services/usersInfoReviews.js")
-const ReviewStars = require("../../services/reviewStarService.js")
+const Entities = require("../../services/modelService.js")
 
 class Guide{
     
@@ -18,12 +18,7 @@ class Guide{
     
     // Front Side
     static async getGuides(req, res){
-        const guides = await Customers.findAll({
-            where:{role:"guide", verifiedAt: true},
-            attributes: {include:[[Sequelize.literal('(SELECT AVG(stars) FROM reviews WHERE reviews.guideId = Customers.id)'), 'totalStars']]},
-            include: 'reviews',
-            subQuery: false
-        })
+        const guides = await Entities.getEntities(Customers, "guideId", { where:{role:"guide", verifiedAt: true}})
 
         if(guides != undefined){
             return res.render("guides", {layout: 'layouts/pagesheader', guides:guides, active:"guides"});
@@ -35,17 +30,20 @@ class Guide{
     static async getGuideById(req, res){
         const data = req.params
         const guide = await Customers.findOne({
-            where: data, 
+            where: data,
+            attributes: {
+                include: [
+                    [Sequelize.literal(`(SELECT AVG(stars) FROM reviews WHERE reviews.guideId = Customers.id)`), 'totalStars']
+                ]
+            }, 
             include: [{model: Tours, as: 'guideTours',limit: 3,order: [['createdAt', 'DESC']]}, "reviews"]
         })
 
-        const stars = await ReviewStars.starsCount(guide)
-        
         if(guide != undefined){
             // get users based on guide review
-            const users = await UsersInfoReview.userInfoReviews(req, res, guide.reviews)
+            const users = await UsersInfoReview.userInfoReviews(guide.reviews)
 
-            return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide, service:"guide", id:data.id, users: users, stars:stars, active:""});
+            return res.render("guide-details", {layout: 'layouts/pagesheader', guide:guide, service:"guide", id:data.id, users: users, active:""});
         }else{
             return res.render("404", {layout: 'layouts/pagesheader', active:"guides"});
         }

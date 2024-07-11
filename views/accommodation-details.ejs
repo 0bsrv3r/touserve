@@ -39,7 +39,7 @@
                             <li data-value="3"></li>
                             <li data-value="4"></li>
                             <li data-value="5"></li>
-                            <script>var stars = `<%= stars %>` </script>
+                            <script>var stars = Math.round('<%= accommodation.dataValues.totalStars %>')  </script>
                         </ul>
                         <div class="reviews">(<%= accommodation.reviews.length %> reviews)</div>
                     </div>

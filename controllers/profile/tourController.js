@@ -1,9 +1,8 @@
 const { validationResult } = require("express-validator")
-const {Tours, Customers, Accommodations, Reviews, Sequelize} = require("../../models")
+const {Tours, Customers, Accommodations, Sequelize} = require("../../models")
 const FileUpload = require("../../services/fileUploadService.js")
 const UsersInfoReview = require("../../services/usersInfoReviews.js")
-const ReviewStars = require("../../services/reviewStarService.js")
-const { Model, DataTypes } = require('sequelize');
+const Entities = require("../../services/modelService.js")
 
 
 class Tour{
@@ -170,36 +169,32 @@ class Tour{
 
     // Front Side
     static async getTours(req, res){
-        const tours = await Tours.findAll({
-            attributes: {include:[[Sequelize.literal('(SELECT AVG(stars) FROM reviews WHERE reviews.tourId = Tours.id)'), 'totalStars']]},
-            include: 'reviews',
-            subQuery: false
-        });
+        const tours = await Entities.getEntities(Tours, "tourId")
 
         return res.render("tours", {layout: 'layouts/pagesHeader', tours: tours, active:"tours"}); 
     }
 
     static async getTourById(req, res){
         const data = req.params
-        const tour = await Tours.findOne({where: data, include:"reviews"})
-        const stars = await ReviewStars.starsCount(tour)
+        const tour = await Tours.findOne({
+            where: data, 
+            attributes: {
+                include: [
+                    [Sequelize.literal(`(SELECT AVG(stars) FROM reviews WHERE reviews.tourId = Tours.id)`), 'totalStars']
+                ]
+            },
+            include:"reviews"})
         
         if(tour != undefined){
 
             // get users based on tour review
-            const users = await UsersInfoReview.userInfoReviews(req, res, tour.reviews)
+            const users = await UsersInfoReview.userInfoReviews(tour.reviews)
             
             // get realted accommodations based on location
             const city = {city: tour.city}
-            const accommodations = await Accommodations.findAll({
-                where:city,
-                attributes: {include: [[Sequelize.literal('(SELECT AVG(stars) FROM reviews WHERE reviews.accommodationId = Accommodations.id)'), 'totalStars']]}, 
-                order: Sequelize.literal('totalStars DESC'),
-                limit: 3,
-                subQuery: false
-            })
+            const accommodations = await Entities.getEntities(Accommodations, "accommodationId", {where:city, order: 'totalStars DESC', limit:3})
             
-            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id, users: users, stars:stars, active:""});
+            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id, users: users, active:""});
         }else{
             return res.render("404", {layout: 'layouts/pagesheader', active:"tours"});
         }
