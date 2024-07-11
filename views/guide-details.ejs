@@ -83,6 +83,45 @@
                     </p>
                 </div>
 
+                
+
+            </div>
+
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <% if(guide.guideTours.length !== 0){ %>
+                    <div class="widget widget-reviewes-tours">
+                        <h4 class="widget-title custom-widget-title">
+                            <span>Tours</span> of Guide
+                        </h4>
+                        <ul class="popular-news clearfix">
+                            <% for(let tours of guide.guideTours){ %>
+                            <li>
+                                <div class="thumb overlays2">
+                                    <a href="/tour-details/<%= tours.id %>" class="link">
+                                        <img src="/<%= tours.images[0] %>" alt="image">
+                                    </a>
+                                </div>
+                                <div class="text">
+                                    <h6><%= tours.title %></h6>
+                                    <div class="sub-title"><%= tours.city %>, <%= tours.area %></div>
+                                    <p class="time"><%= tours.duration %> days -
+                                        <span><%= tours.currency %><%= tours.price %></span>
+                                    </p>
+                                </div>
+                            </li>
+                            <% } %>
+                            
+                        </ul><!-- /.popular-news -->
+                    </div><!-- /.widget-popular-news -->
+                    <% } %>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
                 <div class="flat-tabs" data-effect="fadeIn" style="margin-bottom: 40px;">
                     <div class="wrap-radio menu-tab">
                 
@@ -144,46 +183,13 @@
                                     <% } %>
                                 </ul><!-- /.popular-news -->
                             </div>
-                        </div><!-- /.content-inner -->
+                        </div>
                 
                         <%- include('./components/add-review.ejs') %>
                 
-                    </div><!-- /.content-tab -->
-                </div><!-- /.flat-tabs -->
-
-            </div><!-- /.col-md-9 -->
-
-            <div class="col-md-3">
-                <div class="sidebar">
-                    <% if(guide.guideTours.length !== 0){ %>
-                    <div class="widget widget-reviewes-tours">
-                        <h4 class="widget-title custom-widget-title">
-                            <span>Tours</span> of Guide
-                        </h4>
-                        <ul class="popular-news clearfix">
-                            <% for(let tours of guide.guideTours){ %>
-                            <li>
-                                <div class="thumb overlays2">
-                                    <a href="/tour-details/<%= tours.id %>" class="link">
-                                        <img src="/<%= tours.images[0] %>" alt="image">
-                                    </a>
-                                </div>
-                                <div class="text">
-                                    <h6><%= tours.title %></h6>
-                                    <div class="sub-title"><%= tours.city %>, <%= tours.area %></div>
-                                    <p class="time"><%= tours.duration %> days -
-                                        <span><%= tours.currency %><%= tours.price %></span>
-                                    </p>
-                                </div>
-                            </li>
-                            <% } %>
-                            
-                        </ul><!-- /.popular-news -->
-                    </div><!-- /.widget-popular-news -->
-                    <% } %>
-
-                </div><!-- /.sidebar -->
-            </div><!-- /.col-md-3 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
 </section>

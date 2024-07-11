@@ -46,6 +46,8 @@
         </div>
 
         <div class="row">
+
+            <script> let starCounts = []; </script>
             <% for(let accommodation of accommodations){ %>
             <div class="col-lg-4 col-md-4 col-xs-12 ">
                 <div class="flat-imagebox style2 v3">
@@ -61,13 +63,18 @@
                                         <h4><%= accommodation.title %></h4>
                                         <h6><%= accommodation.roomType %> <%= accommodation.bedCount %> bed</h6>
                                         <p><%= accommodation.location %></p>
-                                        <span>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </span>
+                                        <div class="wrap-star s2 v1">
+                                            <ul id="review-stars" class="star v1" required="required">
+                                                <li data-value="1"></li>
+                                                <li data-value="2"></li>
+                                                <li data-value="3"></li>
+                                                <li data-value="4"></li>
+                                                <li data-value="5"></li>
+                                            </ul>
+                                            <script> 
+                                                starCounts.push(Math.round('<%= accommodation.dataValues.totalStars %>')); 
+                                            </script>
+                                        </div>
                                         <div class="money"> <%= accommodation.price %> <span><%= accommodation.currency %> per night</span></div>
                                     </div>
                                 </div> <!-- /.box-wrap -->
@@ -135,15 +142,18 @@
                                 <div class="money"><%= tours[i].price %> <span> <%= tours[i].currency %></span></div>
                                 <div class="sub-title"><%= tours[i].duration %> days</div>
 
-                                <div class="wrap-star s2">                                            
-                                    <ul class="star">
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
+                                <div class="wrap-star s2 v1">
+                                    <ul id="review-stars" class="star v1" required="required">
+                                        <li data-value="1"></li>
+                                        <li data-value="2"></li>
+                                        <li data-value="3"></li>
+                                        <li data-value="4"></li>
+                                        <li data-value="5"></li>
                                     </ul>
-                                </div> <!-- /.wrap-star -->
+                                    <script> 
+                                        starCounts.push(Math.round('<%= tours[i].dataValues.totalStars %>')); 
+                                    </script>
+                                </div>
                             </div>
                         </div> <!-- /.box-wrap -->
                     </div> <!-- /.imagebox -->

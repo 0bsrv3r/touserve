@@ -136,7 +136,8 @@
                     <h2 class="title"><span>All Tours</span></h2> <!-- ./title -->
                 </div>
             </div>
-            
+        
+            <script> let starCounts = []; </script>
         <% for (let i = 0; i < tours.length; i++) { %>
             <div class="col-md-4">
                 <div class="flat-imagebox style2 v2">
@@ -161,24 +162,25 @@
                                     <div class="money"><%= tours[i].price %> <span> <%= tours[i].currency %></span></div>
                                     <div class="sub-title"><%= tours[i].duration %> days</div>
 
-                                    <div class="wrap-star s2">                                            
-                                        <ul class="star">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
+                                    <div class="wrap-star s2 v1">
+                                        <ul id="review-stars" class="star v1" required="required">
+                                            <li data-value="1"></li>
+                                            <li data-value="2"></li>
+                                            <li data-value="3"></li>
+                                            <li data-value="4"></li>
+                                            <li data-value="5"></li>
                                         </ul>
-                                    </div> <!-- /.wrap-star -->
+                                        <script> 
+                                            starCounts.push(Math.round('<%= tours[i].dataValues.totalStars %>')); 
+                                        </script>
+                                    </div>
                                 </div>
-                            </div> <!-- /.box-wrap -->
-                        </div> <!-- /.imagebox -->
-                    </div> <!-- /.item -->
-
+                            </div>
+                        </div>
+                    </div>
                     <div class="dividers dividers-imagebox s2 v2"></div>
-
-                </div> <!-- /.flat-imagebox -->
-            </div> <!-- /.col-md-4 -->            
+                </div>
+            </div>          
             <% } %>
 
         </div><!-- /.row -->

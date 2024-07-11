@@ -1,8 +1,9 @@
 const { validationResult } = require("express-validator")
-const {Tours, Customers, Accommodations} = require("../../models")
+const {Tours, Customers, Accommodations, Reviews, Sequelize} = require("../../models")
 const FileUpload = require("../../services/fileUploadService.js")
 const UsersInfoReview = require("../../services/usersInfoReviews.js")
 const ReviewStars = require("../../services/reviewStarService.js")
+const { Model, DataTypes } = require('sequelize');
 
 
 class Tour{
@@ -169,7 +170,12 @@ class Tour{
 
     // Front Side
     static async getTours(req, res){
-        const tours = await Tours.findAll()
+        const tours = await Tours.findAll({
+            attributes: {include:[[Sequelize.literal('(SELECT AVG(stars) FROM reviews WHERE reviews.tourId = Tours.id)'), 'totalStars']]},
+            include: 'reviews',
+            subQuery: false
+        });
+
         return res.render("tours", {layout: 'layouts/pagesHeader', tours: tours, active:"tours"}); 
     }
 
@@ -185,9 +191,15 @@ class Tour{
             
             // get realted accommodations based on location
             const city = {city: tour.city}
-            const accommodations = await Accommodations.findAll({where:city, order: [['createdAt', 'DESC']],limit: 3})
+            const accommodations = await Accommodations.findAll({
+                where:city,
+                attributes: {include: [[Sequelize.literal('(SELECT AVG(stars) FROM reviews WHERE reviews.accommodationId = Accommodations.id)'), 'totalStars']]}, 
+                order: Sequelize.literal('totalStars DESC'),
+                limit: 3,
+                subQuery: false
+            })
             
-            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id, users: users, stars:stars, active:"tours"});
+            return res.render("tour-details", {layout: 'layouts/pagesheader', tour:tour, accommodations: accommodations, service:"tour", id: data.id, users: users, stars:stars, active:""});
         }else{
             return res.render("404", {layout: 'layouts/pagesheader', active:"tours"});
         }

@@ -27,6 +27,7 @@
             <div class="dividers dividers-team"></div>
         </div>
         
+        <script> let starCounts = []; </script>
         <% for (let i = 0; i < guides.length; i++) { %>
         <div class="col-md-4">
             <div class="team-member">
@@ -44,13 +45,18 @@
                             <div class="position">
                                 <span> <%= guides[i].languages %></span>
                             </div>
-                            <ul class="social-list">
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
+                            <div class="wrap-star s2 v1">
+                                <ul id="review-stars" class="star v1" required="required">
+                                    <li data-value="1"></li>
+                                    <li data-value="2"></li>
+                                    <li data-value="3"></li>
+                                    <li data-value="4"></li>
+                                    <li data-value="5"></li>
+                                </ul>
+                                <script> 
+                                    starCounts.push(Math.round('<%= guides[i].dataValues.totalStars %>')); 
+                                </script>
+                            </div>
                         </div> <!-- /.content -->
                     </div> <!-- /.flat-team -->
                 </div> <!-- /.item -->

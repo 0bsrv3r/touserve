@@ -1,5 +1,5 @@
 const  { validationResult } = require("express-validator") 
-const {Accommodations, Tours, Customers} = require("../../models")
+const {Accommodations, Tours, Customers, Sequelize} = require("../../models")
 const FileUpload = require("./../../services/fileUploadService.js")
 const UsersInfoReview = require("./../../services/usersInfoReviews.js")
 const ReviewStars = require("../../services/reviewStarService.js")
@@ -148,12 +148,24 @@ class Accommodation{
 
     // Front Side
     static async getRecommendedTours(req, res){
-        const tours = await Tours.findAll({order: [['createdAt', 'DESC']],limit: 2})
+        const tours = await Tours.findAll({
+            attributes: {include: [[Sequelize.literal('(SELECT AVG(stars) FROM reviews WHERE reviews.tourId = Tours.id)'), 'totalStars']]},
+            include: 'reviews',
+            order: Sequelize.literal('totalStars DESC'),
+            limit: 2,
+            subQuery: false
+          });
+        
         return tours
     }
     
     static async getAccommodations(req, res){
-        const accommodations = await Accommodations.findAll()
+        const accommodations = await Accommodations.findAll({   
+            attributes: {include:[[Sequelize.literal('(SELECT AVG(stars) FROM reviews WHERE reviews.accommodationId = Accommodations.id)'), 'totalStars']]},
+            include: 'reviews',
+            subQuery: false
+        });
+
         const tours = await Accommodation.getRecommendedTours()
         
         return res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations, tours: tours, active:"accommodations" })
@@ -161,14 +173,17 @@ class Accommodation{
 
     static async getAccommodationById(req, res){
         const data = req.params
-        const accommodation = await Accommodations.findOne({where: data, include:['reviews', {model: Customers, as: 'customers', attributes: { exclude: ['password'] }}]})
+        const accommodation = await Accommodations.findOne({
+            where: data,
+            include:['reviews', {model: Customers, as: 'customers', attributes: { exclude: ['password'] }}]
+        })
         const stars = await ReviewStars.starsCount(accommodation)
 
         if(accommodation != undefined){
             // get users based on accommondation review
             const users = await UsersInfoReview.userInfoReviews(req, res, accommodation.reviews)
 
-            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, users: users, stars:stars, active:"accommodations"})
+            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, users: users, stars:stars, active:""})
         }else{
             return res.render("404", {layout: 'layouts/pagesheader', active:"accommodations"});
         }
