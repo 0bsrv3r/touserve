@@ -19,6 +19,10 @@ router.get('/login', (req, res) => {
     res.render("login", { errors: {}, layout: false }); 
 });
 
+router.get('/adm/login', (req, res) => {
+    res.render("./admin/login", {layout: false})
+})
+
 // Events
 router.get('/events', Event.getEvents);
 
