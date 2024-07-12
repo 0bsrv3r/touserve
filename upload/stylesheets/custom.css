@@ -1070,36 +1070,3 @@ body{
     content: "\f005";
 }
                                 /*========= Review END ==========*/
-                              /*========= DASHBOARD-HEADER START ==========*/
-.dashboard-custom-menu{
-    display: flex;
-    align-items: center;
-}
-.dashboard-custom-menu .nav-wrap{
-    display: flex;
-    justify-content: center;
-}
-.dashboard-custom-menu #mainnav ul li {
-    display: inline-block;
-}
-.dashboard-custom-menu #mainnav ul li a{
-    line-height: 0px !important;
-    padding: 0 27px 0 0;
-    font-size: 18px;
-    font-family: "Lora", sans-serif I !important;
-    font-family: inherit !important;
-    font-weight: 400;
-    letter-spacing: 0.35px;
-    color: #fff;
-}
-.dashboard-custom-menu #mainnav .menu{ 
-    margin: 0;
-}
-.dashboard-custom-menu #mainnav ul li a:hover{
-    color: #fd7e21;
-    position: relative;
-    transition: all 0.3s ease-in-out;
-    text-decoration: none;  
-}
-
-                              /*========= DASHBOARD-HEADER END ==========*/

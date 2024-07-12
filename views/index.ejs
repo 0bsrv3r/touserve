@@ -130,8 +130,10 @@
 
 <!-- imagebox -->
 
+<script> let starCounts = []; </script>
+
 <!-- Tours -->
-<section class="flat-row pd-galerry">
+<section class="flat-row pd-imagebox v4">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-3">
@@ -166,14 +168,17 @@
                                     <h4><%= tour.title %></h4>
                                     <div class="money"><%= tour.price %> <span> <%= tour.currency %></span></div>
                                     <div class="sub-title"><%= tour.duration %> days</div>
-                                    <div class="wrap-star s2">
-                                        <ul id="stars" class="star v1" required="required">
+                                    <div class="wrap-star s2 v1">
+                                        <ul id="review-stars" class="star v1" required="required">
                                             <li data-value="1"></li>
                                             <li data-value="2"></li>
                                             <li data-value="3"></li>
                                             <li data-value="4"></li>
                                             <li data-value="5"></li>
                                         </ul>
+                                        <script> 
+                                            starCounts.push(Math.round('<%= tour.dataValues.totalStars %>')); 
+                                        </script>
                                     </div>
                                 </div>
                             </div> <!-- /.box-wrap -->
@@ -189,7 +194,7 @@
 </section>
 
 <!-- Accommodations -->
-<section class="flat-row pd-galerry">
+<section class="flat-row pd-imagebox bg-theme">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-3">
@@ -218,14 +223,17 @@
                                         <h4><%= accommodation.title %></h4>
                                         <h6><%= accommodation.roomType %> - <%= accommodation.bedCount %> beds</h6>
                                         <p><%= accommodation.location %></p>
-                                        <div class="wrap-star s2">
-                                            <ul id="stars" class="star v1" required="required">
+                                        <div class="wrap-star s2 v1">
+                                            <ul id="review-stars" class="star v1" required="required">
                                                 <li data-value="1"></li>
                                                 <li data-value="2"></li>
                                                 <li data-value="3"></li>
                                                 <li data-value="4"></li>
                                                 <li data-value="5"></li>
                                             </ul>
+                                            <script> 
+                                                starCounts.push(Math.round('<%= accommodation.dataValues.totalStars %>')); 
+                                            </script>
                                         </div>
                                         <div class="money"> <%= accommodation.price %> <span><%= accommodation.currency %> per night</span></div>
                                     </div>
@@ -243,7 +251,7 @@
 </section>
 
 <!-- Events -->
-<section class="flat-row pdtitle-section v2 bg-theme">
+<section class="flat-row pdtitle-section v2">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -292,7 +300,7 @@
 </section>
 
 <!-- Guides -->
-<section class="flat-row pd-galerry">
+<section class="flat-row pd-galerry bg-theme">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-3">
@@ -322,20 +330,23 @@
                                 <div class="position">
                                     <span><%= guide.languages %></span>
                                 </div>
-                                <div class="wrap-star s2">
-                                    <ul id="stars" class="star v1" required="required">
+                                <div class="wrap-star s2 v1">
+                                    <ul id="review-stars" class="star v1" required="required">
                                         <li data-value="1"></li>
                                         <li data-value="2"></li>
                                         <li data-value="3"></li>
                                         <li data-value="4"></li>
                                         <li data-value="5"></li>
                                     </ul>
+                                    <script> 
+                                        starCounts.push(Math.round('<%= guide.dataValues.totalStars %>')); 
+                                    </script>
                                 </div>
-                            </div><!-- /.content -->
-                        </div><!-- /.flat-team -->
-                    </div><!-- /.item -->
-                </div><!-- /.team-member -->
-            </div><!-- /.col-md-4 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <% } %>
             
         </div><!-- /.row -->

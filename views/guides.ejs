@@ -36,7 +36,7 @@
                         <div class="avatar">
                             <a class="link" href="/guide-details/<%= guides[i].id %>">        
                                 <a href="#">                                
-                                    <img src="/<%= guides[i].image %>" alt="img">
+                                    <img src="/<%= guides[i].image ? guides[i].image : 'upload/photos/profile/photo.jpg' %>" alt="img">
                                 </a>
                             </a>
                         </div> <!-- /.avatar -->
