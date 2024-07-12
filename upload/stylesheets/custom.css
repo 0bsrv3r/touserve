@@ -642,7 +642,6 @@ body{
 .wrap-login-register .login-input{
     margin-bottom: 10px;
 }
-
 .wrap-login-register p input{
     color: #fff;
     font-size: 16px !important;
@@ -655,6 +654,16 @@ body{
     background: url(../images/login/login.jpg);
     background-size: cover; 
     background-attachment: fixed;
+}
+.wrap-register .login-input select{
+    width: 100%;
+    height: 46px !important;
+    background: none;
+    color: #C7D2D2;
+}
+.wrap-register .login-input select option{
+    background: #1C3554 !important;
+    color: #C7D2D2;
 }
                             /*========= LOGIN PAGE END ==========*/
 
