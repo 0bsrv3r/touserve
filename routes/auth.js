@@ -1,6 +1,7 @@
 const express  = require('express');
 const router = express.Router();
 
+const AdminAuth = require("../controllers/admin/authController.js")
 const UserAuth = require("../controllers/userAuthController.js");
 const CustomerAuth = require("../controllers/customerAuthController.js");
 const userRegisterValidation  = require("../validators/user-registration.js"); 
@@ -8,6 +9,10 @@ const customerRegisterValidation  = require("../validators/customer-registration
 const passwordResetValidation  = require("../validators/customer-user-update.js"); 
 
 router.use(express.urlencoded({ extended:true }))
+
+// Admin
+router.get('/adm/login', (req, res) => {res.render("./admin/login", { errorMsg: "",layout: false})})
+router.post('/admin/login', AdminAuth.postLogin)
 
 // Users
 router.post("/user/register", userRegisterValidation, UserAuth.postRegister) 

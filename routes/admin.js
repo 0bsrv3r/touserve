@@ -11,9 +11,8 @@ const accommadationUpdateValidation  = require("../validators/accommodation-upda
 
 router.use(express.urlencoded({ extended:true }))
 
-router.get('/', (req, res) => { 
-    res.render("./admin/admin", {layout: 'layouts/admin/top-side-bars'}); 
-});
+
+router.get('/', (req, res) => {res.render("./admin/admin", {layout: 'layouts/admin/top-side-bars'})});
 
 // Events
 router.get('/events', Event.getEventsByUserId);

@@ -39,6 +39,7 @@ app.use(fileUpload())
 // middlewares 
 const login = require("./middlewares/auth.js")
 const customerAccess = require("./middlewares/customer.js")
+const adminAccess = require("./middlewares/admin.js")
 
 // routes
 const pathes = require ("./routes/path.js"); 
@@ -50,7 +51,7 @@ const review = require ("./routes/review.js");
 const invitation = require ("./routes/invitation.js"); 
 app.use("/", pathes);
 app.use("/auth", auth);
-app.use("/admin", /*login,*/ admin) // Checked with middleware if user registered or not.
+app.use("/admin", adminAccess, admin)
 app.use("/customer", /*login, customerAccess, */ customer)
 app.use("/user", /*login,*/ user)
 app.use("/review", /*login,*/ review)
