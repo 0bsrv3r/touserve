@@ -1,7 +1,8 @@
-const  { validationResult } = require("express-validator") 
+const  {validationResult } = require("express-validator") 
 const {Users} = require('../models'); 
 const JWTService = require("./../services/jwtService.js");
-const EmailSender = require("./../services/emailService.js")
+const EmailSender = require("./../services/emailService.js");
+const ResetPassword = require("./../services/resetPasswordService.js");
 
 class Authentication {
     static async postRegister (req, res) { 
@@ -102,6 +103,33 @@ class Authentication {
     static async postSignOut(req, res){
         req.session.destroy();
         res.redirect("/")
+    }
+
+    static async postAccountRecovery(req,res){
+        const msg = "Password reset link successfully sent to your email address"
+        await ResetPassword.accountRecovery(req, res, req.body.email, Users, "user")
+        return res.render("account-recovery", {layout: 'layouts/pagesheader', msg:msg, type:"user", active:""})
+    }
+
+    static async verifyToken(req, res){
+        ResetPassword.verifyToken(req, res, req.query.token, "user")
+    }
+
+    static async postPasswordReset(req, res){
+        const errors = validationResult(req); 
+        const {newPass1, token} = req.body
+
+        if(errors.isEmpty()){
+            ResetPassword.resetPassword(req, res, Users, newPass1, token)
+            res.redirect('/login');
+        }else{
+            const errorObject = errors.array().reduce((acc, error) => {
+                acc[error.path] = error.msg;
+                return acc;
+            }, {})
+
+            return res.status(403).json(errorObject) 
+        }
     }
 }
 module.exports = Authentication

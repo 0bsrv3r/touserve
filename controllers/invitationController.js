@@ -8,7 +8,7 @@ class Invitation{
     
     static async send(req, res){
         const email = req.body.email;
-        const companyId = 1 // req.session.user_id
+        const companyId = 1 // req.session.user_id // Prod
         const token = await JWTService.generateToken(email, companyId)
 
         try {
@@ -22,8 +22,8 @@ class Invitation{
             }
 
             // Send email
-            const invitationLink = `http://localhost:8181/invitation/accept?token=${token}`;
-            EmailSender.sendEmail(req, res, email, invitationLink)
+            const invitationLink = `http://localhost:8181/invitation/accept?token=${token}`; // Prod
+            EmailSender.sendEmail(email, invitationLink)
 
             return res.redirect('/customer/profile');
         } catch (error) {
@@ -64,7 +64,7 @@ class Invitation{
                 const decoded = JWTService.verifyToken(token);
                 const invitation = await Invitations.findOne({ where: { token } });
     
-                if (!invitation) {
+                if (!invitation && decoded) {
                     return res.status(400).send('Invalid invitation token');
                 }
                 

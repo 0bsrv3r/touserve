@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 });
 
 class EmailSender{
-    static async sendEmail(req, res, email, link){
+    static async sendEmail(email, link){
 
         const mailOptions = {
             from: process.env.EMAIL_USER,

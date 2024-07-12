@@ -56,8 +56,8 @@ class Profile{
 
             if(customer){
                 const token  = await JWTService.generateToken(email, id)
-                const invitationLink = `http://localhost:8181/customer/verify/email?token=${token}`;
-                await EmailSender.sendEmail(req, res, email, invitationLink)
+                const invitationLink = `http://localhost:8181/customer/verify/email?token=${token}`; //UPDATE THIS IN PROD ENV
+                await EmailSender.sendEmail(email, invitationLink)
             }
             return res.redirect('/customer/profile')
         }else{
