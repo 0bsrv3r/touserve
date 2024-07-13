@@ -8,20 +8,20 @@ class ResetPassword{
 
     static async accountRecovery(req, res, email, Model, user_type){
         const user = await Model.findOne({where: {email:email}})
-        const invitation = await Invitations.findOne({where: {email}})
-        const token = await JWTService.generateToken(user.email, user.id)
 
         try{         
             if(user){
-                const emailLink = `${process.env.INVITATION_HOST}/auth/${user_type}/reset-password?token=${token}` // Prod
+                const invitation = await Invitations.findOne({where: {email}})
+                const token = await JWTService.generateToken(user.email, user.id)
+                const emailLink = `${process.env.INVITATION_HOST}/auth/${user_type}/reset-password?token=${token}`
                 await EmailSender.sendEmail(user.email, emailLink)
-            }
 
-            if(invitation !== null){
-                invitation.token = token
-                await invitation.save();
-            }else{
-                await Invitations.create({ email: email, token:token, status:"pending" });
+                if(invitation !== null){
+                    invitation.token = token
+                    await invitation.save();
+                }else{
+                    await Invitations.create({ email: email, token:token, status:"pending" });
+                }
             }
         }catch(error){
             return res.status(500).send(error);

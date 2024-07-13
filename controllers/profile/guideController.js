@@ -7,7 +7,7 @@ class Guide{
     static async deleteCompanyGuide(req, res){
         const ids = {
             id: req.params.id,
-            companyId: 1 // req.session.user_id // UPDATE THIS IN PROD ENV
+            companyId: req.session.user_id // UPDATE THIS IN PROD ENV
         }
 
         const guide = await Customers.findOne({where: ids})

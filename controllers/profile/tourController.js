@@ -9,12 +9,12 @@ class Tour{
 
     // Profile  Pages
     static async getGuideName(req, res){
-        const id = 1 // req.session.user_id}  //UPDATE THIS IN PROD ENV
+        const id = req.session.user_id  //UPDATE THIS IN PROD ENV
         const guide = await Customers.findAll({where: id})
 
         if(guide[0].role !== 'guide'){
-            const companyId = {companyId: 1}   // req.session.user_id}  //UPDATE THIS IN PROD ENV
-            const guideNames =  await Customers.findAll({where: companyId})
+            const companyId = req.session.user_id  //UPDATE THIS IN PROD ENV
+            const guideNames =  await Customers.findAll({where: {companyId:companyId}})
             return guideNames
         }
         
@@ -22,7 +22,7 @@ class Tour{
     }
 
     static async getTourCreate(req, res, errors){
-        const guideNames = await Tour.getGuideName()
+        const guideNames = await Tour.getGuideName(req, res)
 
         if(guideNames != undefined){
             if(typeof errors !== 'function'){
@@ -48,7 +48,7 @@ class Tour{
             const images = await FileUpload.batchFileUpload(req, res, req.files.images, "upload/photos/tours/")
 
             const data = {
-                customerId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
+                customerId: req.session.user_id, //UPDATE THIS IN PROD ENV
                 guideId: req.body.guide, 
                 title: req.body.title, 
                 tourType: req.body.tourType, 
@@ -77,10 +77,10 @@ class Tour{
     static async getUpdateTourById(req, res){
         const ids  = {
             id: req.params.id,
-            customerId: 1 // req.session.user_id //UPDATE THIS IN PROD ENV
+            customerId: req.session.user_id //UPDATE THIS IN PROD ENV
         }
         const tour  = await Tours.findOne({where: ids, include: "guides"})
-        const guideNames = await Tour.getGuideName()
+        const guideNames = await Tour.getGuideName(req, res)
 
         if (tour) {
             return res.render("./profile/tour-update", {layout: 'layouts/pagesheader', tour: tour, guides:guideNames, errors: {}, active:"tours"});
@@ -93,11 +93,11 @@ class Tour{
         const errors = validationResult(req);
         const ids = {
             id: req.params.id,
-            customerId: 1 // req.session.user_id  // UPDATE THIS IN PROD ENV
+            customerId: req.session.user_id  // UPDATE THIS IN PROD ENV
         }
 
         // Get Guides assiciated with Tour owner
-        const guideNames = await Tour.getGuideName()
+        const guideNames = await Tour.getGuideName(req, res)
 
         try {
             if(errors.isEmpty()){ 
@@ -151,7 +151,7 @@ class Tour{
     static async deleteTourById(req, res){
         const ids = {
             id: req.params.id,
-            customerId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+            customerId: req.session.user_id  //UPDATE THIS IN PROD ENV
         }
 
         const tours = await Tours.findOne({where:ids})

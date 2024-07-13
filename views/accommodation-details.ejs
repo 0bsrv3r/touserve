@@ -98,6 +98,7 @@
                     <div class="content-tab">
                         <div class="content-inner active">
                             <div class="wrap-form-update">
+                                <p style="color: red;">Coming Soon will be available</p>
                                 <form class="update-form" action="">
                                     <div class="update-input">
                                         <div class="form-group">
@@ -288,7 +289,7 @@
                                 </ul>
                             </div>
                             <div class="host-image">
-                                <img src="/<%= accommodation.customers.image %>">
+                                <img src="/<%= accommodation.customers.image ? accommodation.customers.image : 'upload/photos/profile/photo.jpg' %>">
                             </div>
                         </div>
                         <div class="custom-similar ">

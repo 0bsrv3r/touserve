@@ -1,4 +1,5 @@
 const express = require('express'); 
+const session = require("express-session"); 
 const app = express(); 
 const port = 8181; 
 
@@ -15,7 +16,6 @@ app.set("layout", "layouts/header")
 app.use('/upload', express.static('upload')); 
 
 // express-session 
-const session = require("express-session"); 
 app.use(session({ 
         secret: process.env.SESSION_KEY,
         resave: false,  
@@ -30,7 +30,6 @@ app.use((req, res, next) => {
     res.locals.globalSession = req.session 
     next(); 
 })
-
 
 // file upload
 const fileUpload = require("express-fileupload"); 
@@ -51,11 +50,11 @@ const review = require ("./routes/review.js");
 const invitation = require ("./routes/invitation.js"); 
 app.use("/", pathes);
 app.use("/auth", auth);
+app.use("/invitation", invitation)
 app.use("/admin", adminAccess, admin)
-app.use("/customer", /*login, customerAccess, */ customer)
-app.use("/user", /*login,*/ user)
-app.use("/review", /*login,*/ review)
-app.use("/invitation", /*login,*/ invitation)
+app.use("/customer", customerAccess, customer)
+app.use("/user", login, user)
+app.use("/review", login, review)
 
 // Middleware to handle 404 errors
 app.use((req, res, next) => {

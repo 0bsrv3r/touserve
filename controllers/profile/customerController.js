@@ -8,16 +8,18 @@ const EmailSender = require("./../../services/emailService.js")
 class Profile{
 
     static async getProfileInfo(req, res){
-        const id = {id: 1} // {id: req.session.user_id} //UPDATE THIS IN PROD ENV
+        const id = {id: req.session.user_id} //UPDATE THIS IN PROD ENV
         const customer  = await Customers.findOne({where: id, include:["companyTours", "accommodations", "companyGuides"]})
-        const role = customer.role
+        if(id){
+            const role = customer.role
+        }
 
         return res.render("./profile/profile", {layout: 'layouts/pagesheader.ejs', errors: {}, profile: customer, type: 'customer', role:role, active:"profile"});
     }
 
     static async uploadProfilePhoto(req, res){
         const errors = validationResult(req);
-        const id = { id: 1 }// req.session.user_id  // UPDATE THIS IN PROD ENV
+        const id = req.session.user_id  // UPDATE THIS IN PROD ENV
         
         try {
             if(errors.isEmpty()){ 
@@ -52,7 +54,7 @@ class Profile{
         
         if(errors.isEmpty()){
             const {email} = req.body;
-            const id = 1; // req.session.user_id //UPDATE THIS IN PROD ENV
+            const id = req.session.user_id //UPDATE THIS IN PROD ENV
             const customer = await Customers.findOne({where: id})
 
             if(customer){
@@ -95,7 +97,7 @@ class Profile{
         
         if(errors.isEmpty()){
             const {number} = req.body;
-            const id = 1; // req.session.user_id //UPDATE THIS IN PROD ENV
+            const id = req.session.user_id //UPDATE THIS IN PROD ENV
 
             const customer = await Customers.findOne({where: id})
 
@@ -118,7 +120,7 @@ class Profile{
         
         if(errors.isEmpty()){
             const {currentPass, newPass1} = req.body
-            const id = 1 //req.session.user_id //UPDATE THIS IN PROD ENV
+            const id = req.session.user_id //UPDATE THIS IN PROD ENV
 
             const customer = await Customers.findOne({where: {id}})
             const isValidPassword = await customer.validPassword(currentPass)
@@ -142,7 +144,7 @@ class Profile{
         const errors = validationResult(req)
         
         if(errors.isEmpty()){
-            const id = 1 //req.session.user_id //UPDATE THIS IN PROD ENV
+            const id = req.session.user_id //UPDATE THIS IN PROD ENV
             const customer = await Customers.findOne({where: {id}})
 
             if(customer){

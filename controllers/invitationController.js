@@ -9,7 +9,7 @@ class Invitation{
     
     static async send(req, res){
         const email = req.body.email;
-        const companyId = 1 // req.session.user_id // Prod
+        const companyId = req.session.user_id // UPDATE THIS IN PROD ENV
         const token = await JWTService.generateToken(email, companyId)
 
         try {
@@ -23,7 +23,7 @@ class Invitation{
             }
 
             // Send email
-            const invitationLink = `${process.env.INVITATION_HOST}/invitation/accept?token=${token}`; // Prod
+            const invitationLink = `${process.env.INVITATION_HOST}/invitation/accept?token=${token}`;
             EmailSender.sendEmail(email, invitationLink)
 
             return res.redirect('/customer/profile');

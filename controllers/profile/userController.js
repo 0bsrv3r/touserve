@@ -8,19 +8,19 @@ const EmailSender = require("./../../services/emailService.js")
 class Profile{
 
     static async getProfileInfo(req, res){
-        const id = {id: 1} // {id: req.session.user_id} //UPDATE THIS IN PROD ENV
-        const user  = await Users.findOne({where: id})
+        const id = req.session.user_id //UPDATE THIS IN PROD ENV
+        const user  = await Users.findOne({where: {id:id}})
 
         return res.render("./profile/profile", {layout: 'layouts/pagesheader.ejs', errors: {}, profile: user, type: 'user', active:"profile"});
     }
 
     static async uploadProfilePhoto(req, res){
         const errors = validationResult(req);
-        const id = { id: 1 }// req.session.user_id  // UPDATE THIS IN PROD ENV
+        const id = req.session.user_id  // UPDATE THIS IN PROD ENV
         
         try {
             if(errors.isEmpty()){ 
-                const profile = await Users.findOne({where: id});
+                const profile = await Users.findOne({where: {id:id}});
                 let oldImage  = profile.image 
                
                 if (req?.files?.photo) {
@@ -52,7 +52,7 @@ class Profile{
         
         if(errors.isEmpty()){
             const {email} = req.body;
-            const id = 1; // req.session.user_id //UPDATE THIS IN PROD ENV
+            const id = req.session.user_id //UPDATE THIS IN PROD ENV
             const user = await Users.findOne({where: id})
 
             if(user){
@@ -95,7 +95,7 @@ class Profile{
         
         if(errors.isEmpty()){
             const {number} = req.body;
-            const id = 1; // req.session.user_id //UPDATE THIS IN PROD ENV
+            const id = req.session.user_id //UPDATE THIS IN PROD ENV
 
             const user = await Users.findOne({where: id})
 
@@ -118,9 +118,9 @@ class Profile{
         
         if(errors.isEmpty()){
             const {currentPass, newPass1} = req.body
-            const id = 1 //req.session.user_id //UPDATE THIS IN PROD ENV
+            const id = req.session.user_id //UPDATE THIS IN PROD ENV
 
-            const user = await Users.findOne({where: {id}})
+            const user = await Users.findOne({where: id})
             const isValidPassword = await user.validPassword(currentPass)
 
             if(user && isValidPassword){
@@ -142,8 +142,8 @@ class Profile{
         const errors = validationResult(req)
         
         if(errors.isEmpty()){
-            const id = 1 //req.session.user_id //UPDATE THIS IN PROD ENV
-            const user = await Users.findOne({where: {id}})
+            const id = req.session.user_id //UPDATE THIS IN PROD ENV
+            const user = await Users.findOne({where: id})
 
             if(user){
                 const data = {

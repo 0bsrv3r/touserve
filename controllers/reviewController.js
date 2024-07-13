@@ -9,7 +9,7 @@ class Review{
         if(req.session.user_id){
             if(errors.isEmpty()){
                 const data = {
-                    userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
+                    userId: req.session.user_id, //UPDATE THIS IN PROD ENV
                     tourId: req.params.id, 
                     review: req.body.review, 
                     stars: req.body.stars,
@@ -32,7 +32,7 @@ class Review{
     static async deleteTourReviewById(req, res){
         const ids = {
             id: req.params.id,
-            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+            userId: req.session.user_id  //UPDATE THIS IN PROD ENV
         }
         const review = await Reviews.findOne({where:ids, attributes:["tourId"]})
         const deleted = await Reviews.destroy({where: ids})
@@ -50,7 +50,7 @@ class Review{
         if(req.session.user_id){
             if(errors.isEmpty()){
                 const data = {
-                    userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
+                    userId: req.session.user_id, //UPDATE THIS IN PROD ENV
                     guideId: req.params.id, 
                     review: req.body.review, 
                     stars: req.body.stars,
@@ -73,7 +73,7 @@ class Review{
     static async deleteGuideReviewById(req, res){
         const ids = {
             id: req.params.id,
-            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+            userId: req.session.user_id  //UPDATE THIS IN PROD ENV
         }
         const review = await Reviews.findOne({where:ids, attributes:["guideId"]})
         const deleted = await Reviews.destroy({where: ids})
@@ -91,7 +91,7 @@ class Review{
         if(req.session.user_id){
             if(errors.isEmpty()){
                 const data = {
-                    userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
+                    userId: req.session.user_id, //UPDATE THIS IN PROD ENV
                     accommodationId: req.params.id, 
                     review: req.body.review, 
                     stars: req.body.stars,
@@ -114,7 +114,7 @@ class Review{
     static async deleteAccommodationReviewById(req, res){
         const ids = {
             id: req.params.id,
-            userId: 1 // req.session.user_id  //UPDATE THIS IN PROD ENV
+            userId: req.session.user_id  //UPDATE THIS IN PROD ENV
         }
         const review = await Reviews.findOne({where:ids, attributes:["accommodationId"]})
         const deleted = await Reviews.destroy({where: ids})
