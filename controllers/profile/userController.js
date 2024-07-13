@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator")
+require('dotenv').config();
 const {Users} = require("../../models")
 const FileUpload = require("../../services/fileUploadService.js")
 const JWTService = require("./../../services/jwtService.js")
@@ -56,7 +57,7 @@ class Profile{
 
             if(user){
                 const token  = await JWTService.generateToken(email, id)
-                const invitationLink = `http://localhost:8181/user/verify/email?token=${token}`; //UPDATE THIS IN PROD ENV
+                const invitationLink = `${process.env.INVITATION_HOST}/user/verify/email?token=${token}`;
                 await EmailSender.sendEmail(email, invitationLink)
             }
             return res.redirect('/user/profile')

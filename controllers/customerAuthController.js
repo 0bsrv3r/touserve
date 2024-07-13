@@ -1,4 +1,5 @@
-const  { validationResult } = require("express-validator") 
+const  { validationResult } = require("express-validator")
+require('dotenv').config(); 
 const {Customers} = require('../models'); 
 const JWTService = require("./../services/jwtService.js");
 const EmailSender = require("./../services/emailService.js")
@@ -29,7 +30,7 @@ class Authentication {
                     const customer  = await Customers.create(data)
                     
                     const token  = await JWTService.generateToken(req.body.email, customer.id)
-                    const invitationLink = `http://localhost:8181/auth/customer/verify?token=${token}`;
+                    const invitationLink = `${process.env.INVITATION_HOST}/auth/customer/verify?token=${token}`;
                     await EmailSender.sendEmail(req, res, req.body.email, invitationLink)
                     
                     return res.render('register',{ errors: {}, layout: false, registered:registered }) 

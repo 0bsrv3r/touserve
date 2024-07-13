@@ -1,4 +1,5 @@
-const  { validationResult } = require("express-validator") 
+const  { validationResult } = require("express-validator")
+require('dotenv').config();
 const {Invitations, Customers} = require('./../models')
 const JWTService = require('./../services/jwtService.js');
 const EmailSender = require('./../services/emailService.js');
@@ -22,7 +23,7 @@ class Invitation{
             }
 
             // Send email
-            const invitationLink = `http://localhost:8181/invitation/accept?token=${token}`; // Prod
+            const invitationLink = `${process.env.INVITATION_HOST}/invitation/accept?token=${token}`; // Prod
             EmailSender.sendEmail(email, invitationLink)
 
             return res.redirect('/customer/profile');

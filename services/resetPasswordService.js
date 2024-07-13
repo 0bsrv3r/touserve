@@ -1,4 +1,5 @@
 const {Invitations} = require('../models'); 
+require('dotenv').config();
 const JWTService = require("./../services/jwtService.js");
 const EmailSender = require("./../services/emailService.js");
 
@@ -12,7 +13,7 @@ class ResetPassword{
         try{         
             if(user){
                 let token = await JWTService.generateToken(user.email, user.id)
-                const emailLink = `http://localhost:8181/auth/${user_type}/reset-password?token=${token}` // Prod
+                const emailLink = `${process.env.INVITATION_HOST}/auth/${user_type}/reset-password?token=${token}` // Prod
                 await EmailSender.sendEmail(user.email, emailLink)
             }
 
