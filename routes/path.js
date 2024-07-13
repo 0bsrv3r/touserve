@@ -11,13 +11,8 @@ router.use(express.urlencoded({ extended:true }))
 router.get('/', Index.allServices); 
 
 // Authentication
-router.get('/register', (req, res) => { 
-    res.render("register", { errors: {}, layout: false, registered:"" }); 
-}); 
-
-router.get('/login', (req, res) => { 
-    res.render("login", { errors: {}, layout: false }); 
-});
+router.get('/register', (req, res) => { res.render("register", { errors: {}, layout: false, registered:"" })}); 
+router.get('/login', (req, res) => {res.render("login", { errors: {}, layout: false })});
 
 // Events
 router.get('/events', Event.getEvents);
