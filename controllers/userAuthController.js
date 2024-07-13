@@ -29,7 +29,7 @@ class Authentication {
                     
                     const token  = await JWTService.generateToken(req.body.email, user.id)
                     const invitationLink = `${process.env.INVITATION_HOST}/auth/user/verify?token=${token}`;
-                    await EmailSender.sendEmail(req, res, req.body.email, invitationLink)
+                    await EmailSender.sendEmail(req.body.email, invitationLink)
                     
                     return res.render('register',{ errors: {}, layout: false, registered:registered }) 
                 }
@@ -88,8 +88,8 @@ class Authentication {
                     wrongAttempt: "Check your email & confirm you account"
                 }
                 const token  = await JWTService.generateToken(user.email, user.id)
-                const invitationLink = `http://localhost:8181/auth/user/verify?token=${token}`;
-                await EmailSender.sendEmail(req, res, user.email, invitationLink)
+                const invitationLink = `${process.env.INVITATION_HOST}/auth/user/verify?token=${token}`;
+                await EmailSender.sendEmail(user.email, invitationLink)
                         
                 return res.render('login',{ errors: errorObject, layout: false }) 
             }

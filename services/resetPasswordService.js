@@ -9,15 +9,15 @@ class ResetPassword{
     static async accountRecovery(req, res, email, Model, user_type){
         const user = await Model.findOne({where: {email:email}})
         const invitation = await Invitations.findOne({where: {email}})
+        const token = await JWTService.generateToken(user.email, user.id)
 
         try{         
             if(user){
-                let token = await JWTService.generateToken(user.email, user.id)
                 const emailLink = `${process.env.INVITATION_HOST}/auth/${user_type}/reset-password?token=${token}` // Prod
                 await EmailSender.sendEmail(user.email, emailLink)
             }
 
-            if(invitation){
+            if(invitation !== null){
                 invitation.token = token
                 await invitation.save();
             }else{
