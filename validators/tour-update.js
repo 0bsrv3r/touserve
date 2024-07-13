@@ -93,8 +93,8 @@ module.exports = eventValidation = [
     
     body("inclusions")
         .isLength({min: 1, max: 300})
-        .isAlpha() 
-        .withMessage("Inclusions must consist of letters"),
+        .matches(/^[A-Za-z0-9 ,()-]+$/)
+        .withMessage("Inclusions must consist of only specified Options"),
     
     body("overview")
         .isLength({min: 20, max: 2000}) 

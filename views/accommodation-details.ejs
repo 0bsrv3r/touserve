@@ -216,10 +216,12 @@
                                 <i class="fa fa-bed" aria-hidden="true"></i> <%= accommodation.bathCount %> bath
                             </p>
                         </div>
-                        <h4 class="title">About</h4>
 
+                        <div class="dividers dividers-border-bottom"></div>
+                        <h4 class="title">About</h4>
                         <div class="sub-title"><%= accommodation.about %></div>
                         
+                        <div class="dividers dividers-border-bottom"></div>
                         <div class="custom-home-about">   
                             <ul>
                                 <li>
@@ -236,24 +238,17 @@
                         <div class="widget widget-tour-by-types custom-widget">
                             <h4 class="widget-title">Amenities</h4>
                             <div class="custom-amenities">
-                                <ul>
+                                <div class="row">
                                     <% for(let amenitie of accommodation.amenities){ %>
-                                    <li><%= amenitie %></li>
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <ul>
+                                            <li><%= amenitie %></li>
+                                        </ul>
+                                    </div>
                                     <% } %>
-                                </ul>
-                                <ul>
-                                    <li>Kitchen</li>
-                                    <li>Shampoo</li>
-                                    <li>Essentials</li>
-                                    <li>Heating</li>
-                                    <li>Washer</li>
-                                    <li>Dryer</li>
-                                    <li>Indoor fireplace</li>
-                                    <li>Pets allowed</li>
-                                </ul>
+                                </div>
                             </div>
                         </div>
-
 
                         <div class="dividers dividers-border-bottom"></div>
 
@@ -277,7 +272,7 @@
                                 </li>
                                 <li>
                                     <p>Safe booking</p>
-                                    <span>To protect your payment, never transfer money or communicate outside of the Airbnb website or app.</span>
+                                    <span>To protect your payment, never transfer money or communicate outside of the Touserve website or app.</span>
                                 </li>
                             </ul>
                         </div>

@@ -126,44 +126,49 @@
                         </div>
                     </div>
 
-                    <div class="wrap-title s2">
-                        <h4>Overview</h4>
-                    </div>
-                    <p class="content-destination">
-                        <%= tour.overview %>
-                    </p>
+                    <div class="flat-form-book-now">
+                        <div class="wrap-content-title">
+                            <div>
+                                <h4>Overview</h4>
+                                <p class="content-destination"><%= tour.overview %></p>
+                            </div>
 
-                    <div class="widget widget-tour-by-types custom-widget">
-                        <h4 class="widget-title">Inclusions</h4>
-                        <ul>
-                            <% for(let i=0; i < tour.inclusions.length; i++){ %>
-                            <li>
-                                <%= tour.inclusions[i] %>
-                            </li>
+                            <div class="dividers dividers-border-bottom"></div>
+                            <div class="widget widget-tour-by-types custom-widget">
+                                <h4>Inclusions</h4>
+                                <ul>
+                                    <% for(let i=0; i < tour.inclusions.length; i++){ %>
+                                    <li>
+                                        <%= tour.inclusions[i] %>
+                                    </li>
+                                    <% } %>
+                                </ul>
+                            </div>
+
+                            <div class="dividers dividers-border-bottom"></div>
+                            <div>
+                                <h4>Departure Time: </h4>
+                                <p class="content-destination">Every day at: <%= tour.time %></p>
+                            </div>
+
+                            <div class="dividers dividers-border-bottom"></div>
+                            <div>
+                                <h4>Duration:</h4>
+                                <p class="content-destination"> <%= tour.duration %> days</p>
+                            </div>
+                            
+                            <% if(tour.additional){ %>
+                                <div class="dividers dividers-border-bottom"></div>
+                                <div>
+                                    <h4>Additional Info</h4>
+                                </div>
+                                <p class="content-destination">
+                                    <%= tour.additional %>
+                                </p>
                             <% } %>
-                        </ul>
+                        </div>
                     </div>
-                    <div class="wrap-title s2">
-                        <h4>Departure Time: </h4>
-                    </div>
-                    <p class="content-destination">Every day at:
-                        <%= tour.time %>
-                    </p>
-
-                    <div class="wrap-title s2">
-                        <h4>Duration:</h4>
-                    </div>
-                    <p class="content-destination">
-                        <%= tour.duration %> days</p>
-
-                    <% if(tour.additional){ %>
-                        <div class="wrap-title s2">
-                        <h4>Additional Info</h4>
-                    </div>
-                    <p class="content-destination">
-                        <%= tour.additional %>
-                    </p>
-                    <% } %>
+                    
 
 
                     <div class="flat-tabs" data-effect="fadeIn">
