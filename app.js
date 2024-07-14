@@ -16,8 +16,8 @@ app.use('/upload', express.static('upload'));
 
 // cookie-session
 app.use(session({ 
-        name: 'session', // Optional, cookie name. Defaults to 'session'.
-        keys: process.env.SESSION_KEY, // Array of secret keys for signing the cookies.
+        name: 'session',
+        keys: process.env.SESSION_KEY,
         maxAge: 24 * 60 * 60 * 1000, // Optional, cookie expiration time in milliseconds.
         secure: true, // Optional, set to true if your app is served over HTTPS.
         httpOnly: true, 
