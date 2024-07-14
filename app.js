@@ -1,10 +1,10 @@
 const express = require('express'); 
 const session = require("cookie-session"); 
 const app = express();  
-const port = process.env.PORT || 8181;
 
 // dotenv 
 require('dotenv').config();
+const port = process.env.PORT || 8181;
 
 // EJS for rendering pages
 app.set("view engine", "ejs")
@@ -17,18 +17,27 @@ app.use('/upload', express.static('upload'));
 
 // cookie-session
 app.use(session({ 
-        name: 'session',
-        keys: process.env.SESSION_KEY,
-        maxAge: 24 * 60 * 60 * 1000, // Optional, cookie expiration time in milliseconds.
-        secure: true, // Optional, set to true if your app is served over HTTPS.
-        httpOnly: true, 
-        signed: false
+        // name: 'session',
+        // keys: process.env.SESSION_KEY,
+        // maxAge: 24 * 60 * 60 * 1000, // Optional, cookie expiration time in milliseconds.
+        // secure: true, // Optional, set to true if your app is served over HTTPS.
+        // httpOnly: true, 
+        // signed: false
         // secret: process.env.SESSION_KEY,
         // resave: false,  
         // saveUninitialized: true, 
         // cookie: { 
         //     secure: true   // set this to true in prod!!! 
         // } 
+        name: 'session',
+        secret: process.env.SESSION_KEY, // Use `secret` instead of `keys` for express-session
+        resave: false, // Optional, prevents session from being saved back to the store if not modified
+        saveUninitialized: false, // Optional, prevents uninitialized sessions from being saved to store
+        cookie: {
+            maxAge: 24 * 60 * 60 * 1000, // Optional, cookie expiration time in milliseconds
+            secure: true, // Optional, set to true if your app is served over HTTPS
+            httpOnly: true,
+        }
     }) 
 ) 
 

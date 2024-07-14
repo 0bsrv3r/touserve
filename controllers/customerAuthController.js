@@ -79,11 +79,14 @@ class Authentication {
         }
 
         const isValidPassword = await customer.validPassword(password)
+        console.log(isValidPassword)
         if(isValidPassword){
             if(customer.verifiedAt){
                 req.session.username = customer.uname 
                 req.session.user_id = customer.id
                 req.session.user_type = "customer"
+
+                console.log(req.session.username)
 
                 return res.redirect("/customer/profile")
             }else{
