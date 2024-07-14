@@ -30,7 +30,7 @@ app.use(session({
         //     secure: true   // set this to true in prod!!! 
         // } 
         name: 'session',
-        secret: process.env.SESSION_KEY, // Use `secret` instead of `keys` for express-session
+        secret: process.env.SESSION_KEY, 
         resave: false, // Optional, prevents session from being saved back to the store if not modified
         saveUninitialized: false, // Optional, prevents uninitialized sessions from being saved to store
         cookie: {
