@@ -20,7 +20,7 @@ app.use(session({
         resave: false,  
         saveUninitialized: true, 
         cookie: { 
-            secure: true   // set this to true in prod!!! 
+            secure: false   // set this to true in prod!!! 
         } 
     }) 
 ) 
@@ -60,6 +60,7 @@ app.use((req, res, next) => {
     res.status(404).render('404', { layout: 'layouts/pagesheader', url: req.originalUrl, active:"404" });
 });
 
-app.listen(process.env.PORT, ()=>{ 
-    console.log(`Application is running on port ${process.env.PORT}`); 
+const port = process.env.PORT || 8181;
+app.listen(port, ()=>{ 
+    console.log(`Application is running on port ${port}`); 
 }) 
