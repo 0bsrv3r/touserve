@@ -1,6 +1,7 @@
 const express = require('express'); 
 const session = require("cookie-session"); 
 const app = express();  
+const port = process.env.PORT || 8181;
 
 // dotenv 
 require('dotenv').config();
@@ -66,7 +67,8 @@ app.use((req, res, next) => {
     res.status(404).render('404', { layout: 'layouts/pagesheader', url: req.originalUrl, active:"404" });
 });
 
-const port = process.env.PORT || 8181;
+
+
 app.listen(port, ()=>{ 
     console.log(`Application is running on port ${port}`); 
 }) 
