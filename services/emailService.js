@@ -28,7 +28,7 @@ module.exports = EmailSender
 
 
 // const DOMAIN = 'tourserve.com'; 
-// const mg = mailgun({ apiKey: 'ed8bbf8521c5f315ba21f8261cd43814-623e10c8-9c0d4bf3', domain: DOMAIN });
+// const mg = mailgun({ apiKey: process.env.MAILGUN_API_KEY, domain: DOMAIN });
 
 // Send Email with Mailgun
 // const data = {

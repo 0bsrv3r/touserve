@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
     },
     price: {
         allowNull: false,
-        type: DataTypes.INTEGER(5)
+        type: DataTypes.INTEGER
     },
     currency: {
         allowNull: false,
@@ -58,19 +58,19 @@ module.exports = (sequelize) => {
     },
     roomCount: {
         allowNull: false,
-        type: DataTypes.INTEGER(3)
+        type: DataTypes.INTEGER
     },
     bedCount: {
         allowNull: false,
-        type: DataTypes.INTEGER(3)
+        type: DataTypes.INTEGER
     },
     bathCount: {
         allowNull: false,
-        type: DataTypes.INTEGER(3)
+        type: DataTypes.INTEGER
     },
     guestCount: {
         allowNull: false,
-        type: DataTypes.INTEGER(3)
+        type: DataTypes.INTEGER
     },
     roomType: {
         type: DataTypes.STRING(300)

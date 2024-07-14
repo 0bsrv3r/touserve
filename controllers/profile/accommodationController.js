@@ -1,5 +1,5 @@
 const  { validationResult } = require("express-validator") 
-const {Accommodations, Tours, Customers, Sequelize} = require("../../models")
+const {Accommodations, Tours} = require("../../models")
 const FileUpload = require("./../../services/fileUploadService.js")
 const UsersInfoReview = require("./../../services/usersInfoReviews.js")
 const Entities = require("../../services/modelService.js")
@@ -148,12 +148,12 @@ class Accommodation{
 
     // Front Side
     static async getRecommendedTours(req, res){
-        const tours = await Entities.getEntities(Tours, "tourId", {order: 'totalStars DESC', limit:2},)
+        const tours = await Entities.getEntities(Tours, {order: ['totalStars', 'ASC'], limit:2})
         return tours
     }
     
     static async getAccommodations(req, res){
-        const accommodations = await Entities.getEntities(Accommodations, "accommodationId")
+        const accommodations = await Entities.getEntities(Accommodations)
         const tours = await Accommodation.getRecommendedTours()
         
         return res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations, tours: tours, active:"accommodations" })
@@ -161,21 +161,19 @@ class Accommodation{
 
     static async getAccommodationById(req, res){
         const data = req.params
-        const accommodation = await Accommodations.findOne({
-            where: data,
-            attributes: {
-                include: [
-                    [Sequelize.literal(`(SELECT AVG(stars) FROM reviews WHERE reviews.accommodationId = Accommodations.id)`), 'totalStars']
-                ]
-            },
-            include:['reviews', {model: Customers, as: 'customers', attributes: { exclude: ['password'] }}]
-        })
+        const accommodation = await Entities.getOneEntity(Accommodations, data, {include:'customers'})
+        let totalStars = 0
+
+        for(const review of accommodation.reviews){
+            totalStars = totalStars + review.stars
+        }
+        totalStars = totalStars/accommodation.reviews.length
 
         if(accommodation != undefined){
             // get users based on accommondation review
             const users = await UsersInfoReview.userInfoReviews(accommodation.reviews)
 
-            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, users: users, active:""})
+            return res.render('accommodation-details', {layout: 'layouts/pagesHeader', accommodation: accommodation, service:"accommodation", id:data.id, totalStars:totalStars, users: users, active:""})
         }else{
             return res.render("404", {layout: 'layouts/pagesheader', active:"accommodations"});
         }

@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       // Association definition
       this.hasMany(models.Customers,  { foreignKey: 'companyId', as: 'companyGuides' });
       this.hasMany(models.Tours,  { foreignKey: 'customerId', as: 'companyTours' });
-      this.hasMany(models.Tours,  { foreignKey: 'guideId', as: 'guideTours' });
+      this.hasMany(models.Tours,  { foreignKey: 'guideId', as: 'tours' });
       this.hasMany(models.Accommodations, { foreignKey: 'customerId', as: 'accommodations' });
       this.hasMany(models.Reviews, { foreignKey: 'guideId', as: 'reviews' });
     }
@@ -58,10 +58,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING(70)
     },
     age: {
-        type: DataTypes.INTEGER(3)
+        type: DataTypes.INTEGER
     },
     experience: {
-        type: DataTypes.INTEGER(3)
+        type: DataTypes.INTEGER
     },
     description: {
         type: DataTypes.TEXT

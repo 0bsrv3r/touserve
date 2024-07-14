@@ -60,7 +60,7 @@ module.exports = {
       },
       duration: {
         allowNull: false,
-        type: Sequelize.INTEGER(5)
+        type: Sequelize.INTEGER
       },
       inclusions: {
         allowNull: false,
@@ -68,7 +68,7 @@ module.exports = {
       },
       price: {
         allowNull: false,
-        type: Sequelize.INTEGER(5)
+        type: Sequelize.INTEGER
       },
       currency: {
         allowNull: false,
@@ -99,7 +99,7 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },

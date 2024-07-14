@@ -42,7 +42,7 @@
                                         <li data-value="3"></li>
                                         <li data-value="4"></li>
                                         <li data-value="5"></li>
-                                        <script>var stars = Math.round('<%= guide.dataValues.totalStars %>')  </script>
+                                        <script>var stars = Math.round('<%= totalStars %>')  </script>
                                     </ul>
                                     <div class="reviews">(<%= guide.reviews.length %> reviews)</div>
                                 </div>
@@ -89,24 +89,24 @@
 
             <div class="col-md-3">
                 <div class="sidebar">
-                    <% if(guide.guideTours.length !== 0){ %>
+                    <% if(tours.length !== 0){ %>
                     <div class="widget widget-reviewes-tours">
                         <h4 class="widget-title custom-widget-title">
                             <span>Tours</span> of Guide
                         </h4>
                         <ul class="popular-news clearfix">
-                            <% for(let tours of guide.guideTours){ %>
+                            <% for(let tour of tours){ %>
                             <li>
                                 <div class="thumb overlays2">
-                                    <a href="/tour-details/<%= tours.id %>" class="link">
-                                        <img src="/<%= tours.images[0] %>" alt="image">
+                                    <a href="/tour-details/<%= tour.id %>" class="link">
+                                        <img src="/<%= tour.images[0] %>" alt="image">
                                     </a>
                                 </div>
                                 <div class="text">
-                                    <h6><%= tours.title %></h6>
-                                    <div class="sub-title"><%= tours.city %>, <%= tours.area %></div>
-                                    <p class="time"><%= tours.duration %> days -
-                                        <span><%= tours.currency %><%= tours.price %></span>
+                                    <h6><%= tour.title %></h6>
+                                    <div class="sub-title"><%= tour.city %>, <%= tour.country %></div>
+                                    <p class="time"><%= tour.duration %> days -
+                                        <span><%= tour.currency %><%= tour.price %></span>
                                     </p>
                                 </div>
                             </li>

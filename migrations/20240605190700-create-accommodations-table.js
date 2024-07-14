@@ -40,7 +40,7 @@ module.exports = {
       },
       price: {
         allowNull: false,
-        type: Sequelize.INTEGER(5)
+        type: Sequelize.INTEGER
       },
       currency: {
         allowNull: false,
@@ -60,19 +60,19 @@ module.exports = {
       },
       roomCount: {
         allowNull: false,
-        type: Sequelize.INTEGER(3)
+        type: Sequelize.INTEGER
       },
       bedCount: {
         allowNull: false,
-        type: Sequelize.INTEGER(3)
+        type: Sequelize.INTEGER
       },
       bathCount: {
         allowNull: false,
-        type: Sequelize.INTEGER(3)
+        type: Sequelize.INTEGER
       },
       guestCount: {
         allowNull: false,
-        type: Sequelize.INTEGER(3)
+        type: Sequelize.INTEGER
       },
       roomType: {
         allowNull: false,
@@ -112,7 +112,7 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },

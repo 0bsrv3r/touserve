@@ -58,7 +58,7 @@ module.exports = (sequelize) => {
     },
     duration: {
         allowNull: false,
-        type: DataTypes.INTEGER(5)
+        type: DataTypes.INTEGER
     },
     inclusions: {
         allowNull: false,
@@ -66,7 +66,7 @@ module.exports = (sequelize) => {
     },
     price: {
         allowNull: false,
-        type: DataTypes.INTEGER(5)
+        type: DataTypes.INTEGER
     },
     currency: {
         allowNull: false,

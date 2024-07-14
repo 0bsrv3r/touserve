@@ -53,10 +53,10 @@ module.exports = {
         type: Sequelize.STRING(70)
       },
       age: {
-        type: Sequelize.INTEGER(3)
+        type: Sequelize.INTEGER
       },
       experience: {
-        type: Sequelize.INTEGER(3)
+        type: Sequelize.INTEGER
       },
       description: {
         type: Sequelize.TEXT
@@ -75,7 +75,7 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },

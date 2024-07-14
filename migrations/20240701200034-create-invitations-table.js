@@ -24,11 +24,11 @@ module.exports = {
       },
       token: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING()
       },
       status: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING()
       },
       createdAt: {
         allowNull: false,
@@ -38,7 +38,7 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },
