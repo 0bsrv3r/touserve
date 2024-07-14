@@ -156,7 +156,7 @@ class Accommodation{
         const accommodations = await Entities.getEntities(Accommodations)
         const tours = await Accommodation.getRecommendedTours()
         
-        return res.render('accommodation', {layout: 'layouts/pagesHeader', accommodations: accommodations, tours: tours, active:"accommodations" })
+        return res.render('accommodation', {layout: 'layouts/pagesheader', accommodations: accommodations, tours: tours, active:"accommodations" })
     }
 
     static async getAccommodationById(req, res){

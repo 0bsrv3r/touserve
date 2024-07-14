@@ -170,7 +170,7 @@ class Tour{
     // Front Side
     static async getTours(req, res){
         const tours  =  await Entities.getEntities(Tours, {order: ['createdAt', 'DESC']})
-        return res.render("tours", {layout: 'layouts/pagesHeader', tours: tours, active:"tours"}); 
+        return res.render("tours", {layout: 'layouts/pagesheader', tours: tours, active:"tours"}); 
     }
 
     static async getTourById(req, res){
