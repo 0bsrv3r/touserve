@@ -1,5 +1,5 @@
 const express = require('express'); 
-const session = require("express-session"); 
+const session = require("cookie-session"); 
 const app = express();  
 
 // dotenv 
@@ -14,13 +14,13 @@ app.use(expressEjsLayouts);
 app.set("layout", "layouts/header")
 app.use('/upload', express.static('upload')); 
 
-// express-session 
+// cookie-session
 app.use(session({ 
         secret: process.env.SESSION_KEY,
         resave: false,  
         saveUninitialized: true, 
         cookie: { 
-            secure: false   // set this to true in prod!!! 
+            secure: true   // set this to true in prod!!! 
         } 
     }) 
 ) 
