@@ -20,7 +20,7 @@ app.use(session({
         resave: false,  
         saveUninitialized: true, 
         cookie: { 
-            secure: false   // set this to true in prod!!! 
+            secure: true   // set this to true in prod!!! 
         } 
     }) 
 ) 
