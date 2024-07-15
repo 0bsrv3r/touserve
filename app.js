@@ -23,10 +23,12 @@ app.use(session({
         secret: process.env.SESSION_KEY, 
         resave: false, // Optional, prevents session from being saved back to the store if not modified
         saveUninitialized: false, // Optional, prevents uninitialized sessions from being saved to store
-        maxAge: 24 * 60 * 60 * 1000, // Optional, cookie expiration time in milliseconds
-        secure: true, // Optional, set to true if your app is served over HTTPS
-        httpOnly: true,
-        sameSite: 'strict',
+        cookie: {
+            maxAge: 24 * 60 * 60 * 1000, // Optional, cookie expiration time in milliseconds
+            secure: true, // Optional, set to true if your app is served over HTTPS
+            httpOnly: true,
+            sameSite: 'strict',
+        }
     }) 
 ) 
 
