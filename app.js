@@ -19,19 +19,20 @@ app.use('/upload', express.static('upload'));
 app.use(session({
         name: 'cookie-session',
         keys: process.env.SESSION_KEY,
-        maxAge: 24 * 60 * 60 * 1000,
-        secure: true,
-        httpOnly: true,
-        sameSite: 'strict',
+        // maxAge: 24 * 60 * 60 * 1000,
+        // secure: true,
+        // httpOnly: true,
+        // sameSite: 'strict',
         // name: 'session',
         // secret: process.env.SESSION_KEY, 
         // resave: false, 
         // saveUninitialized: false,
-        // cookie: {
-        //     maxAge: 24 * 60 * 60 * 1000, 
-        //     secure: true,
-        //     httpOnly: true,
-        // }
+        cookie: {
+            maxAge: 24 * 60 * 60 * 1000,
+            secure: true,
+            httpOnly: true,
+            sameSite: 'strict',
+        }
     }) 
 ) 
 
