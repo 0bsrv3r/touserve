@@ -16,16 +16,25 @@ app.set("layout", "layouts/header")
 app.use('/upload', express.static('upload')); 
 
 // cookie-session
+app.set('trust proxy', 1);
 app.use(session({ 
-        name: 'session',
-        secret: process.env.SESSION_KEY, 
-        resave: false, 
-        saveUninitialized: false,
-        cookie: {
-            maxAge: 24 * 60 * 60 * 1000, 
-            secure: true,
-            httpOnly: true,
-        }
+    cookie:{
+        secure: true,
+        maxAge:60000
+           },
+    store: new RedisStore(),
+    secret: process.env.SESSION_KEY,
+    saveUninitialized: true,
+    resave: false
+        // name: 'session',
+        // secret: process.env.SESSION_KEY, 
+        // resave: false, 
+        // saveUninitialized: false,
+        // cookie: {
+        //     maxAge: 24 * 60 * 60 * 1000, 
+        //     secure: true,
+        //     httpOnly: true,
+        // }
     }) 
 ) 
 
