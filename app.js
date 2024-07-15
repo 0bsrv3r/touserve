@@ -18,7 +18,7 @@ app.use('/upload', express.static('upload'));
 // cookie-session
 app.use(session({
         name: 'cookie-session',
-        keys: [process.env.SESSION_KEY],
+        keys: process.env.SESSION_KEY,
         maxAge: 24 * 60 * 60 * 1000,
         secure: true,
         httpOnly: true,
