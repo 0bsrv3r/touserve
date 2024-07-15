@@ -1,5 +1,5 @@
 const express = require('express'); 
-const session = require("express-session"); 
+const session = require("cookie-session"); 
 const app = express();  
 
 // dotenv 
@@ -16,16 +16,13 @@ app.set("layout", "layouts/header")
 app.use('/upload', express.static('upload')); 
 
 // cookie-session
-app.set('trust proxy', 1);
-app.use(session({ 
-    cookie:{
+app.use(session({
+        name: 'cookie-session',
+        keys: [process.env.SESSION_KEY],
+        maxAge: 24 * 60 * 60 * 1000,
         secure: true,
-        maxAge:60000
-           },
-    store: new RedisStore(),
-    secret: process.env.SESSION_KEY,
-    saveUninitialized: true,
-    resave: false
+        httpOnly: true,
+        sameSite: 'strict',
         // name: 'session',
         // secret: process.env.SESSION_KEY, 
         // resave: false, 
