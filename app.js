@@ -1,5 +1,5 @@
 const express = require('express'); 
-const session = require("cookie-session"); 
+const session = require("express-session"); 
 const app = express();  
 
 // dotenv 
@@ -17,25 +17,13 @@ app.use('/upload', express.static('upload'));
 
 // cookie-session
 app.use(session({ 
-        // name: 'session',
-        // keys: process.env.SESSION_KEY,
-        // maxAge: 24 * 60 * 60 * 1000, // Optional, cookie expiration time in milliseconds.
-        // secure: true, // Optional, set to true if your app is served over HTTPS.
-        // httpOnly: true, 
-        // signed: false
-        // secret: process.env.SESSION_KEY,
-        // resave: false,  
-        // saveUninitialized: true, 
-        // cookie: { 
-        //     secure: true   // set this to true in prod!!! 
-        // } 
         name: 'session',
         secret: process.env.SESSION_KEY, 
-        resave: false, // Optional, prevents session from being saved back to the store if not modified
-        saveUninitialized: false, // Optional, prevents uninitialized sessions from being saved to store
+        resave: false, 
+        saveUninitialized: false,
         cookie: {
-            maxAge: 24 * 60 * 60 * 1000, // Optional, cookie expiration time in milliseconds
-            secure: true, // Optional, set to true if your app is served over HTTPS
+            maxAge: 24 * 60 * 60 * 1000, 
+            secure: true,
             httpOnly: true,
         }
     }) 

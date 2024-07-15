@@ -5,6 +5,7 @@ const slugify = require("slugify");
 const { Events } = require("../../models");
 const fs = require('fs');
 const path = require('path');
+const FileUpload = require("./../../services/fileUploadService.js")
 
 class Event{
 
@@ -18,17 +19,8 @@ class Event{
 
     static async postEvent(req, res){
         const errors = validationResult(req); 
-        if(errors.isEmpty()){ 
-            let avatar = req.files.image; 
-            let path = 'upload/photos/events/' + Date.now() + '-' + slugify(avatar.name,{ 
-                lower: true, 
-                strict: true 
-            }) + '.' + avatar.name.split('.').pop();
-            avatar.mv(path, err => { 
-                if(err){ 
-                    return res.status(500).send(err); 
-                } 
-            })
+        if(errors.isEmpty()){
+            let path = await FileUpload.singleFileUpload(req, res, req.files.image, "upload/photos/events/")
             
             const data = {
                 userId: 1, // req.session.user_id, //UPDATE THIS IN PROD ENV
