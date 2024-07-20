@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="profile-input">                                      
-                                            <input class="form-input-size" type="text" name="title" placeholder="Title*" aria-required="true" size="30" value="" id="author">
+                                            <input class="form-input-size" type="text" name="title" placeholder="Title*" aria-required="true" size="30" value="<%= tour.title %>" id="author">
                                             <% if (errors.title) { %>
                                                 <p style="color: red;"><%= errors.title %></p>
                                             <% } %> 
@@ -50,11 +50,11 @@
                                         <div class="profile-input">
                                             <select class="form-input-size" name="category">
                                                 <option disabled selected>Category</option>
-                                                <option value="culture-art">Culture & Art</option>
-                                                <option value="beauty-health">Beauty & Health</option>
-                                                <option value="entertainment">Entertainment</option>
-                                                <option value="offroad">OffRoad</option>
-                                                <option value="hunting">Hunting</option>
+                                                <option value="culture-art" <%= tour.category =='culture-art' ? 'selected' : '' %>>Culture & Art</option>
+                                                <option value="beauty-health"  <%= tour.category =='beauty-health' ? 'selected' : '' %>>Beauty & Health</option>
+                                                <option value="entertainment"  <%= tour.category =='entertainment' ? 'selected' : '' %>>Entertainment</option>
+                                                <option value="offroad"  <%= tour.category =='offroad' ? 'selected' : '' %>>OffRoad</option>
+                                                <option value="hunting"  <%= tour.category =='hunting' ? 'selected' : '' %>>Hunting</option>
                                             </select>
                                             <% if (errors.category) { %>
                                                 <p style="color: red;"><%= errors.category %></p>
@@ -78,9 +78,9 @@
                                         <div class="profile-input">
                                             <select class="form-input-size" name="country">
                                                 <option disabled selected>Country</option>
-                                                <option>Azerbaijan</option>
-                                                <option>Turkey</option>
-                                                <option>Georgia</option>
+                                                <option <%= tour.country =='Azerbaijan' ? 'selected' : '' %>>Azerbaijan</option>
+                                                <option <%= tour.country =='Turkey' ? 'selected' : '' %>>Turkey</option>
+                                                <option <%= tour.country =='Georgia' ? 'selected' : '' %>>Georgia</option>
                                             </select>
                                             <% if (errors.country) { %>
                                                 <p style="color: red;"><%= errors.country %></p>
@@ -91,9 +91,9 @@
                                         <div class="profile-input">
                                             <select class="form-input-size" name="city">
                                                 <option disabled selected>City</option>
-                                                <option>Baku</option>
-                                                <option>Shaki</option>
-                                                <option>Guba</option>
+                                                <option <%= tour.city =='Baku' ? 'selected' : '' %>>Baku</option>
+                                                <option <%= tour.city =='Baku' ? 'Shaki' : '' %>>Shaki</option>
+                                                <option <%= tour.city =='Baku' ? 'Guba' : '' %>>Guba</option>
                                             </select>
                                             <% if (errors.city) { %>
                                                 <p style="color: red;"><%= errors.city %></p>
@@ -102,7 +102,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="profile-input">                                      
-                                            <input class="form-input-size" type="text" name="area" placeholder="Area*" aria-required="true" size="30" value="" id="LestName">
+                                            <input class="form-input-size" type="text" name="area" value="<%= tour.area %>" placeholder="Area*" id="LestName">
                                             <% if (errors.area) { %>
                                                 <p style="color: red;"><%= errors.area %></p>
                                             <% } %> 
@@ -149,12 +149,12 @@
                                         <div class="profile-input">
                                             <select class="form-input-size" name="duration">
                                                 <option disabled selected>Duration</option>
-                                                <option value="1">1 day</option>
-                                                <option value="2">2 days</option>
-                                                <option value="3">3 days</option>
-                                                <option value="4">4 days</option>
-                                                <option value="5">5 days</option>
-                                                <option value="6">6 days</option>
+                                                <option value="1" <%= tour.duration =='1' ? 'selected' : '' %>>1 day</option>
+                                                <option value="2" <%= tour.duration =='2' ? 'selected' : '' %>>2 days</option>
+                                                <option value="3" <%= tour.duration =='3' ? 'selected' : '' %>>3 days</option>
+                                                <option value="4" <%= tour.duration =='4' ? 'selected' : '' %>>4 days</option>
+                                                <option value="5" <%= tour.duration =='5' ? 'selected' : '' %>>5 days</option>
+                                                <option value="6" <%= tour.duration =='6' ? 'selected' : '' %>>6 days</option>
                                             </select>
                                             <% if (errors.duration) { %>
                                                 <p style="color: red;"><%= errors.duration %></p>
@@ -163,7 +163,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="profile-input">                                      
-                                            <input class="form-input-size" type="text" name="price" placeholder="Price*" aria-required="true" size="30" id="LestName">
+                                            <input class="form-input-size" type="text" name="price"  value="<%= tour.price %>" placeholder="Price*" aria-required="true" size="30" id="LestName">
                                             <% if (errors.price) { %>
                                                 <p style="color: red;"><%= errors.price %></p>
                                             <% } %> 
@@ -173,9 +173,9 @@
                                         <div class="profile-input">
                                             <select class="form-input-size" name="currency">
                                                 <option disabled selected>Currency</option>
-                                                <option value="₼">AZN</option>
-                                                <option value="$">USD</option>
-                                                <option value="€">EUR</option>
+                                                <option value="₼" <%= tour.currency =='₼' ? 'selected' : '' %>>AZN</option>
+                                                <option value="$" <%= tour.currency =='$' ? 'selected' : '' %>>USD</option>
+                                                <option value="€" <%= tour.currency =='€' ? 'selected' : '' %>>EUR</option>
                                             </select>
                                             <% if (errors.currency) { %>
                                                 <p style="color: red;"><%= errors.currency %></p>
@@ -184,13 +184,13 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="profile-input">
-                                            <textarea name="overview" tabindex="4" placeholder="Overview*" required></textarea>
+                                            <textarea name="overview" tabindex="4" placeholder="Overview*" required><%= tour.overview %></textarea>
                                             <% if (errors.overview) { %>
                                                 <p style="color: red;"><%= errors.overview %></p>
                                             <% } %> 
                                         </div>
                                         <div class="profile-input">
-                                            <textarea name="additional" tabindex="4" placeholder="Additional Info" required></textarea>
+                                            <textarea name="additional" tabindex="4" placeholder="Additional Info" required><%= tour.additional %></textarea>
                                             <% if (errors.additional) { %>
                                                 <p style="color: red;"><%= errors.additional %></p>
                                             <% } %> 
