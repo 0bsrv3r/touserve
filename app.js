@@ -6,6 +6,9 @@ const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 8181;
 
+// Disble X-Powered-By header
+app.disable('x-powered-by')
+
 // EJS for rendering pages
 app.set("view engine", "ejs")
 
