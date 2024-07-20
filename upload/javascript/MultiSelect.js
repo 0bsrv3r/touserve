@@ -124,7 +124,6 @@ class MultiSelect {
                     this.element.querySelector('.multi-select-search').value = '';
                 }
                 this.element.querySelectorAll('.multi-select-option').forEach(option => option.style.display = 'flex');
-                headerElement.classList.remove('multi-select-header-active');
                 this.options.onChange(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
                 if (selected) {
                     this.options.onSelect(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);

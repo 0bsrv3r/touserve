@@ -2,7 +2,7 @@ const express = require('express');
 const session = require("cookie-session"); 
 const app = express();  
 
-// dotenv 
+// dotenv
 require('dotenv').config();
 const port = process.env.PORT || 8181;
 
@@ -17,18 +17,23 @@ app.use('/upload', express.static('upload'));
 
 // cookie-session
 app.use(session({ 
-        // keys: process.env.SESSION_KEY, 
-        // signed: false
-        name: 'session',
         secret: process.env.SESSION_KEY, 
-        resave: false, // Optional, prevents session from being saved back to the store if not modified
-        saveUninitialized: false, // Optional, prevents uninitialized sessions from being saved to store
+        resave: false, 
+        saveUninitialized: false, 
         cookie: {
-            maxAge: 24 * 60 * 60 * 1000, // Optional, cookie expiration time in milliseconds
-            secure: true, // Optional, set to true if your app is served over HTTPS
+            maxAge: 24 * 60 * 60 * 1000,
+            secure: true,
             httpOnly: true,
             sameSite: 'strict',
         }
+
+        // name: 'session',
+        // keys: ['key1', 'key2'],
+        // maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        // domain: '.yourdomain.com', // Include leading dot for subdomains
+        // path: '/', // Root path
+        // secure: true, // Only send cookies over HTTPS
+        // httpOnly: true, // Prevent client-side access to 
     }) 
 ) 
 
