@@ -31,6 +31,12 @@ body{
 #header-image .motto span{
     color: #fd7e21;
 }
+#header-image #searchform{
+    display: flex;
+}
+#header-image #searchform span.select:before{
+    right: 30px;
+}
 /*HEADER END*/
 
 /*CONTENT SLIDER START*/
@@ -827,6 +833,9 @@ body{
 #ninja-slider.fullscreen {
     height: 100%;
 }
+.flat-form-book-now{
+    margin: 50px 0px 40px;
+}
                             /*========= TOURS-DETAILS PAGE END ==========*/
                             /*========= TOURS PAGE END ==========*/
 
@@ -1101,3 +1110,14 @@ body{
     content: "\f005";
 }
                                 /*========= Review END ==========*/
+
+
+footer .widget.widget_nav_menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer #nav_menu-2{
+    align-items: end;   
+}
